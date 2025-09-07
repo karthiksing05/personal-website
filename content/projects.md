@@ -5,8 +5,6 @@ title = "projects"
 
 > The work is its own reward. *— Sir Arthur Conan Doyle, British writer and physician*
 
-My projects span both research and product design, with the goal to pioneer new AI solutions to benefit the human experience or cultivate existing AI solutions for human development: in other words, a hybrid approach to human learning and growth.
-
 # ongoing efforts
 
 ### *[2025-06-11 - present]* Cobweb for psychological "Chunking" @ [ISLE](http://www.isle.org/) | [github](https://github.com/karthiksing05/Chunking-Cobweb)
@@ -21,6 +19,7 @@ My projects span both research and product design, with the goal to pioneer new 
 - Recently, I joined Professor Anya Ivanova and began contributing to the development of encoding models, models that can convert latent content that represents stimuli into direct voxel representations of brain states, measured by fMRI data. This project places large emphasis on model interpretability, with the goal of running large studies with brain simulations inspired by encoding models if they become successful.
 - Currently, I am investigating alternative architectures to the traditional encoding model architecture, and attempting to apply different definitions towards interpretability behind pure sparsity in an effort to produce better fits.
 
+---
 
 # past projects
 
@@ -41,5 +40,5 @@ My projects span both research and product design, with the goal to pioneer new 
 
 ### *[2021-09-27 - 2024-02-05]* BiasWrappers | [github](https://github.com/karthiksing05/biaswrappers)
 
-- My first machine learning project and independently published paper! A brief foray into classical forms of regularization on linear regression, including two of my own attempts at unsupervised regularization with respect to the data distribution. [![PyPI Downloads](https://static.pepy.tech/personalized-badge/biaswrappers?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=LIGHTGREY&left_text=downloads)](https://pepy.tech/projects/biaswrappers)
-- Paper can be viewed [here](https://www.techrxiv.org/users/741672/articles/713955-on-biaswrappers-new-regularization-techniques-for-machine-learning-regression)!
+- My first machine learning project and independently published paper to a preprint archive! A brief foray into classical forms of regularization on linear regression, including two of my own attempts at unsupervised regularization with respect to the data distribution. The python package currently stands at ~32k downloads!
+- Paper can be viewed [here](https://www.techrxiv.org/users/741672/articles/713955-on-biaswrappers-new-regularization-techniques-for-machine-learning-regression), Python Package can be viewed [here](https://pypi.org/project/biaswrappers/)!
