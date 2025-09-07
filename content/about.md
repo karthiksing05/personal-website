@@ -82,7 +82,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   cognitive science<span class="terminal-popup">
         <strong>Cognitive Science:</strong><br>
         The study of thought, learning, and mental organization, which draws on aspects of psychology, linguistics, philosophy, and computer modeling.
-    </span></span>  and artificial intelligence. Specifically, I’m interested in how we can recreate human-like performance by iterating on principles of human-like learning.
+    </span></span> and general artificial intelligence. Specifically, I’m interested in how we can recreate human-like performance by iterating on principles of human-like learning.
     </p>
   </div>
 </div>
