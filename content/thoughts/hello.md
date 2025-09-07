@@ -24,6 +24,6 @@ Additionally, I don’t plan to blog on personal experience (though it will of c
 
 # thank you!
 
-I’m excited to reflect deeply on things that keep me up with writing, and happy that there’s finally a place to share my thoughts. If any of this is interesting, don’t hesitate to reach out.
+I’m excited to reflect deeply on things that keep me up with writing, and happy that there’s finally a place to share my thoughts. If you'd like to talk, disagree, collaborate, vibe, learn - my doors are always open.
 
 *- Karthik*

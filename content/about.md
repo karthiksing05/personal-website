@@ -36,7 +36,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   padding: 10px;
   position: absolute;
   z-index: 100;
-  bottom: 120%; /* below the text */
+  bottom: 120%;
   left: 50%;
   transform: translateX(-50%);
   transition: opacity 0.3s;
@@ -49,10 +49,24 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   visibility: visible;
   opacity: 1;
 }
+
+/* Responsive layout for mobile */
+.flex-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .flex-section {
+    flex-direction: column;
+    text-align: center;
+  }
+}
 </style>
 
-<div style="display: flex; align-items: center; gap: 20px;">
-
+<div class="flex-section">
   <div style="flex: 3; text-align: center;">
     <img src="/georgiatech.jpg" alt="georgia tech" style="max-width: 100%; height: auto;" />
   </div>
@@ -71,13 +85,9 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
     </span></span>  and artificial intelligence. Specifically, I’m interested in how we can recreate human-like performance by iterating on principles of human-like learning.
     </p>
   </div>
-
 </div>
 
-<!-- The brain is the most complicated supercomputer we have discovered yet, and if we bring the instinctive process by which we learn and iterate on ourselves to machines, we unlock new possibility. -->
-
-<div style="display: flex; align-items: center; gap: 20px;">
-
+<div class="flex-section">
   <div style="flex: 4;">
     <h2>now</h2>
     <p>
@@ -87,15 +97,12 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
     </p>
   </div>
 
-   <div style="flex: 3; text-align: center;">
+  <div style="flex: 3; text-align: center;">
     <img src="/glacier.JPG" alt="glacier" style="max-width: 100%; height: auto;" />
   </div>
-
 </div>
 
-
-<div style="display: flex; align-items: center; gap: 20px;">
-
+<div class="flex-section">
   <div style="flex: 2; text-align: center;">
     <img src="/matterhorn.JPG" alt="matterhorn" style="max-width: 100%; height: auto;" />
   </div>
@@ -115,10 +122,9 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
     </span></span>, the restructuring of modern capitalism for the prioritization of scientific discovery, and innovations in the education system that prime future generations to find their why.
     </p>
   </div>
-
 </div>
 
-*pictures taken in georgia tech, alaska, switzerland*
+<p><em>pictures taken in georgia tech, alaska, switzerland</em></p>
 
 ## more
 
