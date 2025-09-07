@@ -40,4 +40,4 @@ If any of these ideas sound interesting, [reach out](/contactme)! These are all 
 
 </div>
 
-*picture taken in fort mountain state park | december 2024*
+*picture taken in fort mountain state park*

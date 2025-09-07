@@ -33,4 +33,4 @@ Our world is best improved through mutual discovery and curiosity. If you'd like
   </div>
 </div>
 
-*picture taken in harry potter studio tour, watford, england | summer 2025*
+*picture taken in harry potter studio tour, watford, england*

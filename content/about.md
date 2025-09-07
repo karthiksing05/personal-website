@@ -118,7 +118,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
 
 </div>
 
-*pictures taken in georgia tech, alaska, switzerland | july, august 2025*
+*pictures taken in georgia tech, alaska, switzerland*
 
 ## more
 
