@@ -22,12 +22,5 @@
       <guid>//localhost:1313/unready/dep_ideas/</guid>
       <description>&lt;p&gt;Write ideas from the apple notes?!?&lt;/p&gt;</description>
     </item>
-    <item>
-      <title>papers</title>
-      <link>//localhost:1313/unready/dep_papers/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/unready/dep_papers/</guid>
-      <description>&lt;h1 id=&#34;mine&#34;&gt;mine&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;[COMING SOON]&lt;/strong&gt; Hierarchical Semantic Retrieval with Cobweb -&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;others&#34;&gt;others&lt;/h1&gt;</description>
-    </item>
   </channel>
 </rss>
