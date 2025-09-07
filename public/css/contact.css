@@ -1,0 +1,24 @@
+#contact {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+#contact form input,
+#contact form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#contact form button {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+}
+
+#contact form button:hover {
+  background: #555;
+}

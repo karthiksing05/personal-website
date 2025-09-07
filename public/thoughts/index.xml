@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Thoughts on Karthik&#39;s World</title>
+    <link>//localhost:1313/thoughts/</link>
+    <description>Recent content in Thoughts on Karthik&#39;s World</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 05 Oct 2007 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hello</title>
+      <link>//localhost:1313/thoughts/hello/</link>
+      <pubDate>Fri, 05 Oct 2007 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/thoughts/hello/</guid>
+      <description>&lt;p&gt;Every time I meet someone in our generation who’s absolutely locked in, they seem to have a generally strong and minimalist personal website, so I wanted to take a stab at it. I write a lot to get my thoughts out into general space and I figured it would be optimal for them to have some general place to live! This initial post should hopefully offer notes on the vibes of future posts and cover some more general information on the parts of this website.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

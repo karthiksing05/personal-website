@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abouts on Karthik&#39;s World</title>
+    <link>//localhost:1313/about/</link>
+    <description>Recent content in Abouts on Karthik&#39;s World</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 31 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Me</title>
+      <link>//localhost:1313/about/about/</link>
+      <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/about/about/</guid>
+      <description>&lt;h2 id=&#34;the-escalator-pitch&#34;&gt;the escalator pitch&lt;/h2&gt;&#xA;&lt;p&gt;Hi! I’m Karthik, a Computer Science + Psychology Major and Stamps President’s Scholar at Georgia Institute of Technology studying the intersection of cognitive science and artificial intelligence. Specifically, I’m interested in how we can mimic human-like performance with human-like learning, paving the way for more interpretable, energy-efficient, and computationally concise.&lt;/p&gt;&#xA;&lt;h1&gt;&lt;/h1&gt;&#xA;&lt;p&gt;In my future, I hope to pursue a Computer Science PhD investigating the extended interpretations of Cognitive Science in a statistical AI context.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,31 @@
+
+.terminal-hover {
+  position: relative;
+  cursor: pointer;
+  color: #fbbdff; 
+}
+
+.terminal-popup {
+  visibility: hidden;
+  opacity: 0;
+  width: 450px;
+  background: black;
+  color: #fbbdff;
+  border: 1px solid #fbbdff;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 100;
+  top: 120%; /* below the text */
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s;
+  font-size: 16px;
+  line-height: 1.4;
+  box-shadow: 0 0 10px #fbbdff;
+}
+
+.terminal-hover:hover .terminal-popup {
+  visibility: visible;
+  opacity: 1;
+}
