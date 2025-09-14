@@ -10,7 +10,8 @@ title = "quotebook"
 - The world offers you comfort. But you were not made for comfort. You were made for greatness. <br>*[Pope Benedict XVI, Former head of the Catholic Church]*
 - The meaning of life is to find your gift. The purpose of life is to give it away. <br>*[Pablo Picasso, Spanish painter]*
 - He who has a why to live can bear almost any how. <br>*[Friedrich Nietzsche, German philosopher]*  
-- What man actually needs is not a tensionless state but rather the striving and struggling for some goal worthy of him. <br>*[Viktor Frankl, Austrian neurologist and psychiatrist]*  
+- What man actually needs is not a tensionless state but rather the striving and struggling for some goal worthy of him. <br>*[Viktor Frankl, Austrian neurologist and psychiatrist]* 
+ - I wrote a pep talk recently to myself on a bar napkin: *no matter which road you take, it will be both glorious and unbearable.* Every road is lonely. Every road, holy. The only error is not walking forward. <br>*[Joy Sulivan, American poet and educator]* 
 
 ## curiosity
 - The most beautiful experience we can have is the mysterious. It is the fundamental emotion which stands at the cradle of true art and true science. <br>*[Albert Einstein, German theoretical physicist and realist]*

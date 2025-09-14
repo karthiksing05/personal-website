@@ -1,13 +1,22 @@
 /* Fira Code: https://github.com/tonsky/FiraCode */
 @import url('https://cdn.staticdelivr.com/gfonts/css2?family=Fira+Code:wght@300..700&display=swap');
-
+/* Dark mode (default) */
 :root {
-  --background: #1a170f;
-  --foreground: #eceae5;
-  --accent: #fbbdff;
+  --background: #1a170f;   /* dark bg */
+  --foreground: #eceae5;   /* light text */
+  --accent: #d07fd6;       /* pink accent */
   --radius: 0;
   --font-size: 1rem;
   --line-height: 1.54em;
+}
+
+/* Light mode overrides */
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #eceae5;  /* light bg */
+    --foreground: #1a170f;  /* dark text */
+    --accent: #d07fd6;      /* keep accent */
+  }
 }
 
 html {
@@ -28,7 +37,7 @@ body {
     "JetBrains Mono",
     Monaco,
     Consolas,
-     "Ubuntu Mono",
+    "Ubuntu Mono",
     monospace;
   font-size: var(--font-size);
   font-weight: 400;
@@ -42,7 +51,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
 h1 {
   font-size: calc(var(--font-size) * 1.45);
   letter-spacing: 0;

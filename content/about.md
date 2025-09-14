@@ -6,7 +6,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
 <style>
 .terminal-hover {
   position: relative;
-  color: #fbbdff;
+  color: #d07fd6;
   text-decoration: none;
 }
 
@@ -17,7 +17,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   bottom: 0;
   width: 0;
   height: 2px;
-  background-color: #fbbdff;
+  background-color: #d07fd6;
   transition: width 0.3s ease;
 }
 
@@ -30,8 +30,8 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   opacity: 0;
   width: 350px;
   background: black;
-  color: #fbbdff;
-  border: 1px solid #fbbdff;
+  color: #d07fd6;
+  border: 1px solid #d07fd6;
   border-radius: 6px;
   padding: 10px;
   position: absolute;
@@ -42,7 +42,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   transition: opacity 0.3s;
   font-size: 16px;
   line-height: 1.4;
-  box-shadow: 0 0 10px #fbbdff;
+  box-shadow: 0 0 10px #d07fd6;
 }
 
 .terminal-hover:hover .terminal-popup {
@@ -82,7 +82,11 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   cognitive science<span class="terminal-popup">
         <strong>Cognitive Science:</strong><br>
         The study of thought, learning, and mental organization, which draws on aspects of psychology, linguistics, philosophy, and computer modeling.
-    </span></span>&nbsp;and general artificial intelligence. Specifically, I’m interested in how we can recreate human-like performance by iterating on principles of human-like learning.
+    </span></span>&nbsp;with modern applications of <span class="terminal-hover">
+  artificial intelligence<span class="terminal-popup">
+        <strong>Artificial Intelligence:</strong><br>
+        The theory and development of computer systems able to perform tasks that normally require human intelligence, such as visual perception, speech recognition, decision-making, and translation between languages.
+    </span></span>. Specifically, I’m interested in how we can recreate human-like performance by iterating on principles of human-like learning.
     </p>
   </div>
 </div>
