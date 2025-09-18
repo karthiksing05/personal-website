@@ -6,7 +6,7 @@ cover = ""
 description = "changing the education system"
 +++
 
-It may come as a surprise to those who know me as the poster child of loving learning also despises the education system, but in the months since I've left high school, I can't help but reflect on my work over the summer in a method of implication
+It may come as a surprise to those who know me as the poster child of loving learning also despises the education system, but in the months since I've left high school, I can't help but reflect on my journey in a nonpositive way.
 
 This summer, I was lucky to be connected to the Teachable AI Lab at Georgia Tech, and conducted an independent study over the course of two months analyzing a cognitive modeling algorithm. I worked with high intensity deliverables, was constantly humbled for my questions but thoroughly encouraged by my PhD advisor and Masters' coauthor, and conclusively, I learned more in those two months than I did through the majority of my senior year. It was that final realization that sparked a reflection on my interaction with the modern education system.
 
