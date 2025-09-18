@@ -3,7 +3,7 @@ title = "life is a solved game?"
 date = "2025-09-06"
 author = "Karthik Singaravadivelan"
 cover = ""
-description = "my thoughts on predestination"
+description = "my notes on predestination"
 +++
 
 The title may hint that I argue in favor of predestination, but I'm prefacing this whole topic with the fact that I don't like the idea of predestination quite fundamentally and believe that debating its existence and value are two separate conversation topics. I will consider both here, but I intend for this blog to largely revolve around the second. Simply for the belief of devil's advocacy, my goal is to reason with the concept as atheistically as possible and justify both existence and value under a framework of pure rationale.

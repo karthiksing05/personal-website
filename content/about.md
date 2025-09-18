@@ -130,6 +130,4 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
 
 <p><em>pictures taken in georgia tech, alaska, switzerland</em></p>
 
-## more
-
-[linkedin](https://www.linkedin.com/in/karthik-singaravadivelan/) | [github](https://github.com/karthiksing05) | [instagram](https://www.instagram.com/karthik.sing.05/)
+[linkedin](https://www.linkedin.com/in/karthik-singaravadivelan/) | [github](https://github.com/karthiksing05) | [instagram](https://www.instagram.com/karthik.sing.05/) | [email: karthiksing05@gmail.com](mailto:karthiksing05@gmail.com)
