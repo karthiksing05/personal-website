@@ -37,7 +37,7 @@ I pushed myself. In every single kid who joined, I saw some variant of the effor
 
 Our first robot, Lancelot, was a mess. Electrical done on the first day of competition, a claw that was unnecessary overweight, a tank drive that almost collapsed. We regressed into a defensive bot that pushed the game elements for most of the season qualifiers, and by some miracle, we made it to the state championships. We had a new mentor, Zac, who was a prior robotics student in high school, but he was also learning the ropes. So amidst all the crises, our team was shocked to learn we qualified at 49th place of 49 teams, and pushed all the way to 42nd place. We COULD NOT have done any worse. It was the first time I had never played in the playoffs of a competition I was in. But by god, we made it, and though I didn't know at the time, that was the most important part of our year.
 
-One final thing - this year, the mentor who had believed in me in my freshman year, Ms. Theresa, passed away due to cancer. It hurt so badly to not be with the team I had forged my strongest memories with 
+One final thing - this year, the mentor who had believed in me in my freshman year, Ms. Theresa, passed away due to cancer. It hurt so badly to not be with the team I had forged my strongest memories with, and grieve in solitude.
 
 # year 2: glory
 
