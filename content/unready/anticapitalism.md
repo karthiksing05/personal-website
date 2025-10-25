@@ -52,6 +52,6 @@ To call on a practical example, I reference the Soviets' shortcomings in the spa
 
 So, I'm clearly against capitalism and socialism, and there are similar arguments to be made about communism and libertarianism and their shortcomings 
 
-
-
 # implications
+
+*- Karthik*
