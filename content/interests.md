@@ -15,7 +15,8 @@ If any of these ideas sound interesting, [reach out](/contactme)! These are all 
     <ul>
       <li>World models</li>
       <li>Latent space analysis</li>
-      <li>Unified cognitive architectures</li>
+      <li>Cognitive architectures</li>
+      <li>Symbolic systems</li>
       <li>Consciousness</li>
       <li>Fast physical simulations</li>
     </ul>
@@ -23,11 +24,11 @@ If any of these ideas sound interesting, [reach out](/contactme)! These are all 
     <ul>
       <li>The Big Why</li>
       <li>Predestination</li>
-      <li>Astrophysics (specifically, of black holes)</li>
+      <li>Astrophysics</li>
       <li>Markovian dynamics</li>
       <li>Faith</li>
-      <li>Optimizing Languages</li>
-      <li>Information Theory</li>
+      <li>Languages and thought</li>
+      <li>Information theory</li>
       <li>Spiderweb cognition</li>
       <li>Japan</li>
     </ul>

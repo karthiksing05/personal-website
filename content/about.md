@@ -97,7 +97,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
     <p>
       I'm actively involved in <a href="/projects">lab efforts</a> that pursue a variety of research 
       <a href="/interests">thrusts</a>, but my immediate goals can all be linked towards developing new 
-      forms of embeddings distributions and latent spaces that are both significantly more interpretable under condensed computation.
+      forms of cognition by using language as a method of learning and iterating on knowledge representation, translations across data, and the magic behind latent spaces.
     </p>
   </div>
 

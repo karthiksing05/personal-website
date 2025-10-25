@@ -6,14 +6,28 @@
     <description>Recent content on Karthik&#39;s World</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 24 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 25 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>the optimal economy</title>
+      <title>digital colonialism</title>
+      <link>//localhost:1313/thoughts/modernai/</link>
+      <pubDate>Sat, 25 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/thoughts/modernai/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Trigger Warning:&lt;/strong&gt; This report discusses trauma, mental illness, addiction, and eating disorders. There are mentions of suicide and self-harm and descriptions of graphic content, violence, explicit sexual situations, child sexual abuse, ethnic cleansing, and animal cruelty.&lt;/p&gt;&#xA;&lt;p&gt;I am fully outraged at what I&amp;rsquo;ve just read. This is a short commentary more than it is a blog post (I promise the capitalism one is on the way) but I write this to emphasize how much it disgusts me that this is the current state of our intellectual movement. I hope that this spurs action from all of us in some way regardless of whether we&amp;rsquo;re involved with the industry or not.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>progress for progress&#39;s sake</title>
       <link>//localhost:1313/unready/anticapitalism/</link>
-      <pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 25 Oct 2025 00:00:00 +0000</pubDate>
       <guid>//localhost:1313/unready/anticapitalism/</guid>
-      <description>&lt;p&gt;This post is quite unorthodox, as I always try to keep my political beliefs out of&lt;/p&gt;</description>
+      <description>&lt;p&gt;This post is quite unorthodox for me, as I always try to keep my political beliefs out of social discussion, and I will be avoiding referencing real countries and governments so as to preserve the sanctity of the argument without bias. However, this work is extremely necessary, especially in light of some recent events regarding political activism and funding, not just in the USA, but across the world. This is a broader commentary on where power should come from, where priorities should lie, and what to take as &amp;ldquo;valuable&amp;rdquo; to iterate on humanity&amp;rsquo;s best whilst learning to let go of what holds us back. I&amp;rsquo;ll be discussing things in terms of resource allocation, so a more economical perspective, but know that my views can be easily transferred to a political dimension by referencing the value and distribution of responsibilities rather than resources.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>proof of life</title>
+      <link>//localhost:1313/thoughts/proofoflife/</link>
+      <pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/thoughts/proofoflife/</guid>
+      <description>&lt;p&gt;Yes, I&amp;rsquo;m breaking my rules from post #1, and yes, this will be a highly personal, highly introspective story with some hopeful generalizations about my broader motivations in life, in the hopes that I can both find people to connect to and a broader meaning to the rest of my life.&lt;/p&gt;&#xA;&lt;p&gt;I was writing another blog post on capitalism (which is nearing its completion - it&amp;rsquo;s my longest post yet but has a lot of formalizations to go) and I wanted to convey something that means a lot to me in recent times and what I have been reflecting on as far as what it means with regards to the rest of my life. It&amp;rsquo;s about success, the most rewarding part of my high school journey, and why I am currently frightened.&lt;/p&gt;</description>
     </item>
     <item>
       <title>cogs in a machine</title>
@@ -55,14 +69,14 @@
       <link>//localhost:1313/unready/definitions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>//localhost:1313/unready/definitions/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;The true measure of scientific progress is not just the ability to ask questions, but the ability to ask better questions. &lt;em&gt;— J. Robert Oppenheimer, American theoretical physicist&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Our world is best improved through mutual discovery and curiosity, and I live for the unexpected conversations that spark both confusion and clarity. If you&amp;rsquo;d like to have a conversation, work together, or entertain the wildest of possibilities with me, reach out!&lt;/p&gt;</description>
+      <description></description>
     </item>
     <item>
       <title>interests</title>
       <link>//localhost:1313/interests/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>//localhost:1313/interests/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Somewhere, something incredible is waiting to be known. &lt;em&gt;— Carl Sagan, American astronomer and planetary scientist&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;If any of these ideas sound interesting, &lt;a href=&#34;//localhost:1313/contactme/&#34;&gt;reach out&lt;/a&gt;! These are all important interests to me, for which I have countless theories that have some but not all formalization and a generally comprehensive intuition.&lt;/p&gt;&#xA;&lt;div style=&#34;display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap;&#34;&gt;&#xA;  &lt;!-- Lists on the left --&gt;&#xA;  &lt;div style=&#34;flex: 1; min-width: 250px;&#34;&gt;&#xA;    &lt;h2&gt;Content Interests&lt;/h2&gt;&#xA;    &lt;ul&gt;&#xA;      &lt;li&gt;World models&lt;/li&gt;&#xA;      &lt;li&gt;Latent space analysis&lt;/li&gt;&#xA;      &lt;li&gt;Unified cognitive architectures&lt;/li&gt;&#xA;      &lt;li&gt;Consciousness&lt;/li&gt;&#xA;      &lt;li&gt;Fast physical simulations&lt;/li&gt;&#xA;    &lt;/ul&gt;&#xA;    &lt;h2&gt;Recreational Interests&lt;/h2&gt;&#xA;    &lt;ul&gt;&#xA;      &lt;li&gt;The Big Why&lt;/li&gt;&#xA;      &lt;li&gt;Predestination&lt;/li&gt;&#xA;      &lt;li&gt;Astrophysics (specifically, of black holes)&lt;/li&gt;&#xA;      &lt;li&gt;Markovian dynamics&lt;/li&gt;&#xA;      &lt;li&gt;Faith&lt;/li&gt;&#xA;      &lt;li&gt;Optimizing Languages&lt;/li&gt;&#xA;      &lt;li&gt;Information Theory&lt;/li&gt;&#xA;      &lt;li&gt;Spiderweb cognition&lt;/li&gt;&#xA;      &lt;li&gt;Japan&lt;/li&gt;&#xA;    &lt;/ul&gt;&#xA;  &lt;/div&gt;&#xA;  &lt;!-- Image on the right --&gt;&#xA;  &lt;div style=&#34;flex: 1; min-width: 200px; display: flex; justify-content: center;&#34;&gt;&#xA;    &lt;img src=&#34;//localhost:1313/fortmountain.jpg&#34; alt=&#34;Fort Mountain State Park&#34; style=&#34;max-width: 100%; height: auto;&#34;&gt;&#xA;  &lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;&lt;em&gt;picture taken in fort mountain state park&lt;/em&gt;&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Somewhere, something incredible is waiting to be known. &lt;em&gt;— Carl Sagan, American astronomer and planetary scientist&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;If any of these ideas sound interesting, &lt;a href=&#34;//localhost:1313/contactme/&#34;&gt;reach out&lt;/a&gt;! These are all important interests to me, for which I have countless theories that have some but not all formalization and a generally comprehensive intuition.&lt;/p&gt;&#xA;&lt;div style=&#34;display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap;&#34;&gt;&#xA;  &lt;!-- Lists on the left --&gt;&#xA;  &lt;div style=&#34;flex: 1; min-width: 250px;&#34;&gt;&#xA;    &lt;h2&gt;Content Interests&lt;/h2&gt;&#xA;    &lt;ul&gt;&#xA;      &lt;li&gt;World models&lt;/li&gt;&#xA;      &lt;li&gt;Latent space analysis&lt;/li&gt;&#xA;      &lt;li&gt;Cognitive architectures&lt;/li&gt;&#xA;      &lt;li&gt;Symbolic systems&lt;/li&gt;&#xA;      &lt;li&gt;Consciousness&lt;/li&gt;&#xA;      &lt;li&gt;Fast physical simulations&lt;/li&gt;&#xA;    &lt;/ul&gt;&#xA;    &lt;h2&gt;Recreational Interests&lt;/h2&gt;&#xA;    &lt;ul&gt;&#xA;      &lt;li&gt;The Big Why&lt;/li&gt;&#xA;      &lt;li&gt;Predestination&lt;/li&gt;&#xA;      &lt;li&gt;Astrophysics&lt;/li&gt;&#xA;      &lt;li&gt;Markovian dynamics&lt;/li&gt;&#xA;      &lt;li&gt;Faith&lt;/li&gt;&#xA;      &lt;li&gt;Languages and thought&lt;/li&gt;&#xA;      &lt;li&gt;Information theory&lt;/li&gt;&#xA;      &lt;li&gt;Spiderweb cognition&lt;/li&gt;&#xA;      &lt;li&gt;Japan&lt;/li&gt;&#xA;    &lt;/ul&gt;&#xA;  &lt;/div&gt;&#xA;  &lt;!-- Image on the right --&gt;&#xA;  &lt;div style=&#34;flex: 1; min-width: 200px; display: flex; justify-content: center;&#34;&gt;&#xA;    &lt;img src=&#34;//localhost:1313/fortmountain.jpg&#34; alt=&#34;Fort Mountain State Park&#34; style=&#34;max-width: 100%; height: auto;&#34;&gt;&#xA;  &lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;&lt;em&gt;picture taken in fort mountain state park&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>projects</title>
