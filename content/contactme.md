@@ -20,6 +20,7 @@ Our world is best improved through mutual discovery and curiosity, and I live fo
     <form action="https://formspree.io/f/mkgvplpd" method="POST" style="width: 100%; max-width: 500px;">
       <fieldset style="border: 1px solid #ccc; padding: 20px; border-radius: 10px; display: flex; flex-direction: column;">
         <input type="text" name="name" placeholder="Name" style="width: 100%; padding: 10px; margin-bottom: 10px;" />
+        <input type="text" name="email" placeholder="Email" style="width: 100%; padding: 10px; margin-bottom: 10px;" />
         <select name="dropdown" style="width: 100%; padding: 10px; margin-bottom: 10px;">
           <option value="question">Question</option>
           <option value="research">Research</option>
