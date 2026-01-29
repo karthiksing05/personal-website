@@ -36,4 +36,4 @@ Perhaps that worry is a good thing, though. If you are reading this and you are 
 
 It's up to us to think deeply and intentionally not just about applications, but about theory that allows for kinder applications where everyone can reap the rewards. We have to care about one another, otherwise, in another couple decades, we may tear each other apart in the race for singularity and AGI.
 
-*-Karthik*
+*- Karthik*

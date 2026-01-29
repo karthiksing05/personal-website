@@ -6,8 +6,15 @@
     <description>Recent content on Karthik&#39;s World</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 01 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 29 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>the impossible and improbable</title>
+      <link>//localhost:1313/thoughts/sciveng/</link>
+      <pubDate>Thu, 29 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/thoughts/sciveng/</guid>
+      <description>&lt;p&gt;This post started out of a discussion with a PI in one of my labs (thank you Chris!) and since then I&amp;rsquo;ve been ruminating on a thought experiment that I believe encapsulates the fundamental debate we were having. I hope that this discussion will stimulate thinking in my generation, as, on average, I see a lot of engineers and not as many scientists. As you&amp;rsquo;ll see in the discussion section of this blog post, both are important, and neither can truly function without the other.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>ai bubble go brr or nah</title>
       <link>//localhost:1313/thoughts/aibubble/</link>
