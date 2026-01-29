@@ -19,6 +19,7 @@ Suppose you are a doctor and your job is to treat a patient with a never-before-
     *   This miracle cure can be used within any time of the 24 hours, and has a chance of success inversely proportional to the amount of time elapsed. For example, if you use the miracle cure after 70% of the time has passed, it only has a success rate of 30% (so it will succeed three out of ten times).
 *   You have the option to delay the cure to perform more studies to better understand the nature of the disease. I'm no biologist, but assume that for the percentage of time you agree to investigate the patient, you learn that percentage of knowledge regarding the disease.
     *   For instance, if you study the patient for 12 hours, you understand about 50% of all things there are to understand regarding the disease.
+    *   The disease cannot be studied after the cure is administered - only the patient, who will have no trace of the disease (so you're essentially just studying a regular human).
 
 So there is a clear tradeoff between the amount of time spent studying the patient and the amount of time remaining to save the patient. The primary question, naturally, is this: how long do you let the patient live with the disease before you give them the miracle cure? Do you give them the miracle cure at all?
 
