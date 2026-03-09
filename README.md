@@ -1,3 +1,3 @@
 # Karthik's World
 
-Build with ```hugo server -t terminal``` :)
+Build with ```hugo server -t terminal```!

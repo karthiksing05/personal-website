@@ -37,6 +37,8 @@
   </url><url>
     <loc>//localhost:1313/about/</loc>
   </url><url>
+    <loc>//localhost:1313/school/engl1102/artifact2/</loc>
+  </url><url>
     <loc>//localhost:1313/categories/</loc>
   </url><url>
     <loc>//localhost:1313/contactme/</loc>
@@ -48,6 +50,8 @@
     <loc>//localhost:1313/projects/</loc>
   </url><url>
     <loc>//localhost:1313/quotebook/</loc>
+  </url><url>
+    <loc>//localhost:1313/school/</loc>
   </url><url>
     <loc>//localhost:1313/tags/</loc>
   </url>

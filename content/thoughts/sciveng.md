@@ -29,7 +29,7 @@ Here I list some clarifications with the thought experiment. Note that as this e
 
 *   Of course doctors have an obligation to rescue their patient, but try to consider this question as someone who is both a servant to their patient and a servant to the broader scientific community. Don't ask what the doctor would do, ask what *you* would do in this situation.
 *   Try to consider the ethical ramifications of your first instinct. Too many people I asked immediately sided with the option of curing the patient immediately, to which I responded, "What happens if another person suffers the same disease?
-*   Assume (at first) that the patient wholeheartedly agrees with whatever decision you take, so the decision is truly up to you.
+*   Assume that the patient wholeheartedly agrees with whatever decision you take, so the decision is truly up to you.
 *   Again, I'm not sure how "understanding X% of all things regarding the disease" really works, but assuming some probability-based outcome generation, I assume that "understanding X% of all things regarding the disease" = "X% chance of generating our own cure for this disease in the future". 
 
 I'll add more clarifications here most likely as more people prompt me about the question, so do contact me with any of your own thoughts!

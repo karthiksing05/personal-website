@@ -7,11 +7,11 @@ title = "projects"
 
 # ongoing efforts
 
-### *[2025-06-11 - present]* Cobweb for psychological "Chunking" @ [ISLE](http://www.isle.org/) | [github](https://github.com/karthiksing05/Chunking-Cobweb)
+### *[2025-06-11 - present]* WEBSTER @ [ISLE](http://www.isle.org/) | [github](https://github.com/karthiksing05/Chunking-Cobweb)
 - Cobweb is a symbolic algorithm that aggregates instances into "concepts" and forms a hierarchy over these instances - it is unsupervised, piecemeal, and incremental, making it a comprehensive model for human learning. I am currently working with Dr. Pat Langley to implement the Cobweb algorithm in a proposed theoretical framework to model psychological "chunking" for efficient parsing, storage and retrieval of concepts based on a set of defined relations. 
 - If successful, this project holds large implications for the world of embeddings, able to generate a stable and continuously evolving latent space over a stream of data.
 
-### *[2025-06-01 - present]* Neurosymbolic Approaches for Retrieval-Augmented Generation @ [TAIL](https://tail.cc.gatech.edu/) | [github](https://github.com/Teachable-AI-Lab/RAG-Cobweb)
+### *[2025-06-01 - present]* Cobweb in Retrieval and Summarization of Language @ [TAIL](https://tail.cc.gatech.edu/) | [github](https://github.com/Teachable-AI-Lab/RAG-Cobweb)
 -  (see notes on Cobweb in my work with [ISLE](projects/#---cobweb-for-psychological-chunking--isle--github)) I am currently leading an independent study under Dr. Chris Maclellan in creating a robust, industry-sustainable neurosymbolic solution to retrieval-augmented generation, using Cobweb as the primary algorithm. After conducting studies, we submitted a [paper](http://www.cogsys.org/proceedings/2025/paper-2025-8.pdf) on a preliminary study which not only qualified the efficacy of Cobweb as a search algorithm, but led to the innovation of a new metric that matches inner-product similarities for embeddings' semantic comparison and outperforms inner-product similarities in some case studies.. 
 - My goal is to grow this project as a vehicle for justifying the tangible applicability of neurosymbolic systems. I also strive to analyze differentiable forms of symbolic systems like Cobweb with the goal to remove some of symbolic systems' most fundamental timesinks.
 
