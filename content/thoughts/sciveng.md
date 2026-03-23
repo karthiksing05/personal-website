@@ -46,9 +46,9 @@ Below I list some extensions to the original thought experiment.
 
 These are the only three extensions I've come up with so far, but the idea is to change the variables of the experiment to prompt a change of identity. I hope that in delving into these extensions, you come up with nuanced reasoning and potentially investigate multiple avenues of rationale.
 
-# discussions
+# q.e.d.
 
-NOTE: try not to read this until you've thought deliberately about the question and the extensions - the reveal may surprise you.
+NOTE: try not to read this until you've thought deliberately about the question and the extensions.
 
 This question is not easy, and of course, depends vastly on the agenda of the person answering the question. I pose this question as a commentary on the difference between science and engineering. One party is obsessed with identifying a working solution, while the other is obsessed with analyzing the problem. Both are important - neither can exist without the other - and both must be validated as necessary by society if we are to advance as a community. As Petroski said in the quote I left at the beginning, science is about knowing and engineering is about doing. If we are to advance the frontier of humanity, we need to know and do.
 

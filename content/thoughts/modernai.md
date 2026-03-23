@@ -22,7 +22,7 @@ Various nonprofit organizations and investigation agencies have recently brought
 
 "The great machines are filled with ghosts and whispers."
 
-# speechless
+# q.e.d.
 
 Historically, I've never really supported or been against these large AI corps. I regarded them with general distrust but had no choice but to acknowledge their relevance and creativity in bringing forth the study of artificial intelligence as a priority to the world. But this is not some "beauty of innovation moment" - no, this is nothing short of disgusting and abominable. It makes me extremely grateful to be involved in research and innovate for pushes in progress that aren't just "clean the data" or "buy a bigger datacenter". I'm iterating on fundamental attributes on human intelligence, and using math and information theory to bring those attributes to algorithms for safe and interpretable learning. The work that I'm doing is different, and I hope it is for the better.
 

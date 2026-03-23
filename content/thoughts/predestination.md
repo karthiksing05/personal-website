@@ -50,6 +50,6 @@ So, in conclusion, life is predestined if it's predestined, predestination is al
 
 Still, I find that it was extremely important for me to take this mental journey for the same reason it's important to debate predestination in general. It truly is about accountability in this specific sense and in a general sense: we should all have the accountability to pursue depth and reject what we believe for the sake of discussion.
 
-If you'd like to contribute to my ongoing moral-ethical dilemnna, don't forget to reach out!
+If you'd like to contribute to my ongoing moral-ethical dilemnna, don't hesitate to reach out!
 
 *- Karthik*

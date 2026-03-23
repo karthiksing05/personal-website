@@ -41,7 +41,7 @@ The reason our intellectual bubble grows strained is not that we are placing dis
 
 In addition to the above problems, scaling LLMs receives slowly diminishing gains, and the cost of building expansive datacenters is being felt through the environment. GPT-3 required 1,287 megawatt hours of electricity to train (estimated by scientists at Google and UC-Berkeley), and GPT-5 is 300 times larger. 1,287 megawatt hours of electricity are enough to power 120 U.S. homes for a year, and as AI in its modern stages evolves beyond just the training stage, there's no telling how much more power it will consume. 
 
-# conclusions
+# q.e.d.
 
 So, with all that being said, will the AI bubble pop? Economically, I don't think so. NVIDIA, Google, OpenAI, Anthropic, and most other large-scale AI companies will continue to be self-supporting for years to come. However, I do think the intellectual bubble is sure to pop in 2026. People will realize that the AI hype train we all chase is not all we make it out to be. The valuations of large companies will take a hit the more they do nothing new to show promise. The problems I laid out will continue to be relevant with the currently implemented solutions.
 
@@ -55,4 +55,4 @@ I’m particularly excited about the promise of neurosymbolic methods—”neuro
 
 I’m interested to see where all of this goes and what 2026 holds - LLMs are the first stage in a path of necessary steps to achieving intelligence greater than our own, and I can only hope that as this intellectual bubble comes to a close, we continue to discover mechanisms of intelligence by observing human ingenuity.
 
-- Karthik
+*- Karthik*

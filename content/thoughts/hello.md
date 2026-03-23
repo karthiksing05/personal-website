@@ -10,7 +10,7 @@ Every time I meet someone in our generation who’s absolutely locked in, they s
 
 # this website was built in 24 hours
 
-I am terrible at programming. I like to think that the only reason I am going to be sustainable in my career is because of my love for problem-solving, my drive to consume knowledge, and a fundamental understanding that technology is one of the fastest ways to positively impact the world at high scale. 
+I am pretty average at programming. I like to think that the only reason I am going to be sustainable in my career is because of my love for problem-solving, my drive to consume knowledge, and a fundamental understanding that technology is one of the fastest ways to positively impact the world at high scale. 
 
 I always knew I wanted to do backend - theory has always been my strong suit. However, I've also always wanted to learn a personal website, and so I built this with a readymade theme in less than 24 hours using a Hugo backend, a basic knowledge of HTML and CSS, a FormSpree collection, and my faithful digital photography album.
 
@@ -22,8 +22,11 @@ My blogs are (mostly) for me and me only. I completely acknowledge that, as of t
 
 Additionally, I don’t plan to blog on personal experience (though it will of course be used as corollary whenever applicable). I have the recurring curiosity of debating large and unsolved issues from as pragmatic a perspective as I can, and as aforementioned, most of my writing is designed to get my thoughts into a format that allows me to be assertive while open.
 
-# thank you!
+# q.e.d.
 
 I’m excited to reflect deeply on things that keep me up with writing, and happy that there’s finally a place to share my thoughts. If you'd like to talk, disagree, collaborate, vibe, learn - my door is always open.
 
 *- Karthik*
+
+
+P.S. The phrase "Q. E. D." is latin for *quod erat demonstrandum*, meaning "that which was to be demonstrated" or "which was to be proved." I style much of my writing in the way mathematical proofs are written, and so the *q.e.d.* section is a way of organizing my parting words. I hope to include it properly across all my blog posts.

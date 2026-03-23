@@ -67,7 +67,7 @@ Our qualifiers bolstered my faith: for the first time, our team felt so polished
 
 But at this cusp of our performance, I realized I couldn't make it to our State Championships because the date conflicted with a mandatory scholarship event. I couldn't be there for my team earlier than I had anticipated. And they did extremely poorly without me: things broke, drivers crashed, and our robot had a plethora of consistency issues. In that moment, I got scared for the progress I had pushed for. Would it have been the same without me?
 
-# aftermath
+# q.e.d.
 
 Since coming to college, I've avoided talking about my robotics experience to anyone but close friends who understood what it was to me. Because on paper, I regarded it as my hardest failure. I couldn't possibly justify my three years if at the only competition I was gone, our team did so poorly despite having what was objectively the greatest robot in team history. 
 

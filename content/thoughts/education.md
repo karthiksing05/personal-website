@@ -38,7 +38,7 @@ These two definitions corroborate the skills most crucial in the 21st century: i
 
 Definitely, social interaction should be kept in the loop on education - it is by far my largest takeaway and still stands the test of time. However, in addition to building these social muscles, I believe the optimal education contains an important curricula of promoting independence in contributions to society. People should feel the deep desire to contribute to the intellectual evolution of the human race.
 
-# redesign + implications
+# redesign
 
 Now, the elephant in the room. Clearly, if the solution was that obvious, it should be true that implementing such a solution would also be obvious. But of course, education is a stagnant and largely bureaucratically driven system with many ties to the current government and economy. So it's most likely that none of these changes will ever take place. I also recognize that as someone who's just now left the current education system, my views are biased on my experience and don't take into account coexistence with existing structures (in fact, my general view of a new education system revolves around a rewriting of our economy as not capitalist, but that's another story).
 
@@ -50,6 +50,8 @@ However, I will make a couple conjectures as to what the "vibes" of an education
 4.  There should be some fundamental desire for self-improvement taught early-on. Essentially, students should look at a thing they have produced and say, *how can I make this better?* Self-improvement does away with the concept of grades, as each student should (in an ideal world) be able to pace themselves for growth without the stress of grades, competition, or additional activities. Role-model-ship is important, but should be taught in a way that is conducive and not destructive to success.
 5.  Students should be introduced to social issues earlier (albeit in a more sensitive way) to spur the process of allowing them to decide what they want to change in the world. Many of my friends (and until recently, myself) had trouble selecting a niche for career, and having the self-motivation to pursue your dreams greatly helps with that.
 6.  Project-based learning is the best way to promote independence. It facilitates so many of the above points I've made, and I truly believe that given my prior experiences, I would not be who I was without the ability to pursue my own projects.
+
+# q.e.d.
 
 Again, this system is widely hand-wavy and there's a lot to be formalized. I leave these thoughts here as a framework based on my high school reflection. I am grateful to have experienced education, but my biggest learning experiences were crashing and burning building a web scraper for the first time, watching Veritasium videos about entropy, and setting up Rube-Goldberg machines around my house and understanding the physics behind energy conservation. As I transitioned beyond the classroom, my project-based learning guided me to my successes, as did my sociability and the lessons I learned from school projects and extracurriculars that promoted unique and novel thought. Resolutely, I look forward to seeing my kids grow under a system that facilitates creativity and forward-thinking rather than solely focusing on rote-memorization and objective assessment.
 
