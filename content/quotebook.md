@@ -13,6 +13,7 @@ title = "quotebook"
 - What man actually needs is not a tensionless state but rather the striving and struggling for some goal worthy of him. <br>*[Viktor Frankl, Austrian neurologist and psychiatrist]* 
 - I wrote a pep talk recently to myself on a bar napkin: no matter which road you take, it will be both glorious and unbearable. Every road is lonely. Every road, holy. The only error is not walking forward. <br>*[Joy Sullivan, American poet and educator]* 
 - Human behavior flows from three main sources: desire, emotion, and knowledge. <br>*[Plato, Greek philosopher]*
+- The wind is rising! We must try to live! *(Translated)* <br>*[Paul Valéry, French poet and essayist]*
 - The purpose of life is not to be happy. It is to be useful, to be honorable, to be compassionate, to have it make some difference that you have lived and lived well. <br>*[Ralph Waldo Emerson, American essayist and philosopher]*
 - The two most important days in your life are the day you are born and the day you find out why. <br>*[Mark Twain, American author and humorist]*
 - Life is never made unbearable by circumstances, but only by lack of meaning and purpose. <br>*[Viktor Frankl, Austrian neurologist and psychiatrist]*
