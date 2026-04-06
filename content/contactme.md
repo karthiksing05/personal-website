@@ -5,7 +5,7 @@ title = "contact me"
 
 > The true measure of scientific progress is not just the ability to ask questions, but the ability to ask better questions. *— J. Robert Oppenheimer, American theoretical physicist*
 
-Our world is best improved through mutual discovery and curiosity, and I live for the unexpected conversations that spark both confusion and clarity. If you'd like to have a conversation, work together, or entertain the wildest of possibilities with me, reach out!
+Our world is best improved through mutual discovery and curiosity, and I live for the unexpected conversations that spark both confusion and clarity. If you'd like to have a conversation, work together, or entertain the wildest of possibilities with me, don't hesitate to reach out!
 
 [linkedin](https://www.linkedin.com/in/karthik-singaravadivelan/) | [github](https://github.com/karthiksing05) | [instagram](https://www.instagram.com/karthik.sing.05/) | [email: karthiksing05@gmail.com](mailto:karthiksing05@gmail.com)
 

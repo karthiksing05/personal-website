@@ -14,22 +14,23 @@ If any of these ideas sound interesting, [reach out](/contactme)! These are all 
     <h2>Content Interests</h2>
     <ul>
       <li>World models</li>
-      <li>Latent space analysis</li>
+      <li>Representation learning</li>
+      <li>Sparsity</li>
+      <li>(Physical) Constraints of learning (and digital analogs)</li>
       <li>Cognitive architectures</li>
       <li>Symbolic systems</li>
-      <li>Consciousness</li>
       <li>Fast physical simulations</li>
     </ul>
     <h2>Recreational Interests</h2>
     <ul>
       <li>The Big Why</li>
       <li>Predestination</li>
+      <li>Religion and Faith</li>
+      <li>FIRST Robotics Competition (<em>alumni 2022-2025, mentor 2026-present</em>)(<a href="https://www.instagram.com/p/DH1eevpxqUu/">5293</a>)</li>
       <li>Astrophysics</li>
-      <li>Markovian dynamics</li>
-      <li>Faith</li>
-      <li>Languages and thought</li>
-      <li>Information theory</li>
-      <li>Spiderweb cognition</li>
+      <li>Markovian Dynamics</li>
+      <li>Optimality and Sufficiency</li>
+      <li>Information Theory</li>
       <li>Japan</li>
     </ul>
   </div>

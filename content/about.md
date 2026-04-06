@@ -97,7 +97,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
     <p>
       I'm actively involved in <a href="/projects">lab efforts</a> that pursue a variety of research 
       <a href="/interests">thrusts</a>, but my immediate goals can all be linked towards developing new 
-      forms of cognition by using language as a method of learning and iterating on knowledge representations, translations across data, and the magic behind latent spaces.
+      forms of cognition, iterating on knowledge representations, and leveraging properties of the brain and mind in humans to cultivate robust learning.
     </p>
   </div>
 
@@ -114,7 +114,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   <div style="flex: 3;">
     <h2>future</h2>
     <p>
-      In my future, I hope to pursue a Computer Science PhD investigating the extended implications of cognitive science in the global statistical AI movement, achieving new levels of 
+      In my future, I hope to pursue a Computer Science PhD investigating the extended implications of cognitive science in the global AI movement, achieving new forms of 
       <span class="terminal-hover">neuro-symbolic artificial intelligence<span class="terminal-popup">
         <strong>Neuro-symbolic Artificial Intelligence:</strong><br>
         A type of artificial intelligence that integrates neural and symbolic AI architectures to address the weaknesses of each, providing a robust AI capable of cognitive modeling.
