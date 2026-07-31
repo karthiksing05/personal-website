@@ -97,7 +97,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
     <p>
       I'm actively involved in <a href="/projects">lab efforts</a> that pursue a variety of research 
       <a href="/interests">thrusts</a>, but my immediate goals can all be linked towards developing new 
-      forms of cognition, iterating on knowledge representations, and leveraging properties of the brain and mind in humans to cultivate robust learning.
+      strategies of cognition, iterating on knowledge representations, and leveraging properties of the brain and mind in humans to cultivate robust learning.
     </p>
   </div>
 
