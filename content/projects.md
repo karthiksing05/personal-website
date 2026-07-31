@@ -7,7 +7,7 @@ title = "projects"
 
 # ongoing efforts
 
-### *[2026-06-26 - present]* EM Expert-Token Conditioning @ [MPI for Human Development](https://www.mpib-berlin.mpg.de/) | [github](https://github.com/karthiksing05/soft-moe)
+### *[2026-06-26 - present]* EM Expert-Token Conditioning @ [Max Planck Institute for Human Development's Center for Humans and Machines](https://www.mpib-berlin.mpg.de/) | [github](https://github.com/karthiksing05/soft-moe)
 - EM expert-token conditioning is a training protocol I have developed with Dr. Levin Brinkmann that specializes a *single* shared backbone on a bank of per-expert tokens instead of per-expert FFNs, alternating between fitting the tokens against a frozen backbone and training the backbone with the tokens held fixed — it is two-phase, capacity-free, and addressable, making it a lightweight alternative to Mixture-of-Experts routing. We are currently working to extend the protocol from synthetic domains and semantic domains to real speakers, treating each token as a retrieval key for a persona learned from diarized speech transcripts. Our final goal is not only to proven the efficiency of the technique, but also justify methods of developing human-like creativity in LLMs, which tend to approximate the mean but not the standard dev. Most recently, we scaled the method to 7B, and are actively working towards a submission for ICLR 2027.
 
 ### *[2025-06-11 - present]* TRELLIS @ [ISLE](http://www.isle.org/) | [github](https://github.com/karthiksing05/Chunking-Cobweb)
