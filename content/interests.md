@@ -11,15 +11,14 @@ If any of these ideas sound interesting, [reach out](/contactme)! These are all 
   
   <!-- Lists on the left -->
   <div style="flex: 1; min-width: 250px;">
-    <h2>Content Interests</h2>
+    <h2>Research Interests</h2>
     <ul>
-      <li>World models</li>
+      <li>Compositionality</li>
       <li>Representation learning</li>
-      <li>Sparsity</li>
+      <li>Physical modeling</li>
       <li>(Physical) Constraints of learning (and digital analogs)</li>
       <li>Cognitive architectures</li>
       <li>Symbolic systems</li>
-      <li>Fast physical simulations</li>
     </ul>
     <h2>Recreational Interests</h2>
     <ul>
@@ -31,7 +30,6 @@ If any of these ideas sound interesting, [reach out](/contactme)! These are all 
       <li>Markovian Dynamics</li>
       <li>Optimality and Sufficiency</li>
       <li>Information Theory</li>
-      <li>Japan</li>
     </ul>
   </div>
 
