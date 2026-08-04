@@ -1,6 +1,6 @@
 +++
 title = "sonderous experiences"
-date = "2026-06-18"
+date = "2026-08-10"
 author = "Karthik Singaravadivelan"
 cover = ""
 description = "what does it mean to be the center of the universe? and other thoughts from my hiatus"
