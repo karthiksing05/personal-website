@@ -112,7 +112,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   </div>
 
   <div style="flex: 3;">
-    <h2>future</h2>
+    <h2>tomorrow</h2>
     <p>
       In my future, I hope to pursue a Computer Science PhD investigating the extended implications of cognitive science in the global AI movement, achieving new forms of 
       <span class="terminal-hover">neuro-symbolic artificial intelligence<span class="terminal-popup">
