@@ -3,19 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>//localhost:1313/</loc>
-    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/thoughts/</loc>
+    <lastmod>2026-09-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/thoughts/sonder/</loc>
+    <lastmod>2026-08-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/thoughts/aianthropomorphization/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/thoughts/moralsandtruth/</loc>
     <lastmod>2026-07-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/thoughts/</loc>
-    <lastmod>2026-07-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/unready/sonder/</loc>
-    <lastmod>2026-06-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/unready/</loc>
-    <lastmod>2026-06-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/thoughts/windrises/</loc>
     <lastmod>2026-03-26T00:00:00+00:00</lastmod>
@@ -33,6 +33,9 @@
     <lastmod>2025-10-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/unready/anticapitalism/</loc>
+    <lastmod>2025-10-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/unready/</loc>
     <lastmod>2025-10-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/thoughts/proofoflife/</loc>
