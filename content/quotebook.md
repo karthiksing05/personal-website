@@ -5,6 +5,10 @@ title = "quotebook"
 
 > Life itself is a quotation. — Jorge Luis Borges, Argentine short story writer and essayist
 
+## by me
+- Use the scalpel, in a time when we are given a hammer for every screw.
+- Be to the world as the bird is to the tree.
+
 ## purpose
 - Live as if you were to die tomorrow. Learn as if you were to live forever. <br>*[Mahatma Gandhi, Indian lawyer and activist]*
 - The world offers you comfort. But you were not made for comfort. You were made for greatness. <br>*[Pope Benedict XVI, Former head of the Catholic Church]*

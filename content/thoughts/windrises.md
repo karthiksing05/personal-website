@@ -10,7 +10,7 @@ I did not expect to be writing a new blog post so quickly, but last night, I wat
 
 I had been meaning to watch this movie for a long time because I heard the quote that inspired the title (below), and its simplicity and elegance held me in continuous desire to interpret. Having started the movie last night at 11:08 PM, I was surprised when the movie ended that not only was I awake, but I was more awake than when I had started.
 
-> The wind is rising! We must try to live! *- Paul Valéry, French poet and essayist (Translated)*
+> The wind is rising! We must try to live! *- (translated) Paul Valéry, French poet and essayist (Translated)*
 
 # summary
 

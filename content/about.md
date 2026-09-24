@@ -119,7 +119,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
         <strong>Neuro-symbolic:</strong><br>
         A type of architecture that integrates neural and symbolic AI architectures to address the weaknesses of each, providing a robust AI capable of cognitive modeling.
     </span></span> 
-    artificial <span class="terminal-hover">intelligence<span class="terminal-popup">
+     artificial <span class="terminal-hover">intelligence<span class="terminal-popup">
         <strong>Intelligence:</strong><br>
         Intelligence is the ability to handle new situations with little or no prior training, and, in my opinion, should be measured by the speed of learning and not the end of performance (we assume perfection by "good enough", as humans learn).
     </span></span>, hoping to take advantage of these fundamental tenets to further the path to AGI. In a broader sense, I am excited to see the discovery of
