@@ -82,11 +82,11 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   cognitive science<span class="terminal-popup">
         <strong>Cognitive Science:</strong><br>
         The study of thought, learning, and mental organization, which draws on aspects of psychology, linguistics, philosophy, and computer modeling.
-    </span></span>&nbsp;with modern applications of <span class="terminal-hover">
-  artificial intelligence<span class="terminal-popup">
-        <strong>Artificial Intelligence:</strong><br>
-        The theory and development of computer systems able to perform tasks that normally require human intelligence, such as visual perception, speech recognition, decision-making, and translation between languages.
-    </span></span>. Specifically, I’m interested in how we can recreate human-like performance by iterating on principles of human-like learning.
+    </span></span>&nbsp;with modern applications of artificial <span class="terminal-hover">
+  intelligence<span class="terminal-popup">
+        <strong>Intelligence:</strong><br>
+        Intelligence is the ability to handle new situations with little or no prior training, and, in my opinion, should be measured by the speed of learning and not the end of performance (we assume perfection by "good enough", as humans learn).
+    </span></span>. Specifically, I’m interested in how we can recreate human-like performance by iterating on principles of human-like learning, to promote safe, interpretable, and sustainable artificial intelligence.
     </p>
   </div>
 </div>
@@ -97,7 +97,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
     <p>
       I'm actively involved in <a href="/projects">lab efforts</a> that pursue a variety of research 
       <a href="/interests">thrusts</a>, but my immediate goals can all be linked towards developing new 
-      strategies of cognition, iterating on knowledge representations, and leveraging properties of the brain and mind in humans to cultivate robust learning.
+      strategies of cognition, iterating on knowledge representations, and leveraging properties of the brain and mind in humans to cultivate robust and sustainable learning. In my free time, I write my thoughts, opinions, and stories <a href="/thoughts">here</a>, in the hopes that they inspire and call others to action and discussion. If that's you, <a href="/contactme">reach out</a>!
     </p>
   </div>
 
@@ -118,11 +118,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
       <span class="terminal-hover">neuro-symbolic<span class="terminal-popup">
         <strong>Neuro-symbolic:</strong><br>
         A type of architecture that integrates neural and symbolic AI architectures to address the weaknesses of each, providing a robust AI capable of cognitive modeling.
-    </span></span> 
-     artificial <span class="terminal-hover">intelligence<span class="terminal-popup">
-        <strong>Intelligence:</strong><br>
-        Intelligence is the ability to handle new situations with little or no prior training, and, in my opinion, should be measured by the speed of learning and not the end of performance (we assume perfection by "good enough", as humans learn).
-    </span></span>, hoping to take advantage of these fundamental tenets to further the path to AGI. In a broader sense, I am excited to see the discovery of
+    </span></span> artificial intelligence, hoping to take advantage of these fundamental tenets to further the path to AGI. In a broader sense, I am excited to see the discovery of
       <span class="terminal-hover">superintelligence<span class="terminal-popup">
         <strong>Superintelligence:</strong><br>
         If intelligence is the ability to handle new situations with little or no prior training, then progress towards greater intelligence achieves new frontiers on the tradeoff between data and performance on new tasks. With respect to this tradeoff, <strong>superintelligence</strong> is the feat of ultimate generalization with little or no data in the space.
