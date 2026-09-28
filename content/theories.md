@@ -1,6 +1,7 @@
 +++
 author = "my inspiration and incentive for life itself"
-title = "projects"
+title = "theories"
+aliases = ["/projects/"]
 +++
 
 > The work is its own reward. *— Sir Arthur Conan Doyle, British writer and physician*
@@ -15,13 +16,13 @@ title = "projects"
 - In completing this work, I also documented psychological findings prevalent in Cobweb, accepted as a [paper](https://arxiv.org/abs/2603.29895) to CogSci 2026. We presented Cobweb as a theory of categorization refined on an information-theoretic rational analysis. To evaluate this theory, we investigated how well it can account for key findings from classic categorization experiments conducted by Hayes-Roth and Hayes-Roth (1977), Medin and Schaffer (1978), and Smith and Minda (1998).
 
 ### *[2025-06-01 - present]* Cobweb in Retrieval and Summarization of Language @ [TAIL](https://tail.cc.gatech.edu/) | [github](https://github.com/Teachable-AI-Lab/RAG-Cobweb)
--  (see notes on Cobweb in my work with [ISLE](projects/#---cobweb-for-psychological-chunking--isle--github)) I am currently leading an independent study under Dr. Chris Maclellan in creating a robust, industry-sustainable neurosymbolic solution to utilizing language in agentic systems, using Cobweb as the primary algorithm. Our work takes on two main applications to modern semantic embedding analysis.
+-  (see notes on Cobweb in my work with [ISLE](#-trellis--isle--github)) I am currently leading an independent study under Dr. Chris Maclellan in creating a robust, industry-sustainable neurosymbolic solution to utilizing language in agentic systems, using Cobweb as the primary algorithm. Our work takes on two main applications to modern semantic embedding analysis.
 - Our first approach is retrieval-aligned - we show that Cobweb performs as a strong search algorithm for dense vector representations, matching performance of traditional systems while offering strong intermediary prototypes. Our [paper](http://www.cogsys.org/proceedings/2025/paper-2025-8.pdf) at Advances in Cognitive Systems 2025 conducts a preliminary study which not only qualified the efficacy of Cobweb as a search algorithm but also showed its ability to utilize different data forms.
 - Our more recent approach aimed to leverage the clustering nature of Cobweb in a field that benefits from both the incremental and hierarchical nature of Cobweb - topic-modeling. We show that Cobweb utilized as a topic model sets a new SOTA in the hierarchical and incremental fields, proving a sustainable way to continuously track topic evolutions and have recently been [accepted](https://aclanthology.org/2026.findings-acl.1753/) to ACL Findings 2026.
 
 ---
 
-# past projects
+# past theories
 
 ### *[2025-08-27 - 2025-05-15]* Encoding Model & Topographic Constraints development @ [LIT Lab](https://www.language-intelligence-thought.net/)
 - Recently, I joined Professor Anya Ivanova and began contributing to the development of encoding models, models that can convert latent content that represents stimuli into direct voxel representations of brain states, measured by fMRI data. Over the course of the [project](https://github.com/karthiksing05/litcoder_core_karthik), I worked on creating a novel architecture that combined predictions from various layers of an LLM via attention to best predict brain activations, and found that preprocessing decisions in the pipeline had strong effects as to which layer provided the best correlation, and saw how syntactic decisions were localized in earlier layers and the auditory cortex, whereas semantics occurred in the middle to later layers and the language network.
@@ -34,9 +35,6 @@ title = "projects"
 ### *[2024-06-18 - 2024-07-16]* AI-for-Advertising @ [GA GHP '61](https://gosa.georgia.gov/governors-honors-program) | [github](https://github.com/karthiksing05/sd3dblora_finetune)
 - I attended the Georgia Governor's Honors Program for Computer Science in my junior year, where I had the pleasure of launching a mock-startup and conducting research under my advisor. Over the term, I wrote a piece on the application of finetuning diffusion models for the advertising industry based on user demographic and , with the broader social commentary of introducing profitable AI research into the research space before industry so that it could be appropriately regulated.
 - My paper was accepted to the Applied Human Factors and Ergonomics Conference, but I was unfortunately unable to attend due to another commitment. Paper can be viewed [here](https://drive.google.com/file/d/1Gn6mnmxkvGaBaOAdVu16wN3FsUyRCiVS/view?usp=sharing)!
-
-### *[2020-08-27 - present]* 8ball | [github](https://github.com/karthiksing05/8ball)
-- My first full-production machine learning pipeline was applied to the stock market. I used an XGBoost pipeline, tuned with my [Biaswrappers](/projects/#---biaswrappers--github), and finetuned predictions using sentiment analysis on Reddit, X, Google News, and Yahoo Finance investor analysis. My goal was to use the momentum of prior stock movements and current news sentiment to analyze the trends of future stock predictions by OHLC, and my framework, though generally performing worse or equal to day-to-day predictions, had some highly successful calls with returns of up to 30%-40% for stocks that weren't mainstream.
 
 ### *[2021-09-27 - 2024-02-05]* BiasWrappers | [github](https://github.com/karthiksing05/biaswrappers)
 

@@ -1,0 +1,12 @@
+title = "8ball"
+date = "2020-08"
+description = """
+My first full-production machine learning pipeline was applied to the stock market. I used an XGBoost pipeline, tuned with my [BiasWrappers](/theories/#-biaswrappers--github), and finetuned predictions using sentiment analysis on Reddit, X, Google News, and Yahoo Finance investor analysis. My goal was to use the momentum of prior stock movements and current news sentiment to analyze the trends of future stock predictions by OHLC.
+"""
+results = [
+  "some highly successful calls, with returns of up to 30%-40% for stocks that weren't mainstream",
+  "generally performed worse than or equal to day-to-day predictions",
+]
+link = "https://github.com/karthiksing05/8ball"
+link_label = "github"
+video = ""
