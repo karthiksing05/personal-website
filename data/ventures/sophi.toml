@@ -1,0 +1,18 @@
+title = "Sophi"
+date = "2026-01"
+hackathon = "NexHacks 2026"
+team = "Max Iliev, Joseph Farkas"
+description = """
+Sophi was our answer to what we called the "3 AM problem": general AI tutors have no idea how *your* professor teaches, which terminology they use, or what they tend to emphasize on exams. So, Sophi ingests a course's syllabus, past exams, and notes into a structured "Course DNA", and uses it to generate unlimited practice problems in the instructor's own style, scaling difficulty in real time and handing out tiered hints instead of answers. I built the AI stack and reasoning layers, where every mathematical answer from Gemini is checked against Wolfram Alpha before a student ever sees it.
+"""
+results = [
+  "under 2% hallucination rate through dual verification (Gemini + Wolfram Alpha)",
+  "about 60% smaller prompts through The Token Company's context compression",
+  "a \"self-healing\" parser for model output that has to be valid JSON and LaTeX at the same time",
+  "live at [sophi-ai.tech](https://sophi-ai.tech)",
+]
+link = "https://devpost.com/software/sophia-c3qw4b"
+link_label = "devpost"
+video = "https://www.youtube.com/watch?v=gLJv-8DVZGA"
+github = "https://github.com/MqxS/NexHacks2026"
+site = "https://sophi-ai.tech"

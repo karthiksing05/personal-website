@@ -1,0 +1,14 @@
+title = "The J-space of a Diffusion Language Model"
+date = "2026-07"
+description = """
+[Anthropic's recent work](https://transformer-circuits.pub/2026/workspace/index.html) argues that a transformer forms a *global workspace*: a small, limited-capacity set of verbalizable concepts in its residual stream, which their J-lens can read out directly. Because that workspace is in part a consequence of the transformer's autoregressive architecture, we asked whether a masked diffusion language model, trained to denoise rather than to predict the next token, forms the same workspace and puts it to the same use, running the method on LLaDA-8B beside Llama-3.1-8B. The short answer is yes, but on a different schedule: the autoregressive model carries a persistent workspace forward through time, while the diffusion model spreads a transient one across space.
+"""
+results = [
+  "both models form the workspace, but LLaDA forms it later in depth (layer 28 vs. 20) and in sharper phases",
+  "at the first denoising step, positions share about 3x as many concepts (0.21 vs. 0.07 overlap)",
+  "the diffusion workspace is malleable early and fixed late: injecting a concept at step one rewrites the theme, while the same injection in the final steps barely moves the text",
+  "both models answer all 10 reasoning prompts and resolve all 6 long-range ones",
+]
+link = "/ventures/j-space/"
+link_label = "read the writeup"
+video = ""

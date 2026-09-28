@@ -1,0 +1,274 @@
+{{- /*
+  Ventures carousel. Every file in data/ventures/ is one card, shown newest first by `date`.
+  To add a venture, drop a new .toml file in that folder (copy any existing one). Fields:
+    title        required
+    date         required, "YYYY-MM" (the month it was built). Cards from the same month are
+                 ordered by filename; give one a day ("YYYY-MM-DD") to control which comes first.
+    hackathon    optional, shown as a bubble
+    award        optional, shown as a second bubble
+    team         optional, "with ..." line under the title
+    description  markdown
+    results      list of markdown strings, shown in the results/ folder
+    link         main link (a page on this site or an external URL)
+    link_label   text for `link` (defaults to "read more")
+    devpost, video, github, site   optional URLs
+*/ -}}
+{{- $items := slice -}}
+{{- range $slug, $v := site.Data.ventures -}}
+  {{- /* a month-only date sorts as day 00, and the filename breaks any remaining tie */ -}}
+  {{- $day := $v.date -}}
+  {{- if eq (len $day) 7 }}{{ $day = printf "%s-00" $day }}{{ end -}}
+  {{- $items = $items | append (merge $v (dict "slug" $slug "sortkey" (printf "%s|%s" $day $slug))) -}}
+{{- end -}}
+{{- $items = sort $items "sortkey" "desc" -}}
+{{- $n := len $items -}}
+<style>
+.ventures { margin: 30px 0; }
+.ventures__stage {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "prev track next" ". dots .";
+  align-items: center;
+  gap: 14px 16px;
+}
+.ventures__track { grid-area: track; display: grid; }
+.ventures__arrow--prev { grid-area: prev; }
+.ventures__arrow--next { grid-area: next; }
+.ventures__arrow {
+  width: 44px; height: 44px; padding: 0;
+  border: 2px solid var(--accent);
+  font-size: 1.2em; line-height: 1;
+}
+.ventures__dots { grid-area: dots; display: flex; justify-content: center; flex-wrap: wrap; gap: 2px; }
+.ventures__dot {
+  width: 24px; height: 24px; padding: 0; border: 0; background: transparent;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.ventures__dot::before {
+  content: ""; width: 10px; height: 10px;
+  border: 1px solid var(--accent);
+}
+.ventures__dot[aria-current="true"]::before { background: var(--accent); }
+.ventures__dot:hover { background: transparent; }
+.ventures__status {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.venture {
+  border: 2px solid var(--accent);
+  background: var(--background);
+  display: flex; flex-direction: column;
+}
+.venture__bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 6px 14px;
+  border-bottom: 2px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  font-size: 0.85em;
+}
+.venture__lights { display: inline-flex; gap: 6px; }
+.venture__lights i {
+  width: 9px; height: 9px; border-radius: 50%;
+  border: 1px solid var(--accent);
+}
+.venture__lights i:first-child { background: var(--accent); }
+.venture__path { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.venture__count { color: color-mix(in srgb, var(--foreground) 60%, transparent); font-variant-numeric: tabular-nums; }
+.venture__body { padding: 18px 22px 20px; }
+.venture__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.venture__meta time { color: color-mix(in srgb, var(--foreground) 70%, transparent); margin-right: 4px; }
+.venture__bubble {
+  display: inline-block;
+  padding: 0 10px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #1a170f;
+  font-size: 0.8em; font-weight: 600; line-height: 1.8;
+}
+.venture__bubble--award { background: transparent; color: var(--foreground); }
+.venture__bubble--award::before { content: "★ "; color: var(--accent); }
+.venture__title { margin: 14px 0 0; }
+.venture__team {
+  margin: 2px 0 0;
+  font-size: 0.85em; font-style: italic;
+  color: color-mix(in srgb, var(--foreground) 70%, transparent);
+}
+.venture__desc { margin: 14px 0 0; }
+.venture__desc p { margin: 0 0 10px; }
+.venture__results { margin: 16px 0 0; }
+.venture__results summary {
+  cursor: pointer; list-style: none;
+  color: var(--accent); font-weight: 600;
+}
+.venture__results summary::-webkit-details-marker { display: none; }
+.venture__results summary::before { content: "▸ "; }
+.venture__results[open] summary::before { content: "▾ "; }
+.ventures .venture__tree { list-style: none; margin: 4px 0 0 0.6ch; padding: 0; }
+.ventures .venture__tree > li { position: relative; padding: 0 0 4px 3.4ch; }
+/* the theme gives every post list item a "-" bullet; these draw the ├── / └── branches instead */
+.ventures .venture__tree > li:not(:empty)::before {
+  content: ""; position: absolute; left: 0; top: 0;
+  width: 2.4ch; height: 0.77em;
+  border-left: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+.ventures .venture__tree > li:not(:empty)::after {
+  content: ""; position: absolute; left: 0; top: 0.77em; bottom: 0;
+  border-left: 1px solid var(--accent);
+}
+.ventures .venture__tree > li:last-child::after { display: none; }
+.venture__links { margin: 18px 0 0; }
+.venture__sep { color: color-mix(in srgb, var(--foreground) 45%, transparent); }
+
+/* without JS every card is listed in order; with JS only the active one is shown */
+.ventures:not(.is-ready) .ventures__stage { display: block; }
+.ventures:not(.is-ready) .ventures__track { gap: 24px; }
+.ventures:not(.is-ready) .ventures__arrow,
+.ventures:not(.is-ready) .ventures__dots { display: none; }
+.ventures.is-ready .venture:not(.is-active) { display: none; }
+.ventures.is-ready .venture.is-active { animation: venture-in 0.2s ease; }
+@keyframes venture-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* on wide screens the arrows ride along the side of long cards */
+@media (min-width: 701px) {
+  .ventures__arrow { align-self: start; position: sticky; top: calc(50vh - 22px); margin-top: 64px; }
+}
+@media (max-width: 700px) {
+  .ventures__stage { grid-template-areas: "track track track" "prev dots next"; gap: 12px 8px; }
+  .venture__body { padding: 14px 14px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ventures.is-ready .venture.is-active { animation: none; }
+}
+</style>
+
+<div class="ventures" data-ventures role="region" aria-roledescription="carousel" aria-label="ventures">
+  <div class="ventures__stage">
+    <button type="button" class="ventures__arrow ventures__arrow--prev" data-dir="-1" aria-label="Previous venture">&larr;</button>
+    <div class="ventures__track">
+      {{- range $i, $v := $items }}
+      <article class="venture{{ if eq $i 0 }} is-active{{ end }}" id="{{ $v.slug }}" data-title="{{ $v.title }}" aria-roledescription="slide" aria-label="{{ add $i 1 }} of {{ $n }}: {{ $v.title }}">
+        <div class="venture__bar">
+          <span class="venture__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="venture__path">~/ventures/{{ $v.slug }}</span>
+          <span class="venture__count">{{ add $i 1 }}/{{ $n }}</span>
+        </div>
+        <div class="venture__body">
+          <div class="venture__meta">
+            <time datetime="{{ $v.date }}">{{ time.AsTime (printf "%s-01" (substr $v.date 0 7)) | time.Format "January 2006" }}</time>
+            {{- with $v.hackathon }}
+            <span class="venture__bubble">{{ . }}</span>
+            {{- end }}
+            {{- with $v.award }}
+            <span class="venture__bubble venture__bubble--award">{{ . }}</span>
+            {{- end }}
+          </div>
+          <h2 class="venture__title">{{ $v.title }}</h2>
+          {{- with $v.team }}
+          <p class="venture__team">with {{ . }}</p>
+          {{- end }}
+          <div class="venture__desc">{{ $v.description | markdownify }}</div>
+          {{- with $v.results }}
+          <details class="venture__results" open>
+            <summary>results/</summary>
+            <ul class="venture__tree">
+              {{- range . }}
+              <li>{{ . | markdownify }}</li>
+              {{- end }}
+            </ul>
+          </details>
+          {{- end }}
+          {{- $links := slice }}
+          {{- with $v.link }}{{ $links = $links | append (dict "url" . "label" ($v.link_label | default "read more")) }}{{ end }}
+          {{- with $v.devpost }}{{ $links = $links | append (dict "url" . "label" "devpost") }}{{ end }}
+          {{- with $v.video }}{{ $links = $links | append (dict "url" . "label" "watch the demo") }}{{ end }}
+          {{- with $v.github }}{{ $links = $links | append (dict "url" . "label" "github") }}{{ end }}
+          {{- with $v.site }}{{ $links = $links | append (dict "url" . "label" "live site") }}{{ end }}
+          {{- with $links }}
+          <p class="venture__links">
+            {{- range $k, $l := . }}{{ if $k }}<span class="venture__sep" aria-hidden="true"> | </span>{{ end }}<a href="{{ $l.url }}"{{ if hasPrefix $l.url "http" }} target="_blank" rel="noopener"{{ end }}>{{ $l.label }}</a>{{ end -}}
+          </p>
+          {{- end }}
+        </div>
+      </article>
+      {{- end }}
+    </div>
+    <button type="button" class="ventures__arrow ventures__arrow--next" data-dir="1" aria-label="Next venture">&rarr;</button>
+    <div class="ventures__dots">
+      {{- range $i, $v := $items }}
+      <button type="button" class="ventures__dot" aria-label="Show {{ $v.title }}"{{ if eq $i 0 }} aria-current="true"{{ end }}></button>
+      {{- end }}
+    </div>
+  </div>
+  <p class="ventures__status" aria-live="polite"></p>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector("[data-ventures]");
+  if (!root) return;
+  var cards = Array.prototype.slice.call(root.querySelectorAll(".venture"));
+  var dots = Array.prototype.slice.call(root.querySelectorAll(".ventures__dot"));
+  var track = root.querySelector(".ventures__track");
+  var status = root.querySelector(".ventures__status");
+  var current = 0;
+
+  function show(i, fromUser) {
+    current = (i + cards.length) % cards.length;
+    cards.forEach(function (c, k) { c.classList.toggle("is-active", k === current); });
+    dots.forEach(function (d, k) {
+      if (k === current) d.setAttribute("aria-current", "true");
+      else d.removeAttribute("aria-current");
+    });
+    if (fromUser) {
+      status.textContent = cards[current].dataset.title + ", " + (current + 1) + " of " + cards.length;
+      if (history.replaceState) history.replaceState(null, "", "#" + cards[current].id);
+      // cards differ in height, so if we were deep into a long one, bring the new card's top back into view
+      if (track.getBoundingClientRect().top < 0) track.scrollIntoView({ block: "start" });
+    }
+  }
+
+  function indexFromHash() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    for (var k = 0; k < cards.length; k++) if (cards[k].id === id) return k;
+    return -1;
+  }
+
+  root.querySelectorAll(".ventures__arrow").forEach(function (b) {
+    b.addEventListener("click", function () { show(current + Number(b.dataset.dir), true); });
+  });
+  dots.forEach(function (d, k) {
+    d.addEventListener("click", function () { show(k, true); });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    var t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if (e.key === "ArrowLeft") show(current - 1, true);
+    else if (e.key === "ArrowRight") show(current + 1, true);
+  });
+
+  var x0 = null, y0 = null;
+  track.addEventListener("touchstart", function (e) {
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+  }, { passive: true });
+  track.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(current + (dx < 0 ? 1 : -1), true);
+    x0 = null;
+  }, { passive: true });
+
+  window.addEventListener("hashchange", function () {
+    var k = indexFromHash();
+    if (k >= 0) show(k);
+  });
+
+  var start = indexFromHash();
+  show(start >= 0 ? start : 0);
+  root.classList.add("is-ready");
+})();
+</script>

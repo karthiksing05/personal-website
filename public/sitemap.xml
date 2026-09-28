@@ -75,5 +75,7 @@
     <loc>//localhost:1313/school/</loc>
   </url><url>
     <loc>//localhost:1313/tags/</loc>
+  </url><url>
+    <loc>//localhost:1313/ventures/</loc>
   </url>
 </urlset>

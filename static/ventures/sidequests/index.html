@@ -1,0 +1,446 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>SideQuests Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500;700;800&display=swap">
+<style>
+/* Layout: one 1080px column, five sections (motivation, tech, AI, features, try it); the last one is a working phone mock beside a short guide. */
+:root{
+  --bg:#F2F1EA; --surface:#FBFBF7; --raise:#FFFFFF; --fg:#18211C; --text2:#3A433D; --muted:#626A63;
+  --line:#D9DBD2; --line-strong:#BFC5BA; --sage:#899E88; --sage-deep:#4A5F49; --sage-tint:#DDE3DB;
+  --on-sage:#18211C; --clay:#C77B58; --clay-tint:#F7E9E0; --clay-text:#6B3419; --blue:#1E3A8A; --blue-tint:#EEF3FD;
+  --good:#166534; --good-tint:#E6F4EA; --bad:#B91C1C; --bad-tint:#FDECEC; --faint:#C9CEC4; --ghost:#9AA39B;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  --sans:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121915; --surface:#19221C; --raise:#1F2A23; --fg:#ECEBE3; --text2:#C9CFC7; --muted:#98A197;
+  --line:#2C3830; --line-strong:#3E4B42; --sage-deep:#AFC3AD; --sage-tint:#26342B;
+  --clay:#D8906E; --clay-tint:#3A2A22; --clay-text:#F0C2AA; --blue:#A9C0F5; --blue-tint:#1C2640;
+  --good:#6FCF8E; --good-tint:#1B3325; --bad:#F08A8A; --bad-tint:#3A1F1F; --faint:#3A463E; --ghost:#6E786F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121915; --surface:#19221C; --raise:#1F2A23; --fg:#ECEBE3; --text2:#C9CFC7; --muted:#98A197;
+  --line:#2C3830; --line-strong:#3E4B42; --sage-deep:#AFC3AD; --sage-tint:#26342B;
+  --clay:#D8906E; --clay-tint:#3A2A22; --clay-text:#F0C2AA; --blue:#A9C0F5; --blue-tint:#1C2640;
+  --good:#6FCF8E; --good-tint:#1B3325; --bad:#F08A8A; --bad-tint:#3A1F1F; --faint:#3A463E; --ghost:#6E786F; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-padding-top:72px}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.55;margin:0}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--mono);letter-spacing:-.02em;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,4vw,40px);font-weight:800;line-height:1.1}
+h3{font-size:18px;font-weight:700;line-height:1.25}
+p{margin:0}
+a{color:var(--sage-deep);text-underline-offset:3px}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--sage);outline-offset:2px;border-radius:6px}
+.eyebrow{font-family:var(--mono);font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-deep)}
+.lede{font-size:19px;color:var(--text2);max-width:66ch}
+.prose{color:var(--text2);max-width:68ch}
+.small{font-size:14px}.muted{color:var(--muted)}.mono{font-family:var(--mono)}.num{font-variant-numeric:tabular-nums}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.g2,.g3,.g4{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g2>*,.g3>*,.g4>*{min-width:0}
+@media (max-width:860px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.scroll-x{overflow-x:auto}
+.pill{font:600 14px var(--sans);color:var(--text2);background:var(--surface);border:1px solid var(--line-strong);border-radius:999px;padding:8px 14px;cursor:pointer}
+.pill.on{background:var(--sage);border-color:var(--sage);color:var(--on-sage)}
+.btn{font:600 14px var(--sans);border-radius:10px;padding:9px 14px;cursor:pointer;border:1px solid var(--line-strong);background:var(--surface);color:var(--fg)}
+.btn.pri{background:var(--sage);border-color:var(--sage);color:var(--on-sage)}
+.btn:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar-in{display:flex;align-items:center;gap:16px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font:800 17px var(--mono);color:var(--fg);text-decoration:none;flex:none}
+.brand b{color:var(--sage-deep)}
+.nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0;flex:1;justify-content:flex-end}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:none;font-size:14.5px;font-weight:500;color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:999px}
+.nav a:hover{color:var(--fg);background:var(--sage-tint)}
+.nav a.cta{background:var(--sage);color:var(--on-sage);font-weight:700}
+@media (max-width:640px){.brand span{display:none}.nav{justify-content:flex-start}}
+
+section{padding-block:72px;border-top:1px solid var(--line)}
+.head{display:grid;gap:12px;margin-bottom:32px}
+
+/* hero */
+.hero{padding-block:56px 40px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:32px;align-items:center}
+.hero h1{font-size:clamp(44px,8vw,80px);font-weight:800;letter-spacing:-.045em;line-height:1}
+.hero h1 b{color:var(--sage-deep)}
+.tag{font:700 clamp(18px,2.4vw,23px) var(--mono);color:var(--sage-deep);margin-top:10px}
+@media (max-width:640px){.hero{grid-template-columns:1fr}.hero svg{width:88px;height:88px}}
+
+/* motivation */
+.person h3{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.person .where{font:500 13px var(--mono);color:var(--sage-deep)}
+.stat b{display:block;font:800 28px var(--mono);letter-spacing:-.02em;line-height:1.1}
+.stat p{font-size:15px;color:var(--text2);margin-top:6px}
+.stat cite{display:block;font-style:normal;font-size:12.5px;color:var(--muted);margin-top:6px}
+.matrix{width:100%;border-collapse:collapse;min-width:680px;font-size:15.5px}
+.matrix th,.matrix td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:left}
+.matrix th{font:700 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--fg)}
+.matrix .c{text-align:center;width:120px}
+.matrix td:first-child{font-weight:700}
+.matrix td small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.matrix tr.us td{background:var(--sage-tint)}
+.mk{display:inline-block;width:18px;height:18px;border-radius:50%;vertical-align:middle}
+.mk.y{background:var(--fg)}.mk.p{border:3px solid var(--fg);background:linear-gradient(90deg,var(--fg) 50%,transparent 50%)}.mk.n{width:16px;height:3px;border-radius:2px;background:var(--ghost)}
+
+/* tech */
+.diagram{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+.diagram svg{display:block;width:100%;height:auto;min-width:680px}
+svg text{font-family:var(--sans);fill:var(--fg)}
+svg .tm{font-family:var(--mono);font-weight:800}
+svg .ts{fill:var(--muted);font-size:12.5px}
+svg .lab{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;fill:var(--muted);font-weight:700}
+.node{cursor:pointer}
+.node .box{fill:var(--raise);stroke:var(--line-strong);stroke-width:1.5}
+.node:hover .box,.node:focus .box{stroke:var(--sage-deep)}
+.node.sel .box{stroke:var(--fg);stroke-width:2.5}
+.node.lit .box{fill:var(--sage-tint);stroke:var(--sage-deep);stroke-width:2.5}
+.node:focus{outline:none}
+.edge{stroke:var(--line-strong);stroke-width:2.5;fill:none}
+.edge.off{stroke-dasharray:6 6}.edge.lit{stroke:var(--sage-deep);stroke-width:4}
+.boundary{fill:none;stroke:var(--ghost);stroke-width:2;stroke-dasharray:8 7}
+.cap{min-height:3em;font-size:15.5px;color:var(--text2);margin-top:10px}
+.kv{display:grid;gap:10px 24px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:10px}
+.kv b{display:block;font:700 12.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.kv span{font-size:15px;color:var(--text2)}
+
+/* ai */
+.pipe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+@media (max-width:860px){.pipe{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.pipe{grid-template-columns:1fr}}
+.pipe>div{border:1px solid var(--line-strong);border-radius:12px;padding:14px;background:var(--raise);display:grid;gap:4px;align-content:start}
+.pipe>div.dark{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.pipe b{font-family:var(--mono);font-size:15px}
+.pipe span{font-size:14px;color:var(--muted)}
+.pipe>div.dark span{color:var(--line-strong)}
+.bars{display:grid;gap:14px;margin-top:12px}
+.brow,.axis{display:grid;grid-template-columns:130px minmax(0,1fr) 64px;gap:12px;align-items:center}
+.axis{font:500 12px var(--mono);color:var(--muted)}
+.axis div{display:flex;justify-content:space-between}
+.track{position:relative;height:30px;background:repeating-linear-gradient(90deg,transparent 0 calc(25% - 1px),var(--line) calc(25% - 1px) 25%)}
+.fill{position:absolute;inset:0 auto 0 0;border-radius:0 6px 6px 0;transition:width .4s}
+.fill.a{background:var(--fg)}.fill.b{background:var(--ghost)}.fill.c{background:var(--faint)}
+@media (max-width:520px){.brow,.axis{grid-template-columns:96px minmax(0,1fr) 50px;gap:8px;font-size:14px}}
+.delta{font:800 14px var(--mono);background:var(--sage);color:var(--on-sage);padding:4px 10px;border-radius:8px}
+.dag svg{min-width:760px;display:block;width:100%;height:auto}
+.dag .ghost{fill:var(--bg);stroke:var(--ghost);stroke-dasharray:5 4;stroke-width:1.5}
+.dag .gt{fill:var(--muted);font-size:13px}
+.dag .fe{stroke:var(--faint);stroke-width:2;fill:none}
+.dag .ce{stroke:var(--sage-deep);stroke-width:3.5;fill:none;transition:opacity .3s}
+.dag .cn{transition:opacity .3s}
+.dag .i1{fill:var(--fg)}.dag .i2{fill:var(--sage-deep)}.dag .i3{fill:var(--sage-tint);stroke:var(--sage-deep);stroke-width:2}
+.dag .tl{font-size:13.5px;font-weight:700}.dag .tl.lt{fill:var(--bg)}
+.dag .hide{opacity:0}
+pre.code{font:500 14px/1.6 var(--mono);background:var(--fg);color:var(--bg);border-radius:12px;padding:16px 18px;overflow-x:auto;margin:0}
+pre.code i{font-style:normal;color:var(--sage)}
+
+/* features */
+.feat{display:grid;gap:8px;align-content:start}
+.feat .ic{width:36px;height:36px;border-radius:10px;background:var(--sage-tint);display:grid;place-items:center;font:800 15px var(--mono);color:var(--sage-deep)}
+.feat p{font-size:15px;color:var(--text2)}
+.feat button{justify-self:start;margin-top:4px;background:none;border:0;padding:0;font:700 14px var(--sans);color:var(--sage-deep);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+/* try it */
+.try{display:grid;grid-template-columns:410px minmax(0,1fr);gap:40px;align-items:start}
+@media (max-width:880px){.try{grid-template-columns:1fr}}
+.guide{position:sticky;top:84px;display:grid;gap:14px}
+@media (max-width:880px){.guide{position:static}}
+.guide ol{margin:0;padding-left:20px;display:grid;gap:10px;color:var(--text2)}
+.try>*{min-width:0}
+.stage{--s:1;width:calc(410px*var(--s));height:calc(864px*var(--s));margin-inline:auto;position:relative}
+.frame{position:absolute;top:0;left:0;width:410px;height:864px;transform:scale(var(--s));transform-origin:top left;border:10px solid #18211C;border-radius:54px;overflow:hidden;background:#F2F1EA;box-shadow:0 20px 50px rgba(24,33,28,.18)}
+.frame iframe{display:block;width:390px;height:844px;border:0}
+footer{padding-block:40px 60px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+</style>
+
+<header class="bar"><div class="wrap bar-in">
+  <a class="brand" href="#top"><svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#899E88"/><line x1="32" y1="5" x2="32" y2="59" stroke="#B9C7B8" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 7"/><path d="M38 14 H29 C22.5 14 19 17.5 19 22 C19 26.5 22.5 30 29 30 H35 C41.5 30 45 33.5 45 38 C45 42.5 41.5 46 35 46 H17" fill="none" stroke="#18211C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="46" r="4.5" fill="#F2F1EA" stroke="#18211C" stroke-width="3"/><path d="M46 8 L52 14 L46 20 L40 14 Z" fill="#F2F1EA" stroke="#18211C" stroke-width="3" stroke-linejoin="round"/></svg><span>Side<b>Quests</b></span></a>
+  <nav class="nav" aria-label="Sections"><a href="#motivation">Motivation</a><a href="#tech">Tech stack</a><a href="#ai">AI stack</a><a href="#features">Features</a><a href="#try" class="cta">Try it</a></nav>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+  <svg width="120" height="120" viewBox="0 0 64 64" role="img" aria-label="SideQuests logo"><rect width="64" height="64" rx="18" fill="#899E88"/><line x1="32" y1="5" x2="32" y2="59" stroke="#B9C7B8" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 7"/><path d="M38 14 H29 C22.5 14 19 17.5 19 22 C19 26.5 22.5 30 29 30 H35 C41.5 30 45 33.5 45 38 C45 42.5 41.5 46 35 46 H17" fill="none" stroke="#18211C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="46" r="4.5" fill="#F2F1EA" stroke="#18211C" stroke-width="3"/><path d="M46 8 L52 14 L46 20 L40 14 Z" fill="#F2F1EA" stroke="#18211C" stroke-width="3" stroke-linejoin="round"/></svg>
+  <div><p class="eyebrow">HackGT 13 · Atlanta</p><h1>Side<b>Quests</b></h1><p class="tag">Turn waiting into wandering.</p></div>
+  <p class="lede" style="grid-column:1/-1">Tell it where you are, when you need to be back and what you're in the mood for. You get three timed plans of nearby events and places, with the travel between them, in under a second. Rate what you did and the next plan fits better. Open a plan and people nearby can join.</p>
+</div>
+
+<!-- MOTIVATION -->
+<section id="motivation"><div class="wrap">
+  <div class="head"><p class="eyebrow">Motivation</p><h2>Free time in a place you don't know</h2>
+  <p class="lede">Three of us met on a study-abroad program this summer, some of us first in Berlin. We kept running into the same problem: an open afternoon, a layover or a delayed train, and no fast way to turn it into something worth doing.</p></div>
+  <div class="g4">
+    <div class="card person"><h3>Bayan <span class="where">Belgium</span></h3><p class="prose small" style="margin-top:8px">The internet said "eat waffles." Mediocre waffles, two sights, then back to the train station.</p></div>
+    <div class="card person"><h3>Max <span class="where">France · Vienna</span></h3><p class="prose small" style="margin-top:8px">ChatGPT gave a list with no timing. Badly ordered routes meant sights after dark and closed kitchens.</p></div>
+    <div class="card person"><h3>Karthik <span class="where">Berlin</span></h3><p class="prose small" style="margin-top:8px">Loved travel when it fit him: nature, small groups, local events. No "top 10" list finds that mix.</p></div>
+    <div class="card person"><h3>All summer <span class="where">everywhere</span></h3><p class="prose small" style="margin-top:8px">Chatbots, two calendars, maps, AllTrails, event sites, a group chat and two payment apps. None talked to each other.</p></div>
+  </div>
+  <div class="g4" style="margin-top:28px">
+    <div class="card stat"><b>1 in 4</b><p>US flights in 2025 were late, cancelled or diverted.</p><cite>US DOT, Feb 2026</cite></div>
+    <div class="card stat"><b>~40%</b><p>of US travelers used generative AI to plan trips in 2025.</p><cite>Phocuswright</cite></div>
+    <div class="card stat"><b>79% / 51%</b><p>of 18–35s value spontaneity, but 51% still need the logistics handled.</p><cite>Eventbrite, Jul 2025</cite></div>
+    <div class="card stat"><b>58%</b><p>of solo travelers want to meet new people, up from 43%.</p><cite>Hostelworld, Jul 2025</cite></div>
+  </div>
+  <h3 style="margin:36px 0 12px">Where other apps stop</h3>
+  <div class="scroll-x"><table class="matrix">
+    <thead><tr><th>App</th><th class="c">Starts from free time</th><th class="c">Events, places, transit</th><th class="c">Learns from ratings</th><th class="c">Others can join</th></tr></thead>
+    <tbody id="matrix"></tbody></table></div>
+  <p class="small muted" style="margin-top:10px">● yes · ◐ partly · — no</p>
+</div></section>
+
+<!-- TECH -->
+<section id="tech"><div class="wrap">
+  <div class="head"><p class="eyebrow">Tech stack</p><h2>One VPS, four services</h2>
+  <p class="lede">The phone shows things, Go owns the rules, and the ML service does the scoring. Tap a box for details, or trace one plan request.</p></div>
+  <div class="diagram scroll-x"><svg id="archsvg" viewBox="0 0 1000 540" aria-label="Architecture diagram"></svg></div>
+  <div class="row" style="margin-top:12px"><button class="btn pri" id="traceBtn" type="button">Trace a plan request</button><button class="btn" id="tracePrev" type="button" disabled>Back</button><button class="btn" id="traceNext" type="button" disabled>Next</button><span class="small muted" id="traceStep"></span></div>
+  <p class="cap" id="traceCap" aria-live="polite">A plan request touches the app, nginx, Go, MongoDB and the ML service, in about half a second.</p>
+  <div class="card" id="archSide" style="margin-top:8px" aria-live="polite"></div>
+</div></section>
+
+<!-- AI -->
+<section id="ai"><div class="wrap">
+  <div class="head"><p class="eyebrow">AI stack</p><h2>Rank what you'll like, then plan what fits</h2>
+  <p class="lede">A small trained ranker scores stops against your taste and today's mood. A graph search turns the best of them into three plans you can actually do.</p></div>
+  <div class="pipe">
+    <div><b>Eight-section texts</b><span>Likes, dislikes, mood and every event, written the same way. Facebook likes via Meta's Graph API give a head start.</span></div>
+    <div><b>Qwen3 embedding</b><span>0.6B, frozen, 1024-d. Cache → Vertex AI → Hugging Face → local, parity-gated.</span></div>
+    <div class="dark"><b>VibeMatch</b><span>1.85M params, 7.4 MB. Reads likes and dislikes. 200 pairs in ~6 ms on CPU.</span></div>
+    <div><b>Questline planner</b><span>K-best search over a time graph: 3 varied plans in 0.2–0.6 s.</span></div>
+    <div><b>Jev rerank</b><span>An LLM judge re-scores the top 20 after the reply, so it never slows you down.</span></div>
+  </div>
+
+  <div class="g2" style="margin-top:16px">
+    <div class="card">
+      <div class="row" style="justify-content:space-between"><h3>Results on unseen users</h3><span class="delta" id="delta">+39% vs cosine</span></div>
+      <p class="small muted" style="margin-top:4px">1,000 test users and events the model never saw.</p>
+      <div class="row" id="metricTabs" style="margin-top:12px"></div>
+      <div class="bars" id="bars"></div>
+      <div class="axis" aria-hidden="true" style="margin-top:6px"><span></span><div><span>0</span><span>.25</span><span>.5</span><span>.75</span><span>1</span></div><span></span></div>
+      <p class="small muted" id="metricNote" style="margin-top:10px"></p>
+    </div>
+    <div class="card">
+      <h3>Training with no users</h3>
+      <ol class="prose small" style="margin:10px 0 0;padding-left:20px;display:grid;gap:8px">
+        <li>Qwen3.5-9B on my academic compute wrote 100k event listings and 10k personas.</li>
+        <li>Each user got 20 candidates, including trick events that look right but hit a dislike.</li>
+        <li>An LLM judge rated 200k pairs from 0 to 3.</li>
+        <li>21 runs on A100s took 12 minutes; the winner was picked on validation.</li>
+        <li>After launch, every rating moves your taste live: <span class="mono">likes ← 0.8·likes + 0.2·activity</span>. No retraining.</li>
+      </ol>
+      <p class="prose small" style="margin-top:12px">Data agents keep the catalog fresh: Meta's Muse Spark researches each new event with cited sources, and Gemini writes its profile.</p>
+    </div>
+  </div>
+
+  <div class="card dag" style="margin-top:16px">
+    <h3>Watch the planner build three paths</h3>
+    <p class="prose small" style="margin-top:6px">Tech Square, 2:10 to 6:30 PM. Each stop at a start time is a node; an edge exists only if you can get there in time, so edges only point forward. Dashed boxes are candidates the search passed over.</p>
+    <div class="row" id="dagctl" style="margin:14px 0 6px"></div>
+    <div class="scroll-x"><svg id="dagsvg" viewBox="0 0 1000 400" aria-label="Time graph with three chosen paths"></svg></div>
+    <p class="cap" id="dagcap" aria-live="polite"></p>
+  </div>
+  <div class="g2" style="margin-top:16px">
+<pre class="code"><i>for</i> v <i>in</i> sort_by_start(stops):
+    <i>for</i> u <i>in</i> preds(v):
+        <i>for</i> path <i>in</i> best[u]:
+            <i>if</i> allowed(path, v):
+                best[v].add(path + v)
+    best[v] = top_k(best[v])      <i># k = 16</i>
+value(v)   = (score(v) − τ) / (1 − τ)
+cost(u, v) = β·travel + λ·idle
+plans = pick_diverse(top_paths)</pre>
+    <div class="card"><h3>Every plan is</h3><ul class="prose small" style="margin:10px 0 0;padding-left:20px;display:grid;gap:6px"><li>inside your window, with travel and a 10-minute buffer</li><li>within budget and range; unknown prices never count as free</li><li>age-appropriate and true to your mood ("no bars")</li><li>free of repeat venues and categories</li><li>repaired up to 3 rounds if it has gaps or weak stops</li></ul></div>
+  </div>
+</div></section>
+
+<!-- FEATURES -->
+<section id="features"><div class="wrap">
+  <div class="head"><p class="eyebrow">Features</p><h2>What you can do</h2><p class="lede">All of them work in the clickable prototype below.</p></div>
+  <div class="g4" id="featGrid"></div>
+</div></section>
+
+<!-- TRY -->
+<section id="try"><div class="wrap">
+  <div class="head"><p class="eyebrow">Try it</p><h2>Tap through SideQuests</h2><p class="lede">The full clickable prototype of the app. Tap through it the way you would on your phone.</p></div>
+  <div class="try">
+    <div><div class="stage" id="stage"><div class="frame"><iframe id="proto" src="app/prototype.html" title="SideQuests clickable prototype" loading="lazy"></iframe></div></div>
+      <p class="small muted" style="text-align:center;margin-top:10px"><a href="app/prototype.html" target="_blank" rel="noopener">Open the prototype on its own page</a></p></div>
+    <div class="guide">
+      <div class="card"><h3>Things to try</h3>
+        <ol style="margin-top:10px">
+          <li>Watch the opening animation, then tap <b>Use the demo account</b> and <b>Sign in</b>. Or tap <b>Create an account</b> to run the 5-step profile setup.</li>
+          <li>On <b>Home</b>, swipe between sidequest timelines, switch to the map, and tap a block for details. Try the <b>Calendar</b> and <b>Past</b> tabs, and rate an event.</li>
+          <li>Tap <b>+</b> and go Where → When → Vibe → Review. Tap a stop for details, drag ☰ to reorder, and watch the transit re-time.</li>
+          <li>Open the <b>Forum</b>: filter, post that you're free, and request to join a plan.</li>
+          <li>In <b>Groups</b>, open a chat, the album and <b>Splits</b>; add an expense and check the split.</li>
+          <li>In <b>Account</b>, set your status and turn on agentic checkout, then use <b>•••</b> on a sidequest to get tickets with Muse.</li>
+        </ol></div>
+      <div class="row"><button class="btn" type="button" id="resetApp">Restart the prototype</button></div>
+      <p class="small muted">This is the design prototype the iOS app was built from, running on sample data. Nothing is sent anywhere, and payments are a sandbox.</p>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p><a href="https://github.com/karthiksing05/HackGT-13-Proj">GitHub</a> · <a href="https://huggingface.co/karthiksing05/sidequestz-compatibility-classifier">Model card</a> · <a href="https://huggingface.co/datasets/karthiksing05/sidequestz-event-embedding-text">Dataset</a></p>
+  <p style="margin-top:8px">Built by Karthik Singaravadivelan, Max Iliev, Kevin Harvey and Bayan Mardon with Meta Muse Spark and Graph API, Visa, MongoDB, Gemini and Vultr. Sourced from the HackGT13 project docs and the repo.</p>
+</div></footer>
+
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function $(s){return document.querySelector(s)}
+function $$(s){return Array.prototype.slice.call(document.querySelectorAll(s))}
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+function txt(parent,x,y,s,cls,extra){var t=el("text",Object.assign({x:x,y:y},extra||{}),parent);if(cls)t.setAttribute("class",cls);t.textContent=s;return t}
+function safe(name,fn){try{fn()}catch(e){console.error("SideQuests guide: "+name+" failed",e)}}
+
+/* ---------- motivation: matrix ---------- */
+safe("matrix",function(){
+  var rows=[["Google Ask Maps","closest: no free-time start, no joining","nyp n"],["Wanderboat","trips and saved lists","npnn"],["ChatGPT","no timed plan, never knows if you went","npnn"],["Fever · AllEvents","a list of events, not a plan","nnpp"],["Partiful","you still plan it yourself","nnny"],["Wanderlog · Mindtrip","built for trips, no live events","npnn"],["WashedUp · Loop","no planning; feeds go empty off-peak","pnny"],["SideQuests","3 timed plans in 0.2–0.6 s","yyyy"]];
+  $("#matrix").innerHTML=rows.map(function(r){var m=r[2].replace(" ","");return '<tr class="'+(r[0]==="SideQuests"?"us":"")+'"><td>'+r[0]+'<small>'+r[1]+'</small></td>'+m.split("").map(function(v){return '<td class="c"><i class="mk '+v+'" aria-label="'+(v==="y"?"yes":v==="p"?"partly":"no")+'"></i></td>'}).join("")+'</tr>'}).join("");
+});
+
+/* ---------- tech: architecture ---------- */
+safe("arch",function(){
+  var A={
+   app:{x:20,y:210,w:150,h:90,t:"iPhone app",s:"SwiftUI",z:"Client",d:[["Role","Shows everything, decides nothing. The server's result is always what you see."],["Tech","Swift, SwiftUI, Apple Speech for voice, Keychain for sessions, ~29k lines."],["Talks to","HTTPS for requests, one WebSocket for live updates."]]},
+   edge:{x:205,y:220,w:140,h:70,t:"nginx",s:"behind Cloudflare",z:"On the VPS",d:[["Role","The only public port. Terminates TLS."],["Tech","Cloudflare in front, Let's Encrypt, /ws upgraded to a WebSocket."],["Talks to","The Go API on localhost."]]},
+   go:{x:380,y:160,w:170,h:190,t:"Go API",s:"owns the rules",z:"On the VPS",d:[["Role","Auth, realtime hub, Questline planner, checkout agent, Graph API connector."],["Tech","Go, gorilla/mux, rotating JWTs, argon2id, static binary under systemd, one deploy.sh."],["Stores","Users, plans, groups, ratings and planner logs in MongoDB."]]},
+   mongo:{x:600,y:90,w:160,h:80,t:"MongoDB",s:"loopback only",z:"On the VPS",d:[["Role","The one database. Activities carry their own 1024-d vectors."],["Tech","2dsphere, TTL, unique and compound indexes."],["Holds","~9,000 activities, plus every user, plan and rating."]]},
+   ml:{x:600,y:330,w:160,h:80,t:"ML service",s:"FastAPI, CPU",z:"On the VPS",d:[["Role","Builds profile texts, embeds them, scores candidates."],["Tech","FastAPI, PyTorch, Qwen3 embeddings, VibeMatch, Jev."],["Talks to","Only the Go API calls it."]]},
+   ingest:{x:810,y:80,w:170,h:90,t:"Ingestion",s:"crawler",z:"Offline",off:1,d:[["Role","Events hourly, places weekly."],["Tech","Ticketmaster, Resident Advisor, Google Places, OSM → Muse Spark → Gemini → Qwen."],["Writes to","MongoDB, de-duplicated by source key."]]},
+   train:{x:810,y:320,w:170,h:90,t:"Training",s:"my academic compute",z:"Offline",off:1,d:[["Role","Made the synthetic data and trained VibeMatch."],["Tech","Qwen3.5-9B with vLLM on A100s; W&B logs."],["Ships to","Hugging Face Hub, loaded by the ML service."]]},
+   meta:{x:300,y:455,w:190,h:66,t:"Meta",s:"Graph API · Muse",z:"External",d:[["Role","Facebook likes as suggested ratings; Muse runs ticket checkout."],["Tech","Graph API v26.0; Muse via the Meta Model API with function tools."]]},
+   pay:{x:510,y:455,w:190,h:66,t:"Stripe · merchant",s:"Visa TAP signed",z:"External",d:[["Role","Payments for agentic checkout, in test mode."],["Tech","Shared Payment Tokens capped at the quote; requests signed with Visa TAP."]]},
+   emb:{x:790,y:455,w:190,h:66,t:"Embeddings",s:"Vertex → HF → local",z:"External",d:[["Role","Vectors that aren't cached yet."],["Tech","Vertex AI, Hugging Face router, then local Qwen; parity-checked."]]}
+  };
+  var E=[["app","edge"],["edge","go"],["go","mongo"],["go","ml"],["ingest","mongo",1],["train","ml",1],["go","meta"],["go","pay"],["ml","emb"]];
+  var svg=$("#archsvg");
+  el("rect",{x:190,y:40,width:590,height:395,rx:18,"class":"boundary"},svg);
+  txt(svg,210,68,"ONE VULTR VPS","lab");txt(svg,810,64,"OFFLINE","lab");txt(svg,300,449,"EXTERNAL","lab");
+  function cx(n){return A[n].x+A[n].w/2}function cy(n){return A[n].y+A[n].h/2}
+  var edges={},g=el("g",{},svg);
+  E.forEach(function(e){var a=A[e[0]],b=A[e[1]],d;
+    if(b.y>=a.y+a.h-2){var x1=cx(e[0]),y1=a.y+a.h,x2=cx(e[1]),y2=b.y;d="M"+x1+","+y1+" C"+x1+","+(y1+y2)/2+" "+x2+","+(y1+y2)/2+" "+x2+","+y2}
+    else if(b.x>=a.x+a.w){var p=[a.x+a.w,cy(e[0])+(cy(e[1])>cy(e[0])?20:cy(e[1])<cy(e[0])?-20:0),b.x,cy(e[1])];d="M"+p[0]+","+p[1]+" C"+(p[0]+p[2])/2+","+p[1]+" "+(p[0]+p[2])/2+","+p[3]+" "+p[2]+","+p[3]}
+    else{var q=[a.x,cy(e[0]),b.x+b.w,cy(e[1])];d="M"+q[0]+","+q[1]+" C"+(q[0]+q[2])/2+","+q[1]+" "+(q[0]+q[2])/2+","+q[3]+" "+q[2]+","+q[3]}
+    edges[e[0]+"-"+e[1]]=el("path",{d:d,"class":"edge"+(e[2]?" off":"")},g)});
+  var nodes={};
+  Object.keys(A).forEach(function(k){var n=A[k];var gg=el("g",{"class":"node",tabindex:"0",role:"button","aria-label":n.t},svg);
+    el("rect",{x:n.x,y:n.y,width:n.w,height:n.h,rx:12,"class":"box"},gg);
+    if(k==="go"){["auth + sessions","realtime hub","Questline planner","checkout agent"].forEach(function(s,i){var yy=n.y+64+i*30;var r=el("rect",{x:n.x+14,y:yy,width:n.w-28,height:24,rx:6},gg);r.setAttribute("style",i===2?"fill:var(--fg)":"fill:var(--sage-tint)");var t=txt(gg,n.x+24,yy+17,s,"",{"font-size":"12.5","font-weight":"600"});if(i===2)t.setAttribute("style","fill:var(--bg)")})}
+    txt(gg,n.x+14,n.y+(k==="go"?30:n.h/2-2),n.t,"tm",{"font-size":"16"});txt(gg,n.x+14,n.y+(k==="go"?50:n.h/2+18),n.s,"ts");
+    gg.addEventListener("click",function(){select(k)});gg.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();select(k)}});
+    nodes[k]=gg});
+  function select(k){Object.keys(nodes).forEach(function(x){nodes[x].classList.remove("sel")});nodes[k].classList.add("sel");var n=A[k];
+    $("#archSide").innerHTML='<p class="eyebrow">'+n.z+'</p><h3 style="margin-top:4px">'+n.t+'</h3><div class="kv">'+n.d.map(function(p){return '<div><b>'+p[0]+'</b><span>'+p[1]+'</span></div>'}).join("")+'</div>'}
+  select("go");
+  var T=[[["app","edge","go"],["app-edge","edge-go"],"1 · Ask. The app sends your window and mood over HTTPS, through Cloudflare and nginx, to Go."],
+    [["go","mongo"],["go-mongo"],"2 · Retrieve. One geo + time query in MongoDB; Go re-checks hours, budget, range, age and mood."],
+    [["go","ml"],["go-ml"],"3 · Rank. The ML service scores the 120-stop shortlist with VibeMatch (3 s deadline, with a fallback)."],
+    [["go"],[],"4 · Plan. The Questline planner builds the time graph and keeps the 16 best paths per stop."],
+    [["go","edge","app"],["edge-go","app-edge"],"5 · Show. Three timed options reach the phone in 0.2–0.6 s. Jev re-scores in the background."]];
+  var ti=-1;
+  function paint(){Object.keys(nodes).forEach(function(x){nodes[x].classList.remove("lit")});Object.keys(edges).forEach(function(x){edges[x].classList.remove("lit")});
+    if(ti<0){$("#traceCap").textContent="A plan request touches the app, nginx, Go, MongoDB and the ML service, in about half a second.";$("#traceStep").textContent="";$("#tracePrev").disabled=true;$("#traceNext").disabled=true;$("#traceBtn").textContent="Trace a plan request";return}
+    var s=T[ti];s[0].forEach(function(x){nodes[x].classList.add("lit")});s[1].forEach(function(x){if(edges[x])edges[x].classList.add("lit")});
+    $("#traceCap").textContent=s[2];$("#traceStep").textContent="Step "+(ti+1)+" of "+T.length;$("#tracePrev").disabled=ti===0;$("#traceNext").disabled=ti===T.length-1;$("#traceBtn").textContent="Stop tracing"}
+  $("#traceBtn").addEventListener("click",function(){ti=ti<0?0:-1;paint()});
+  $("#traceNext").addEventListener("click",function(){if(ti<T.length-1){ti++;paint()}});
+  $("#tracePrev").addEventListener("click",function(){if(ti>0){ti--;paint()}});
+});
+
+/* ---------- ai: metrics ---------- */
+safe("metrics",function(){
+  var M={"Spearman ρ":[[["VibeMatch",.697,"a"],["Tuned cosine",.501,"b"],["Random vectors",.168,"c"]],"+39% vs cosine","Rank correlation with the LLM judge. Random vectors: the same cosine scoring with random embeddings, so tuned cosine is already about 3× chance."],
+    "NDCG@10":[[["VibeMatch",.897,"a"],["Tuned cosine",.849,"b"]],"+5.6% vs cosine","Ranking quality of each user's top 10, averaged over users."],
+    "Recall@10":[[["VibeMatch",.883,"a"],["Tuned cosine",.817,"b"]],"+8.1% vs cosine","Share of each user's good matches that land in the top 10."]};
+  var wrap=$("#metricTabs");
+  function show(k){$$("#metricTabs .pill").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-k")===k)});var m=M[k];$("#delta").textContent=m[1];$("#metricNote").textContent=m[2];
+    $("#bars").innerHTML=m[0].map(function(r){return '<div class="brow"><span style="font-weight:'+(r[2]==="a"?700:400)+'">'+r[0]+'</span><div class="track"><div class="fill '+r[2]+'" style="width:'+(r[1]*100)+'%"></div></div><span class="mono num" style="font-weight:800">'+r[1].toFixed(3)+'</span></div>'}).join("")}
+  Object.keys(M).forEach(function(k){var b=document.createElement("button");b.type="button";b.className="pill";b.setAttribute("data-k",k);b.textContent=k;b.addEventListener("click",function(){show(k)});wrap.appendChild(b)});
+  show("Spearman ρ");
+});
+
+/* ---------- ai: DAG ---------- */
+safe("dag",function(){
+  var X0=110,X1=960,xs=function(m){return X0+m*(X1-X0)/260};
+  var rowsY=[100,210,320];
+  var paths=[["Botanical Garden",20,80,"Frisbee meetup",110,170,"Eastside Trail",190,240],["Tunnel murals",15,65,"Krog St Market",75,140,"Skyline Park",160,235],["Board game café",10,90,"Thrift crawl",110,170,"Food walk",185,245]];
+  var N={};paths.forEach(function(p,r){for(var k=0;k<3;k++)N[p[k*3]]={a:p[k*3+1],b:p[k*3+2],y:rowsY[r],it:k+1}});
+  [["Coffee",20,50,155],["Jazz set",80,140,155],["Museum",150,210,265]].forEach(function(g){N[g[0]]={a:g[1],b:g[2],y:g[3],ghost:1}});
+  var FE=[["Tunnel murals","Frisbee meetup"],["Tunnel murals","Thrift crawl"],["Botanical Garden","Thrift crawl"],["Board game café","Frisbee meetup"],["Frisbee meetup","Food walk"],["Krog St Market","Eastside Trail"],["Thrift crawl","Eastside Trail"],["Coffee","Jazz set"],["Jazz set","Skyline Park"],["Jazz set","Museum"],["Tunnel murals","Jazz set"]];
+  var svg=$("#dagsvg"),SRC=[X0-24,210],SNK=[X1+20,210];
+  function L(n){return [xs(N[n].a),N[n].y]}function R(n){return [xs(N[n].b),N[n].y]}
+  function curve(p,q){var mx=(p[0]+q[0])/2;return "M"+p[0]+","+p[1]+" C"+mx+","+p[1]+" "+mx+","+q[1]+" "+q[0]+","+q[1]}
+  el("line",{x1:X0,y1:40,x2:X1,y2:40},svg).setAttribute("style","stroke:var(--line-strong);stroke-width:1.5");
+  [["2:10",0],["3 PM",50],["4 PM",110],["5 PM",170],["6 PM",230],["6:30",260]].forEach(function(t){var x=xs(t[1]);el("line",{x1:x,y1:34,x2:x,y2:46},svg).setAttribute("style","stroke:var(--line-strong);stroke-width:1.5");txt(svg,x,24,t[0],"lab",{"text-anchor":"middle"})});
+  ["A","B","C"].forEach(function(l,i){txt(svg,20,rowsY[i]+5,l,"tm",{"font-size":"15"})});
+  var gF=el("g",{},svg),gC=el("g",{},svg),gN=el("g",{},svg);
+  el("path",{d:curve([SRC[0]+10,SRC[1]],L("Coffee")),"class":"fe"},gF);
+  FE.forEach(function(e){el("path",{d:curve(R(e[0]),L(e[1])),"class":"fe"},gF)});
+  el("path",{d:curve(R("Museum"),[SNK[0]-12,SNK[1]]),"class":"fe"},gF);
+  var CE=[],CN=[];
+  paths.forEach(function(p){var n=[p[0],p[3],p[6]];
+    CE.push([1,el("path",{d:curve([SRC[0]+10,SRC[1]],L(n[0])),"class":"ce"},gC)]);
+    CE.push([2,el("path",{d:curve(R(n[0]),L(n[1])),"class":"ce"},gC)]);
+    CE.push([3,el("path",{d:curve(R(n[1]),L(n[2])),"class":"ce"},gC)]);
+    CE.push([4,el("path",{d:curve(R(n[2]),[SNK[0]-12,SNK[1]]),"class":"ce"},gC)])});
+  Object.keys(N).forEach(function(name){var n=N[name],x=xs(n.a),w=xs(n.b)-xs(n.a);
+    if(n.ghost){el("rect",{x:x,y:n.y-13,width:w,height:26,rx:7,"class":"ghost"},gN);txt(gN,x+10,n.y+4.5,name,"gt");return}
+    var g=el("g",{"class":"cn"},gN);el("rect",{x:x,y:n.y-20,width:w,height:40,rx:9,"class":"i"+n.it},g);
+    var c=el("circle",{cx:x+17,cy:n.y,r:9},g);c.setAttribute("style",n.it===3?"fill:var(--sage-deep)":n.it===2?"fill:var(--bg)":"fill:#899E88");
+    var t=txt(g,x+17,n.y+4.5,String(n.it),"tm",{"font-size":"12","text-anchor":"middle"});t.setAttribute("style",n.it===3?"fill:var(--bg)":n.it===2?"fill:var(--sage-deep)":"fill:#18211C");
+    txt(g,x+32,n.y+5,name,"tl"+(n.it<3?" lt":""));CN.push([n.it,g])});
+  el("circle",{cx:SRC[0],cy:SRC[1],r:10},svg).setAttribute("style","fill:var(--fg)");txt(svg,SRC[0],SRC[1]+28,"start","ts",{"text-anchor":"middle"});
+  var sink=el("circle",{cx:SNK[0],cy:SNK[1],r:9,"stroke-width":5},svg);sink.setAttribute("style","fill:var(--bg);stroke:var(--fg)");
+  var sinkT=txt(svg,SNK[0],SNK[1]+28,"home","ts",{"text-anchor":"middle"});
+  var CAP=["The graph before the search: every candidate stop at a start time, and every forward edge you could make.","Iteration 1: each option picks a first stop. Anything below the quality bar adds nothing.","Iteration 2: travel, then second stops. Only the 16 best partial paths survive at each stop.","Iteration 3: third stops. Idle time costs more on a packed day than a chill one.","Iteration 4: every path gets home by 6:30. The final pick penalizes overlap, so the three afternoons share no stops."];
+  var ctl=$("#dagctl"),step=4,timer=null;
+  function set(i){step=i;$$("#dagctl .pill").forEach(function(b){b.classList.toggle("on",+b.getAttribute("data-i")===i)});
+    CE.forEach(function(e){e[1].classList.toggle("hide",e[0]>i)});CN.forEach(function(e){e[1].classList.toggle("hide",e[0]>i)});
+    sink.classList.toggle("hide",i<4);sinkT.classList.toggle("hide",i<4);$("#dagcap").textContent=CAP[i]}
+  ["Graph only","Iteration 1","Iteration 2","Iteration 3","Iteration 4"].forEach(function(l,i){var b=document.createElement("button");b.type="button";b.className="pill";b.textContent=l;b.setAttribute("data-i",i);b.addEventListener("click",function(){stop();set(i)});ctl.appendChild(b)});
+  var play=document.createElement("button");play.type="button";play.className="btn pri";play.textContent="Play";play.style.marginLeft="auto";ctl.appendChild(play);
+  function stop(){if(timer){clearInterval(timer);timer=null;play.textContent="Play"}}
+  play.addEventListener("click",function(){if(timer){stop();return}play.textContent="Pause";set(0);timer=setInterval(function(){if(step>=4){stop();return}set(step+1)},1400)});
+  set(4);
+});
+
+/* ---------- prototype frame ---------- */
+safe("proto",function(){
+  var stage=$("#stage"),frame=$("#proto");
+  function fit(){var w=stage.parentElement.clientWidth;var sc=Math.min(1,w/410);stage.style.setProperty("--s",sc)}
+  fit();window.addEventListener("resize",fit);
+  $("#resetApp").addEventListener("click",function(){frame.src="app/prototype.html?r="+Date.now()});
+});
+
+/* ---------- features ---------- */
+safe("features",function(){
+  var F=[["+","Plan in 30 seconds","Where you start and end, when you're free, and your mood by voice or text. Three timed options come back in under a second.","plan"],
+    ["↕","Reorder and re-time","Move a stop and the transit re-times itself. Anything that would make you late turns red.","reorder"],
+    ["◎","Forum","Post that you're free, or join open plans nearby with a size cap and a lock time. Plans are sorted by how well they match you.","forum"],
+    ["💬","Groups","Every plan that people join gets a live group chat and a shared album.","chat"],
+    ["$","Splits to the cent","Equal splits where the shares always add up exactly. Settle up with Visa.","splits"],
+    ["✦","Agentic checkout","Meta's Muse agent buys tickets for paid stops within a budget you approve once with Face ID.","checkout"],
+    ["★","Learns from ratings","Rate each stop after the outing and your taste moves immediately. No retraining.","rate"],
+    ["f","Facebook head start","With your permission, your Page likes become suggested ratings, so your first plans aren't a cold start.","taste"]];
+  $("#featGrid").innerHTML=F.map(function(f){return '<div class="card feat"><span class="ic">'+f[0]+'</span><h3>'+f[1]+'</h3><p>'+f[2]+'</p><button type="button" data-open="'+f[3]+'">Try it →</button></div>'}).join("");
+  $("#featGrid").addEventListener("click",function(e){var b=e.target.closest("[data-open]");if(b){document.getElementById("try").scrollIntoView({behavior:"smooth"})}});
+});
+})();
+</script>
+
+</body></html>

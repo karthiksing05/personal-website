@@ -1,0 +1,15 @@
+title = "Reading Beats Asking, and Neither Beats Logprobs"
+date = "2026-08"
+description = """
+An AI safety project (MATS 12.0) where we built the strongest case we could that a linear probe on a model's activations can catch it being manipulated by a planted source, and then ran the baseline a practitioner would try first: the log-probability the model already assigns to the planted answer. That single forward pass beat the probe in every cell we tested, until we pushed the behavior further from the read point and the ordering reversed. Along the way, several of our own headlines were retracted, every one of them by a control we built to attack our own result.
+"""
+results = [
+  "one forward pass beats the activation probe in 30 of 30 cells (0.94 vs. 0.78 AUROC)",
+  "the ordering reverses once the answer sits 56 to 82 tokens past the read point",
+  "a probe trained on one task family loses 0.179 AUROC on another",
+  "chain of thought cuts adoption of the planted answer from 0.350 to 0.056 (Qwen)",
+  "5 models from 1.5B to 14B, in under 12 GPU-hours",
+]
+link = "/ventures/logprobs/"
+link_label = "read the writeup"
+video = ""

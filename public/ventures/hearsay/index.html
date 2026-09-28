@@ -1,0 +1,1177 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>HEARSAY Technical Report</title>
+<meta name="description" content="A paginated technical report on interpretable synthetic-speech detection with COBWEB concept formation and diffusion prototypes, with 21 case studies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<script>
+  window.MathJax = { tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] }, svg: { fontCache: "global" },
+    startup: { typeset: true } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --paper: #f3f4f1; --surface: #ffffff; --ink: #15191e; --ink-2: #4a535e; --ink-3: #6f7883; --rule: #d6dbd4;
+  --accent: #2350b0; --accent-soft: #e6ecf8; --a: #2350b0; --b: #b87b12; --c: #7a3db3; --real: #0b7a61; --fake: #c2461a;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0f1216; --surface: #161b21; --ink: #e6e9ed; --ink-2: #a9b1bb; --ink-3: #828b96; --rule: #2b323b;
+    --accent: #8aabff; --accent-soft: #1c2536; --a: #8aabff; --b: #e3aa4b; --c: #bb8ff2; --real: #41c6a1; --fake: #ff885c;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0f1216; --surface: #161b21; --ink: #e6e9ed; --ink-2: #a9b1bb; --ink-3: #828b96; --rule: #2b323b;
+  --accent: #8aabff; --accent-soft: #1c2536; --a: #8aabff; --b: #e3aa4b; --c: #bb8ff2; --real: #41c6a1; --fake: #ff885c;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.62; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* reader chrome */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule);
+  padding: 9px 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.bar .brand { font-family: var(--display); font-weight: 700; font-stretch: 92%; font-size: 15px; margin-right: auto; }
+.bar .brand span { font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--ink-3); margin-left: 8px; }
+.bar button, .pbtn { font-family: var(--mono); font-size: 12.5px; background: var(--surface); color: var(--ink); border: 1px solid var(--rule);
+  padding: 5px 11px; border-radius: 3px; cursor: pointer; }
+.bar button:hover:not(:disabled), .pbtn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+button:disabled { opacity: 0.4; cursor: default; }
+#pageof { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+#jump { display: none; font-family: var(--mono); font-size: 12.5px; max-width: 100%; background: var(--surface); color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 3px; padding: 5px 6px; }
+.layout { max-width: 1160px; margin: 0 auto; padding-inline: 20px; display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 44px; }
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 58px); align-self: start; padding-top: 28px; max-height: calc(100vh - 70px); overflow-y: auto; }
+nav.toc .h { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+nav.toc a { display: block; font-family: var(--mono); font-size: 12.5px; line-height: 1.4; color: var(--ink-2); text-decoration: none; padding: 5px 8px;
+  border-left: 2px solid transparent; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a[aria-current="page"] { color: var(--ink); border-left-color: var(--accent); background: var(--accent-soft); }
+@media (max-width: 960px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  nav.toc { display: none; }
+  #jump { display: block; flex: 1 1 100%; }
+}
+main { min-width: 0; padding-block: 30px 60px; }
+section.page { max-width: 780px; scroll-margin-top: 70px; }
+section.page h3[id] { scroll-margin-top: 70px; }
+ol.contents .pg { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+@media (max-width: 600px) { .bar .brand span { display: none; } .bar { gap: 8px; } }
+
+/* type */
+h1 { font-family: var(--display); font-stretch: 90%; font-weight: 800; font-size: clamp(28px, 4.6vw, 42px); line-height: 1.08; margin: 10px 0 10px; text-wrap: balance; }
+h2 { font-family: var(--display); font-stretch: 94%; font-weight: 700; font-size: 26px; line-height: 1.2; margin: 0 0 12px; text-wrap: balance; }
+h2 .sn { font-family: var(--mono); font-weight: 400; font-size: 15px; color: var(--ink-3); margin-right: 12px; }
+h2.abs { font-size: 20px; margin-top: 24px; }
+h3 { font-family: var(--display); font-stretch: 96%; font-weight: 650; font-size: 18.5px; line-height: 1.3; margin: 26px 0 8px; text-wrap: balance; }
+p { margin: 0 0 13px; }
+ol, ul { margin: 0 0 14px; padding-left: 24px; }
+li { margin-bottom: 6px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.authors { font-family: var(--display); font-weight: 600; font-size: 17px; color: var(--ink-2); margin: 0; }
+.titleblock { border-bottom: 1px solid var(--rule); padding-bottom: 18px; }
+code { font-family: var(--mono); font-size: 0.82em; background: var(--accent-soft); padding: 1px 5px; border-radius: 3px; overflow-wrap: anywhere; }
+.cite { font-family: var(--mono); font-size: 0.78em; color: var(--ink-2); white-space: normal; }
+.math { overflow-x: auto; overflow-y: hidden; margin: 6px 0 14px; }
+.cap { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); line-height: 1.5; }
+ol.contents { list-style: none; padding: 0; display: grid; gap: 4px; columns: 2; }
+ol.contents a { font-family: var(--mono); font-size: 13px; text-decoration: none; }
+@media (max-width: 600px) { ol.contents { columns: 1; } }
+
+/* tables and figures */
+.tablewrap { overflow-x: auto; margin: 14px 0 16px; }
+table { border-collapse: collapse; font-size: 14.5px; width: 100%; min-width: 520px; }
+caption { caption-side: top; text-align: left; font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); padding-bottom: 8px; }
+th, td { text-align: left; padding: 7px 12px 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--mono); font-weight: 500; font-size: 11.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--ink-2); }
+td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 13px; white-space: nowrap; }
+tr.hl td { background: var(--accent-soft); }
+table.keyres { min-width: 0; }
+table.keyres td:first-child { color: var(--ink-2); }
+figure { margin: 18px 0 22px; }
+figcaption { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); line-height: 1.5; margin-top: 8px; }
+figcaption b { color: var(--ink); font-weight: 500; }
+.diagram, .chart { background: var(--surface); border: 1px solid var(--rule); padding: 12px; overflow-x: auto; }
+.diagram svg { display: block; min-width: 720px; width: 100%; height: auto; }
+.diagram.heat svg { min-width: 700px; }
+.chart svg { display: block; min-width: 520px; width: 100%; height: auto; }
+svg text { font-family: var(--mono); }
+.box { fill: var(--surface); stroke: var(--ink-3); stroke-width: 1.2; }
+.box.key { stroke: var(--accent); stroke-width: 1.8; }
+.box.soft { fill: var(--accent-soft); stroke: var(--accent); }
+.box.side { stroke-dasharray: 4 3; }
+.t1 { fill: var(--ink); font-size: 12px; font-weight: 500; }
+.t2 { fill: var(--ink-2); font-size: 10.5px; }
+.edge { stroke: var(--ink-3); stroke-width: 1.3; fill: none; }
+.edge.side { stroke-dasharray: 4 3; }
+.arrow { fill: var(--ink-3); }
+.slot-a { fill: var(--a); } .slot-b { fill: var(--b); } .slot-c { fill: var(--c); }
+.slot-t { fill: #ffffff; font-size: 10.5px; font-weight: 500; }
+:root[data-theme="dark"] .slot-t { fill: #0f1216; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .slot-t { fill: #0f1216; } }
+.lbl { fill: var(--ink-3); font-size: 10px; letter-spacing: 0.06em; }
+.reg { stroke-width: 1.5; fill-opacity: 0.12; }
+.reg.real { fill: var(--real); stroke: var(--real); }
+.reg.fake { fill: var(--fake); stroke: var(--fake); }
+.reg.fake2 { fill: var(--fake); stroke: var(--fake); stroke-dasharray: 5 4; }
+.link { stroke: var(--c); stroke-width: 1.4; stroke-dasharray: 3 3; fill: none; }
+.proto-dot { fill: var(--c); }
+.clip-dot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; }
+.val2 { fill: var(--c); font-size: 12px; font-weight: 500; }
+.fkfill { fill: var(--fake); } .rlfill { fill: var(--real); }
+.grid { stroke: var(--rule); stroke-width: 1; }
+.tick { fill: var(--ink-3); font-size: 11px; }
+.rowlabel { fill: var(--ink); font-size: 12px; }
+.val { fill: var(--ink-2); font-size: 11px; }
+.axl { fill: var(--ink-2); font-size: 11.5px; }
+.legend { fill: var(--ink-2); font-size: 11.5px; }
+.annot { fill: var(--ink); font-size: 11.5px; font-weight: 500; }
+.band { fill: var(--accent-soft); }
+.ln { fill: none; stroke-width: 2; }
+.ln.sa { stroke: var(--a); } .ln.sb { stroke: var(--b); } .ln.sc { stroke: var(--c); }
+.dot.sa { fill: var(--a); } .dot.sb { fill: var(--b); } .dot.sc { fill: var(--c); }
+.hp { fill: var(--a); } .hneg { fill: var(--b); }
+.hx { fill: var(--ink); font-size: 11px; font-weight: 500; }
+.hn { fill: var(--ink-3); font-size: 10.5px; }
+.hy { fill: var(--ink); font-size: 11.5px; }
+.hv { fill: var(--ink-2); font-size: 11px; }
+.hv.sig { fill: var(--ink); font-weight: 500; }
+
+/* case cards */
+.card { background: var(--surface); border: 1px solid var(--rule); padding: 12px 16px 6px; margin: 10px 0 12px; }
+.chead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; font-family: var(--mono); font-size: 12.5px; margin-bottom: 4px; }
+.chead .file { font-weight: 500; }
+.chead .scores { color: var(--ink-2); }
+.card .tablewrap { margin: 6px 0 8px; }
+table.protos { font-size: 13.5px; min-width: 600px; }
+table.protos td { padding: 5px 10px 5px 0; }
+.sharecell { position: relative; min-width: 110px; }
+.sbar { display: inline-block; height: 8px; border-radius: 2px; vertical-align: middle; max-width: 70px; margin-right: 6px; }
+.sbar.fk { background: var(--fake); } .sbar.rl { background: var(--real); }
+.sv { font-family: var(--mono); font-size: 12.5px; }
+.card p.basic { font-size: 14.5px; color: var(--ink-2); margin: 0 0 8px; }
+ul.refs { list-style: none; padding: 0; }
+ul.refs li { font-size: 15px; padding-left: 1.2em; text-indent: -1.2em; }
+.rk { font-family: var(--mono); font-size: 0.82em; color: var(--ink-2); }
+
+/* pager */
+.pager { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; border-top: 1px solid var(--rule);
+  margin-top: 32px; padding-top: 14px; }
+.pager .pbtn { max-width: 44%; text-align: left; white-space: normal; }
+.pager .pbtn:last-child { text-align: right; }
+.pnum { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+</style>
+
+<header class="bar">
+  <div class="brand">HEARSAY technical report<span>Team SideQuests</span></div>
+  <button type="button" id="prev" aria-label="Previous page">← Prev</button>
+  <span id="pageof" aria-live="polite">Page 1 of 17</span>
+  <button type="button" id="next" aria-label="Next page">Next →</button>
+  <label for="jump" class="visually-hidden" style="position:absolute;left:-9999px">Go to page</label>
+  <select id="jump"><option value="0">Title and abstract (p. 1)</option><option value="1">1 Introduction (p. 2)</option><option value="2">2 Background (p. 3)</option><option value="3">3 Detection system (p. 4)</option><option value="4">4 The concept space (p. 5)</option><option value="5">5 Prototype inspection (p. 6)</option><option value="6">6 Prototype families (p. 7)</option><option value="7">7.1 Case studies: commercial cloners (p. 8)</option><option value="8">7.2 Case studies: open cloning and conversion (p. 9)</option><option value="9">7.3 Case studies: diffusion TTS (p. 10)</option><option value="10">7.4 Case studies: real speech and channels (p. 11)</option><option value="11">7.5 Case studies: review and failure (p. 12)</option><option value="12">8 Evaluation of the explanations (p. 13)</option><option value="13">9 Submitted system and ablations (p. 14)</option><option value="14">10 Discussion and limitations (p. 15)</option><option value="15">11 Conclusion and future work (p. 16)</option><option value="16">References and appendix (p. 17)</option></select>
+</header>
+<div class="layout">
+  <nav class="toc" aria-label="Pages"><div class="h">Contents</div><ol><li><a href="#abstract" data-i="0">Title and abstract</a></li><li><a href="#introduction" data-i="1">1 Introduction</a></li><li><a href="#background" data-i="2">2 Background</a></li><li><a href="#system" data-i="3">3 Detection system</a></li><li><a href="#concept-space" data-i="4">4 The concept space</a></li><li><a href="#prototypes" data-i="5">5 Prototype inspection</a></li><li><a href="#families" data-i="6">6 Prototype families</a></li><li><a href="#cases-commercial" data-i="7">7.1 Case studies: commercial cloners</a></li><li><a href="#cases-open" data-i="8">7.2 Case studies: open cloning and conversion</a></li><li><a href="#cases-diffusion" data-i="9">7.3 Case studies: diffusion TTS</a></li><li><a href="#cases-real" data-i="10">7.4 Case studies: real speech and channels</a></li><li><a href="#cases-review" data-i="11">7.5 Case studies: review and failure</a></li><li><a href="#evaluation" data-i="12">8 Evaluation of the explanations</a></li><li><a href="#ablations" data-i="13">9 Submitted system and ablations</a></li><li><a href="#discussion" data-i="14">10 Discussion and limitations</a></li><li><a href="#conclusion" data-i="15">11 Conclusion and future work</a></li><li><a href="#references" data-i="16">References and appendix</a></li></ol></nav>
+  <main id="main">
+<section class="page" id="abstract" data-title="Title and abstract">
+<div class="titleblock">
+<div class="eyebrow">Technical report · NSA HEARSAY Audio Authentication Challenge · HackGT 13 · September 2026</div>
+<h1>Interpretable Synthetic-Speech Detection with Concept Formation and Diffusion Prototypes</h1>
+<p class="authors">Team SideQuests</p>
+</div>
+<h2 class="abs">Abstract</h2>
+<p>We describe a synthetic-speech detector and an explanation layer that makes its decisions open to inspection. The detector averages three
+fine-tuned self-supervised speech models. We trained it on data from which we removed format shortcuts and to which we added 11,900 copy-synthesis
+fakes. It scores a minimum detection cost (minDCF) of 0.0317 on the organizers' test set and 0.0274 [0.0231, 0.0306] on 27,779 held-out In-the-Wild
+recordings.</p>
+<p>The explanation layer organizes the detector's representation into a COBWEB concept hierarchy and explains each clip with diffusion prototypes
+named by those concepts. It agrees with the detector's decisions at κ = 0.985. We study all 5,013 prototypes that explain the 1,671 test clips. They
+fall into eight families, five synthetic and three real, each tied to a class of synthesis system or of real speech. Every synthetic family matches a measurable acoustic profile.
+Relative to real speech, its clips show higher estimated SNR, lower long-term spectral ripple and more variable noise floors. Family-specific
+markers sit on top of that profile, such as a smooth LPC residual for diffusion TTS. Twenty-one case studies show how prototypes separate synthesis
+systems, keep degraded real speech real, and single out clips the detector may have missed.</p>
+<div class="tablewrap"><table class="keyres"><tbody>
+<tr><td>Official NSA test score (System A)</td><td class="n">minDCF 0.0317 · EER 1.44%</td></tr>
+<tr><td>27,779 held-out In-the-Wild recordings</td><td class="n">minDCF 0.0274 [0.0231, 0.0306] · EER 1.05%</td></tr>
+<tr><td>Explanation layer vs detector, test set</td><td class="n">κ = 0.985 [0.975, 0.994]</td></tr>
+<tr><td>Prototypes analysed / test clips / families</td><td class="n">5,013 / 1,671 / 8</td></tr>
+<tr><td>Docker image vs reference run</td><td class="n">max |ΔP| = 3.2 × 10<sup>−6</sup></td></tr>
+</tbody></table></div>
+<h3>Contents</h3>
+<ol class="contents" id="contents-list"><li><a href="#abstract">Title and abstract</a> <span class="pg">p. 1</span></li><li><a href="#introduction">1 Introduction</a> <span class="pg">p. 2</span></li><li><a href="#background">2 Background</a> <span class="pg">p. 3</span></li><li><a href="#system">3 Detection system</a> <span class="pg">p. 4</span></li><li><a href="#concept-space">4 The concept space</a> <span class="pg">p. 5</span></li><li><a href="#prototypes">5 Prototype inspection</a> <span class="pg">p. 6</span></li><li><a href="#families">6 Prototype families</a> <span class="pg">p. 7</span></li><li><a href="#cases-commercial">7.1 Case studies: commercial cloners</a> <span class="pg">p. 8</span></li><li><a href="#cases-open">7.2 Case studies: open cloning and conversion</a> <span class="pg">p. 9</span></li><li><a href="#cases-diffusion">7.3 Case studies: diffusion TTS</a> <span class="pg">p. 10</span></li><li><a href="#cases-real">7.4 Case studies: real speech and channels</a> <span class="pg">p. 11</span></li><li><a href="#cases-review">7.5 Case studies: review and failure</a> <span class="pg">p. 12</span></li><li><a href="#evaluation">8 Evaluation of the explanations</a> <span class="pg">p. 13</span></li><li><a href="#ablations">9 Submitted system and ablations</a> <span class="pg">p. 14</span></li><li><a href="#discussion">10 Discussion and limitations</a> <span class="pg">p. 15</span></li><li><a href="#conclusion">11 Conclusion and future work</a> <span class="pg">p. 16</span></li><li><a href="#references">References and appendix</a> <span class="pg">p. 17</span></li></ol>
+<div class="pager"><button type="button" class="pbtn" data-go="-1" disabled>← Start</button><span class="pnum">Page 1 of 17</span><button type="button" class="pbtn" data-go="1">1 Introduction →</button></div></section>
+<section class="page" id="introduction" data-title="1 Introduction" hidden>
+<h2><span class="sn">1</span>Introduction</h2>
+<p>Zero-shot voice cloning now requires only seconds of reference audio. An analyst who receives a suspicious recording needs two answers: how likely
+the recording is to be synthetic, and on what evidence. The challenge organizers made the second answer explicit. They asked teams to state what
+worked, to explain why, and to minimize black-box detectors.</p>
+<p>Detectors built on large self-supervised speech models generalize better than earlier hand-crafted systems <span class="cite">[Tak et al. 2022a; Ge et al. 2025]</span>. They remain opaque, and they
+readily learn properties of a dataset instead of properties of synthesis <span class="cite">[Müller et al. 2021]</span>. Our detector follows this line and adds three safeguards: shortcut
+removal, controlled synthetic data and a calibrated ensemble. The larger part of this report concerns inspection. We ask what the detector's
+representation encodes and whether a person can read it.</p>
+<p>We answer with two tools from the study of categorization. COBWEB <span class="cite">[Fisher 1987]</span> builds a concept hierarchy incrementally, as a model of how people form
+categories. Diffusion prototypes, obtained by test-time concept discovery (TTCG) <span class="cite">[Wang et al. 2026b]</span>, describe an individual clip as a composition of a few modes
+of the learned distribution. We name each prototype by the COBWEB concept that contains it, so every explanation refers to training audio a person
+can listen to.</p>
+<h3>1.1 Contributions</h3>
+<ol>
+<li><b>A shortcut-free detector.</b> An audit shows that file timestamps alone separate the provided classes. A canonical view removes such cues, and
+copy-synthesis fakes teach the synthesis step itself. The calibrated ensemble reaches 0.0274 minDCF on 27,779 held-out recordings (§3).</li>
+<li><b>A concept space with a held-out basic level.</b> We fit a COBWEB hierarchy on the detector's own representation. We select each clip's basic
+level by pointwise mutual information on held-out data, which peaks at an interior depth where the closed-form criterion does not (§4).</li>
+<li><b>Prototype inspection.</b> We implement TTCG for this space and name its prototypes by concepts (§5).</li>
+<li><b>Prototype families and their acoustic criteria.</b> We group all 5,013 test-set prototypes into eight families and measure what acoustically
+distinguishes the audio each family explains (§6). Twenty-one case studies examine individual decisions (§7).</li>
+<li><b>Evaluated explanations.</b> We measure fidelity, faithfulness, stability, label-free structure and three cognitive capabilities against
+baselines (§8).</li>
+</ol>
+<div class="tablewrap"><table><caption>Table 1. Components reused and components built for this work.</caption>
+<thead><tr><th>Reused</th><th>Built</th></tr></thead><tbody>
+<tr><td>AntiDeepfake checkpoints: XLS-R-2B, XLS-R-1B, MMS-1B <span class="cite">[Ge et al. 2025]</span></td><td>Data audit, canonical view, balanced sampling, channel augmentation, fine-tuning</td></tr>
+<tr><td>Neural vocoders: HiFi-GAN, DiffWave, Vocos <span class="cite">[Kong et al. 2020; Kong et al. 2021; Siuzdak 2023]</span></td><td>The 11,900-clip copy-synthesis set and its split rules</td></tr>
+<tr><td>cobweb-private, the COBWEB library of the Teachable AI Lab</td><td>The concept space, held-out basic levels, concept atlas, label-free analysis</td></tr>
+<tr><td>TTCG and DMCF (published methods) <span class="cite">[Wang et al. 2026a; Wang et al. 2026b]</span></td><td>A DDPM and TTCG implementation for this space; prototype naming; the family analysis</td></tr>
+<tr><td>ASVspoof 5 metric definition <span class="cite">[Wang et al. 2024]</span></td><td>Parity-tested scorer, calibration, evaluation protocol, stress views, ablations</td></tr>
+</tbody></table></div>
+<div class="pager"><button type="button" class="pbtn" data-go="0">← Title and abstract</button><span class="pnum">Page 2 of 17</span><button type="button" class="pbtn" data-go="2">2 Background →</button></div></section>
+<section class="page" id="background" data-title="2 Background" hidden>
+<h2><span class="sn">2</span>Background</h2>
+<h3>2.1 Task and metric</h3>
+<p>The system receives an audio file of at least two seconds of English speech and outputs P(synthetic). The organizers rank systems with the
+ASVspoof 5 detection cost function at a spoof prior π = 0.3, C<sub>miss</sub> = 1 and C<sub>fa</sub> = 4 <span class="cite">[Wang et al. 2024]</span>. The package treats bona fide speech
+as the target class, so its false-alarm cost applies to a synthetic clip that passes as real:</p>
+<div class="math">\[ \mathrm{DCF}(\tau) = \mathrm{FPR}(\tau) + \frac{C_{\mathrm{fa}}\,\pi}{C_{\mathrm{miss}}\,(1-\pi)}\,\mathrm{FNR}(\tau) = \mathrm{FPR}(\tau) + 1.714\,\mathrm{FNR}(\tau), \]</div>
+<p>where FPR is the share of real clips flagged and FNR the share of synthetic clips passed. minDCF is the minimum over τ. After calibration at the
+evaluation prior, the Bayes-optimal rule flags a clip when its expected cost of acceptance exceeds that of rejection:</p>
+<div class="math">\[ C_{\mathrm{fa}}\,P(\text{spoof}\mid x) > C_{\mathrm{miss}}\,P(\text{bona fide}\mid x) \;\Longleftrightarrow\; P(\text{spoof}\mid x) > 0.2. \]</div>
+<h3>2.2 Prototypes, exemplars and the basic level</h3>
+<p>People classify new instances by their resemblance to a category's central tendency, its prototype. Members close to the prototype are judged more
+typical and are learned faster <span class="cite">[Posner and Keele 1968; Rosch and Mervis 1975]</span>. Exemplar theories store the instances themselves and classify by similarity to them <span class="cite">[Medin and Schaffer 1978; Nosofsky 1986]</span>. Categories
+also form hierarchies, and people favour one level of such a hierarchy, the basic level, at which categories are most informative <span class="cite">[Rosch et al. 1976]</span>.
+Prototype-based networks carry these ideas into machine learning and explain a decision by pointing at learned prototypes <span class="cite">[Snell et al. 2017; Chen et al. 2019]</span>.</p>
+<h3>2.3 COBWEB</h3>
+<p>COBWEB <span class="cite">[Fisher 1987]</span> sorts each new instance down a concept hierarchy. At every node it chooses among four operators: add the instance to the best child,
+create a new child, merge the two best children, or split the best child. It keeps the operator that maximizes category utility <span class="cite">[Gluck and Corter 1985]</span>, the gain in
+predictability of attribute values that a partition affords:</p>
+<div class="math">\[ CU(\{C_1,\dots,C_K\}) = \frac{1}{K}\sum_{k=1}^{K} P(C_k)\sum_i\sum_j\Big[P(A_i = V_{ij}\mid C_k)^2 - P(A_i = V_{ij})^2\Big]. \]</div>
+<p>For continuous attributes, each concept stores a diagonal Gaussian, and utility rewards children that are tighter than their parent <span class="cite">[Gennari et al. 1989]</span>. We use
+the continuous implementation of the Teachable AI Lab (cobweb-private). When labels are supplied, its objective adds a label-entropy term; §4.5
+removes that term to test its influence. We measure how informative a concept c is for an instance x by pointwise mutual information with the
+root, and define the basic level of x as the node on its path where this quantity, estimated on held-out data, peaks <span class="cite">[Wang et al. 2026a]</span>:</p>
+<div class="math">\[ \mathrm{pmi}(x;c) = \log p(x\mid c) - \log p(x\mid \text{root}), \qquad c^{*}(x) = \arg\max_{c\,\in\,\mathrm{path}(x)} \widehat{\mathrm{pmi}}_{\text{held-out}}(c). \]</div>
+<h3>2.4 Diffusion models as concept formation</h3>
+<p>A denoising diffusion model <span class="cite">[Ho et al. 2020]</span> learns to reverse a gradual noising process. With \(\bar\alpha_t\) the cumulative signal level at step t,</p>
+<div class="math">\[ x_t = \sqrt{\bar\alpha_t}\,x_0 + \sqrt{1-\bar\alpha_t}\,\varepsilon, \qquad \hat x_0(x_t) = \frac{x_t - \sqrt{1-\bar\alpha_t}\,\hat\varepsilon_\theta(x_t,t)}{\sqrt{\bar\alpha_t}}, \]</div>
+<p>where the second expression is Tweedie's posterior mean <span class="cite">[Efron 2011]</span>. Wang, Singaravadivelan and MacLellan <span class="cite">[Wang et al. 2026a]</span> argue that the noised marginals of such a
+model describe a hierarchy of Gaussian prototypes, with high noise levels corresponding to general concepts and low noise levels to specific ones.
+Test-time concept discovery and composition (TTCG) <span class="cite">[Wang et al. 2026b]</span> uses this view to explain a single input: it climbs the score function from a noised copy of
+the input to nearby modes, selects a few of them and composes them. §5 describes our implementation, and §5.4 tests the noise-level hypothesis in
+our space.</p>
+<div class="pager"><button type="button" class="pbtn" data-go="1">← 1 Introduction</button><span class="pnum">Page 3 of 17</span><button type="button" class="pbtn" data-go="3">3 Detection system →</button></div></section>
+<section class="page" id="system" data-title="3 Detection system" hidden>
+<h2><span class="sn">3</span>Detection system</h2>
+<h3>3.1 Data</h3>
+<p>The organizers supplied DiffSSD <span class="cite">[Bhagtani et al. 2024]</span>, about 70,000 synthetic clips from ten systems, and 242 real clips resampled from LJSpeech. We added 19,575 real
+recordings: LJSpeech (13,100), the ten LibriSpeech speakers that DiffSSD clones (1,152) and 80 further LibriSpeech speakers (5,323). We generated
+11,900 copy-synthesis fakes by re-synthesizing training-split real recordings with two HiFi-GAN models, DiffWave and Vocos <span class="cite">[Wang and Yamagishi 2023]</span>. Each such fake
+shares its speaker and content with a real recording. The In-the-Wild dataset <span class="cite">[Müller et al. 2022]</span>, 31,779 web recordings of real and synthetic speech by public
+figures, serves only for evaluation.</p>
+<p>An audit preceded training. Byte hashes, decoded-audio hashes and acoustic landmark matching against 89,817 reference recordings found no test
+audio in any training corpus. The audit also found strong shortcuts in DiffSSD: file-system timestamps alone separate the classes (AUC 1.0), and
+sample rate, codec, level, leading silence and duration differ by class.</p>
+<h3>3.2 Canonical view and augmentation</h3>
+<p>Every clip passes through one canonical view: decoding to 16 kHz mono, trimming of edge silence, a crop to a test-like duration during training, a
+7 kHz low-pass filter, DC removal, peak normalization and one-LSB dither. During training, 60% of clips also pass through one or two channel
+operations: lossy codecs, telephony, band-limiting, resampling, spectral tilt, noise, mains hum, reverberation or clipping. Both classes receive
+the same operations, so a degraded real recording remains a real example.</p>
+<h3>3.3 Detectors, fusion and calibration</h3>
+<p>We fine-tune three AntiDeepfake models <span class="cite">[Ge et al. 2025]</span> at a learning rate of 2 × 10<sup>−6</sup> for three epochs, with fixed sampling shares per data family.
+Each produces a synthetic logit ℓ<sub>k</sub>. We z-normalize the logits, average them and apply Platt scaling at the evaluation prior <span class="cite">[Platt 1999]</span>:</p>
+<div class="math">\[ s(x) = \frac{1}{3}\sum_{k=1}^{3} \frac{\ell_k(x) - \mu_k}{\sigma_k}, \qquad P(\text{synthetic} \mid x) = \sigma\big(a\,s(x) + b\big), \quad a = 6.84,\; b = -2.60. \]</div>
+<p>A router re-scores uncertain clips (0.05 &lt; P &lt; 0.8) and clips longer than six seconds in two-second windows, and cross-checks lossy or
+band-limited files. It records every decision in a per-file trace.</p>
+<figure><div class="diagram" role="img" aria-label="Detection pipeline and concept layer">      <svg viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="ar" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0,0 L8,4 L0,8 z"/></marker></defs>
+        <text class="lbl" x="10" y="18">INPUT</text><text class="lbl" x="300" y="18">SCORE</text><text class="lbl" x="760" y="18">DECIDE AND REPORT</text>
+        <!-- input -->
+        <rect class="box" x="10" y="120" width="120" height="54" rx="4"/><text class="t1" x="70" y="143" text-anchor="middle">Audio file</text><text class="t2" x="70" y="160" text-anchor="middle">any container</text>
+        <rect class="box side" x="10" y="36" width="120" height="54" rx="4"/><text class="t1" x="70" y="59" text-anchor="middle">Triage</text><text class="t2" x="70" y="76" text-anchor="middle">trace only</text>
+        <path class="edge side" d="M70,120 L70,90" marker-end="url(#ar)"/>
+        <rect class="box key" x="160" y="120" width="130" height="54" rx="4"/><text class="t1" x="225" y="140" text-anchor="middle">Canonical view</text><text class="t2" x="225" y="156" text-anchor="middle">16 kHz, 7 kHz LP</text><text class="t2" x="225" y="168" text-anchor="middle">normalize, dither</text>
+        <path class="edge" d="M130,147 L160,147" marker-end="url(#ar)"/>
+        <!-- ensemble slots -->
+        <rect class="box soft" x="320" y="36" width="210" height="232" rx="6"/>
+        <text class="t1" x="425" y="56" text-anchor="middle">Detector ensemble</text>
+        <text class="t2" x="425" y="70" text-anchor="middle">System A (B, C: ablations)</text>
+        <rect class="slot-a" x="336" y="82" width="178" height="30" rx="4"/><text class="slot-t" x="425" y="101" text-anchor="middle">XLS-R-2B</text>
+        <rect class="slot-b" x="336" y="120" width="178" height="30" rx="4"/><text class="slot-t" x="425" y="139" text-anchor="middle">XLS-R-1B</text>
+        <rect class="slot-a" x="336" y="158" width="178" height="30" rx="4"/><text class="slot-t" x="425" y="177" text-anchor="middle">MMS-1B</text>
+        <rect class="slot-c" x="336" y="196" width="178" height="26" rx="4" opacity="0.85"/><text class="slot-t" x="425" y="213" text-anchor="middle">C: XLS-R-1B, 2nd seed</text>
+        <rect class="slot-c" x="336" y="228" width="178" height="26" rx="4" opacity="0.85"/><text class="slot-t" x="425" y="245" text-anchor="middle">C: WiSE-FT XLS-R-2B</text>
+        <path class="edge" d="M290,147 L320,147" marker-end="url(#ar)"/>
+        <!-- fusion -->
+        <rect class="box" x="560" y="120" width="120" height="54" rx="4"/><text class="t1" x="620" y="141" text-anchor="middle">z-norm mean</text><text class="t2" x="620" y="158" text-anchor="middle">per detector</text>
+        <path class="edge" d="M530,147 L560,147" marker-end="url(#ar)"/>
+        <rect class="box" x="700" y="120" width="120" height="54" rx="4"/><text class="t1" x="760" y="141" text-anchor="middle">Platt at 0.3</text><text class="t2" x="760" y="158" text-anchor="middle">P(synthetic)</text>
+        <path class="edge" d="M680,147 L700,147" marker-end="url(#ar)"/>
+        <rect class="box key" x="840" y="120" width="150" height="54" rx="4"/><text class="t1" x="915" y="141" text-anchor="middle">Flag if P &gt; 0.2</text><text class="t2" x="915" y="158" text-anchor="middle">Bayes, Cmiss 1, Cfa 4</text>
+        <path class="edge" d="M820,147 L840,147" marker-end="url(#ar)"/>
+        <rect class="box" x="840" y="36" width="150" height="54" rx="4"/><text class="t1" x="915" y="57" text-anchor="middle">Router</text><text class="t2" x="915" y="73" text-anchor="middle">re-score, codec check</text>
+        <path class="edge" d="M915,120 L915,90" marker-end="url(#ar)"/>
+        <rect class="box key" x="840" y="210" width="150" height="54" rx="4"/><text class="t1" x="915" y="231" text-anchor="middle">TSV + trace</text><text class="t2" x="915" y="248" text-anchor="middle">cm-score per file</text>
+        <path class="edge" d="M915,174 L915,210" marker-end="url(#ar)"/>
+        <!-- explanation layer -->
+        <rect class="box side" x="320" y="306" width="360" height="54" rx="4"/><text class="t1" x="500" y="327" text-anchor="middle">Concept layer: COBWEB + prototypes</text><text class="t2" x="500" y="344" text-anchor="middle">reads XLS-R-2B; never changes the score</text>
+        <path class="edge side" d="M425,268 L425,306" marker-end="url(#ar)"/>
+        <rect class="box side" x="700" y="306" width="290" height="54" rx="4"/><text class="t1" x="845" y="327" text-anchor="middle">Explanation per clip</text><text class="t2" x="845" y="344" text-anchor="middle">concept, sources, training exemplars</text>
+        <path class="edge side" d="M680,333 L700,333" marker-end="url(#ar)"/>
+      </svg>
+</div>
+<figcaption><b>Figure 1.</b> The detection pipeline. The concept layer reads the XLS-R-2B representation and never alters the score. The
+lower two ensemble slots belong to ablation C (§9).</figcaption></figure>
+<div class="tablewrap"><table><caption>Table 2. minDCF (lower is better) with 95% stratified bootstrap intervals.</caption>
+<thead><tr><th>System</th><th>ITW clean</th><th>ITW perturbed</th><th>NSA test</th></tr></thead><tbody>
+<tr><td>XLS-R-2B, pretrained</td><td class="n">0.038</td><td class="n">0.189</td><td class="n">–</td></tr>
+<tr><td>XLS-R-2B, fine-tuned without copy-synthesis</td><td class="n">0.060</td><td class="n">0.153</td><td class="n">–</td></tr>
+<tr><td>XLS-R-2B, fine-tuned with copy-synthesis</td><td class="n">0.040</td><td class="n">0.104</td><td class="n">–</td></tr>
+<tr class="hl"><td>System A: three-model ensemble</td><td class="n">0.028 [0.017, 0.040]</td><td class="n">0.082 [0.064, 0.097]</td><td class="n">0.0317</td></tr>
+<tr><td>System A, 27,779 held-out ITW clips</td><td class="n" colspan="2">0.0274 [0.0231, 0.0306] · EER 1.05%</td><td class="n">–</td></tr>
+</tbody></table></div>
+<p>Plain fine-tuning degraded out-of-domain performance at every epoch (XLS-R-1B: 0.050 to 0.129). With copy-synthesis fakes it held or improved
+(0.050 to 0.039). The ensemble beats its best member on paired tests, by 0.012 [0.001, 0.020] on clean audio and 0.022 [0.004, 0.037] under
+perturbation.</p>
+<div class="pager"><button type="button" class="pbtn" data-go="2">← 2 Background</button><span class="pnum">Page 4 of 17</span><button type="button" class="pbtn" data-go="4">4 The concept space →</button></div></section>
+<section class="page" id="concept-space" data-title="4 The concept space" hidden>
+<h2><span class="sn">4</span>The concept space</h2>
+<h3>4.1 Representation</h3>
+<p>The explanation layer reads the time-averaged final-layer representation of the XLS-R-2B detector, the input of its linear classification head.
+We standardize it and whiten it with principal component analysis to 32 dimensions, fitted on training clips. A linear read-out from these 32
+dimensions reproduces the detector's logit with R² = 0.99997, so the space holds essentially all the information behind the decision.</p>
+<h3>4.2 Hierarchy</h3>
+<p>We fit a COBWEB hierarchy on 11,999 training clips, with source and channel as labels, and hold out 999 clips to estimate the basic level. Test clips enter
+the hierarchy by categorization alone: they are sorted down the tree without updating it.</p>
+<h3>4.3 The basic level</h3>
+<p>Figure 2 contrasts two criteria for the basic level. The expected pointwise mutual information computed in closed form under each concept's own
+Gaussian rises with depth at every level, because a narrower Gaussian always appears more informative about its own members. Under that criterion
+the basic level is a single-clip leaf. Estimated on held-out clips, pointwise mutual information rises to a peak at depth 7 and then falls. The median
+concept at that depth holds eight training clips. We use the held-out criterion throughout.</p>
+<figure><div class="chart"><svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pointwise mutual information by depth">
+<line class="grid" x1="64" x2="620" y1="216.0" y2="216.0"/><text class="tick" x="58" y="220.0" text-anchor="end">0</text>
+<line class="grid" x1="64" x2="620" y1="170.5" y2="170.5"/><text class="tick" x="58" y="174.5" text-anchor="end">5</text>
+<line class="grid" x1="64" x2="620" y1="125.0" y2="125.0"/><text class="tick" x="58" y="129.0" text-anchor="end">10</text>
+<line class="grid" x1="64" x2="620" y1="79.5" y2="79.5"/><text class="tick" x="58" y="83.5" text-anchor="end">15</text>
+<line class="grid" x1="64" x2="620" y1="34.0" y2="34.0"/><text class="tick" x="58" y="38.0" text-anchor="end">20</text>
+<rect class="band" x="353.27272727272725" y="34" width="28" height="182"/>
+<text class="tick" x="64.0" y="232" text-anchor="middle">1</text>
+<text class="tick" x="114.54545454545455" y="232" text-anchor="middle">2</text>
+<text class="tick" x="165.0909090909091" y="232" text-anchor="middle">3</text>
+<text class="tick" x="215.63636363636363" y="232" text-anchor="middle">4</text>
+<text class="tick" x="266.1818181818182" y="232" text-anchor="middle">5</text>
+<text class="tick" x="316.72727272727275" y="232" text-anchor="middle">6</text>
+<text class="tick" x="367.27272727272725" y="232" text-anchor="middle">7</text>
+<text class="tick" x="417.8181818181818" y="232" text-anchor="middle">8</text>
+<text class="tick" x="468.3636363636364" y="232" text-anchor="middle">9</text>
+<text class="tick" x="518.909090909091" y="232" text-anchor="middle">10</text>
+<text class="tick" x="569.4545454545455" y="232" text-anchor="middle">11</text>
+<text class="tick" x="620.0" y="232" text-anchor="middle">12</text>
+<text class="axl" x="342.0" y="252" text-anchor="middle">depth in the concept hierarchy</text>
+<text class="axl" transform="rotate(-90)" x="-125" y="16" text-anchor="middle">nats</text>
+<path class="ln sc" d="M64.0,205.6 L114.5,170.1 L165.1,134.7 L215.6,115.9 L266.2,95.5 L316.7,80.8 L367.3,71.9 L417.8,83.9 L468.4,99.8 L518.9,116.8 L569.5,146.2 L620.0,203.1"/>
+<circle class="dot sc" cx="64.0" cy="205.6" r="3"/>
+<circle class="dot sc" cx="114.5" cy="170.1" r="3"/>
+<circle class="dot sc" cx="165.1" cy="134.7" r="3"/>
+<circle class="dot sc" cx="215.6" cy="115.9" r="3"/>
+<circle class="dot sc" cx="266.2" cy="95.5" r="3"/>
+<circle class="dot sc" cx="316.7" cy="80.8" r="3"/>
+<circle class="dot sc" cx="367.3" cy="71.9" r="3"/>
+<circle class="dot sc" cx="417.8" cy="83.9" r="3"/>
+<circle class="dot sc" cx="468.4" cy="99.8" r="3"/>
+<circle class="dot sc" cx="518.9" cy="116.8" r="3"/>
+<circle class="dot sc" cx="569.5" cy="146.2" r="3"/>
+<circle class="dot sc" cx="620.0" cy="203.1" r="3"/>
+<line class="ln sc" x1="64" x2="84" y1="18" y2="18"/><text class="legend" x="89" y="22">held-out pmi</text>
+<path class="ln sb" d="M64.0,205.6 L114.5,195.4 L165.1,188.1 L215.6,180.3 L266.2,172.6 L316.7,163.5 L367.3,148.2 L417.8,126.0 L468.4,107.3 L518.9,85.4 L569.5,64.9 L620.0,57.3" stroke-dasharray="5 4"/>
+<circle class="dot sb" cx="64.0" cy="205.6" r="3"/>
+<circle class="dot sb" cx="114.5" cy="195.4" r="3"/>
+<circle class="dot sb" cx="165.1" cy="188.1" r="3"/>
+<circle class="dot sb" cx="215.6" cy="180.3" r="3"/>
+<circle class="dot sb" cx="266.2" cy="172.6" r="3"/>
+<circle class="dot sb" cx="316.7" cy="163.5" r="3"/>
+<circle class="dot sb" cx="367.3" cy="148.2" r="3"/>
+<circle class="dot sb" cx="417.8" cy="126.0" r="3"/>
+<circle class="dot sb" cx="468.4" cy="107.3" r="3"/>
+<circle class="dot sb" cx="518.9" cy="85.4" r="3"/>
+<circle class="dot sb" cx="569.5" cy="64.9" r="3"/>
+<circle class="dot sb" cx="620.0" cy="57.3" r="3"/>
+<line class="ln sb" x1="188" x2="208" y1="18" y2="18"/><text class="legend" x="213" y="22">closed-form D(c) ÷ 3</text>
+<text class="annot" x="367.27272727272725" y="61.947" text-anchor="middle">basic level</text>
+</svg></div><figcaption><b>Figure 2.</b> Pointwise mutual information by depth. Solid: estimated on 999 held-out
+clips. Dashed: closed-form expectation, divided by three to share the axis. The shaded column marks the held-out peak.</figcaption></figure>
+<h3>4.4 The concept atlas</h3>
+<figure><div class="diagram"><svg viewBox="0 0 980 554" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top two levels of the COBWEB concept hierarchy">
+<rect class="box" x="10" y="258.0" width="222" height="36" rx="3"/><rect class="rlfill" x="10" y="258.0" width="5" height="36" rx="1"/><text class="t1" x="23" y="273.0">0  All training clips</text><text class="t2" x="23" y="287.0">11,999 clips · 45.5% synthetic</text>
+<path class="edge" d="M232,276.0 C247,276.0 247,78.0 262,78.0"/>
+<rect class="box" x="262" y="60.0" width="310" height="36" rx="3"/><rect class="rlfill" x="262" y="60.0" width="5" height="36" rx="1"/><text class="t1" x="275" y="75.0">0.1  Real LJSpeech</text><text class="t2" x="275" y="89.0">4,375 clips · 0.6% synthetic</text>
+<path class="edge" d="M572,78.0 C601,78.0 601,34 630,34"/>
+<rect class="box" x="630" y="16" width="340" height="36" rx="3"/><rect class="rlfill" x="630" y="16" width="5" height="36" rx="1"/><text class="t1" x="643" y="31">0.1.1  clean and codec</text><text class="t2" x="643" y="45">3,715 clips · 0.0% synthetic</text>
+<path class="edge" d="M572,78.0 C601,78.0 601,78 630,78"/>
+<rect class="box" x="630" y="60" width="340" height="36" rx="3"/><rect class="rlfill" x="630" y="60" width="5" height="36" rx="1"/><text class="t1" x="643" y="75">0.1.2  reverberant (74%)</text><text class="t2" x="643" y="89">356 clips · 4.2% synthetic</text>
+<path class="edge" d="M572,78.0 C601,78.0 601,122 630,122"/>
+<rect class="box" x="630" y="104" width="340" height="36" rx="3"/><rect class="rlfill" x="630" y="104" width="5" height="36" rx="1"/><text class="t1" x="643" y="119">0.1.3  noisy (69%)</text><text class="t2" x="643" y="133">228 clips · 0.0% synthetic</text>
+<path class="edge" d="M232,276.0 C247,276.0 247,210.0 262,210.0"/>
+<rect class="box" x="262" y="192.0" width="310" height="36" rx="3"/><rect class="fkfill" x="262" y="192.0" width="5" height="36" rx="1"/><text class="t1" x="275" y="207.0">0.2  LJ-voice TTS and commercial cloners</text><text class="t2" x="275" y="221.0">3,261 clips · 100.0% synthetic</text>
+<path class="edge" d="M572,210.0 C601,210.0 601,166 630,166"/>
+<rect class="box" x="630" y="148" width="340" height="36" rx="3"/><rect class="fkfill" x="630" y="148" width="5" height="36" rx="1"/><text class="t1" x="643" y="163">0.2.1  DiffGAN-TTS, Grad-TTS, WaveGrad 2</text><text class="t2" x="643" y="177">1,708 clips · 100.0% synthetic</text>
+<path class="edge" d="M572,210.0 C601,210.0 601,210 630,210"/>
+<rect class="box" x="630" y="192" width="340" height="36" rx="3"/><rect class="fkfill" x="630" y="192" width="5" height="36" rx="1"/><text class="t1" x="643" y="207">0.2.2  ElevenLabs, PlayHT</text><text class="t2" x="643" y="221">986 clips · 99.9% synthetic</text>
+<path class="edge" d="M572,210.0 C601,210.0 601,254 630,254"/>
+<rect class="box" x="630" y="236" width="340" height="36" rx="3"/><rect class="fkfill" x="630" y="236" width="5" height="36" rx="1"/><text class="t1" x="643" y="251">0.2.3  ProDiff</text><text class="t2" x="643" y="265">567 clips · 100.0% synthetic</text>
+<path class="edge" d="M232,276.0 C247,276.0 247,342.0 262,342.0"/>
+<rect class="box" x="262" y="324.0" width="310" height="36" rx="3"/><rect class="fkfill" x="262" y="324.0" width="5" height="36" rx="1"/><text class="t1" x="275" y="339.0">0.3  Open cloners and voice conversion</text><text class="t2" x="275" y="353.0">2,218 clips · 97.7% synthetic</text>
+<path class="edge" d="M572,342.0 C601,342.0 601,298 630,298"/>
+<rect class="box" x="630" y="280" width="340" height="36" rx="3"/><rect class="fkfill" x="630" y="280" width="5" height="36" rx="1"/><text class="t1" x="643" y="295">0.3.1  XTTS v2, YourTTS, UnitSpeech</text><text class="t2" x="643" y="309">1,177 clips · 98.6% synthetic</text>
+<path class="edge" d="M572,342.0 C601,342.0 601,342 630,342"/>
+<rect class="box" x="630" y="324" width="340" height="36" rx="3"/><rect class="fkfill" x="630" y="324" width="5" height="36" rx="1"/><text class="t1" x="643" y="339">0.3.2  OpenVoice v2</text><text class="t2" x="643" y="353">669 clips · 99.1% synthetic</text>
+<path class="edge" d="M572,342.0 C601,342.0 601,386 630,386"/>
+<rect class="box" x="630" y="368" width="340" height="36" rx="3"/><rect class="fkfill" x="630" y="368" width="5" height="36" rx="1"/><text class="t1" x="643" y="383">0.3.3  reverberant clones (78%)</text><text class="t2" x="643" y="397">372 clips · 91.9% synthetic</text>
+<path class="edge" d="M232,276.0 C247,276.0 247,474.0 262,474.0"/>
+<rect class="box" x="262" y="456.0" width="310" height="36" rx="3"/><rect class="rlfill" x="262" y="456.0" width="5" height="36" rx="1"/><text class="t1" x="275" y="471.0">0.4  Real LibriSpeech</text><text class="t2" x="275" y="485.0">2,145 clips · 0.1% synthetic</text>
+<path class="edge" d="M572,474.0 C601,474.0 601,430 630,430"/>
+<rect class="box" x="630" y="412" width="340" height="36" rx="3"/><rect class="rlfill" x="630" y="412" width="5" height="36" rx="1"/><text class="t1" x="643" y="427">0.4.1  other and cloned speakers</text><text class="t2" x="643" y="441">942 clips · 0.2% synthetic</text>
+<path class="edge" d="M572,474.0 C601,474.0 601,474 630,474"/>
+<rect class="box" x="630" y="456" width="340" height="36" rx="3"/><rect class="rlfill" x="630" y="456" width="5" height="36" rx="1"/><text class="t1" x="643" y="471">0.4.2  other speakers</text><text class="t2" x="643" y="485">839 clips · 0.0% synthetic</text>
+<path class="edge" d="M572,474.0 C601,474.0 601,518 630,518"/>
+<rect class="box" x="630" y="500" width="340" height="36" rx="3"/><rect class="rlfill" x="630" y="500" width="5" height="36" rx="1"/><text class="t1" x="643" y="515">0.4.3  noisy (42%)</text><text class="t2" x="643" y="529">364 clips · 0.0% synthetic</text>
+</svg></div><figcaption><b>Figure 3.</b> The top two levels of the hierarchy. Bars mark mostly synthetic
+(orange) and mostly real (green) concepts; counts are training clips, followed by the synthetic share.</figcaption></figure>
+<p>Three properties of the atlas bear on interpretation. First, the root divides first by authenticity and by corpus: real LJSpeech (0.1), synthetic
+speech in the LJSpeech voice together with the commercial cloners (0.2), open cloners and voice conversion (0.3), and real LibriSpeech (0.4).
+Second, the commercial cloners ElevenLabs and PlayHT imitate LibriSpeech speakers, yet they sit under concept 0.2 beside diffusion TTS in the
+LJSpeech voice. The hierarchy therefore groups them by how they render audio rather than by whose voice they imitate. Third, channel conditions
+form their own sub-concepts on both sides of the authenticity split: reverberant real speech (0.1.2), noisy real speech (0.1.3, 0.4.3) and
+reverberant clones (0.3.3).</p>
+<h3>4.5 Structure without labels</h3>
+<p>Because the objective includes a label term, we refit the hierarchy on the same clips with no labels at all and named its concepts afterwards by
+their members. Table 3 reports purity by depth.</p>
+<div class="tablewrap"><table><caption>Table 3. Purity of the label-free hierarchy by depth.</caption>
+<thead><tr><th>Depth</th><th>Concepts</th><th>Real vs synthetic purity</th><th>Source purity</th></tr></thead><tbody>
+<tr><td class="n">0</td><td class="n">1</td><td class="n">0.546</td><td class="n">0.36</td></tr>
+<tr class="hl"><td class="n">1</td><td class="n">5</td><td class="n">0.989</td><td class="n">0.58</td></tr>
+<tr><td class="n">2</td><td class="n">16</td><td class="n">0.989</td><td class="n">0.70</td></tr>
+<tr><td class="n">4</td><td class="n">137</td><td class="n">0.990</td><td class="n">0.81</td></tr>
+<tr><td class="n">6</td><td class="n">1,227</td><td class="n">0.994</td><td class="n">0.87</td></tr>
+<tr><td class="n">8</td><td class="n">4,015</td><td class="n">0.999</td><td class="n">0.94</td></tr>
+</tbody></table></div>
+<p>Without labels, the first split already separates real from synthetic speech at 98.9% purity, and deeper levels separate systems and speaker
+populations. The representation comes from a supervised detector. The result therefore shows that this representation is organized by
+authenticity; it does not show that authenticity emerges from raw audio.</p>
+<div class="pager"><button type="button" class="pbtn" data-go="3">← 3 Detection system</button><span class="pnum">Page 5 of 17</span><button type="button" class="pbtn" data-go="5">5 Prototype inspection →</button></div></section>
+<section class="page" id="prototypes" data-title="5 Prototype inspection" hidden>
+<h2><span class="sn">5</span>Prototype inspection</h2>
+<p>Our explanation of a clip x has three parts, which we compute as follows.</p>
+<h3>5.1 Discovery</h3>
+<p>We train a denoising diffusion model on the 32-dimensional concept space. For each clip we noise its representation to levels
+t ∈ {50, 75, …, 400} and climb the learned score function to a nearby mode x<sup>*</sup>. Tweedie's formula maps each mode to a prototype mean
+m = x<sup>*</sup>/√ᾱ<sub>t</sub>. The diagonal of the denoiser's Jacobian, estimated with Hutchinson probes <span class="cite">[Hutchinson 1989]</span>, gives its covariance.</p>
+<h3>5.2 Selection and composition</h3>
+<p>We select up to three prototypes by greedy maximization of a facility-location objective over the 32 dimensions r. The standard normal root
+distribution provides the baseline b<sub>r</sub> that a prototype must improve on. The objective is monotone and submodular, so greedy selection
+comes within a factor 1 − 1/e of the optimum <span class="cite">[Nemhauser et al. 1978]</span>:</p>
+<div class="math">\[ F(S) = \sum_{r=1}^{32} \max\Big(b_r,\; \max_{j\in S} \log \mathcal{N}\big(z_r;\, m_{jr},\, \Sigma_{jr}\big)\Big). \]</div>
+<p>Each dimension is then assigned to the prototypes by a softmax over their log-likelihoods, and a prototype's <em>share</em> is the fraction of
+dimensions it accounts for. The composed explanation is a product of experts <span class="cite">[Hinton 2002]</span>.</p>
+<h3>5.3 Naming and scoring</h3>
+<p>Each prototype mean is categorized into the COBWEB hierarchy. The concept it reaches names the prototype and supplies its sources, channels,
+synthetic share p<sub>fake</sub>(c) and most typical training clips. The explanation's own synthetic probability weights the concepts by share:</p>
+<div class="math">\[ P_{\text{proto}}(\text{synthetic}\mid x) = \sum_{j\in S} \text{share}_j \cdot p_{\text{fake}}(c_j). \]</div>
+<p>This quantity is reported beside the detector's probability in every case study. Agreement between the two supports the decision, and a large gap
+marks the clip for review (§7.5).</p>
+<figure><div class="diagram">      <svg viewBox="0 0 1000 318" xmlns="http://www.w3.org/2000/svg">
+        <text class="lbl" x="12" y="18">CONCEPT SPACE (SCHEMATIC, 2 OF 32 DIMENSIONS)</text>
+        <ellipse class="reg real" cx="180" cy="160" rx="150" ry="95"/>
+        <text class="t1" x="180" y="96" text-anchor="middle">real speech</text>
+        <text class="t2" x="180" y="112" text-anchor="middle">LJSpeech, LibriSpeech</text>
+        <ellipse class="reg fake" cx="560" cy="120" rx="170" ry="80"/>
+        <text class="t1" x="560" y="22" text-anchor="middle">voice clones under a codec</text>
+        <text class="t2" x="560" y="35" text-anchor="middle">UnitSpeech, XTTS v2, YourTTS</text>
+        <ellipse class="reg fake2" cx="560" cy="240" rx="150" ry="48"/>
+        <text class="t1" x="560" y="306" text-anchor="middle">LJ-voice TTS under a codec</text>
+        <path class="link" d="M540,152 L505,112"/><path class="link" d="M540,152 L610,122"/><path class="link" d="M540,152 L575,230"/>
+        <circle class="proto-dot" cx="505" cy="112" r="7"/><text class="val2" x="492" y="100" text-anchor="end">39%</text>
+        <circle class="proto-dot" cx="610" cy="122" r="7"/><text class="val2" x="624" y="112">28%</text>
+        <circle class="proto-dot" cx="575" cy="230" r="7"/><text class="val2" x="590" y="226">33%</text>
+        <circle class="clip-dot" cx="540" cy="152" r="8"/>
+        <text class="t1" x="520" y="176" text-anchor="end">the clip</text>
+        <g transform="translate(800,120)">
+          <circle class="clip-dot" cx="8" cy="0" r="7"/><text class="t2" x="24" y="4">clip</text>
+          <circle class="proto-dot" cx="8" cy="26" r="6"/><text class="t2" x="24" y="30">prototype (share)</text>
+          <ellipse class="reg fake" cx="8" cy="54" rx="10" ry="7"/><text class="t2" x="24" y="58">concept, mostly synthetic</text>
+          <ellipse class="reg real" cx="8" cy="80" rx="10" ry="7"/><text class="t2" x="24" y="84">concept, mostly real</text>
+        </g>
+      </svg>
+</div><figcaption><b>Figure 4.</b> Schematic of one explanation (case 21 in §7.5). The shares and concept
+names come from the actual explanation; positions are illustrative.</figcaption></figure>
+<h3>5.4 Noise level and generality</h3>
+<p>The hypothesis of §2.4 predicts that prototypes found at high noise levels are named by larger, shallower concepts. Table 4 tests it on the 5,013
+test-set prototypes.</p>
+<div class="tablewrap"><table><caption>Table 4. Prototypes by the noise level at which they were found.</caption>
+<thead><tr><th>Noise level t</th><th>Prototypes</th><th>Median concept size</th><th>Median depth</th><th>Synthetic concepts</th></tr></thead>
+<tbody><tr><td class='n'>50</td><td class='n'>2,979</td><td class='n'>8</td><td class='n'>7</td><td class='n'>25%</td></tr><tr><td class='n'>75-100</td><td class='n'>1,446</td><td class='n'>7</td><td class='n'>8</td><td class='n'>29%</td></tr><tr><td class='n'>125-200</td><td class='n'>489</td><td class='n'>6</td><td class='n'>8</td><td class='n'>42%</td></tr><tr><td class='n'>225-375</td><td class='n'>99</td><td class='n'>5</td><td class='n'>8</td><td class='n'>56%</td></tr></tbody></table></div>
+<p>The prediction fails in this space. Concepts named by high-noise prototypes are, if anything, smaller and deeper, and they are more often
+synthetic. Most prototypes (59%) are found at the lowest noise level. We therefore read the noise level as a search radius rather than as a level of
+generality: larger radii reach modes of other, often synthetic, concepts. §7.4 shows the consequence for real clips.</p>
+<div class="pager"><button type="button" class="pbtn" data-go="4">← 4 The concept space</button><span class="pnum">Page 6 of 17</span><button type="button" class="pbtn" data-go="6">6 Prototype families →</button></div></section>
+<section class="page" id="families" data-title="6 Prototype families" hidden>
+<h2><span class="sn">6</span>Prototype families and their criteria</h2>
+<h3>6.1 Assignment</h3>
+<p>We assign each prototype to a family by the dominant source of the concept that names it. Thirteen sources yield eight families: two commercial
+cloners, open zero-shot cloners (XTTS v2, YourTTS), unit-based cloning and conversion (UnitSpeech, OpenVoice v2), diffusion TTS in the LJSpeech
+voice (DiffGAN-TTS, Grad-TTS, ProDiff, WaveGrad 2), and three real-speech families. A clip's dominant family is the family with the largest summed
+prototype share. Its purity is that share.</p>
+<div class="tablewrap"><table><caption>Table 5. The eight prototype families on the NSA test set. Shaded rows are synthetic families.</caption>
+<thead><tr><th>Family</th><th>Clips dominated</th><th>Median P</th><th>Flagged</th><th>Median t</th><th>t ≥ 150</th><th>Median concept size</th><th>Channel concepts</th><th>Dominant channels</th></tr></thead>
+<tbody><tr><td>Real LibriSpeech, cloned speakers</td><td class='n'>682 (40.8%)</td><td class='n'>0.000</td><td class='n'>0.0%</td><td class='n'>50</td><td class='n'>3%</td><td class='n'>8</td><td class='n'>2%</td><td>clean 97%; tilt 1%; codec 1%</td></tr><tr><td>Real LibriSpeech, other speakers</td><td class='n'>508 (30.4%)</td><td class='n'>0.000</td><td class='n'>0.4%</td><td class='n'>50</td><td class='n'>6%</td><td class='n'>9</td><td class='n'>9%</td><td>clean 89%; codec 8%; noise 1%</td></tr><tr class="hl"><td>ElevenLabs</td><td class='n'>122 (7.3%)</td><td class='n'>0.997</td><td class='n'>96.7%</td><td class='n'>50</td><td class='n'>13%</td><td class='n'>6</td><td class='n'>14%</td><td>clean 82%; tilt 4%; noise 4%</td></tr><tr class="hl"><td>XTTS v2 / YourTTS</td><td class='n'>113 (6.8%)</td><td class='n'>0.999</td><td class='n'>100.0%</td><td class='n'>50</td><td class='n'>8%</td><td class='n'>6</td><td class='n'>26%</td><td>clean 69%; codec 22%; bandlimit 4%</td></tr><tr class="hl"><td>UnitSpeech / OpenVoice v2</td><td class='n'>108 (6.5%)</td><td class='n'>0.999</td><td class='n'>100.0%</td><td class='n'>50</td><td class='n'>6%</td><td class='n'>7</td><td class='n'>24%</td><td>clean 72%; codec 15%; bandlimit 6%</td></tr><tr class="hl"><td>PlayHT</td><td class='n'>87 (5.2%)</td><td class='n'>0.998</td><td class='n'>98.9%</td><td class='n'>50</td><td class='n'>14%</td><td class='n'>6</td><td class='n'>15%</td><td>clean 82%; codec 12%; noise 4%</td></tr><tr class="hl"><td>LJ-voice diffusion TTS</td><td class='n'>41 (2.5%)</td><td class='n'>0.997</td><td class='n'>97.6%</td><td class='n'>100</td><td class='n'>31%</td><td class='n'>7</td><td class='n'>41%</td><td>clean 53%; codec 33%; reverb 8%</td></tr><tr><td>Real LJSpeech</td><td class='n'>10 (0.6%)</td><td class='n'>0.141</td><td class='n'>40.0%</td><td class='n'>225</td><td class='n'>68%</td><td class='n'>7</td><td class='n'>55%</td><td>reverb 48%; clean 40%; noise 8%</td></tr></tbody></table></div>
+<figure><div class="chart"><svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Test clips dominated by each prototype family">
+<line class="grid" x1="250.0" x2="250.0" y1="6" y2="256"/><text class="tick" x="250.0" y="272" text-anchor="middle">0</text>
+<line class="grid" x1="300.0" x2="300.0" y1="6" y2="256"/><text class="tick" x="300.0" y="272" text-anchor="middle">100</text>
+<line class="grid" x1="350.0" x2="350.0" y1="6" y2="256"/><text class="tick" x="350.0" y="272" text-anchor="middle">200</text>
+<line class="grid" x1="400.0" x2="400.0" y1="6" y2="256"/><text class="tick" x="400.0" y="272" text-anchor="middle">300</text>
+<line class="grid" x1="450.0" x2="450.0" y1="6" y2="256"/><text class="tick" x="450.0" y="272" text-anchor="middle">400</text>
+<line class="grid" x1="500.0" x2="500.0" y1="6" y2="256"/><text class="tick" x="500.0" y="272" text-anchor="middle">500</text>
+<line class="grid" x1="550.0" x2="550.0" y1="6" y2="256"/><text class="tick" x="550.0" y="272" text-anchor="middle">600</text>
+<line class="grid" x1="600.0" x2="600.0" y1="6" y2="256"/><text class="tick" x="600.0" y="272" text-anchor="middle">700</text>
+<text class="rowlabel" x="242" y="24.0" text-anchor="end">Real LJSpeech</text>
+<rect class="rlfill" x="250.0" y="10" width="5.0" height="20" rx="2"/>
+<text class="val" x="261.0" y="24.0">10 · flagged 40%</text>
+<text class="rowlabel" x="242" y="54.0" text-anchor="end">LJ-voice diffusion TTS</text>
+<rect class="fkfill" x="250.0" y="40" width="20.5" height="20" rx="2"/>
+<text class="val" x="276.5" y="54.0">41 · flagged 98%</text>
+<text class="rowlabel" x="242" y="84.0" text-anchor="end">PlayHT</text>
+<rect class="fkfill" x="250.0" y="70" width="43.5" height="20" rx="2"/>
+<text class="val" x="299.5" y="84.0">87 · flagged 99%</text>
+<text class="rowlabel" x="242" y="114.0" text-anchor="end">UnitSpeech / OpenVoice v2</text>
+<rect class="fkfill" x="250.0" y="100" width="54.0" height="20" rx="2"/>
+<text class="val" x="310.0" y="114.0">108 · flagged 100%</text>
+<text class="rowlabel" x="242" y="144.0" text-anchor="end">XTTS v2 / YourTTS</text>
+<rect class="fkfill" x="250.0" y="130" width="56.5" height="20" rx="2"/>
+<text class="val" x="312.5" y="144.0">113 · flagged 100%</text>
+<text class="rowlabel" x="242" y="174.0" text-anchor="end">ElevenLabs</text>
+<rect class="fkfill" x="250.0" y="160" width="61.0" height="20" rx="2"/>
+<text class="val" x="317.0" y="174.0">122 · flagged 97%</text>
+<text class="rowlabel" x="242" y="204.0" text-anchor="end">Real LibriSpeech, other speakers</text>
+<rect class="rlfill" x="250.0" y="190" width="254.0" height="20" rx="2"/>
+<text class="val" x="510.0" y="204.0">508 · flagged 0%</text>
+<text class="rowlabel" x="242" y="234.0" text-anchor="end">Real LibriSpeech, cloned speakers</text>
+<rect class="rlfill" x="250.0" y="220" width="341.0" height="20" rx="2"/>
+<text class="val" x="597.0" y="234.0">682 · flagged 0%</text>
+</svg></div><figcaption><b>Figure 5.</b> Test clips dominated by each family, and the share the detector flags at
+P &gt; 0.2.</figcaption></figure>
+<p>The families align with the detector's decisions. It flags 96.7–100% of the clips that synthetic families dominate and 0–0.4% of those the real
+LibriSpeech families dominate. The real LJSpeech family is the exception: it dominates only ten clips, 40% of them flagged, and its concepts are
+48% reverberant. §7.5 examines these clips. Among the synthetic families, prototypes of the diffusion TTS family are found at the highest noise levels (31% at
+t ≥ 150) and most often name channel concepts (41%, mostly codec).</p>
+<h3>6.2 Acoustic criteria</h3>
+<p>To state what each family captures in measurable terms, we compare the test clips a synthetic family dominates (purity ≥ 0.66) with the 978 clips
+the real LibriSpeech families dominate. We use 20 interpretable features from the signal-processing track: prosody, background noise, spectral
+shape, the LPC residual and phase. The effect size is Cliff's δ, the probability that a family clip exceeds a real-attributed clip minus the
+reverse, with a 300-sample bootstrap interval. No test labels exist, so the comparison describes the audio each family explains rather than ground
+truth.</p>
+<figure><div class="diagram heat"><svg viewBox="0 0 860 466" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cliff's delta of acoustic features by prototype family">
+<text class="hx" x="245.0" y="56" text-anchor="middle">ElevenLabs</text>
+<text class="hn" x="245.0" y="88" text-anchor="middle">n = 52</text>
+<text class="hx" x="355.0" y="56" text-anchor="middle">PlayHT</text>
+<text class="hn" x="355.0" y="88" text-anchor="middle">n = 39</text>
+<text class="hx" x="465.0" y="56" text-anchor="middle">XTTS v2 /</text>
+<text class="hx" x="465.0" y="70" text-anchor="middle">YourTTS</text>
+<text class="hn" x="465.0" y="88" text-anchor="middle">n = 65</text>
+<text class="hx" x="575.0" y="56" text-anchor="middle">UnitSpeech /</text>
+<text class="hx" x="575.0" y="70" text-anchor="middle">OpenVoice v2</text>
+<text class="hn" x="575.0" y="88" text-anchor="middle">n = 58</text>
+<text class="hx" x="685.0" y="56" text-anchor="middle">LJ-voice</text>
+<text class="hx" x="685.0" y="70" text-anchor="middle">diffusion TTS</text>
+<text class="hn" x="685.0" y="88" text-anchor="middle">n = 23</text>
+<text class="hx" x="795.0" y="56" text-anchor="middle">Real</text>
+<text class="hx" x="795.0" y="70" text-anchor="middle">LJSpeech</text>
+<text class="hn" x="795.0" y="88" text-anchor="middle">n = 10</text>
+<text class="hy" x="180" y="115.0" text-anchor="end">Estimated SNR</text>
+<rect class="hp" x="192" y="98" width="106" height="26" rx="2" fill-opacity="0.52"/>
+<text class="hv sig" x="245.0" y="115.0" text-anchor="middle">+0.58</text>
+<rect class="hp" x="302" y="98" width="106" height="26" rx="2" fill-opacity="0.43"/>
+<text class="hv sig" x="355.0" y="115.0" text-anchor="middle">+0.48</text>
+<rect class="hp" x="412" y="98" width="106" height="26" rx="2" fill-opacity="0.50"/>
+<text class="hv sig" x="465.0" y="115.0" text-anchor="middle">+0.55</text>
+<rect class="hp" x="522" y="98" width="106" height="26" rx="2" fill-opacity="0.52"/>
+<text class="hv sig" x="575.0" y="115.0" text-anchor="middle">+0.57</text>
+<rect class="hp" x="632" y="98" width="106" height="26" rx="2" fill-opacity="0.83"/>
+<text class="hv sig" x="685.0" y="115.0" text-anchor="middle">+0.93</text>
+<rect class="hp" x="742" y="98" width="106" height="26" rx="2" fill-opacity="0.08"/>
+<text class="hv" x="795.0" y="115.0" text-anchor="middle">+0.23</text>
+<text class="hy" x="180" y="145.0" text-anchor="end">Spectral ripple</text>
+<rect class="hneg" x="192" y="128" width="106" height="26" rx="2" fill-opacity="0.52"/>
+<text class="hv sig" x="245.0" y="145.0" text-anchor="middle">-0.57</text>
+<rect class="hneg" x="302" y="128" width="106" height="26" rx="2" fill-opacity="0.37"/>
+<text class="hv sig" x="355.0" y="145.0" text-anchor="middle">-0.41</text>
+<rect class="hneg" x="412" y="128" width="106" height="26" rx="2" fill-opacity="0.38"/>
+<text class="hv sig" x="465.0" y="145.0" text-anchor="middle">-0.42</text>
+<rect class="hneg" x="522" y="128" width="106" height="26" rx="2" fill-opacity="0.46"/>
+<text class="hv sig" x="575.0" y="145.0" text-anchor="middle">-0.51</text>
+<rect class="hneg" x="632" y="128" width="106" height="26" rx="2" fill-opacity="0.28"/>
+<text class="hv sig" x="685.0" y="145.0" text-anchor="middle">-0.31</text>
+<rect class="hp" x="742" y="128" width="106" height="26" rx="2" fill-opacity="0.00"/>
+<text class="hv" x="795.0" y="145.0" text-anchor="middle">+0.00</text>
+<text class="hy" x="180" y="175.0" text-anchor="end">Noise-floor variability</text>
+<rect class="hp" x="192" y="158" width="106" height="26" rx="2" fill-opacity="0.43"/>
+<text class="hv sig" x="245.0" y="175.0" text-anchor="middle">+0.48</text>
+<rect class="hp" x="302" y="158" width="106" height="26" rx="2" fill-opacity="0.46"/>
+<text class="hv sig" x="355.0" y="175.0" text-anchor="middle">+0.51</text>
+<rect class="hp" x="412" y="158" width="106" height="26" rx="2" fill-opacity="0.33"/>
+<text class="hv sig" x="465.0" y="175.0" text-anchor="middle">+0.36</text>
+<rect class="hp" x="522" y="158" width="106" height="26" rx="2" fill-opacity="0.45"/>
+<text class="hv sig" x="575.0" y="175.0" text-anchor="middle">+0.50</text>
+<rect class="hp" x="632" y="158" width="106" height="26" rx="2" fill-opacity="0.66"/>
+<text class="hv sig" x="685.0" y="175.0" text-anchor="middle">+0.73</text>
+<rect class="hp" x="742" y="158" width="106" height="26" rx="2" fill-opacity="0.13"/>
+<text class="hv" x="795.0" y="175.0" text-anchor="middle">+0.36</text>
+<text class="hy" x="180" y="205.0" text-anchor="end">High-band flatness</text>
+<rect class="hp" x="192" y="188" width="106" height="26" rx="2" fill-opacity="0.36"/>
+<text class="hv sig" x="245.0" y="205.0" text-anchor="middle">+0.40</text>
+<rect class="hp" x="302" y="188" width="106" height="26" rx="2" fill-opacity="0.41"/>
+<text class="hv sig" x="355.0" y="205.0" text-anchor="middle">+0.45</text>
+<rect class="hp" x="412" y="188" width="106" height="26" rx="2" fill-opacity="0.28"/>
+<text class="hv sig" x="465.0" y="205.0" text-anchor="middle">+0.31</text>
+<rect class="hp" x="522" y="188" width="106" height="26" rx="2" fill-opacity="0.41"/>
+<text class="hv sig" x="575.0" y="205.0" text-anchor="middle">+0.46</text>
+<rect class="hp" x="632" y="188" width="106" height="26" rx="2" fill-opacity="0.29"/>
+<text class="hv sig" x="685.0" y="205.0" text-anchor="middle">+0.32</text>
+<rect class="hp" x="742" y="188" width="106" height="26" rx="2" fill-opacity="0.10"/>
+<text class="hv" x="795.0" y="205.0" text-anchor="middle">+0.27</text>
+<text class="hy" x="180" y="235.0" text-anchor="end">Spectral-flux spread</text>
+<rect class="hneg" x="192" y="218" width="106" height="26" rx="2" fill-opacity="0.30"/>
+<text class="hv sig" x="245.0" y="235.0" text-anchor="middle">-0.33</text>
+<rect class="hneg" x="302" y="218" width="106" height="26" rx="2" fill-opacity="0.32"/>
+<text class="hv sig" x="355.0" y="235.0" text-anchor="middle">-0.35</text>
+<rect class="hneg" x="412" y="218" width="106" height="26" rx="2" fill-opacity="0.26"/>
+<text class="hv sig" x="465.0" y="235.0" text-anchor="middle">-0.29</text>
+<rect class="hneg" x="522" y="218" width="106" height="26" rx="2" fill-opacity="0.39"/>
+<text class="hv sig" x="575.0" y="235.0" text-anchor="middle">-0.44</text>
+<rect class="hneg" x="632" y="218" width="106" height="26" rx="2" fill-opacity="0.67"/>
+<text class="hv sig" x="685.0" y="235.0" text-anchor="middle">-0.74</text>
+<rect class="hp" x="742" y="218" width="106" height="26" rx="2" fill-opacity="0.05"/>
+<text class="hv" x="795.0" y="235.0" text-anchor="middle">+0.15</text>
+<text class="hy" x="180" y="265.0" text-anchor="end">LPC residual kurtosis</text>
+<rect class="hneg" x="192" y="248" width="106" height="26" rx="2" fill-opacity="0.27"/>
+<text class="hv sig" x="245.0" y="265.0" text-anchor="middle">-0.30</text>
+<rect class="hneg" x="302" y="248" width="106" height="26" rx="2" fill-opacity="0.43"/>
+<text class="hv sig" x="355.0" y="265.0" text-anchor="middle">-0.48</text>
+<rect class="hneg" x="412" y="248" width="106" height="26" rx="2" fill-opacity="0.23"/>
+<text class="hv sig" x="465.0" y="265.0" text-anchor="middle">-0.25</text>
+<rect class="hneg" x="522" y="248" width="106" height="26" rx="2" fill-opacity="0.19"/>
+<text class="hv sig" x="575.0" y="265.0" text-anchor="middle">-0.21</text>
+<rect class="hneg" x="632" y="248" width="106" height="26" rx="2" fill-opacity="0.71"/>
+<text class="hv sig" x="685.0" y="265.0" text-anchor="middle">-0.78</text>
+<rect class="hneg" x="742" y="248" width="106" height="26" rx="2" fill-opacity="0.30"/>
+<text class="hv sig" x="795.0" y="265.0" text-anchor="middle">-0.33</text>
+<text class="hy" x="180" y="295.0" text-anchor="end">Background-noise flatness</text>
+<rect class="hp" x="192" y="278" width="106" height="26" rx="2" fill-opacity="0.24"/>
+<text class="hv sig" x="245.0" y="295.0" text-anchor="middle">+0.27</text>
+<rect class="hneg" x="302" y="278" width="106" height="26" rx="2" fill-opacity="0.01"/>
+<text class="hv" x="355.0" y="295.0" text-anchor="middle">-0.04</text>
+<rect class="hp" x="412" y="278" width="106" height="26" rx="2" fill-opacity="0.27"/>
+<text class="hv sig" x="465.0" y="295.0" text-anchor="middle">+0.31</text>
+<rect class="hp" x="522" y="278" width="106" height="26" rx="2" fill-opacity="0.38"/>
+<text class="hv sig" x="575.0" y="295.0" text-anchor="middle">+0.42</text>
+<rect class="hp" x="632" y="278" width="106" height="26" rx="2" fill-opacity="0.30"/>
+<text class="hv sig" x="685.0" y="295.0" text-anchor="middle">+0.34</text>
+<rect class="hp" x="742" y="278" width="106" height="26" rx="2" fill-opacity="0.01"/>
+<text class="hv" x="795.0" y="295.0" text-anchor="middle">+0.02</text>
+<text class="hy" x="180" y="325.0" text-anchor="end">Frame loudness variability</text>
+<rect class="hp" x="192" y="308" width="106" height="26" rx="2" fill-opacity="0.32"/>
+<text class="hv sig" x="245.0" y="325.0" text-anchor="middle">+0.36</text>
+<rect class="hp" x="302" y="308" width="106" height="26" rx="2" fill-opacity="0.09"/>
+<text class="hv" x="355.0" y="325.0" text-anchor="middle">+0.25</text>
+<rect class="hp" x="412" y="308" width="106" height="26" rx="2" fill-opacity="0.04"/>
+<text class="hv" x="465.0" y="325.0" text-anchor="middle">+0.10</text>
+<rect class="hp" x="522" y="308" width="106" height="26" rx="2" fill-opacity="0.00"/>
+<text class="hv" x="575.0" y="325.0" text-anchor="middle">+0.01</text>
+<rect class="hneg" x="632" y="308" width="106" height="26" rx="2" fill-opacity="0.40"/>
+<text class="hv sig" x="685.0" y="325.0" text-anchor="middle">-0.45</text>
+<rect class="hp" x="742" y="308" width="106" height="26" rx="2" fill-opacity="0.36"/>
+<text class="hv sig" x="795.0" y="325.0" text-anchor="middle">+0.40</text>
+<text class="hy" x="180" y="355.0" text-anchor="end">Energy 50–250 Hz</text>
+<rect class="hneg" x="192" y="338" width="106" height="26" rx="2" fill-opacity="0.02"/>
+<text class="hv" x="245.0" y="355.0" text-anchor="middle">-0.05</text>
+<rect class="hneg" x="302" y="338" width="106" height="26" rx="2" fill-opacity="0.07"/>
+<text class="hv" x="355.0" y="355.0" text-anchor="middle">-0.21</text>
+<rect class="hneg" x="412" y="338" width="106" height="26" rx="2" fill-opacity="0.15"/>
+<text class="hv sig" x="465.0" y="355.0" text-anchor="middle">-0.17</text>
+<rect class="hneg" x="522" y="338" width="106" height="26" rx="2" fill-opacity="0.23"/>
+<text class="hv sig" x="575.0" y="355.0" text-anchor="middle">-0.25</text>
+<rect class="hneg" x="632" y="338" width="106" height="26" rx="2" fill-opacity="0.49"/>
+<text class="hv sig" x="685.0" y="355.0" text-anchor="middle">-0.54</text>
+<rect class="hneg" x="742" y="338" width="106" height="26" rx="2" fill-opacity="0.06"/>
+<text class="hv" x="795.0" y="355.0" text-anchor="middle">-0.16</text>
+<text class="hy" x="180" y="385.0" text-anchor="end">Pauses per second</text>
+<rect class="hp" x="192" y="368" width="106" height="26" rx="2" fill-opacity="0.17"/>
+<text class="hv sig" x="245.0" y="385.0" text-anchor="middle">+0.19</text>
+<rect class="hp" x="302" y="368" width="106" height="26" rx="2" fill-opacity="0.06"/>
+<text class="hv" x="355.0" y="385.0" text-anchor="middle">+0.17</text>
+<rect class="hp" x="412" y="368" width="106" height="26" rx="2" fill-opacity="0.26"/>
+<text class="hv sig" x="465.0" y="385.0" text-anchor="middle">+0.29</text>
+<rect class="hp" x="522" y="368" width="106" height="26" rx="2" fill-opacity="0.04"/>
+<text class="hv" x="575.0" y="385.0" text-anchor="middle">+0.12</text>
+<rect class="hp" x="632" y="368" width="106" height="26" rx="2" fill-opacity="0.41"/>
+<text class="hv sig" x="685.0" y="385.0" text-anchor="middle">+0.45</text>
+<rect class="hp" x="742" y="368" width="106" height="26" rx="2" fill-opacity="0.06"/>
+<text class="hv" x="795.0" y="385.0" text-anchor="middle">+0.17</text>
+<text class="hy" x="180" y="415.0" text-anchor="end">Pitch variability</text>
+<rect class="hneg" x="192" y="398" width="106" height="26" rx="2" fill-opacity="0.02"/>
+<text class="hv" x="245.0" y="415.0" text-anchor="middle">-0.07</text>
+<rect class="hneg" x="302" y="398" width="106" height="26" rx="2" fill-opacity="0.01"/>
+<text class="hv" x="355.0" y="415.0" text-anchor="middle">-0.02</text>
+<rect class="hneg" x="412" y="398" width="106" height="26" rx="2" fill-opacity="0.12"/>
+<text class="hv sig" x="465.0" y="415.0" text-anchor="middle">-0.13</text>
+<rect class="hneg" x="522" y="398" width="106" height="26" rx="2" fill-opacity="0.12"/>
+<text class="hv sig" x="575.0" y="415.0" text-anchor="middle">-0.13</text>
+<rect class="hneg" x="632" y="398" width="106" height="26" rx="2" fill-opacity="0.03"/>
+<text class="hv" x="685.0" y="415.0" text-anchor="middle">-0.10</text>
+<rect class="hneg" x="742" y="398" width="106" height="26" rx="2" fill-opacity="0.00"/>
+<text class="hv" x="795.0" y="415.0" text-anchor="middle">-0.01</text>
+<text class="hy" x="180" y="445.0" text-anchor="end">Harmonics-to-noise</text>
+<rect class="hp" x="192" y="428" width="106" height="26" rx="2" fill-opacity="0.01"/>
+<text class="hv" x="245.0" y="445.0" text-anchor="middle">+0.04</text>
+<rect class="hneg" x="302" y="428" width="106" height="26" rx="2" fill-opacity="0.06"/>
+<text class="hv" x="355.0" y="445.0" text-anchor="middle">-0.16</text>
+<rect class="hp" x="412" y="428" width="106" height="26" rx="2" fill-opacity="0.03"/>
+<text class="hv" x="465.0" y="445.0" text-anchor="middle">+0.08</text>
+<rect class="hneg" x="522" y="428" width="106" height="26" rx="2" fill-opacity="0.04"/>
+<text class="hv" x="575.0" y="445.0" text-anchor="middle">-0.11</text>
+<rect class="hneg" x="632" y="428" width="106" height="26" rx="2" fill-opacity="0.05"/>
+<text class="hv" x="685.0" y="445.0" text-anchor="middle">-0.14</text>
+<rect class="hp" x="742" y="428" width="106" height="26" rx="2" fill-opacity="0.00"/>
+<text class="hv" x="795.0" y="445.0" text-anchor="middle">+0.01</text>
+</svg></div><figcaption><b>Figure 6.</b> Cliff's δ between clips each family dominates and real-attributed
+clips. Blue: higher in the family; amber: lower. Faint cells and plain values: the 95% interval includes zero.</figcaption></figure>
+<h3>6.3 Findings</h3>
+<p><b>A shared synthetic profile.</b> All five synthetic families differ from real-attributed clips in the same direction on five features:
+higher estimated SNR (δ = +0.48 to +0.93), lower long-term spectral ripple, more variable noise floors, flatter high bands and a narrower spread of
+spectral flux. All 25 of these family-by-feature differences have intervals that exclude zero. The prototypes therefore encode a common property
+of the synthesized audio in this data: it is cleaner and spectrally smoother than the recordings it imitates, and its noise floor varies more.</p>
+<p><b>Family-specific criteria.</b> Diffusion TTS in the LJSpeech voice is the most extreme case. Its clips are almost noiseless (median SNR 38.3 dB,
+δ = +0.93), have a smooth LPC residual (kurtosis 2.2 against 4.5, δ = −0.78), carry less energy below 250 Hz and contain more pauses. PlayHT also
+shows a smooth LPC residual (δ = −0.48), a mark of vocoder excitation. The open cloners and the conversion systems show flatter background noise
+(δ = +0.31 and +0.42). The real LJSpeech family differs little from real LibriSpeech: only frame-loudness variability and LPC residual kurtosis differ
+clearly, on ten clips.</p>
+<p><b>A caution.</b> A cleaner signal is not in itself evidence of synthesis. Studio recordings are also clean, and a detector that relied on
+cleanliness alone would flag them. The detector's out-of-domain accuracy (§3) and the channel case studies (§7.4) indicate that it relies on more
+than cleanliness. The stress view in §9, however, shows that simulated room acoustics still degrade it.</p>
+<div class="pager"><button type="button" class="pbtn" data-go="5">← 5 Prototype inspection</button><span class="pnum">Page 7 of 17</span><button type="button" class="pbtn" data-go="7">7.1 Case studies: commercial cloners →</button></div></section>
+<section class="page" id="cases-commercial" data-title="7.1 Case studies: commercial cloners" hidden><h2><span class='sn'>7.1</span>Commercial cloners</h2><p>ElevenLabs and PlayHT imitate LibriSpeech speakers from short references. In the atlas they share concept 0.2.2. Their prototypes are found at low noise levels, name small concepts (median six clips) and are 82% clean.</p>
+<h3>ElevenLabs: criteria</h3><p>The family dominates 122 test clips (median detector P = 0.997, 96.7% flagged). Its clearest acoustic criteria against real-attributed clips:</p><div class="tablewrap"><table><thead><tr><th>Criterion (feature)</th><th>Family clips</th><th>Real-attributed</th><th>Cliff's δ [95% CI]</th></tr></thead>
+<tbody><tr><td>estimated SNR (dB)</td><td class='n'>32</td><td class='n'>24.4</td><td class='n'>+0.58 [+0.40, +0.75]</td></tr><tr><td>long-term spectral ripple (dB)</td><td class='n'>1.63</td><td class='n'>2.2</td><td class='n'>-0.57 [-0.66, -0.48]</td></tr><tr><td>noise-floor variability (dB)</td><td class='n'>6.92</td><td class='n'>4.24</td><td class='n'>+0.48 [+0.30, +0.66]</td></tr><tr><td>high-band spectral flatness, p90 (dB)</td><td class='n'>-3</td><td class='n'>-3.35</td><td class='n'>+0.40 [+0.28, +0.50]</td></tr></tbody></table></div><p class="cap">Medians over the 52 test clips this family dominates (purity ≥ 0.66) and the 978 clips the real LibriSpeech families dominate.</p>
+<h3 id='case-1'>Case 1. A pure ElevenLabs explanation</h3><div class="card">
+<div class="chead"><span class="file">HGT8649435.wav</span><span class="scores">detector P = 0.9985 · prototype P(fake) = 1.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:24px"></span><span class="sv">34%</span></td>
+<td>ElevenLabs 100%</td><td class="n">13</td><td class="n">100%</td><td>clean 77%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:24px"></span><span class="sv">35%</span></td>
+<td>ElevenLabs 100%</td><td class="n">3</td><td class="n">100%</td><td>clean 67%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:22px"></span><span class="sv">31%</span></td>
+<td>ElevenLabs 100%</td><td class="n">23</td><td class="n">100%</td><td>clean 70%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 5, 23 training clips, 100% synthetic (ElevenLabs 100%). Training exemplars: <code>elevenlabs/speaker_8848/sentence_402</code>; <code>elevenlabs/speaker_8848/sentence_312</code>.</p>
+</div><p>All three prototypes are ElevenLabs concepts found at t = 50, and so is the basic-level concept (23 clips). The clip meets the family's criteria: high estimated SNR and low spectral ripple. Detector and prototypes agree at P ≈ 1.</p>
+<h3 id='case-2'>Case 2. ElevenLabs within the commercial-cloner concept</h3><div class="card">
+<div class="chead"><span class="file">HGT4996299.wav</span><span class="scores">detector P = 0.9976 · prototype P(fake) = 1.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:28px"></span><span class="sv">40%</span></td>
+<td>ElevenLabs 100%</td><td class="n">3</td><td class="n">100%</td><td>clean 100%</td></tr><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:23px"></span><span class="sv">33%</span></td>
+<td>ElevenLabs 100%</td><td class="n">22</td><td class="n">100%</td><td>clean 77%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:19px"></span><span class="sv">27%</span></td>
+<td>ElevenLabs 100%</td><td class="n">9</td><td class="n">100%</td><td>clean 78%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 4, 115 training clips, 100% synthetic (ElevenLabs 90%, PlayHT 8%). Training exemplars: <code>elevenlabs/speaker_7995/sentence_115</code>; <code>elevenlabs/speaker_6167/sentence_134</code>.</p>
+</div><p>The basic-level concept holds 115 clips, 90% ElevenLabs and 8% PlayHT. The prototypes refine it to three ElevenLabs concepts of 3 to 22 clips. The explanation therefore moves from the commercial cloners in general to one system.</p>
+<h3>PlayHT: criteria</h3><p>The family dominates 87 test clips (median detector P = 0.998, 98.9% flagged). Its clearest acoustic criteria against real-attributed clips:</p><div class="tablewrap"><table><thead><tr><th>Criterion (feature)</th><th>Family clips</th><th>Real-attributed</th><th>Cliff's δ [95% CI]</th></tr></thead>
+<tbody><tr><td>noise-floor variability (dB)</td><td class='n'>6.93</td><td class='n'>4.24</td><td class='n'>+0.51 [+0.32, +0.69]</td></tr><tr><td>LPC residual kurtosis</td><td class='n'>3.02</td><td class='n'>4.52</td><td class='n'>-0.48 [-0.61, -0.34]</td></tr><tr><td>estimated SNR (dB)</td><td class='n'>30.2</td><td class='n'>24.4</td><td class='n'>+0.48 [+0.24, +0.68]</td></tr><tr><td>high-band spectral flatness, p90 (dB)</td><td class='n'>-2.94</td><td class='n'>-3.35</td><td class='n'>+0.45 [+0.29, +0.61]</td></tr></tbody></table></div><p class="cap">Medians over the 39 test clips this family dominates (purity ≥ 0.66) and the 978 clips the real LibriSpeech families dominate.</p>
+<h3 id='case-3'>Case 3. PlayHT under a codec</h3><div class="card">
+<div class="chead"><span class="file">HGT4834440.wav</span><span class="scores">detector P = 0.9986 · prototype P(fake) = 1.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:34px"></span><span class="sv">48%</span></td>
+<td>PlayHT 100%</td><td class="n">5</td><td class="n">100%</td><td>codec 40%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:18px"></span><span class="sv">26%</span></td>
+<td>PlayHT 100%</td><td class="n">18</td><td class="n">100%</td><td>clean 78%</td></tr><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:18px"></span><span class="sv">26%</span></td>
+<td>PlayHT 100%</td><td class="n">6</td><td class="n">100%</td><td>clean 33%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 9, 2 training clips, 100% synthetic (PlayHT 50%, UnitSpeech 50%). Training exemplars: <code>playht/speaker_8848/sentence_49</code>; <code>playht/speaker_8848/sentence_320</code>.</p>
+</div><p>The largest prototype (48%) is a five-clip PlayHT concept found at t = 75 whose clips are 40% codec-processed. PlayHT's clearest criterion is its smooth LPC residual (§6.3), and the attribution holds for a concept that is partly codec-processed.</p>
+<h3 id='case-4'>Case 4. PlayHT and UnitSpeech share deep concepts</h3><div class="card">
+<div class="chead"><span class="file">HGT8977595.wav</span><span class="scores">detector P = 0.9984 · prototype P(fake) = 1.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:29px"></span><span class="sv">41%</span></td>
+<td>PlayHT 100%</td><td class="n">1</td><td class="n">100%</td><td>clean 100%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:20px"></span><span class="sv">29%</span></td>
+<td>PlayHT 93%, UnitSpeech 5%</td><td class="n">57</td><td class="n">100%</td><td>clean 46%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:21px"></span><span class="sv">30%</span></td>
+<td>PlayHT 50%, UnitSpeech 50%</td><td class="n">2</td><td class="n">100%</td><td>codec 50%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 7, 2 training clips, 100% synthetic (PlayHT 50%, UnitSpeech 50%). Training exemplars: <code>unit_speech/speaker_6575/sentence_441</code>.</p>
+</div><p>The basic-level concept is a two-clip concept, half PlayHT and half UnitSpeech. One prototype names a 57-clip PlayHT and UnitSpeech concept. Commercial and open unit-based cloners meet at deep levels of the hierarchy. The explanation still assigns the clip to PlayHT through its largest prototype, a single PlayHT clip.</p><div class="pager"><button type="button" class="pbtn" data-go="6">← 6 Prototype families</button><span class="pnum">Page 8 of 17</span><button type="button" class="pbtn" data-go="8">7.2 Case studies: open cloning and conversion →</button></div></section>
+<section class="page" id="cases-open" data-title="7.2 Case studies: open cloning and conversion" hidden><h2><span class='sn'>7.2</span>Open zero-shot cloning and voice conversion</h2><p>XTTS v2 and YourTTS are open zero-shot cloners. UnitSpeech clones through discrete speech units, and OpenVoice v2 converts a base voice's tone colour. In the atlas they occupy branch 0.3, apart from the commercial cloners. Their prototypes are more often channel concepts (24–26%, mostly codec) than those of the commercial cloners.</p>
+<h3>XTTS v2 / YourTTS: criteria</h3><p>The family dominates 113 test clips (median detector P = 0.999, 100.0% flagged). Its clearest acoustic criteria against real-attributed clips:</p><div class="tablewrap"><table><thead><tr><th>Criterion (feature)</th><th>Family clips</th><th>Real-attributed</th><th>Cliff's δ [95% CI]</th></tr></thead>
+<tbody><tr><td>estimated SNR (dB)</td><td class='n'>29.9</td><td class='n'>24.4</td><td class='n'>+0.55 [+0.39, +0.69]</td></tr><tr><td>long-term spectral ripple (dB)</td><td class='n'>1.77</td><td class='n'>2.2</td><td class='n'>-0.42 [-0.54, -0.30]</td></tr><tr><td>noise-floor variability (dB)</td><td class='n'>5.79</td><td class='n'>4.24</td><td class='n'>+0.36 [+0.18, +0.54]</td></tr><tr><td>high-band spectral flatness, p90 (dB)</td><td class='n'>-3.04</td><td class='n'>-3.35</td><td class='n'>+0.31 [+0.17, +0.43]</td></tr></tbody></table></div><p class="cap">Medians over the 65 test clips this family dominates (purity ≥ 0.66) and the 978 clips the real LibriSpeech families dominate.</p>
+<h3 id='case-5'>Case 5. YourTTS through a codec</h3><div class="card">
+<div class="chead"><span class="file">HGT7411727.wav</span><span class="scores">detector P = 0.9988 · prototype P(fake) = 1.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:25px"></span><span class="sv">36%</span></td>
+<td>YourTTS 83%, XTTS v2 17%</td><td class="n">6</td><td class="n">100%</td><td>codec 50%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:21px"></span><span class="sv">30%</span></td>
+<td>YourTTS 83%, XTTS v2 17%</td><td class="n">6</td><td class="n">100%</td><td>codec 50%</td></tr><tr><td class="n">200</td><td class="sharecell"><span class="sbar fk" style="width:24px"></span><span class="sv">34%</span></td>
+<td>YourTTS 100%</td><td class="n">7</td><td class="n">100%</td><td>clean 57%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 7, 1 training clips, 100% synthetic (YourTTS 100%). Training exemplars: <code>your_tts/speaker_3654/sentence_379</code>.</p>
+</div><p>The basic-level concept is a single YourTTS clip. Two prototypes (66%) name a six-clip YourTTS and XTTS v2 concept that is half codec-processed. A third prototype, found at t = 200, names a seven-clip YourTTS concept. The family's criteria include flatter background noise (§6.3).</p>
+<h3 id='case-6'>Case 6. XTTS v2</h3><div class="card">
+<div class="chead"><span class="file">HGT2432375.wav</span><span class="scores">detector P = 0.9988 · prototype P(fake) = 1.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:32px"></span><span class="sv">46%</span></td>
+<td>XTTS v2 71%, UnitSpeech 14%</td><td class="n">7</td><td class="n">100%</td><td>clean 86%</td></tr><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:23px"></span><span class="sv">33%</span></td>
+<td>XTTS v2 100%</td><td class="n">2</td><td class="n">100%</td><td>clean 50%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:15px"></span><span class="sv">21%</span></td>
+<td>XTTS v2 100%</td><td class="n">2</td><td class="n">100%</td><td>clean 50%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 8, 2 training clips, 100% synthetic (XTTS v2 100%). Training exemplars: <code>xtts_v2/speaker_8848/sentence_237</code>; <code>xtts_v2/speaker_8848/sentence_454</code>.</p>
+</div><p>All three prototypes name XTTS v2 concepts. The largest (46%) also contains UnitSpeech clips. The explanation isolates the cloning system even though XTTS v2 and YourTTS imitate the same ten speakers.</p>
+<h3>UnitSpeech / OpenVoice v2: criteria</h3><p>The family dominates 108 test clips (median detector P = 0.999, 100.0% flagged). Its clearest acoustic criteria against real-attributed clips:</p><div class="tablewrap"><table><thead><tr><th>Criterion (feature)</th><th>Family clips</th><th>Real-attributed</th><th>Cliff's δ [95% CI]</th></tr></thead>
+<tbody><tr><td>estimated SNR (dB)</td><td class='n'>32.2</td><td class='n'>24.4</td><td class='n'>+0.57 [+0.40, +0.73]</td></tr><tr><td>long-term spectral ripple (dB)</td><td class='n'>1.6</td><td class='n'>2.2</td><td class='n'>-0.51 [-0.62, -0.39]</td></tr><tr><td>noise-floor variability (dB)</td><td class='n'>8.24</td><td class='n'>4.24</td><td class='n'>+0.50 [+0.32, +0.67]</td></tr><tr><td>high-band spectral flatness, p90 (dB)</td><td class='n'>-2.81</td><td class='n'>-3.35</td><td class='n'>+0.46 [+0.32, +0.60]</td></tr></tbody></table></div><p class="cap">Medians over the 58 test clips this family dominates (purity ≥ 0.66) and the 978 clips the real LibriSpeech families dominate.</p>
+<h3 id='case-7'>Case 7. OpenVoice v2 conversion explained by unit-based texture</h3><div class="card">
+<div class="chead"><span class="file">HGT7295430.wav</span><span class="scores">detector P = 0.9989 · prototype P(fake) = 1.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:30px"></span><span class="sv">44%</span></td>
+<td>UnitSpeech 72%, PlayHT 16%</td><td class="n">102</td><td class="n">100%</td><td>clean 76%</td></tr><tr><td class="n">100</td><td class="sharecell"><span class="sbar fk" style="width:24px"></span><span class="sv">34%</span></td>
+<td>OpenVoice v2 50%, YourTTS 50%</td><td class="n">2</td><td class="n">100%</td><td>clean 50%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:16px"></span><span class="sv">23%</span></td>
+<td>OpenVoice v2 90%, YourTTS 10%</td><td class="n">10</td><td class="n">100%</td><td>clean 70%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 6, 37 training clips, 100% synthetic (OpenVoice v2 73%, YourTTS 24%). Training exemplars: <code>openvoicev2/speaker_1487/sentence_358_en-us</code>; <code>openvoicev2/speaker_3654/sentence_390_en-us</code>.</p>
+</div><p>The basic-level concept is OpenVoice v2 (73%) with YourTTS (24%). The largest prototype (44%), however, names a 102-clip concept of UnitSpeech and PlayHT. Voice conversion and unit-based cloning thus share a region of the space. The family's criteria describe that shared texture: high high-band flatness and a narrow spread of spectral flux.</p>
+<h3 id='case-8'>Case 8. UnitSpeech</h3><div class="card">
+<div class="chead"><span class="file">HGT4407954.wav</span><span class="scores">detector P = 0.9988 · prototype P(fake) = 1.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:26px"></span><span class="sv">38%</span></td>
+<td>UnitSpeech 67%, PlayHT 29%</td><td class="n">21</td><td class="n">100%</td><td>clean 62%</td></tr><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:23px"></span><span class="sv">33%</span></td>
+<td>UnitSpeech 69%, XTTS v2 11%</td><td class="n">45</td><td class="n">100%</td><td>codec 24%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:21px"></span><span class="sv">29%</span></td>
+<td>UnitSpeech 69%, XTTS v2 11%</td><td class="n">45</td><td class="n">100%</td><td>codec 24%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 5, 45 training clips, 100% synthetic (UnitSpeech 69%, XTTS v2 11%). Training exemplars: <code>unit_speech/speaker_1487/sentence_124</code>; <code>unit_speech/speaker_8848/sentence_292</code>.</p>
+</div><p>Two prototypes name the clip's own basic-level concept, 45 clips of UnitSpeech (69%) and XTTS v2. A third names a 21-clip UnitSpeech and PlayHT concept. All shares point to unit-based cloning.</p><div class="pager"><button type="button" class="pbtn" data-go="7">← 7.1 Case studies: commercial cloners</button><span class="pnum">Page 9 of 17</span><button type="button" class="pbtn" data-go="9">7.3 Case studies: diffusion TTS →</button></div></section>
+<section class="page" id="cases-diffusion" data-title="7.3 Case studies: diffusion TTS" hidden><h2><span class='sn'>7.3</span>Diffusion TTS in the LJSpeech voice</h2><p>DiffGAN-TTS, Grad-TTS, ProDiff and WaveGrad 2 all speak in the LJSpeech voice. They form the atlas concepts 0.2.1 and 0.2.3. On the test set this family dominates only 41 clips, but its acoustic criteria are the strongest of any family.</p>
+<h3>LJ-voice diffusion TTS: criteria</h3><p>The family dominates 41 test clips (median detector P = 0.997, 97.6% flagged). Its clearest acoustic criteria against real-attributed clips:</p><div class="tablewrap"><table><thead><tr><th>Criterion (feature)</th><th>Family clips</th><th>Real-attributed</th><th>Cliff's δ [95% CI]</th></tr></thead>
+<tbody><tr><td>estimated SNR (dB)</td><td class='n'>38.3</td><td class='n'>24.4</td><td class='n'>+0.93 [+0.80, +0.99]</td></tr><tr><td>LPC residual kurtosis</td><td class='n'>2.17</td><td class='n'>4.52</td><td class='n'>-0.78 [-0.88, -0.68]</td></tr><tr><td>spectral flux spread (IQR)</td><td class='n'>0.0331</td><td class='n'>0.0485</td><td class='n'>-0.74 [-0.89, -0.57]</td></tr><tr><td>noise-floor variability (dB)</td><td class='n'>10.5</td><td class='n'>4.24</td><td class='n'>+0.73 [+0.48, +0.91]</td></tr></tbody></table></div><p class="cap">Medians over the 23 test clips this family dominates (purity ≥ 0.66) and the 978 clips the real LibriSpeech families dominate.</p>
+<h3 id='case-9'>Case 9. Grad-TTS through a codec</h3><div class="card">
+<div class="chead"><span class="file">HGT4901221.wav</span><span class="scores">detector P = 0.9936 · prototype P(fake) = 1.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:29px"></span><span class="sv">41%</span></td>
+<td>Grad-TTS 100%</td><td class="n">2</td><td class="n">100%</td><td>codec 50%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:19px"></span><span class="sv">27%</span></td>
+<td>Grad-TTS 100%</td><td class="n">2</td><td class="n">100%</td><td>codec 50%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:22px"></span><span class="sv">32%</span></td>
+<td>Grad-TTS 100%</td><td class="n">2</td><td class="n">100%</td><td>codec 50%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 8, 2 training clips, 100% synthetic (Grad-TTS 100%). Training exemplars: <code>grad_tts/sentence_282</code>; <code>grad_tts/sentence_1278</code>.</p>
+</div><p>All three prototypes name one two-clip Grad-TTS concept, half codec-processed, found at t = 50 and 75. The explanation is as specific as the hierarchy allows. The clip fits the family's criteria: very high estimated SNR and a smooth LPC residual.</p>
+<h3 id='case-10'>Case 10. A composition of system and channel</h3><div class="card">
+<div class="chead"><span class="file">HGT6908742.wav</span><span class="scores">detector P = 0.9926 · prototype P(fake) = 1.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:25px"></span><span class="sv">36%</span></td>
+<td>Grad-TTS 100%</td><td class="n">3</td><td class="n">100%</td><td>codec 67%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:27px"></span><span class="sv">39%</span></td>
+<td>ProDiff 50%, PlayHT 50%</td><td class="n">2</td><td class="n">100%</td><td>reverb 100%</td></tr><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:18px"></span><span class="sv">25%</span></td>
+<td>WaveGrad 2 94%, Grad-TTS 6%</td><td class="n">16</td><td class="n">100%</td><td>clean 69%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 7, 12 training clips, 100% synthetic (Grad-TTS 83%, WaveGrad 2 17%). Training exemplars: <code>wavegrad2/sentence_2229</code>; <code>grad_tts/sentence_964</code>.</p>
+</div><p>The three prototypes name three different concepts: Grad-TTS under a codec (36%), ProDiff and PlayHT under reverberation (39%), and WaveGrad 2 with Grad-TTS in clean audio (25%). The composition separates the synthesis system from the channel. Each dimension goes to the concept that explains it best.</p>
+<h3 id='case-11'>Case 11. Diffusion-vocoder texture inside a commercial clone</h3><div class="card">
+<div class="chead"><span class="file">HGT9030862.wav</span><span class="scores">detector P = 0.9964 · prototype P(fake) = 1.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:35px"></span><span class="sv">50%</span></td>
+<td>WaveGrad 2 67%, Grad-TTS 33%</td><td class="n">3</td><td class="n">100%</td><td>codec 100%</td></tr><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:18px"></span><span class="sv">26%</span></td>
+<td>WaveGrad 2 100%</td><td class="n">2</td><td class="n">100%</td><td>codec 50%</td></tr><tr><td class="n">200</td><td class="sharecell"><span class="sbar fk" style="width:17px"></span><span class="sv">24%</span></td>
+<td>WaveGrad 2 96%, DiffGAN-TTS 4%</td><td class="n">49</td><td class="n">100%</td><td>clean 74%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 6, 12 training clips, 100% synthetic (ElevenLabs 50%, PlayHT 50%). Training exemplars: <code>playht/speaker_6575/sentence_484</code>; <code>elevenlabs/speaker_1487/sentence_223</code>.</p>
+</div><p>The basic-level concept is commercial (ElevenLabs and PlayHT, 50% each). All three prototypes, however, name WaveGrad 2 and Grad-TTS concepts, two of them under a codec. The prototypes thus identify a vocoder-level texture that the commercial clip shares with diffusion TTS. The basic-level concept alone would not reveal it.</p><div class="pager"><button type="button" class="pbtn" data-go="8">← 7.2 Case studies: open cloning and conversion</button><span class="pnum">Page 10 of 17</span><button type="button" class="pbtn" data-go="10">7.4 Case studies: real speech and channels →</button></div></section>
+<section class="page" id="cases-real" data-title="7.4 Case studies: real speech and channels" hidden>
+<h2><span class="sn">7.4</span>Real speech, channels and search radius</h2>
+<p>A detector for this task must keep degraded real speech real. The cases below examine real clips whose prototypes name channel concepts, a
+synthetic clip under a channel, and real clips that acquire a synthetic prototype at a large search radius. Across the test set, 155
+prototypes name real concepts dominated by a channel condition, and 225 name synthetic concepts of that kind.</p>
+<h3 id="case-12">Case 12. Real recordings of a cloned speaker</h3><div class="card">
+<div class="chead"><span class="file">HGT4371552.wav</span><span class="scores">detector P = 0.0001 · prototype P(fake) = 0.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:25px"></span><span class="sv">36%</span></td>
+<td>real LibriSpeech (cloned speakers) 100%</td><td class="n">1</td><td class="n">0%</td><td>clean 100%</td></tr><tr><td class="n">75</td><td class="sharecell"><span class="sbar rl" style="width:23px"></span><span class="sv">32%</span></td>
+<td>real LibriSpeech (cloned speakers) 100%</td><td class="n">6</td><td class="n">0%</td><td>clean 83%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:23px"></span><span class="sv">32%</span></td>
+<td>real LibriSpeech (cloned speakers) 100%</td><td class="n">1</td><td class="n">0%</td><td>clean 100%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 9, 6 training clips, 0% synthetic (real LibriSpeech (cloned speakers) 100%). Training exemplars: <code>real_libri/7995/7995-276907-0021</code>; <code>real_libri/7995/7995-276907-0018</code>.</p>
+</div>
+<p>All prototypes and the basic-level concept consist of real LibriSpeech recordings of the speakers the cloners imitate. This family dominates 682
+test clips, more than any other, and the detector flags none of them. A familiar voice therefore does not by itself pull a clip toward the
+synthetic concepts.</p>
+<h3 id="case-13">Case 13. Real speech through a telephone channel</h3><div class="card">
+<div class="chead"><span class="file">HGT4415806.wav</span><span class="scores">detector P = 0.0002 · prototype P(fake) = 0.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">75</td><td class="sharecell"><span class="sbar rl" style="width:22px"></span><span class="sv">32%</span></td>
+<td>real LibriSpeech (other speakers) 67%, real LibriSpeech (cloned speakers) 33%</td><td class="n">3</td><td class="n">0%</td><td>clean 100%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:28px"></span><span class="sv">39%</span></td>
+<td>real LibriSpeech (other speakers) 80%, real LibriSpeech (cloned speakers) 20%</td><td class="n">5</td><td class="n">0%</td><td>telephony 60%</td></tr><tr><td class="n">75</td><td class="sharecell"><span class="sbar rl" style="width:20px"></span><span class="sv">29%</span></td>
+<td>real LibriSpeech (other speakers) 68%, real LibriSpeech (cloned speakers) 32%</td><td class="n">25</td><td class="n">0%</td><td>clean 52%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 8, 5 training clips, 0% synthetic (real LibriSpeech (other speakers) 80%, real LibriSpeech (cloned speakers) 20%). Training exemplars: <code>real_extra/librispeech_test-clean/3575/170457/3575-170457-0004</code>; <code>real_extra/librispeech_test-clean/121/127105/121-127105-0028</code>.</p>
+</div>
+<p>The largest prototype (39%) names a five-clip concept of real speech that is 60% telephony-processed. The explanation recognizes the channel and
+keeps the authenticity: every concept is real.</p>
+<h3 id="case-14">Case 14. Real speech with mains hum</h3><div class="card">
+<div class="chead"><span class="file">HGT6670327.wav</span><span class="scores">detector P = 0.0032 · prototype P(fake) = 0.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:35px"></span><span class="sv">49%</span></td>
+<td>real LibriSpeech (cloned speakers) 50%, real LibriSpeech (other speakers) 50%</td><td class="n">2</td><td class="n">0%</td><td>hum 100%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:15px"></span><span class="sv">22%</span></td>
+<td>real LibriSpeech (cloned speakers) 75%, real LibriSpeech (other speakers) 25%</td><td class="n">4</td><td class="n">0%</td><td>clean 50%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:20px"></span><span class="sv">29%</span></td>
+<td>real LibriSpeech (cloned speakers) 75%, real LibriSpeech (other speakers) 25%</td><td class="n">4</td><td class="n">0%</td><td>clean 50%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 8, 4 training clips, 0% synthetic (real LibriSpeech (cloned speakers) 75%, real LibriSpeech (other speakers) 25%). Training exemplars: <code>real_extra/librispeech_test-clean/1580/141084/1580-141084-0001</code>; <code>real_extra/librispeech_test-clean/121/127105/121-127105-0035</code>.</p>
+</div>
+<p>The largest prototype (49%) names a real concept whose clips all carry mains hum. Hum was part of the training augmentation for both classes, and
+the hierarchy formed a real-speech concept for it.</p>
+<h3 id="case-15">Case 15. Real speech after resampling</h3><div class="card">
+<div class="chead"><span class="file">HGT9772169.wav</span><span class="scores">detector P = 0.0003 · prototype P(fake) = 0.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:32px"></span><span class="sv">46%</span></td>
+<td>real LibriSpeech (cloned speakers) 100%</td><td class="n">1</td><td class="n">0%</td><td>resample 100%</td></tr><tr><td class="n">75</td><td class="sharecell"><span class="sbar rl" style="width:16px"></span><span class="sv">23%</span></td>
+<td>real LibriSpeech (other speakers) 83%, real LibriSpeech (cloned speakers) 17%</td><td class="n">6</td><td class="n">0%</td><td>clean 83%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:21px"></span><span class="sv">30%</span></td>
+<td>real LibriSpeech (cloned speakers) 100%</td><td class="n">1</td><td class="n">0%</td><td>resample 100%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 8, 1 training clips, 0% synthetic (real LibriSpeech (cloned speakers) 100%). Training exemplars: <code>real_libri/7995/7995-276908-0031</code>.</p>
+</div>
+<p>Two prototypes (76%) name a single real clip that was resampled. Resampling removes high-frequency content, one of the cues in the shared synthetic
+profile. The clip nevertheless stays among real concepts, and the detector scores it 0.0003.</p>
+<h3 id="case-16">Case 16. Synthetic speech under spectral tilt</h3><div class="card">
+<div class="chead"><span class="file">HGT8588733.wav</span><span class="scores">detector P = 0.9951 · prototype P(fake) = 1.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:35px"></span><span class="sv">50%</span></td>
+<td>ElevenLabs 100%</td><td class="n">6</td><td class="n">100%</td><td>tilt 67%</td></tr><tr><td class="n">125</td><td class="sharecell"><span class="sbar fk" style="width:17px"></span><span class="sv">24%</span></td>
+<td>ElevenLabs 100%</td><td class="n">2</td><td class="n">100%</td><td>clean 50%</td></tr><tr><td class="n">250</td><td class="sharecell"><span class="sbar fk" style="width:18px"></span><span class="sv">26%</span></td>
+<td>UnitSpeech 100%</td><td class="n">6</td><td class="n">100%</td><td>clean 100%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 5, 45 training clips, 100% synthetic (ElevenLabs 87%, PlayHT 9%). Training exemplars: <code>elevenlabs/speaker_7995/sentence_27</code>; <code>elevenlabs/speaker_7995/sentence_389</code>.</p>
+</div>
+<p>The largest prototype names an ElevenLabs concept whose clips are two-thirds tilt-processed. The channel changes the spectral balance but not the
+attribution. A third prototype found at t = 250 names a UnitSpeech concept. At large radii the search reaches other synthetic modes (§5.4).</p>
+<h3 id="case-17">Case 17. A synthetic prototype at a large search radius</h3><div class="card">
+<div class="chead"><span class="file">HGT1641894.wav</span><span class="scores">detector P = 0.0002 · prototype P(fake) = 0.40</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:22px"></span><span class="sv">32%</span></td>
+<td>real LibriSpeech (cloned speakers) 83%, real LibriSpeech (other speakers) 17%</td><td class="n">6</td><td class="n">0%</td><td>clean 83%</td></tr><tr><td class="n">375</td><td class="sharecell"><span class="sbar fk" style="width:28px"></span><span class="sv">40%</span></td>
+<td>ProDiff 100%</td><td class="n">10</td><td class="n">100%</td><td>clean 90%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:20px"></span><span class="sv">28%</span></td>
+<td>real LibriSpeech (other speakers) 81%, real LibriSpeech (cloned speakers) 19%</td><td class="n">42</td><td class="n">0%</td><td>clean 81%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 6, 42 training clips, 0% synthetic (real LibriSpeech (other speakers) 81%, real LibriSpeech (cloned speakers) 19%). Training exemplars: <code>real_libri/8848/8848-293957-0021</code>; <code>real_extra/librispeech_dev-clean/652/129742/652-129742-0011</code>.</p>
+</div>
+<p>Two prototypes name real concepts. The third, found at t = 375, names a ten-clip ProDiff concept and receives 40% of the dimensions, so the
+prototype probability rises to 0.40 while the detector gives 0.0002. Among the 25 test clips whose prototype probability lies between 0.2 and 0.8, 14 follow this pattern: their synthetic
+prototype is found at t ≥ 150, at a larger radius than every real prototype of the clip. Such prototypes limit the prototype probability as a
+stand-alone score and support reading the noise level as a search radius.</p>
+<div class="pager"><button type="button" class="pbtn" data-go="9">← 7.3 Case studies: diffusion TTS</button><span class="pnum">Page 11 of 17</span><button type="button" class="pbtn" data-go="11">7.5 Case studies: review and failure →</button></div></section>
+<section class="page" id="cases-review" data-title="7.5 Case studies: review and failure" hidden>
+<h2><span class="sn">7.5</span>Uncertainty, disagreement and failure</h2>
+<p>The explanation's value is greatest where the detector is least certain. Seventeen test clips have detector probabilities between 0.05 and 0.8.
+In eight clips the prototype probability and the detector differ by more than 0.5. No test labels exist, so these cases identify clips for review;
+they cannot confirm errors.</p>
+<h3 id="case-18">Case 18. Reverberant real LJSpeech near the threshold</h3><div class="card">
+<div class="chead"><span class="file">HGT6637430.wav</span><span class="scores">detector P = 0.4448 · prototype P(fake) = 0.08</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">125</td><td class="sharecell"><span class="sbar rl" style="width:26px"></span><span class="sv">37%</span></td>
+<td>real LJSpeech 100%</td><td class="n">3</td><td class="n">0%</td><td>codec 33%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:18px"></span><span class="sv">25%</span></td>
+<td>real LJSpeech 57%, real LibriSpeech (other speakers) 28%</td><td class="n">40</td><td class="n">12%</td><td>reverb 60%</td></tr><tr><td class="n">200</td><td class="sharecell"><span class="sbar rl" style="width:26px"></span><span class="sv">38%</span></td>
+<td>real LJSpeech 57%, real LibriSpeech (other speakers) 28%</td><td class="n">40</td><td class="n">12%</td><td>reverb 60%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 4, 40 training clips, 12% synthetic (real LJSpeech 57%, real LibriSpeech (other speakers) 28%). Training exemplars: <code>real_lj/LJ046-0229</code>; <code>real_extra/librispeech_dev-clean/5536/43358/5536-43358-0019</code>.</p>
+</div>
+<p>All three prototypes name real LJSpeech concepts; two of them (63%) name a 40-clip concept that is 60% reverberant. The detector gives
+0.44, above the 0.2 threshold. Reverberant real speech is the
+detector's weakest condition (In-the-Wild minDCF 0.25), and the explanation names that condition directly.</p>
+<h3 id="case-19">Case 19. A possible false alarm on reverberant speech</h3><div class="card">
+<div class="chead"><span class="file">HGT4957705.wav</span><span class="scores">detector P = 0.9713 · prototype P(fake) = 0.40</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">75</td><td class="sharecell"><span class="sbar rl" style="width:19px"></span><span class="sv">28%</span></td>
+<td>real LJSpeech 76%, real LibriSpeech (other speakers) 14%</td><td class="n">37</td><td class="n">8%</td><td>reverb 51%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:26px"></span><span class="sv">38%</span></td>
+<td>real LJSpeech 76%, real LibriSpeech (other speakers) 14%</td><td class="n">37</td><td class="n">8%</td><td>reverb 51%</td></tr><tr><td class="n">250</td><td class="sharecell"><span class="sbar fk" style="width:24px"></span><span class="sv">35%</span></td>
+<td>Grad-TTS 100%</td><td class="n">1</td><td class="n">100%</td><td>reverb 100%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 5, 23 training clips, 13% synthetic (real LJSpeech 56%, real LibriSpeech (other speakers) 30%). Training exemplars: <code>real_lj/LJ008-0285</code>; <code>real_lj/LJ024-0036</code>.</p>
+</div>
+<p>The detector flags this clip at 0.97. Two prototypes (66%) name a 37-clip real concept that is half reverberant. Only a single-clip Grad-TTS concept
+under reverberation, found at t = 250, is synthetic. The prototype probability is 0.40. The explanation attributes the score to the room rather
+than to synthesis.</p>
+<h3 id="case-20">Case 20. Reverberant real LibriSpeech</h3><div class="card">
+<div class="chead"><span class="file">HGT9417641.wav</span><span class="scores">detector P = 0.5614 · prototype P(fake) = 0.00</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">75</td><td class="sharecell"><span class="sbar rl" style="width:16px"></span><span class="sv">23%</span></td>
+<td>real LibriSpeech (other speakers) 100%</td><td class="n">1</td><td class="n">0%</td><td>reverb 100%</td></tr><tr><td class="n">50</td><td class="sharecell"><span class="sbar rl" style="width:28px"></span><span class="sv">40%</span></td>
+<td>real LibriSpeech (other speakers) 100%</td><td class="n">1</td><td class="n">0%</td><td>reverb 100%</td></tr><tr><td class="n">300</td><td class="sharecell"><span class="sbar rl" style="width:26px"></span><span class="sv">37%</span></td>
+<td>real LJSpeech 71%, real LibriSpeech (cloned speakers) 14%</td><td class="n">7</td><td class="n">0%</td><td>reverb 86%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 5, 1 training clips, 0% synthetic (real LibriSpeech (other speakers) 100%).</p>
+</div>
+<p>All prototypes are real concepts under reverberation, and the prototype probability is zero. The detector gives 0.56. The case repeats the pattern
+of case 19 for another speaker population.</p>
+<h3 id="case-21">Case 21. The explanation that exposed a scoring defect</h3><div class="card">
+<div class="chead"><span class="file">HGT7824018.wav</span><span class="scores">detector P = 0.9965 · prototype P(fake) = 0.99 First scorer: 0.009.</span></div>
+<div class="tablewrap"><table class="protos"><thead><tr><th>t</th><th>Share of dims</th><th>Naming concept: sources</th><th>Size</th><th>Synthetic</th><th>Dominant channel</th></tr></thead><tbody><tr><td class="n">50</td><td class="sharecell"><span class="sbar fk" style="width:27px"></span><span class="sv">39%</span></td>
+<td>YourTTS 37%, XTTS v2 36%</td><td class="n">59</td><td class="n">98%</td><td>codec 54%</td></tr><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:23px"></span><span class="sv">32%</span></td>
+<td>DiffGAN-TTS 44%, WaveGrad 2 44%</td><td class="n">9</td><td class="n">100%</td><td>codec 78%</td></tr><tr><td class="n">75</td><td class="sharecell"><span class="sbar fk" style="width:20px"></span><span class="sv">28%</span></td>
+<td>UnitSpeech 42%, XTTS v2 37%</td><td class="n">19</td><td class="n">100%</td><td>codec 95%</td></tr></tbody></table></div>
+<p class="basic">Basic-level concept: depth 6, 19 training clips, 100% synthetic (UnitSpeech 42%, XTTS v2 37%). Training exemplars: <code>unit_speech/speaker_1487/sentence_475</code>; <code>xtts_v2/speaker_3654/sentence_59</code>.</p>
+</div>
+<p>Our first scorer cropped each batch to its shortest clip, so a clip's score depended on its neighbours. It assigned this clip 0.009, while every
+prototype named a synthetic concept of voice clones under a codec. The contradiction led us to the defect. The corrected scorer assigns 0.996;
+the correction changed 3 of 1,671 test decisions.</p>
+<h3>Candidates for missed commercial clones</h3>
+<p>In 6 clips the prototypes point firmly to a synthetic family while the detector passes or nearly passes the clip. All belong to the
+commercial-cloner families, the detector's hardest generators in development (ElevenLabs holdout minDCF 0.104).</p>
+<div class="tablewrap"><table><caption>Table 6. Clips with prototype P(fake) ≥ 0.78 and detector P ≤ 0.22.</caption>
+<thead><tr><th>Clip</th><th>Detector P</th><th>Prototype P</th><th>Dominant family</th><th>Largest prototypes</th></tr></thead><tbody><tr><td><code>HGT3570254.wav</code></td><td class='n'>0.006</td><td class='n'>0.78</td><td>PlayHT</td><td>PlayHT under noise; ElevenLabs under noise</td></tr><tr><td><code>HGT1538647.wav</code></td><td class='n'>0.009</td><td class='n'>1.00</td><td>ElevenLabs</td><td>ElevenLabs under noise; Grad-TTS under noise</td></tr><tr><td><code>HGT5272056.wav</code></td><td class='n'>0.046</td><td class='n'>1.00</td><td>ElevenLabs</td><td>ElevenLabs under clean; ElevenLabs under clean</td></tr><tr><td><code>HGT2140666.wav</code></td><td class='n'>0.074</td><td class='n'>1.00</td><td>ElevenLabs</td><td>ElevenLabs under clean; ElevenLabs under clean</td></tr><tr><td><code>HGT3739624.wav</code></td><td class='n'>0.162</td><td class='n'>1.00</td><td>ElevenLabs</td><td>ElevenLabs under resample; ElevenLabs under clean</td></tr><tr><td><code>HGT9126800.wav</code></td><td class='n'>0.217</td><td class='n'>1.00</td><td>PlayHT</td><td>PlayHT under clean; PlayHT under clean</td></tr></tbody></table></div>
+<p>Four of the six carry channel concepts (noise, resampling, tilt) among their prototypes. A review queue ordered by this disagreement is the
+error-triage mechanism evaluated in §8.4.</p>
+<div class="pager"><button type="button" class="pbtn" data-go="10">← 7.4 Case studies: real speech and channels</button><span class="pnum">Page 12 of 17</span><button type="button" class="pbtn" data-go="12">8 Evaluation of the explanations →</button></div></section>
+<section class="page" id="evaluation" data-title="8 Evaluation of the explanations" hidden>
+<h2><span class="sn">8</span>Evaluation of the explanations</h2>
+<h3>8.1 Fidelity</h3>
+<div class="tablewrap"><table><caption>Table 7. Agreement between explanation and detector decisions at a matched flag rate (Cohen's κ, 95% interval).</caption>
+<thead><tr><th>Set</th><th>View</th><th>Prototypes (TTCG)</th><th>Concepts (COBWEB)</th></tr></thead><tbody>
+<tr><td>Validation / holdout</td><td>clean</td><td class="n">1.00 / 1.00</td><td class="n">1.00 / 1.00</td></tr>
+<tr><td>Validation / holdout</td><td>perturbed</td><td class="n">0.97 / 0.95</td><td class="n">0.97 / 0.95</td></tr>
+<tr><td>In-the-Wild</td><td>clean</td><td class="n">0.96 [0.93, 0.98]</td><td class="n">0.93 [0.89, 0.96]</td></tr>
+<tr><td>In-the-Wild</td><td>perturbed</td><td class="n">0.90 [0.86, 0.93]</td><td class="n">0.87 [0.82, 0.90]</td></tr>
+<tr class="hl"><td>NSA test</td><td>as delivered</td><td class="n">0.985 [0.975, 0.994]</td><td class="n">0.985 [0.975, 0.994]</td></tr>
+</tbody></table></div>
+<h3>8.2 Faithfulness and stability</h3>
+<p>We test faithfulness by deletion <span class="cite">[Samek et al. 2017]</span> on the 66 of 3,000 explanations that mix synthetic and real concepts. Deleting the dimensions the
+explanation assigns to synthetic concepts lowers the detector's logit more than deleting those assigned to real concepts: by 0.79 SD
+[0.67, 0.89], in 92% of cases. Random dimensions give effects of 0.20 [0.14, 0.24] and 0.18 [0.13, 0.22] SD. Across three insertion orders the
+hierarchy changes (partition ARI 0.03–0.04), but the leading source of an explanation agrees for 94–95% of clips.</p>
+<h3>8.3 Failure localization</h3>
+<p>On 2,794 held-out and In-the-Wild clips with 73 errors, five concepts contain 27% of the errors. The largest are a 1,177-clip concept of XTTS v2
+and YourTTS clones (14% error) and two small concepts of reverberant real speech (46% and 50% error). The concepts name the detector's weak
+conditions directly.</p>
+<h3>8.4 Cognitive capabilities</h3>
+<figure><div class="chart"><svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Attribution of a withheld generator by number of inserted examples">
+<line class="grid" x1="64" x2="620" y1="216.0" y2="216.0"/><text class="tick" x="58" y="220.0" text-anchor="end">0</text>
+<line class="grid" x1="64" x2="620" y1="170.5" y2="170.5"/><text class="tick" x="58" y="174.5" text-anchor="end">0.25</text>
+<line class="grid" x1="64" x2="620" y1="125.0" y2="125.0"/><text class="tick" x="58" y="129.0" text-anchor="end">0.5</text>
+<line class="grid" x1="64" x2="620" y1="79.5" y2="79.5"/><text class="tick" x="58" y="83.5" text-anchor="end">0.75</text>
+<line class="grid" x1="64" x2="620" y1="34.0" y2="34.0"/><text class="tick" x="58" y="38.0" text-anchor="end">1</text>
+<text class="tick" x="64.0" y="232" text-anchor="middle">0</text>
+<text class="tick" x="175.2" y="232" text-anchor="middle">1</text>
+<text class="tick" x="286.4" y="232" text-anchor="middle">3</text>
+<text class="tick" x="397.6" y="232" text-anchor="middle">10</text>
+<text class="tick" x="508.8" y="232" text-anchor="middle">30</text>
+<text class="tick" x="620.0" y="232" text-anchor="middle">100</text>
+<text class="axl" x="342.0" y="252" text-anchor="middle">examples of the new generator (k)</text>
+<text class="axl" transform="rotate(-90)" x="-125" y="16" text-anchor="middle">attribution accuracy</text>
+<path class="ln sa" d="M64.0,216.0 L175.2,203.6 L286.4,188.3 L397.6,157.9 L508.8,121.9 L620.0,85.9"/>
+<circle class="dot sa" cx="64.0" cy="216.0" r="3"/>
+<circle class="dot sa" cx="175.2" cy="203.6" r="3"/>
+<circle class="dot sa" cx="286.4" cy="188.3" r="3"/>
+<circle class="dot sa" cx="397.6" cy="157.9" r="3"/>
+<circle class="dot sa" cx="508.8" cy="121.9" r="3"/>
+<circle class="dot sa" cx="620.0" cy="85.9" r="3"/>
+<line class="ln sa" x1="64" x2="84" y1="18" y2="18"/><text class="legend" x="89" y="22">COBWEB (insert only)</text>
+<path class="ln sb" d="M64.0,216.0 L175.2,216.0 L286.4,213.3 L397.6,186.2 L508.8,145.6 L620.0,94.1" stroke-dasharray="5 4"/>
+<circle class="dot sb" cx="64.0" cy="216.0" r="3"/>
+<circle class="dot sb" cx="175.2" cy="216.0" r="3"/>
+<circle class="dot sb" cx="286.4" cy="213.3" r="3"/>
+<circle class="dot sb" cx="397.6" cy="186.2" r="3"/>
+<circle class="dot sb" cx="508.8" cy="145.6" r="3"/>
+<circle class="dot sb" cx="620.0" cy="94.1" r="3"/>
+<line class="ln sb" x1="244" x2="264" y1="18" y2="18"/><text class="legend" x="269" y="22">kNN, refit</text>
+<path class="ln sc" d="M64.0,216.0 L175.2,214.5 L286.4,188.7 L397.6,140.5 L508.8,99.5 L620.0,65.8" stroke-dasharray="5 4"/>
+<circle class="dot sc" cx="64.0" cy="216.0" r="3"/>
+<circle class="dot sc" cx="175.2" cy="214.5" r="3"/>
+<circle class="dot sc" cx="286.4" cy="188.7" r="3"/>
+<circle class="dot sc" cx="397.6" cy="140.5" r="3"/>
+<circle class="dot sc" cx="508.8" cy="99.5" r="3"/>
+<circle class="dot sc" cx="620.0" cy="65.8" r="3"/>
+<line class="ln sc" x1="354" x2="374" y1="18" y2="18"/><text class="legend" x="379" y="22">logistic regression, refit</text>
+</svg></div><figcaption><b>Figure 7.</b> Attribution of a withheld generator after inserting k of its clips, mean over
+generators and three seeds. COBWEB inserts without gradient updates; the baselines are refitted at every k.</figcaption></figure>
+<p>With a single example, COBWEB attributes 7% of the withheld generator's clips, against 0% for kNN and 1% for logistic regression. The two tie at
+three examples, and logistic regression leads from ten. Attribution of known generators stays at 0.87, so insertion causes no forgetting. For
+novelty, negative basic-level mutual information separates clips of an unseen generator with AUROC 0.87 ± 0.06, against 0.49 for a Mahalanobis
+distance. For error triage on In-the-Wild, ranking clips by disagreement between explanation and detector reaches an average precision of 0.38,
+nine times that of a random ranking (0.04). Combined with the detector's own uncertainty, it recovers 95% of errors in the top 10% of clips.</p>
+<div class="pager"><button type="button" class="pbtn" data-go="11">← 7.5 Case studies: review and failure</button><span class="pnum">Page 13 of 17</span><button type="button" class="pbtn" data-go="13">9 Submitted system and ablations →</button></div></section>
+<section class="page" id="ablations" data-title="9 Submitted system and ablations" hidden>
+<h2><span class="sn">9</span>Submitted system and ablations</h2>
+<p>System A, the three-model ensemble of §3, is the submitted system. Two ablations change only the ensemble members. Ablation B replaces the XLS-R-1B
+member with one trained with RawBoost augmentation <span class="cite">[Tak et al. 2022b]</span>, chosen on validation data under criteria fixed in advance. Ablation C adds a second-seed
+XLS-R-1B and a WiSE-FT XLS-R-2B <span class="cite">[Wortsman et al. 2022]</span>.</p>
+<div class="tablewrap"><table><caption>Table 8. In-the-Wild minDCF (in-sample for calibration) and agreement with System A on the NSA test set.</caption>
+<thead><tr><th>System</th><th>ITW clean</th><th>ITW perturbed</th><th>Decisions differing from A</th><th>Spearman ρ with A</th></tr></thead><tbody>
+<tr class="hl"><td>A (submitted)</td><td class="n">0.028</td><td class="n">0.082</td><td class="n">–</td><td class="n">–</td></tr>
+<tr><td>B, RawBoost member</td><td class="n">0.029</td><td class="n">0.082</td><td class="n">2 of 1,671</td><td class="n">0.990</td></tr>
+<tr><td>C, five members</td><td class="n">0.030</td><td class="n">0.078</td><td class="n">3 of 1,671</td><td class="n">0.987</td></tr>
+</tbody></table></div>
+<p>The RawBoost member alone improved perturbed In-the-Wild minDCF from 0.140 to 0.121. The paired 95% interval, [−0.033, 0.004], includes zero, so it
+failed its predeclared criterion; its backbone had already received RawBoost during post-training. The larger ensemble trades a slight clean-audio
+loss for a slight gain under perturbation. Neither ablation improves on System A beyond sampling noise.</p>
+<p>A stress view built from channels that no model trains on (simulated rooms, unseen codecs, packet loss, gain control) degrades every system to
+minDCF 0.26–0.31, and simulated rooms alone to 0.51–0.59. This agrees with the reverberation cases of §7.5.</p>
+<div class="pager"><button type="button" class="pbtn" data-go="12">← 8 Evaluation of the explanations</button><span class="pnum">Page 14 of 17</span><button type="button" class="pbtn" data-go="14">10 Discussion and limitations →</button></div></section>
+<section class="page" id="discussion" data-title="10 Discussion and limitations" hidden>
+<h2><span class="sn">10</span>Discussion and limitations</h2>
+<p><b>What the prototypes reveal.</b> The prototypes attribute test clips to recognizable classes of synthesis. The attribution matches measurable
+acoustic differences, and it separates the synthesis system from the channel it passed through (cases 10, 13–16). The hierarchy groups systems by
+how they render audio rather than by whose voice they imitate (§4.4, case 11). This is what distinguishes the layer from a post-hoc saliency map:
+each explanation refers to concepts formed from, and exemplified by, real training audio.</p>
+<p><b>What the prototypes cannot establish.</b> No test labels exist. The acoustic criteria describe the audio each family explains, and the
+disagreement cases (Table 6) are candidates for review, not confirmed errors. The shared synthetic profile includes cleanliness, which also
+characterizes studio recordings. The detector's out-of-domain accuracy argues against reliance on cleanliness alone, but the stress results show
+that room acoustics remain a weakness.</p>
+<p><b>Method limitations.</b> The shipped hierarchy is fitted with labels; the label-free analysis bounds but does not remove this dependence. The
+noise-level hypothesis of diffusion concept formation does not hold in our space (Table 4), and prototypes found at large search radii can name
+synthetic concepts for real clips (case 17). The explanation layer reads one detector (XLS-R-2B) of the three. The LJ-voice diffusion family
+dominates only 41 test clips and the real LJSpeech family ten, so their criteria rest on small samples.</p>
+<div class="pager"><button type="button" class="pbtn" data-go="13">← 9 Submitted system and ablations</button><span class="pnum">Page 15 of 17</span><button type="button" class="pbtn" data-go="15">11 Conclusion and future work →</button></div></section>
+<section class="page" id="conclusion" data-title="11 Conclusion and future work" hidden>
+<h2><span class="sn">11</span>Conclusion and future work</h2>
+<p>A calibrated ensemble of fine-tuned speech models, trained on shortcut-free data with our own synthetic examples, reaches minDCF 0.0317 on the
+organizers' test set and 0.0274 on 27,779 held-out recordings. A concept-formation layer makes its decisions inspectable. It agrees with the
+detector at κ = 0.985 and explains each clip through prototypes named by learned concepts. Across the test set, the prototypes form eight families
+with measurable acoustic criteria, and 21 case studies show how they separate synthesis systems from channels and single out clips for review.</p>
+<ul>
+<li><b>Room acoustics.</b> Training with measured room impulse responses addresses the clearest weakness, found by both the stress view and the
+explanation layer.</li>
+<li><b>Radius-aware prototypes.</b> Restricting or down-weighting high-noise prototypes would remove the spurious synthetic attributions of case 17.</li>
+<li><b>Explaining the full ensemble.</b> Concept spaces for the XLS-R-1B and MMS-1B members would let explanations cover every component of the score.</li>
+<li><b>Newer generators.</b> Open-weight systems released in 2025–26 would test whether the synthetic profile of §6.3 holds.</li>
+</ul>
+<div class="pager"><button type="button" class="pbtn" data-go="14">← 10 Discussion and limitations</button><span class="pnum">Page 16 of 17</span><button type="button" class="pbtn" data-go="16">References and appendix →</button></div></section>
+<section class="page" id="references" data-title="References and appendix" hidden>
+<h2>References</h2>
+<ul class="refs"><li><span class="rk">Bhagtani et al. 2024.</span> Bhagtani et al. DiffSSD: a diffusion-based dataset for speech forensics. 2024.</li><li><span class="rk">Chen et al. 2019.</span> Chen et al. This looks like that: deep learning for interpretable image recognition. <i>NeurIPS</i>, 2019.</li><li><span class="rk">Efron 2011.</span> Efron. Tweedie's formula and selection bias. <i>JASA</i>, 2011.</li><li><span class="rk">Fisher 1987.</span> Fisher. Knowledge acquisition via incremental conceptual clustering. <i>Machine Learning</i>, 1987.</li><li><span class="rk">Ge et al. 2025.</span> Ge, Wang, Liu and Yamagishi. Post-training for deepfake speech detection (AntiDeepfake). 2025.</li><li><span class="rk">Gennari et al. 1989.</span> Gennari, Langley and Fisher. Models of incremental concept formation. <i>Artificial Intelligence</i>, 1989.</li><li><span class="rk">Gluck and Corter 1985.</span> Gluck and Corter. Information, uncertainty, and the utility of categories. <i>Proc. Cognitive Science Society</i>, 1985.</li><li><span class="rk">Hinton 2002.</span> Hinton. Training products of experts by minimizing contrastive divergence. <i>Neural Computation</i>, 2002.</li><li><span class="rk">Ho et al. 2020.</span> Ho, Jain and Abbeel. Denoising diffusion probabilistic models. <i>NeurIPS</i>, 2020.</li><li><span class="rk">Hutchinson 1989.</span> Hutchinson. A stochastic estimator of the trace of the influence matrix. 1989.</li><li><span class="rk">Kong et al. 2020.</span> Kong, Kim and Bae. HiFi-GAN. <i>NeurIPS</i>, 2020.</li><li><span class="rk">Kong et al. 2021.</span> Kong et al. DiffWave. <i>ICLR</i>, 2021.</li><li><span class="rk">Medin and Schaffer 1978.</span> Medin and Schaffer. Context theory of classification learning. <i>Psychological Review</i>, 1978.</li><li><span class="rk">Müller et al. 2021.</span> Müller et al. Speech is silver, silence is golden: what do ASVspoof-trained models really learn? 2021.</li><li><span class="rk">Müller et al. 2022.</span> Müller et al. Does audio deepfake detection generalize? <i>Interspeech</i>, 2022.</li><li><span class="rk">Nemhauser et al. 1978.</span> Nemhauser, Wolsey and Fisher. An analysis of approximations for maximizing submodular set functions. <i>Math. Programming</i>, 1978.</li><li><span class="rk">Nosofsky 1986.</span> Nosofsky. Attention, similarity, and the identification–categorization relationship. <i>JEP: General</i>, 1986.</li><li><span class="rk">Platt 1999.</span> Platt. Probabilistic outputs for support vector machines. 1999.</li><li><span class="rk">Posner and Keele 1968.</span> Posner and Keele. On the genesis of abstract ideas. <i>J. Experimental Psychology</i>, 1968.</li><li><span class="rk">Rosch and Mervis 1975.</span> Rosch and Mervis. Family resemblances. <i>Cognitive Psychology</i>, 1975.</li><li><span class="rk">Rosch et al. 1976.</span> Rosch et al. Basic objects in natural categories. <i>Cognitive Psychology</i>, 1976.</li><li><span class="rk">Samek et al. 2017.</span> Samek et al. Evaluating the visualization of what a deep neural network has learned. <i>IEEE TNNLS</i>, 2017.</li><li><span class="rk">Siuzdak 2023.</span> Siuzdak. Vocos. 2023.</li><li><span class="rk">Snell et al. 2017.</span> Snell, Swersky and Zemel. Prototypical networks for few-shot learning. <i>NeurIPS</i>, 2017.</li><li><span class="rk">Tak et al. 2022a.</span> Tak et al. Automatic speaker verification spoofing and deepfake detection using wav2vec 2.0 and data augmentation. <i>Odyssey</i>, 2022.</li><li><span class="rk">Tak et al. 2022b.</span> Tak et al. RawBoost: a raw data boosting and augmentation method. <i>ICASSP</i>, 2022.</li><li><span class="rk">Wang and Yamagishi 2023.</span> Wang and Yamagishi. Spoofed training data for speech spoofing countermeasure can be efficiently created using neural vocoders. <i>ICASSP</i>, 2023.</li><li><span class="rk">Wang et al. 2024.</span> Wang et al. ASVspoof 5: crowdsourced speech data, deepfakes, and adversarial attacks at scale. 2024.</li><li><span class="rk">Wang et al. 2026a.</span> Wang, Singaravadivelan and MacLellan. Diffusion models and concept formation (DMCF). 2026.</li><li><span class="rk">Wang et al. 2026b.</span> Wang, Gupta, Zhu and MacLellan. Test-time compositional generalization in diffusion models via concept discovery (TTCG). 2026.</li><li><span class="rk">Wortsman et al. 2022.</span> Wortsman et al. Robust fine-tuning of zero-shot models (WiSE-FT). <i>CVPR</i>, 2022.</li></ul>
+<p class="cap">The full bibliography is in <code>docs/APPROACH.md</code>.</p>
+<h2>Appendix: reproducibility</h2>
+<ul>
+<li>The Docker image scores a directory of audio without network access and matches the reference run on all 1,671 test files to within 3.2 × 10<sup>−6</sup>.</li>
+<li>Every results directory records its code version, input hashes, package versions and command (<code>provenance.json</code>).</li>
+<li>Re-training the XLS-R-1B detector from the repository reproduced the stored validation results to four decimal places at every epoch.</li>
+<li>Explanations: <code>results/concepts/test_explanations.jsonl</code>. Families, criteria and cases: <code>results/concepts/case_studies/</code>,
+built by <code>scripts/prototype_case_studies.py</code>. Evaluation of explanations: <code>results/concepts/experiments/</code>.</li>
+<li>Submission files: <code>submission/candidates/SideQuests_predictions_final_{A,B,C}.tsv</code>.</li>
+</ul>
+<div class="pager"><button type="button" class="pbtn" data-go="15">← 11 Conclusion and future work</button><span class="pnum">Page 17 of 17</span><button type="button" class="pbtn" data-go="17" disabled>End →</button></div></section>
+  </main>
+</div>
+<script>
+(function () {
+  const pages = Array.from(document.querySelectorAll("section.page"));
+  const links = Array.from(document.querySelectorAll("nav.toc a"));
+  const jump = document.getElementById("jump");
+  const prev = document.getElementById("prev"), next = document.getElementById("next"), pageof = document.getElementById("pageof");
+  let cur = 0;
+  function show(i, target) {
+    i = Math.max(0, Math.min(pages.length - 1, i));
+    pages.forEach((p, j) => { p.hidden = j !== i; });
+    links.forEach((a, j) => { if (j === i) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    jump.value = String(i);
+    prev.disabled = i === 0; next.disabled = i === pages.length - 1;
+    pageof.textContent = `Page ${i + 1} of ${pages.length}`;
+    cur = i;
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([pages[i]]).catch(() => {});
+    const el = target ? document.getElementById(target) : null;
+    if (el && el !== pages[i]) el.scrollIntoView({ block: "start" }); else window.scrollTo(0, 0);
+  }
+  function go(i) {
+    i = Math.max(0, Math.min(pages.length - 1, i));
+    if (location.hash !== "#" + pages[i].id) location.hash = pages[i].id; else show(i);
+  }
+  function fromHash() {
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (!id) return show(0);
+    const el = document.getElementById(id);
+    const pg = el ? (el.closest("section.page") || el) : null;
+    const i = pg ? pages.indexOf(pg) : 0;
+    show(i < 0 ? 0 : i, id);
+  }
+  prev.addEventListener("click", () => go(cur - 1));
+  next.addEventListener("click", () => go(cur + 1));
+  jump.addEventListener("change", () => go(parseInt(jump.value, 10)));
+  document.querySelectorAll(".pbtn").forEach((b) => b.addEventListener("click", () => go(parseInt(b.dataset.go, 10))));
+  window.addEventListener("hashchange", fromHash);
+  document.addEventListener("keydown", (ev) => {
+    if (ev.target.closest("input, select, textarea") || ev.metaKey || ev.ctrlKey || ev.altKey) return;
+    if (ev.key === "ArrowRight") go(cur + 1);
+    if (ev.key === "ArrowLeft") go(cur - 1);
+  });
+  fromHash();
+  window.addEventListener("load", () => { const id = decodeURIComponent(location.hash.slice(1)); const el = id && document.getElementById(id);
+    if (!el || el.matches("section.page")) window.scrollTo(0, 0); });
+})();
+</script>
+
+</body></html>

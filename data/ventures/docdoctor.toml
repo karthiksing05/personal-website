@@ -1,0 +1,17 @@
+title = "DocDoctor"
+date = "2025-11"
+hackathon = "AI ATL 2025"
+award = "Best Use of MongoDB Atlas"
+team = "Max Iliev, Joseph Farkas, Isaac Thoman"
+description = """
+DocDoctor started with a story about John, a call center representative who kept losing time hunting for the right documentation while a customer waited on the line. It transcribes live help-desk calls, lets the representative highlight a phrase (or lets our smart highlights do it for them) to surface relevant past reports as expandable cards on a canvas, and drafts a report at the end of the call for them to edit and file. For retrieval, we used Cobweb instead of a vector database, since its information-theoretic similarity outperforms vector search on jargon-heavy content like support tickets.
+"""
+results = [
+  "won Best Use of MongoDB Atlas at AI ATL 2025",
+  "real-time transcription, smart highlights, and LLM-drafted call reports in a single interface",
+  "four parallel stacks: a Python call client (ElevenLabs), an Angular frontend, a Go + MongoDB backend, and a Gemini 2.5 + Cobweb ML stack",
+]
+link = "https://devpost.com/software/docdoctor"
+link_label = "devpost"
+video = "https://www.youtube.com/watch?v=gvgPMQYXBgo"
+github = "https://github.com/karthiksing05/DocDoctor-AI-ATL"

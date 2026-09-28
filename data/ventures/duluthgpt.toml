@@ -1,0 +1,13 @@
+title = "DuluthGPT"
+date = "2023-08"
+description = """
+At my high school, our student body's ratio of participation to population was disproportionately small, and through my work with student leadership, I discerned part of the gap to be due to a decentralized bank of resources - conflicting information and not a single place to easily access everything. So, I created DuluthGPT, an LLM agent that scraped and added data from athletics websites, extracurricular Instagrams, and the student body themselves, and was able to quickly answer fast Q+A with a basic RAG pipeline.
+"""
+results = [
+  "answered over 30,000 queries from students",
+  "increased student engagement by 10%, as measured by customer surveys",
+  "the frequency of topics asked about showed what students actually wanted to know, highlighting AI's two-way value proposition in consumer interaction",
+]
+link = "https://github.com/karthiksing05/duluthgptv2"
+link_label = "github"
+video = ""

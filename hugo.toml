@@ -117,12 +117,17 @@ pagination.pagerSize = 5
           url = "/projects"
           weight = 3
         [[languages.en.menu.main]]
+          identifier = "ventures"
+          name = "ventures"
+          url = "/ventures"
+          weight = 4
+        [[languages.en.menu.main]]
           identifier = "quotebook"
           name = "quotebook"
           url = "/quotebook"
-          weight = 4
+          weight = 5
         [[languages.en.menu.main]]
           identifier = "contactme"
           name = "contact me"
           url = "/contactme"
-          weight = 5
+          weight = 6

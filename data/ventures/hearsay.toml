@@ -1,0 +1,17 @@
+title = "HEARSAY"
+date = "2026-09"
+hackathon = "HackGT 13"
+team = "Team SideQuests"
+description = """
+For the NSA's HEARSAY Audio Authentication Challenge at HackGT 13, we built a synthetic-speech detector out of three fine-tuned self-supervised speech models, and then took on the harder question the organizers actually asked: *why* a clip gets flagged. Building on our lab's work treating diffusion models as concept formation, we organized the detector's representation into a Cobweb concept hierarchy and explained each clip with diffusion prototypes named by those concepts, so that every explanation points back to training audio a person can actually listen to.
+"""
+results = [
+  "0.0317 minDCF (1.44% EER) on the official NSA test set",
+  "0.0274 minDCF (1.05% EER) on 27,779 held-out In-the-Wild recordings",
+  "explanations agree with the detector's decisions at κ = 0.985",
+  "5,013 prototypes sorted into 8 acoustic families, with 21 case studies",
+  "an audit found that file timestamps alone separated the provided classes, so every format shortcut was stripped before training",
+]
+link = "/ventures/hearsay/"
+link_label = "read the technical report"
+video = ""
