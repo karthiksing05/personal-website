@@ -5413,5 +5413,17 @@ class Component extends DCLogic {
   }
 }
 </script>
+<!-- kw-back:start -->
+<script>
+(function () {
+  if (window.top !== window) return;
+  var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "/ventures/back-home.css";
+  document.head.appendChild(l);
+  var d = document.createElement("div");
+  d.innerHTML = "<div class=\"kw-spacer\" aria-hidden=\"true\"></div>\n<nav class=\"kw-strip\" aria-label=\"Karthik's World\"><a class=\"kw-back\" href=\"/ventures/#sidequests\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 11.5 12 4l9 7.5\"/><path d=\"M5.5 10v10h5v-6h3v6h5V10\"/></svg>back to karthik's world</a></nav>\n";
+  while (d.lastChild) document.body.insertBefore(d.lastChild, document.body.firstChild);
+})();
+</script>
+<!-- kw-back:end -->
 </body>
 </html>

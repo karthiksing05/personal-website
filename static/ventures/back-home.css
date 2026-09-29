@@ -1,0 +1,48 @@
+/* "back to karthik's world" bar, pinned to the top of each venture's standalone page */
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/fonts/FiraCode-Latin.woff2") format("woff2");
+}
+
+.kw-spacer { height: 36px; }
+
+.kw-strip {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0;
+  right: 0;
+  z-index: 2147483000;
+  box-sizing: border-box;
+  height: 36px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  background: #1a170f;
+  border-bottom: 1px solid rgba(208, 127, 214, 0.45);
+}
+
+.kw-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 24px;
+  padding: 0 10px;
+  background: #d07fd6;
+  color: #1a170f;
+  font: 600 13px/1 "Fira Code", ui-monospace, Menlo, Consolas, monospace;
+  letter-spacing: 0;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.kw-back:hover { background: #e2a5e6; }
+.kw-back:focus-visible { outline: 2px solid #eceae5; outline-offset: 2px; }
+.kw-back svg { width: 15px; height: 15px; flex: none; }
+
+/* match the site, which is dark by default and light when the viewer prefers light */
+@media (prefers-color-scheme: light) {
+  .kw-strip { background: #eceae5; }
+  .kw-back:focus-visible { outline-color: #1a170f; }
+}
