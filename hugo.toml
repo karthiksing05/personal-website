@@ -112,9 +112,9 @@ pagination.pagerSize = 5
           url = "/interests"
           weight = 2
         [[languages.en.menu.main]]
-          identifier = "theories"
-          name = "theories"
-          url = "/theories"
+          identifier = "research"
+          name = "research"
+          url = "/research"
           weight = 3
         [[languages.en.menu.main]]
           identifier = "ventures"

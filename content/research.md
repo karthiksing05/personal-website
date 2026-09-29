@@ -1,7 +1,7 @@
 +++
 author = "my inspiration and incentive for life itself"
-title = "theories"
-aliases = ["/projects/"]
+title = "research"
+aliases = ["/projects/", "/theories/"]
 +++
 
 > The work is its own reward. *— Sir Arthur Conan Doyle, British writer and physician*
@@ -22,7 +22,7 @@ aliases = ["/projects/"]
 
 ---
 
-# past theories
+# past research
 
 ### *[2025-08-27 - 2025-05-15]* Encoding Model & Topographic Constraints development @ [LIT Lab](https://www.language-intelligence-thought.net/)
 - Recently, I joined Professor Anya Ivanova and began contributing to the development of encoding models, models that can convert latent content that represents stimuli into direct voxel representations of brain states, measured by fMRI data. Over the course of the [project](https://github.com/karthiksing05/litcoder_core_karthik), I worked on creating a novel architecture that combined predictions from various layers of an LLM via attention to best predict brain activations, and found that preprocessing decisions in the pipeline had strong effects as to which layer provided the best correlation, and saw how syntactic decisions were localized in earlier layers and the auditory cortex, whereas semantics occurred in the middle to later layers and the language network.

@@ -95,7 +95,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   <div style="flex: 4;">
     <h2>now</h2>
     <p>
-      I'm actively involved in <a href="/theories">lab efforts</a> that pursue a variety of research 
+      I'm actively involved in <a href="/research">lab efforts</a> that pursue a variety of research 
       <a href="/interests">thrusts</a>, but my immediate goals can all be linked towards developing new 
       strategies of cognition, iterating on knowledge representations, and leveraging properties of the brain and mind in humans to cultivate robust and sustainable learning. In my free time, I write my thoughts, opinions, and stories <a href="/thoughts">here</a>, in the hopes that they inspire and call others to action and discussion. If that's you, <a href="/contactme">reach out</a>!
     </p>
