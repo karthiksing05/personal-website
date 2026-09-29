@@ -5,7 +5,7 @@
     date         required, "YYYY-MM" (the month it was built). Cards from the same month are
                  ordered by filename; give one a day ("YYYY-MM-DD") to control which comes first.
     hackathon    optional, shown as a bubble
-    award        optional, shown as a second bubble
+    award        optional, shown as a bubble; use a list (["...", "..."]) for several
     team         optional, "with ..." line under the title
     description  markdown
     results      list of markdown strings, shown in the results/ folder
@@ -162,7 +162,9 @@
             <span class="venture__bubble">{{ . }}</span>
             {{- end }}
             {{- with $v.award }}
+            {{- range cond (reflect.IsSlice .) . (slice .) }}
             <span class="venture__bubble venture__bubble--award">{{ . }}</span>
+            {{- end }}
             {{- end }}
           </div>
           <h2 class="venture__title">{{ $v.title }}</h2>

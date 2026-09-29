@@ -1,11 +1,13 @@
 title = "SideQuests"
 date = "2026-09"
 hackathon = "HackGT 13"
+award = "Best Use of MongoDB Atlas"
 team = "Max Iliev, Kevin Harvey, Bayan Mardon"
 description = """
 SideQuests came out of a problem three of us kept running into on a study-abroad program this summer: an open afternoon, a layover, or a delayed train in a city we didn't know, and no fast way to turn it into something worth doing. So, you tell SideQuests where you are, when you need to be back, and what you're in the mood for, and it hands you three timed plans of nearby events and places, travel included, in under a second, with every rating you leave making the next plan fit a little better. Under the hood, a small ranker we trained without a single real user scores each stop against your taste, and a graph search over time turns the best of them into afternoons you can actually do.
 """
 results = [
+  "won Best Use of MongoDB Atlas at HackGT 13",
   "VibeMatch, our 1.85M-parameter ranker, beats tuned cosine similarity by 39% (Spearman ρ 0.697 vs. 0.501) on 1,000 unseen users ([model card](https://huggingface.co/karthiksing05/sidequestz-compatibility-classifier))",
   "three varied, timed plans in 0.2 to 0.6 s from a K-best search over a time graph",
   "trained entirely on synthetic data: Qwen3.5-9B on my academic compute wrote 100k event listings and 10k personas, and an LLM judge rated 200k pairs",
