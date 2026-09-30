@@ -1,4 +1,9 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<!-- kw-back:start -->
+<link rel="stylesheet" href="/ventures/back-home.css">
+<div class="kw-spacer" aria-hidden="true"></div>
+<nav class="kw-strip" aria-label="Karthik's World"><a class="kw-back" href="/ventures/#j-space"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h5v-6h3v6h5V10"/></svg>back to karthik's world</a></nav>
+<!-- kw-back:end -->
 <style>
 :root{
   --bg:#fdfcfa;--panel:#ffffff;--ink:#1a1815;--ink2:#54514a;--muted:#8c887e;--hair:#e6e2da;
@@ -577,4 +582,11 @@ const links=[...document.querySelectorAll("aside a")],byId={};links.forEach(a=>b
 new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove("on"));const a=byId[e.target.id];if(a)a.classList.add("on");}}),{rootMargin:"-40% 0px -55% 0px"}).observe;
 document.querySelectorAll("section[id],h3[id]").forEach(s=>{const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove("on"));const a=byId[e.target.id];if(a)a.classList.add("on");}}),{rootMargin:"-40% 0px -55% 0px"});o.observe(s);});
 </script>
+<!-- kw-back:offsets -->
+<style>
+.top{top:36px}
+section[id],h3[id]{scroll-margin-top:100px}
+@media (min-width:641px){aside{top:88px;height:calc(100vh - 88px)}}
+</style>
+<!-- kw-back:offsets-end -->
 </body></html>

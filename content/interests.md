@@ -35,7 +35,7 @@ If any of these ideas sound interesting, [reach out](/contactme)! These are all 
 
   <!-- Image on the right -->
   <div style="flex: 1; min-width: 200px; display: flex; justify-content: center;">
-    <img src="/fortmountain.jpg" alt="Fort Mountain State Park" style="max-width: 100%; height: auto;">
+    <img src="/fortmountain.JPG" alt="Fort Mountain State Park" style="max-width: 100%; height: auto;">
   </div>
 
 </div>

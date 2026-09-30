@@ -6,7 +6,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
 <style>
 .terminal-hover {
   position: relative;
-  color: #d07fd6;
+  color: var(--accent);
   text-decoration: none;
 }
 
@@ -17,7 +17,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   bottom: 0;
   width: 0;
   height: 2px;
-  background-color: #d07fd6;
+  background-color: var(--accent);
   transition: width 0.3s ease;
 }
 
@@ -30,8 +30,8 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   opacity: 0;
   width: 350px;
   background: black;
-  color: #d07fd6;
-  border: 1px solid #d07fd6;
+  color: var(--accent);
+  border: 1px solid var(--accent);
   border-radius: 6px;
   padding: 10px;
   position: absolute;
@@ -42,7 +42,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   transition: opacity 0.3s;
   font-size: 16px;
   line-height: 1.4;
-  box-shadow: 0 0 10px #d07fd6;
+  box-shadow: 0 0 10px var(--accent);
 }
 
 .terminal-hover:hover .terminal-popup {
@@ -68,7 +68,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
 
 <div class="flex-section">
   <div style="flex: 3; text-align: center;">
-    <img src="/georgiatech.jpg" alt="georgia tech" style="max-width: 100%; height: auto;" />
+    <img src="/georgiatech.JPG" alt="georgia tech" style="max-width: 100%; height: auto;" />
   </div>
 
   <div style="flex: 4;">

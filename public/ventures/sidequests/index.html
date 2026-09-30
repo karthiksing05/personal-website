@@ -1,4 +1,9 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!-- kw-back:start -->
+<link rel="stylesheet" href="/ventures/back-home.css">
+<div class="kw-spacer" aria-hidden="true"></div>
+<nav class="kw-strip" aria-label="Karthik's World"><a class="kw-back" href="/ventures/#sidequests"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h5v-6h3v6h5V10"/></svg>back to karthik's world</a></nav>
+<!-- kw-back:end -->
 <title>SideQuests Field Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -150,95 +155,15 @@ pre.code i{font-style:normal;color:var(--sage)}
 .feat button{justify-self:start;margin-top:4px;background:none;border:0;padding:0;font:700 14px var(--sans);color:var(--sage-deep);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 
 /* try it */
-.try{display:grid;grid-template-columns:400px minmax(0,1fr);gap:40px;align-items:start}
+.try{display:grid;grid-template-columns:410px minmax(0,1fr);gap:40px;align-items:start}
 @media (max-width:880px){.try{grid-template-columns:1fr}}
 .guide{position:sticky;top:84px;display:grid;gap:14px}
 @media (max-width:880px){.guide{position:static}}
 .guide ol{margin:0;padding-left:20px;display:grid;gap:10px;color:var(--text2)}
-.phone{width:100%;max-width:390px;margin-inline:auto;height:780px;border-radius:44px;border:10px solid #18211C;background:#F2F1EA;color:#18211C;position:relative;overflow:hidden;box-shadow:0 20px 50px rgba(24,33,28,.18);font-family:var(--sans);font-size:15px;line-height:1.4;display:flex;flex-direction:column}
-.phone *{--pbg:#F2F1EA}
-.scr{flex:1;overflow-y:auto;padding:18px 16px 16px}
-.stat-bar{height:30px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:0 24px;font:700 13px var(--sans);color:#18211C}
-.tabbar{flex:none;height:74px;background:#fff;border-top:1px solid #E3E4DC;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding-bottom:8px}
-.tabbar button{border:0;background:none;display:grid;justify-items:center;gap:2px;font:600 10.5px var(--sans);color:#626A63;cursor:pointer;padding:4px 0}
-.tabbar button.on{color:#4A5F49}
-.tabbar svg{width:24px;height:24px}
-.tabbar .plus{width:54px;height:54px;border-radius:50%;background:#899E88;border:4px solid #F2F1EA;box-shadow:0 6px 16px rgba(0,0,0,.18);display:grid;place-items:center;margin-top:-26px;color:#18211C;font:600 30px/1 var(--sans)}
-.ph1{font:800 26px var(--mono);letter-spacing:-.04em;color:#18211C}
-.pey{font:600 11.5px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:#626A63}
-.pc{background:#fff;border-radius:16px;padding:14px;border:1px solid #E3E4DC}
-.pbtn{width:100%;height:48px;border-radius:14px;border:0;background:#899E88;color:#18211C;font:700 16px var(--sans);cursor:pointer}
-.pbtn.dark{background:#18211C;color:#fff}
-.pbtn.ghost{background:#fff;border:1px solid #C3C7BD}
-.pbtn:disabled{background:#C3C7BD;cursor:default}
-.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:#E4E3DA;border-radius:10px;padding:2px;gap:2px}
-.seg button{border:0;background:none;border-radius:8px;height:32px;font:500 13.5px var(--sans);color:#3A433D;cursor:pointer}
-.seg button.on{background:#fff;font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.12);color:#18211C}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chips button{height:34px;padding:0 13px;border-radius:17px;border:1px solid #CFD2C8;background:#fff;font:600 13.5px var(--sans);color:#18211C;cursor:pointer}
-.chips button.on{background:#899E88;border-color:#899E88}
-.lbl{font:700 11.5px var(--sans);letter-spacing:.05em;text-transform:uppercase;color:#626A63;margin:14px 0 6px}
-.blk{border-radius:10px;padding:8px 10px;font-size:13px;border:1px solid #CFD2C8;background:#EFEFF4;color:#3A433D;cursor:pointer;text-align:left;width:100%}
-.blk b{display:block;font-size:14px;color:#18211C}
-.blk.sq{background:rgba(137,158,136,.2);border-color:rgba(137,158,136,.5)}
-.blk.tr{background:#EEF3FD;border:1px dashed #9DB6EE;color:#1E3A8A}
-.blk.gp{background:#F7E9E0;border-color:#E0B49B;color:#6B3419}
-.blk.gp b{color:#6B3419}
-.tl{display:grid;grid-template-columns:44px 1fr;gap:6px 8px;align-items:start}
-.tl .t{font:600 11px var(--sans);color:#626A63;padding-top:9px;text-align:right}
-.stepper{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:4px 0 14px}
-.stepper button{border:0;background:none;display:grid;justify-items:center;gap:3px;font:600 11.5px var(--sans);color:#626A63;cursor:pointer}
-.stepper span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1.5px solid #C3C7BD;background:#fff;font:700 12.5px var(--sans);color:#626A63}
-.stepper .on span,.stepper .done span{background:#899E88;border-color:#899E88;color:#18211C}
-.stepper .on{color:#18211C;font-weight:800}
-.fld{background:#fff;border:1px solid #E3E4DC;border-radius:12px;padding:8px 12px;display:grid;gap:2px}
-.fld small{font-size:11.5px;color:#626A63}
-.fld select,.fld input,.fld textarea{border:0;background:transparent;font:600 15px var(--sans);color:#18211C;padding:0;width:100%;outline:none;resize:none}
-.opts{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
-.opt{flex:none;width:210px;scroll-snap-align:start;text-align:left;background:#fff;border:1px solid #E3E4DC;border-radius:16px;padding:12px;cursor:pointer;display:grid;gap:4px}
-.opt.on{border:2px solid #899E88;padding:11px}
-.opt .k{font:800 11px var(--sans);letter-spacing:.06em;color:#4A5F49}
-.opt .n{font:700 15.5px var(--sans);color:#18211C}
-.opt .s{font-size:12.5px;color:#3A433D}
-.tagc{display:inline-block;font:700 11px var(--sans);padding:2px 7px;border-radius:6px;background:rgba(137,158,136,.25);color:#4A5F49;margin-left:6px}
-.route{background:#fff;border-radius:16px;border:1px solid #E3E4DC;padding:10px 12px}
-.rp{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 0}
-.rp .dot{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:700 11.5px var(--sans);background:#899E88;color:#18211C}
-.rp .dot.a{background:#4A5F49;color:#fff}.rp .dot.b{background:#18211C;color:#fff}
-.rp .leg{width:10px;height:10px;border-radius:50%;border:2px solid #1E3A8A;margin-left:6px}
-.rp .t1{font:600 14.5px var(--sans);color:#18211C}
-.rp .t2{font-size:12px;color:#626A63}
-.rp .legt{font:500 12.5px var(--sans);color:#1E3A8A}
-.mv{display:flex;gap:2px}
-.mv button{width:30px;height:30px;border-radius:8px;border:1px solid #E3E4DC;background:#F8F7F2;cursor:pointer;color:#3A433D;font-size:14px}
-.mv button:disabled{opacity:.3;cursor:default}
-.ok{color:#166534;font-weight:700}.late{color:#B91C1C;font-weight:700}
-.loader{display:grid;justify-items:center;gap:14px;padding:60px 0;text-align:center;color:#3A433D}
-.spin{width:52px;height:52px;border-radius:14px;background:#899E88;display:grid;place-items:center;animation:rot 1.2s linear infinite}
-@keyframes rot{to{transform:rotate(360deg)}}
-.post{display:grid;gap:8px}
-.av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:700 12.5px var(--sans);color:#fff;flex:none}
-.prog{height:6px;border-radius:3px;background:#E3E4DC;overflow:hidden}
-.prog i{display:block;height:100%;background:#899E88}
-.bub{max-width:240px;padding:8px 12px;border-radius:18px;font-size:14px}
-.bub.me{justify-self:end;background:#899E88;color:#18211C}
-.bub.th{justify-self:start;background:#fff;border:1px solid #E3E4DC}
-.bub small{display:block;font-size:11px;color:#626A63}
-.toast{position:absolute;left:16px;right:16px;bottom:88px;background:#18211C;color:#F2F1EA;border-radius:12px;padding:10px 14px;font:600 14px var(--sans);opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none;z-index:5}
-.toast.show{opacity:1;transform:none}
-.sheet{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:flex-end;z-index:4}
-.sheet>div{background:#fff;border-radius:24px 24px 0 0;padding:18px 18px 26px;width:100%;display:grid;gap:10px;max-height:90%;overflow:auto}
-.starsr{display:flex;gap:4px;justify-content:center}
-.starsr button{width:44px;height:44px;border:0;background:none;font-size:32px;color:#A9AFA6;cursor:pointer}
-.starsr button.on{color:#899E88}
-.tbar{display:grid;grid-template-columns:84px 1fr;gap:8px;align-items:center;font-size:13px}
-.tbar i{display:block;height:8px;border-radius:4px;background:#899E88;transition:width .4s}
-.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.stat3 button{border:1px solid #E3E4DC;background:#fff;border-radius:12px;padding:8px 4px;font:600 13px var(--sans);cursor:pointer;color:#18211C}
-.stat3 button.on{border:2px solid var(--c);padding:7px 3px}
-.stat3 i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:5px}
-.mini{font-size:12.5px;color:#626A63}
-.share{display:flex;justify-content:space-between;padding:7px 10px;border-radius:10px;background:#F8F7F2;font-variant-numeric:tabular-nums;font-size:14px}
+.try>*{min-width:0}
+.stage{--s:1;width:calc(410px*var(--s));height:calc(864px*var(--s));margin-inline:auto;position:relative}
+.frame{position:absolute;top:0;left:0;width:410px;height:864px;transform:scale(var(--s));transform-origin:top left;border:10px solid #18211C;border-radius:54px;overflow:hidden;background:#F2F1EA;box-shadow:0 20px 50px rgba(24,33,28,.18)}
+.frame iframe{display:block;width:390px;height:844px;border:0}
 footer{padding-block:40px 60px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 </style>
 
@@ -344,33 +269,28 @@ plans = pick_diverse(top_paths)</pre>
 
 <!-- FEATURES -->
 <section id="features"><div class="wrap">
-  <div class="head"><p class="eyebrow">Features</p><h2>What you can do</h2><p class="lede">Each one opens in the working mock below.</p></div>
+  <div class="head"><p class="eyebrow">Features</p><h2>What you can do</h2><p class="lede">All of them work in the clickable prototype below.</p></div>
   <div class="g4" id="featGrid"></div>
 </div></section>
 
 <!-- TRY -->
 <section id="try"><div class="wrap">
-  <div class="head"><p class="eyebrow">Try it</p><h2>A pseudo-interactive SideQuests</h2><p class="lede">Everything here runs on sample data in your browser. Nothing is sent anywhere.</p></div>
+  <div class="head"><p class="eyebrow">Try it</p><h2>Tap through SideQuests</h2><p class="lede">The full clickable prototype of the app. Tap through it the way you would on your phone.</p></div>
   <div class="try">
-    <div class="phone" id="phone" aria-label="SideQuests app mock">
-      <div class="stat-bar"><span>2:10</span><span>● ● ▮</span></div>
-      <div class="scr" id="scr"></div>
-      <div class="toast" id="toast" role="status"></div>
-      <nav class="tabbar" id="tabbar" aria-label="App tabs"></nav>
-    </div>
+    <div><div class="stage" id="stage"><div class="frame"><iframe id="proto" src="app/prototype.html" title="SideQuests clickable prototype" loading="lazy"></iframe></div></div>
+      <p class="small muted" style="text-align:center;margin-top:10px"><a href="app/prototype.html" target="_blank" rel="noopener">Open the prototype on its own page</a></p></div>
     <div class="guide">
       <div class="card"><h3>Things to try</h3>
         <ol style="margin-top:10px">
-          <li>Tap <b>+</b>, set your window and vibe, and get three options.</li>
-          <li>Change the back-by time to 5:30 PM and see the plans shrink to fit.</li>
-          <li>Move a stop up or down and watch the transit re-time, and turn red if you'd be late.</li>
-          <li>Start the plan, then find it on Home.</li>
-          <li>On the Forum, post that you're free or join Maya's open plan.</li>
-          <li>In Groups, send a message or add an expense and check the split.</li>
-          <li>Rate a past outing and watch your taste profile move in Account.</li>
+          <li>Watch the opening animation, then tap <b>Use the demo account</b> and <b>Sign in</b>. Or tap <b>Create an account</b> to run the 5-step profile setup.</li>
+          <li>On <b>Home</b>, swipe between sidequest timelines, switch to the map, and tap a block for details. Try the <b>Calendar</b> and <b>Past</b> tabs, and rate an event.</li>
+          <li>Tap <b>+</b> and go Where → When → Vibe → Review. Tap a stop for details, drag ☰ to reorder, and watch the transit re-time.</li>
+          <li>Open the <b>Forum</b>: filter, post that you're free, and request to join a plan.</li>
+          <li>In <b>Groups</b>, open a chat, the album and <b>Splits</b>; add an expense and check the split.</li>
+          <li>In <b>Account</b>, set your status and turn on agentic checkout, then use <b>•••</b> on a sidequest to get tickets with Muse.</li>
         </ol></div>
-      <div class="row"><button class="btn" type="button" id="resetApp">Reset the demo</button></div>
-      <p class="small muted">Stops, times and people are illustrative. Travel times use a simple distance model, like the app's fallback.</p>
+      <div class="row"><button class="btn" type="button" id="resetApp">Restart the prototype</button></div>
+      <p class="small muted">This is the design prototype the iOS app was built from, running on sample data. Nothing is sent anywhere, and payments are a sandbox.</p>
     </div>
   </div>
 </div></section>
@@ -406,7 +326,7 @@ safe("arch",function(){
    mongo:{x:600,y:90,w:160,h:80,t:"MongoDB",s:"loopback only",z:"On the VPS",d:[["Role","The one database. Activities carry their own 1024-d vectors."],["Tech","2dsphere, TTL, unique and compound indexes."],["Holds","~9,000 activities, plus every user, plan and rating."]]},
    ml:{x:600,y:330,w:160,h:80,t:"ML service",s:"FastAPI, CPU",z:"On the VPS",d:[["Role","Builds profile texts, embeds them, scores candidates."],["Tech","FastAPI, PyTorch, Qwen3 embeddings, VibeMatch, Jev."],["Talks to","Only the Go API calls it."]]},
    ingest:{x:810,y:80,w:170,h:90,t:"Ingestion",s:"crawler",z:"Offline",off:1,d:[["Role","Events hourly, places weekly."],["Tech","Ticketmaster, Resident Advisor, Google Places, OSM → Muse Spark → Gemini → Qwen."],["Writes to","MongoDB, de-duplicated by source key."]]},
-   train:{x:810,y:320,w:170,h:90,t:"Training",s:"MPCDF Raven",z:"Offline",off:1,d:[["Role","Made the synthetic data and trained VibeMatch."],["Tech","Qwen3.5-9B with vLLM on A100s; W&B logs."],["Ships to","Hugging Face Hub, loaded by the ML service."]]},
+   train:{x:810,y:320,w:170,h:90,t:"Training",s:"my academic compute",z:"Offline",off:1,d:[["Role","Made the synthetic data and trained VibeMatch."],["Tech","Qwen3.5-9B with vLLM on A100s; W&B logs."],["Ships to","Hugging Face Hub, loaded by the ML service."]]},
    meta:{x:300,y:455,w:190,h:66,t:"Meta",s:"Graph API · Muse",z:"External",d:[["Role","Facebook likes as suggested ratings; Muse runs ticket checkout."],["Tech","Graph API v26.0; Muse via the Meta Model API with function tools."]]},
    pay:{x:510,y:455,w:190,h:66,t:"Stripe · merchant",s:"Visa TAP signed",z:"External",d:[["Role","Payments for agentic checkout, in test mode."],["Tech","Shared Payment Tokens capped at the quote; requests signed with Visa TAP."]]},
    emb:{x:790,y:455,w:190,h:66,t:"Embeddings",s:"Vertex → HF → local",z:"External",d:[["Role","Vectors that aren't cached yet."],["Tech","Vertex AI, Hugging Face router, then local Qwen; parity-checked."]]}
@@ -504,208 +424,12 @@ safe("dag",function(){
   set(4);
 });
 
-/* ---------- the app mock ---------- */
-var app;
-safe("app",function(){
-  var P={ts:{n:"Tech Square",p:[0,0]},home:{n:"North Ave Apts",p:[0.4,0.5]},
-    sky:{n:"Skyline Park rooftop",p:[2.2,1.0],d:80,c:"Games + views",pr:"$$"},tun:{n:"Krog Street Tunnel murals",p:[2.6,-0.3],d:45,c:"Street art",pr:"Free"},mkt:{n:"Krog Street Market",p:[2.7,-0.4],d:70,c:"Food hall",pr:"$"},
-    pie:{n:"Piedmont Park",p:[1.3,1.2],d:75,c:"Park",pr:"Free"},gar:{n:"Atlanta Botanical Garden",p:[1.4,1.6],d:80,c:"Garden",pr:"$$"},pcm:{n:"Ponce City Market",p:[2.2,0.95],d:60,c:"Food hall",pr:"$"},
-    fri:{n:"Frisbee meetup, Active Oval",p:[1.2,1.1],d:60,c:"Meet people",pr:"Free"},bgc:{n:"Board game café",p:[0.9,-0.6],d:70,c:"Games",pr:"$"},few:{n:"Sweet Auburn food walk",p:[1.1,-1.3],d:75,c:"Food",pr:"$"},
-    cen:{n:"Centennial Olympic Park",p:[-0.9,-1.4],d:45,c:"Park",pr:"Free"},civ:{n:"Center for Civil and Human Rights",p:[-1.0,-1.2],d:70,c:"Museum",pr:"$$"}};
-  var OPTS=[{k:"A",name:"Rooftop + murals",tags:["Outdoors","Art","Food"],stops:["sky","tun","mkt"]},
-    {k:"B",name:"Park + food hall",tags:["Outdoors","Chill","Food"],stops:["pie","gar","pcm"]},
-    {k:"C",name:"Meet people",tags:["Meet people","Active","Food"],stops:["fri","bgc","few"]},
-    {k:"D",name:"Downtown loop",tags:["Art","Chill","Nerdy"],stops:["cen","civ","mkt"]}];
-  function dist(a,b){return Math.hypot(P[a].p[0]-P[b].p[0],P[a].p[1]-P[b].p[1])}
-  function leg(a,b){var d=dist(a,b);if(d<=0.8)return{m:"Walk",min:Math.max(3,Math.round(d*20))};return{m:"MARTA",min:Math.round(8+d*3.5)}}
-  function fmt(t){var h=Math.floor(t/60),m=t%60,ap=h>=12?"PM":"AM";h=h%12||12;return h+":"+(m<10?"0":"")+m+" "+ap}
-  function route(stops,start,end,t0,back){var out={legs:[],times:[]},t=t0,prev=start;
-    stops.forEach(function(s){var l=leg(prev,s);out.legs.push(l);t+=l.min+5;out.times.push([t,t+P[s].d]);t+=P[s].d;prev=s});
-    var lf=leg(prev,end);out.legs.push(lf);t+=lf.min;out.arrive=t;out.late=Math.max(0,t-back);return out}
-  function fit(stops,st){var s=stops.slice();while(s.length>1&&route(s,st.start,st.end,st.t0,st.back).late>0)s.pop();return s}
-  var TIMES=[[780,"1:00 PM"],[810,"1:30 PM"],[850,"2:10 PM"],[900,"3:00 PM"]],BACK=[[1050,"5:30 PM"],[1080,"6:00 PM"],[1110,"6:30 PM"],[1140,"7:00 PM"]];
-  var PICKS=["Outdoors","Food","Art","Music","Chill","Active","Meet people","Nerdy"];
-  var S;
-  function fresh(){return{tab:"home",homeSeg:"it",create:null,itins:[{title:"Free Friday afternoon",blocks:[["busy","CS 3510 lecture",780,830],["tr","MARTA to Ponce City Market",840,865],["sq","Skyline Park rooftop",870,960],["tr","Walk the Eastside Trail",960,980],["sq","Krog Street Tunnel murals",980,1050],["gp","Group dinner, Krog Street Market",1080,1170]]}],sel:0,
-    past:[{t:"Board game café",w:"with 3 others",r:0,cat:"Social"},{t:"Eastside Trail walk",w:"solo",r:0,cat:"Outdoors"},{t:"Jazz night in Decatur",w:"with Maya",r:5,cat:"Nightlife"},{t:"Atlanta Food Walk",w:"with 2 others",r:4,cat:"Food"}],
-    taste:{Outdoors:80,Food:66,Art:52,Social:58,Nightlife:34},status:"open",fb:false,
-    forum:{posted:false,joined:false,msg:false},forumScope:"all",
-    groups:[{id:"g1",name:"Krog St dinner crew",sub:"3 people · Today 6 PM",msgs:[["Maya","Table for 3 at 6?"],["Dev","Coffee's on me, it's in Splits."],["me","See you there!"]],exp:[["Dumplings",4200,"Dev",["You","Maya","Dev"]],["MARTA fares",750,"You",["You","Maya","Dev"]]]}],
-    thread:null,threadSeg:"chat",sheet:null}}
-  S=fresh();
-  var scr=$("#scr"),tb=$("#tabbar"),toastEl=$("#toast"),tt=null;
-  function toast(m){toastEl.textContent=m;toastEl.classList.add("show");clearTimeout(tt);tt=setTimeout(function(){toastEl.classList.remove("show")},2200)}
-  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
-  var IC={home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>',forum:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16 14.6c2.8.2 4.8 2 5.5 5"/></svg>',groups:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H9l-5 4z"/></svg>',account:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3.2"/><path d="M6 18.5c1.4-2.3 3.5-3.5 6-3.5s4.6 1.2 6 3.5"/></svg>'};
-  function tabbar(){var t=S.create?"plus":S.thread?"groups":S.tab;
-    tb.innerHTML=[["home","Home"],["forum","Forum"],["plus",""],["groups","Groups"],["account","Account"]].map(function(x){
-      if(x[0]==="plus")return '<button type="button" data-act="newplan" aria-label="New sidequest"><span class="plus">+</span></button>';
-      return '<button type="button" data-act="tab" data-v="'+x[0]+'" class="'+(t===x[0]?"on":"")+'">'+IC[x[0]]+x[1]+'</button>'}).join("")}
-  function hdr(ey,title){return '<p class="pey">'+ey+'</p><h1 class="ph1" style="margin:2px 0 12px">'+title+'</h1>'}
-
-  /* screens */
-  function vHome(){var h=hdr("Friday, September 25","Your sidequests");
-    h+='<div class="seg" style="margin-bottom:12px"><button type="button" data-act="homeSeg" data-v="it" class="'+(S.homeSeg==="it"?"on":"")+'">Itineraries</button><button type="button" data-act="homeSeg" data-v="past" class="'+(S.homeSeg==="past"?"on":"")+'">Past</button></div>';
-    if(S.homeSeg==="past")return h+vPast();
-    var un=S.past.filter(function(p){return !p.r}).length;
-    if(un)h+='<button type="button" class="pc" data-act="homeSeg" data-v="past" style="width:100%;text-align:left;display:flex;gap:10px;align-items:center;cursor:pointer;margin-bottom:12px"><span style="width:36px;height:36px;border-radius:10px;background:rgba(137,158,136,.25);display:grid;place-items:center;color:#4A5F49">★</span><span style="flex:1"><b>'+un+' past events to rate</b><br><span class="mini">Ratings tune what we suggest next</span></span><span style="color:#4A5F49;font-weight:700">Rate</span></button>';
-    h+='<div class="chips" style="margin-bottom:10px">'+S.itins.map(function(it,i){return '<button type="button" data-act="selItin" data-v="'+i+'" class="'+(S.sel===i?"on":"")+'">'+esc(it.title)+'</button>'}).join("")+'</div>';
-    var it=S.itins[S.sel];
-    h+='<div class="pc"><div class="tl">'+it.blocks.map(function(b,i){return '<span class="t">'+fmt(b[2]).replace(" PM","").replace(" AM","")+'</span><button type="button" class="blk '+b[0]+'" data-act="block" data-v="'+i+'"><b>'+esc(b[1])+'</b>'+fmt(b[2])+'–'+fmt(b[3])+(b[0]==="gp"?' · 3 going':'')+'</button>'}).join("")+'</div></div>';
-    h+='<p class="mini" style="text-align:center;margin-top:10px">Tap a block to open it · tap + to plan a new one</p>';return h}
-  function vPast(){return '<p class="mini" style="margin-bottom:10px">Events you went to. Ratings update your taste profile.</p><div class="pc" style="padding:4px 14px">'+S.past.map(function(p,i){return '<div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:'+(i<S.past.length-1?"1px solid #E3E4DC":"0")+'"><span style="width:10px;height:10px;border-radius:50%;background:#899E88"></span><span style="flex:1"><b>'+esc(p.t)+'</b><br><span class="mini">'+esc(p.w)+'</span></span>'+(p.r?'<span style="color:#899E88;letter-spacing:1px">'+"★".repeat(p.r)+'</span>':'<button type="button" class="chips" data-act="rate" data-v="'+i+'" style="height:30px;padding:0 12px;border-radius:15px;border:0;background:#899E88;font:700 13px var(--sans);cursor:pointer">Rate</button>')+'</div>'}).join("")+'</div>'}
-
-  function vCreate(){var c=S.create,st=["Where","When","Vibe","Review"];
-    var h='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><button type="button" data-act="cancel" style="border:0;background:none;color:#4A5F49;font:600 15px var(--sans);cursor:pointer;padding:0">Cancel</button><b>New sidequest</b><span style="width:44px"></span></div>';
-    h+='<div class="stepper">'+st.map(function(s,i){return '<button type="button" data-act="step" data-v="'+i+'" class="'+(i===c.step?"on":i<c.step?"done":"")+'"><span>'+(i<c.step?"✓":i+1)+'</span>'+s+'</button>'}).join("")+'</div>';
-    if(c.step===0){h+='<h2 class="ph1" style="font-size:21px;margin-bottom:12px">Where do you start and end?</h2>';
-      h+='<div class="fld"><small>A · Start</small><select data-bind="start"><option value="ts">Tech Square (current location)</option><option value="home">North Ave Apts</option></select></div><div style="height:8px"></div>';
-      h+='<div class="fld"><small>B · End by the end time</small><select data-bind="end"><option value="home">Home · North Ave Apts</option><option value="ts">Same as start</option></select></div>';
-      h+='<p class="lbl">How far will you go in between?</p><div class="chips">'+["Walkable","Transit","Anywhere"].map(function(x){return '<button type="button" data-act="range" data-v="'+x+'" class="'+(c.range===x?"on":"")+'">'+x+'</button>'}).join("")+'</div>';
-      h+='<p class="lbl">Can you provide a ride?</p><div class="chips">'+["I can drive","I'll cover rides","No ride"].map(function(x){return '<button type="button" data-act="ride" data-v="'+esc(x)+'" class="'+(c.ride===x?"on":"")+'">'+x+'</button>'}).join("")+'</div>'}
-    if(c.step===1){h+='<h2 class="ph1" style="font-size:21px;margin-bottom:12px">When are you free?</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">';
-      h+='<div class="fld"><small>Start</small><select data-bind="t0">'+TIMES.map(function(t){return '<option value="'+t[0]+'"'+(c.t0===t[0]?" selected":"")+'>'+t[1]+'</option>'}).join("")+'</select></div>';
-      h+='<div class="fld"><small>Back at end by</small><select data-bind="back">'+BACK.map(function(t){return '<option value="'+t[0]+'"'+(c.back===t[0]?" selected":"")+'>'+t[1]+'</option>'}).join("")+'</select></div></div>';
-      h+='<div class="pc" style="margin-top:12px;background:rgba(137,158,136,.18);border:0">Leave '+P[c.start].n+' at '+fmt(c.t0)+'. We plan backwards so you\'re at '+P[c.end].n+' by '+fmt(c.back)+'.</div>';
-      h+='<p class="lbl">Your calendar · Fri, Sep 25</p><div class="pc" style="font-size:13.5px;display:grid;gap:6px"><div>1:00–1:50 PM · CS 3510 lecture</div><div>7:30 PM · Trivia night</div></div>'}
-    if(c.step===2){h+='<h2 class="ph1" style="font-size:21px;margin-bottom:12px">What are you in the mood for?</h2>';
-      h+='<div class="fld"><small>Say it or type it</small><textarea rows="2" data-bind="mood">'+esc(c.mood)+'</textarea></div>';
-      h+='<p class="lbl">Quick picks</p><div class="chips">'+PICKS.map(function(x){return '<button type="button" data-act="pick" data-v="'+x+'" class="'+(c.picks.indexOf(x)>=0?"on":"")+'">'+x+'</button>'}).join("")+'</div>';
-      h+='<p class="lbl">Budget</p><div class="chips">'+["Free","$","$$","$$$"].map(function(x){return '<button type="button" data-act="budget" data-v="'+x+'" class="'+(c.budget===x?"on":"")+'">'+x+'</button>'}).join("")+'</div>';
-      h+='<p class="lbl">Who\'s coming</p><div class="chips">'+["Just me","Friends only","Open to all"].map(function(x){return '<button type="button" data-act="who" data-v="'+x+'" class="'+(c.who===x?"on":"")+'">'+x+'</button>'}).join("")+'</div>'}
-    if(c.step===3)h+=vReview();
-    h+='<div style="display:grid;grid-template-columns:100px 1fr;gap:8px;margin-top:16px">'+(c.step>0?'<button type="button" class="pbtn ghost" data-act="back">Back</button>':'<span></span>')+(c.step<3?'<button type="button" class="pbtn" data-act="next">'+(c.step===2?"Find sidequests":"Next")+'</button>':'<button type="button" class="pbtn" data-act="startPlan"'+(c.loading?" disabled":"")+'>Start this sidequest</button>')+'</div>';
-    return h}
-  function vReview(){var c=S.create;
-    if(c.loading)return '<div class="loader"><div class="spin"><svg width="30" height="30" viewBox="0 0 64 64"><path d="M38 14 H29 C22.5 14 19 17.5 19 22 C19 26.5 22.5 30 29 30 H35 C41.5 30 45 33.5 45 38 C45 42.5 41.5 46 35 46 H17" fill="none" stroke="#18211C" stroke-width="6" stroke-linecap="round"/></svg></div><b>'+c.loadMsg+'</b></div>';
-    var h='<h2 class="ph1" style="font-size:21px;margin-bottom:4px">Pick a sidequest</h2><p class="mini" style="margin-bottom:10px">'+fmt(c.t0)+' – back by '+fmt(c.back)+' · '+c.opts.length+' options · reorder stops with the arrows</p>';
-    h+='<div class="opts">'+c.opts.map(function(o,i){var r=route(o.stops,c.start,c.end,c.t0,c.back);return '<button type="button" class="opt '+(c.oi===i?"on":"")+'" data-act="opt" data-v="'+i+'"><span class="k">OPTION '+o.k+(i===0?'<span class="tagc">Best match</span>':'')+'</span><span class="n">'+o.name+'</span><span class="s">'+o.stops.map(function(s){return P[s].n.split(",")[0]}).join(" → ")+'</span><span class="s" style="color:#626A63">'+o.stops.length+' stops · '+r.legs.filter(function(l){return l.m==="MARTA"}).length+' transit legs</span></button>'}).join("")+'</div>';
-    var o=c.opts[c.oi],r=route(o.stops,c.start,c.end,c.t0,c.back);
-    h+='<div style="display:flex;justify-content:space-between;margin:10px 0 6px" class="mini"><span>Move stops to reorder</span><span class="'+(c.retimed?"ok":"")+'">'+(c.retimed?"✓ Transit times updated":"")+'</span></div>';
-    h+='<div class="route"><div class="rp"><span class="dot a">A</span><span><span class="t1">'+P[c.start].n+'</span><br><span class="t2">Leave '+fmt(c.t0)+'</span></span><span></span></div>';
-    o.stops.forEach(function(s,i){var l=r.legs[i];h+='<div class="rp"><span class="leg"></span><span class="legt">'+l.m+' · '+l.min+' min</span><span></span></div>';
-      h+='<div class="rp"><span class="dot">'+(i+1)+'</span><span><span class="t1">'+P[s].n+'</span><br><span class="t2">'+fmt(r.times[i][0])+'–'+fmt(r.times[i][1])+' · '+P[s].c+' · '+P[s].pr+'</span></span><span class="mv"><button type="button" data-act="mv" data-v="'+i+'" data-d="-1" aria-label="Move up"'+(i===0?" disabled":"")+'>↑</button><button type="button" data-act="mv" data-v="'+i+'" data-d="1" aria-label="Move down"'+(i===o.stops.length-1?" disabled":"")+'>↓</button></span></div>'});
-    var lf=r.legs[r.legs.length-1];h+='<div class="rp"><span class="leg"></span><span class="legt">'+lf.m+' · '+lf.min+' min</span><span></span></div>';
-    h+='<div class="rp"><span class="dot b">B</span><span><span class="t1">'+P[c.end].n+'</span><br>'+(r.late?'<span class="late">Arrive '+fmt(r.arrive)+' · '+r.late+' min past '+fmt(c.back)+'</span>':'<span class="t2">Arrive '+fmt(r.arrive)+' · </span><span class="ok">back by '+fmt(c.back)+' ✓</span>')+'</span><span></span></div></div>';
-    return h}
-  function genOptions(){var c=S.create;var st={start:c.start,end:c.end,t0:c.t0,back:c.back};
-    var opts=OPTS.map(function(o){var sc=o.tags.filter(function(t){return c.picks.indexOf(t)>=0}).length;if(c.budget==="Free")sc-=o.stops.filter(function(s){return P[s].pr!=="Free"}).length*.3;return{k:"",name:o.name,stops:fit(o.stops,st),sc:sc}});
-    opts.sort(function(a,b){return b.sc-a.sc});opts=opts.slice(0,3);opts.forEach(function(o,i){o.k="ABC"[i]});c.opts=opts;c.oi=0;c.retimed=false}
-
-  function vForum(){var f=S.forum,h=hdr("Midtown Atlanta · 2 mi","Forum");
-    h+=f.posted?'<div class="pc" style="background:#EEF3FD;border-color:#9DB6EE;margin-bottom:12px"><p class="pey" style="color:#1E3A8A">Your post · live</p><b>Free until 6:30 PM near Tech Square</b><p class="mini">Visible to everyone within 2 mi</p><button type="button" data-act="unpost" style="margin-top:6px;border:0;background:none;color:#B91C1C;font:600 13px var(--sans);cursor:pointer;padding:0">Take down</button></div>'
-      :'<div class="pc" style="margin-bottom:12px"><b>Bored right now?</b><p class="mini" style="margin:2px 0 10px">Post that you\'re free. Choose who sees it.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button type="button" class="pbtn ghost" data-act="post" style="height:40px;font-size:14px">Friends only</button><button type="button" class="pbtn" data-act="post" style="height:40px;font-size:14px">Everyone nearby</button></div></div>';
-    h+='<div class="chips" style="margin-bottom:12px">'+[["all","All"],["plans","Open plans"],["free","Free now"]].map(function(x){return '<button type="button" data-act="fscope" data-v="'+x[0]+'" class="'+(S.forumScope===x[0]?"on":"")+'">'+x[1]+'</button>'}).join("")+'</div>';
-    var left=f.joined?1:2,going=f.joined?5:4;
-    var posts=[];
-    if(S.forumScope!=="free")posts.push('<div class="pc post"><div style="display:flex;gap:10px;align-items:center"><span class="av" style="background:#1D4ED8">MR</span><span style="flex:1"><b>Maya R.</b> <span class="mini">· Friend</span><br><span class="mini">Hosting · 0.4 mi away</span></span><span class="tagc">Open plan</span></div><b style="font-size:16px">Sunset + tacos on the BeltLine</b><span class="mini">Today · 5:30–8 PM · Eastside Trail → Ladybird → Ponce roof · 84% match</span><div class="prog"><i style="width:'+(going/6*100)+'%"></i></div><span class="mini">'+going+' going · <b>'+left+' of 6 spots left</b> · locks 5:00 PM</span>'+(f.joined?'<button type="button" class="pbtn ghost" disabled style="height:40px;font-size:14px;background:#E6F4EA;color:#166534">✓ You\'re in · group chat created</button>':'<button type="button" class="pbtn" data-act="join" style="height:40px;font-size:14px">Request to join</button>')+'</div>');
-    if(S.forumScope!=="plans")posts.push('<div class="pc post"><div style="display:flex;gap:10px;align-items:center"><span class="av" style="background:#0F766E">DP</span><span style="flex:1"><b>Dev P.</b> <span class="mini">· Friend</span><br><span class="mini">0.2 mi away</span></span><span class="tagc" style="background:#EEF3FD;color:#1E3A8A">Free now</span></div><span>Free until 5 near Tech Square. Down for coffee or a walk.</span>'+(f.msg?'<button type="button" class="pbtn ghost" disabled style="height:40px;font-size:14px">Message sent</button>':'<button type="button" class="pbtn ghost" data-act="plantog" style="height:40px;font-size:14px;border-color:#899E88;color:#4A5F49">Plan together</button>')+'</div>');
-    if(S.forumScope!=="plans")posts.push('<div class="pc post"><div style="display:flex;gap:10px;align-items:center"><span class="av" style="background:#9D174D">PK</span><span style="flex:1"><b>Priya K.</b><br><span class="mini">Airport · 7 mi away</span></span><span class="tagc" style="background:#EEF3FD;color:#1E3A8A">Free now</span></div><span>Layover at ATL until 7 PM. Anyone near the airport want to grab food?</span></div>');
-    if(S.forumScope!=="free")posts.push('<div class="pc post"><div style="display:flex;gap:10px;align-items:center"><span class="av" style="background:#4A5F49">GT</span><span style="flex:1"><b>GT Outdoors Club</b><br><span class="mini">Hosting · 1.1 mi away</span></span><span class="tagc">Open plan</span></div><b style="font-size:16px">Stone Mountain sunrise hike</b><span class="mini">Sat · 6–10 AM · 5 of 12 spots left</span></div>');
-    return h+'<div style="display:grid;gap:10px">'+posts.join("")+'</div>'}
-
-  function balances(g){var net={};g.exp.forEach(function(e){var n=e[3].length,base=Math.floor(e[1]/n),rem=e[1]%n;e[3].forEach(function(p,i){var share=base+(i<rem?1:0);net[p]=(net[p]||0)-share});net[e[2]]=(net[e[2]]||0)+e[1]});return net}
-  function money(c){return "$"+(Math.abs(c)/100).toFixed(2)}
-  function vGroups(){if(S.thread!==null)return vThread();var h=hdr("Chats, albums, splits","Groups");
-    h+='<div class="pc" style="padding:4px 14px">'+S.groups.map(function(g,i){var me=balances(g).You||0;var last=g.msgs[g.msgs.length-1];return '<button type="button" data-act="openThread" data-v="'+i+'" style="display:flex;gap:10px;align-items:center;width:100%;border:0;background:none;padding:12px 0;text-align:left;cursor:pointer;border-bottom:'+(i<S.groups.length-1?"1px solid #E3E4DC":"0")+'"><span class="av" style="background:#C77B58;color:#18211C">'+g.name.slice(0,2).toUpperCase()+'</span><span style="flex:1;min-width:0"><b>'+esc(g.name)+'</b><br><span class="mini" style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(last[0]==="me"?"You":last[0])+': '+esc(last[1])+'</span></span>'+(me<0?'<span class="tagc" style="background:#FDECEC;color:#991B1B">You owe '+money(me)+'</span>':'')+'</button>'}).join("")+'</div>';
-    h+='<p class="mini" style="margin-top:10px">A group is created when someone joins your plan. Each one has a chat, a shared album and a running tab.</p>';return h}
-  function vThread(){var g=S.groups[S.thread];
-    var h='<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><button type="button" data-act="closeThread" style="border:0;background:none;color:#4A5F49;font:600 15px var(--sans);cursor:pointer;padding:0">‹ Back</button><span style="flex:1;text-align:center"><b>'+esc(g.name)+'</b><br><span class="mini">'+g.sub+'</span></span><span style="width:44px"></span></div>';
-    h+='<div class="seg" style="margin-bottom:12px">'+[["chat","Chat"],["album","Album"],["splits","Splits"]].map(function(x){return '<button type="button" data-act="tseg" data-v="'+x[0]+'" class="'+(S.threadSeg===x[0]?"on":"")+'">'+x[1]+'</button>'}).join("")+'</div>';
-    if(S.threadSeg==="chat"){h+='<div style="display:grid;gap:8px">'+g.msgs.map(function(m){return m[0]==="me"?'<div class="bub me">'+esc(m[1])+'</div>':'<div class="bub th"><small>'+m[0]+'</small>'+esc(m[1])+'</div>'}).join("")+'</div>';
-      h+='<form data-form="send" style="display:flex;gap:8px;margin-top:14px"><div class="fld" style="flex:1;padding:6px 12px"><input data-bind="draft" placeholder="Message" aria-label="Message" value=""></div><button type="submit" style="width:42px;height:42px;border-radius:50%;border:0;background:#899E88;font:700 18px var(--sans);cursor:pointer" aria-label="Send">↑</button></form>'}
-    if(S.threadSeg==="album"){var cols=["#899E88","#C77B58","#4A5F49","#9DB6EE","#D9CBB0","#626A63"];h+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px">'+cols.map(function(c,i){return '<div style="aspect-ratio:1;border-radius:6px;background:'+c+';display:flex;align-items:flex-end;padding:4px;font-size:10px;color:#fff">by '+["Maya","Dev","You"][i%3]+'</div>'}).join("")+'</div><p class="mini" style="margin-top:8px">Sample tiles; real photos upload from your library.</p>'}
-    if(S.threadSeg==="splits"){var net=balances(g),me=net.You||0;
-      h+='<div class="pc" style="text-align:center;margin-bottom:10px"><span class="mini">Your balance in this group</span><div style="font:800 26px var(--sans);color:'+(me<0?"#B91C1C":me>0?"#166534":"#18211C")+'">'+(me<0?"You owe "+money(me):me>0?"You're owed "+money(me):"All settled")+'</div><span class="mini">'+g.exp.length+' expenses · all split equally</span></div>';
-      h+='<div style="display:grid;gap:6px">'+g.exp.map(function(e){var n=e[3].length,base=Math.floor(e[1]/n),rem=e[1]%n;return '<div class="pc" style="padding:10px 12px"><div style="display:flex;justify-content:space-between"><b>'+esc(e[0])+'</b><b>'+money(e[1])+'</b></div><span class="mini">'+e[2]+' paid · split '+n+' ways</span><div class="chips" style="margin-top:6px">'+e[3].map(function(p,i){return '<span class="tagc" style="margin:0">'+p+' '+money(base+(i<rem?1:0))+'</span>'}).join("")+'</div></div>'}).join("")+'</div>';
-      h+='<button type="button" class="pbtn" data-act="addExp" style="margin-top:12px">+ Add an expense</button>'}
-    return h}
-  function vAccount(){var h='<div style="text-align:center;margin-bottom:14px"><span class="av" style="width:72px;height:72px;font-size:24px;margin:0 auto;background:#899E88;color:#18211C">JL</span><h1 class="ph1" style="font-size:21px;margin-top:8px">Jordan Lee</h1><span class="mini">@jordanlee · Georgia Tech</span></div>';
-    h+='<p class="lbl">Your status</p><div class="stat3">'+[["open","Open","#16A34A"],["online","Online","#1D4ED8"],["busy","Not free","#858D87"]].map(function(x){return '<button type="button" data-act="status" data-v="'+x[0]+'" class="'+(S.status===x[0]?"on":"")+'" style="--c:'+x[2]+'"><i></i>'+x[1]+'</button>'}).join("")+'</div>';
-    h+='<p class="mini" style="margin-top:6px">'+({open:"Free and down for plans. Friends see you in the Forum.",online:"Around and reachable, but not looking for plans.",busy:"Hidden from the Forum and friends' free lists."})[S.status]+'</p>';
-    h+='<p class="lbl">Taste profile</p><div class="pc" style="display:grid;gap:8px">'+Object.keys(S.taste).map(function(k){return '<div class="tbar"><span>'+k+'</span><span style="background:#E3E4DC;border-radius:4px"><i style="width:'+S.taste[k]+'%"></i></span></div>'}).join("")+'<p class="mini">Starts from your setup answers, then learns from every rating.</p></div>';
-    h+='<p class="lbl">Connected</p><div class="pc" style="display:grid;gap:10px">';
-    h+='<div style="display:flex;justify-content:space-between;align-items:center"><span><b>Facebook</b><br><span class="mini">'+(S.fb?"Suggested likes applied · never posts":"Import Page likes as suggested ratings")+'</span></span>'+(S.fb?'<span class="tagc" style="background:#E6F4EA;color:#166534">Connected</span>':'<button type="button" data-act="fb" style="height:32px;padding:0 12px;border-radius:16px;border:0;background:#899E88;font:700 13px var(--sans);cursor:pointer">Use these</button>')+'</div>';
-    h+='<div style="display:flex;justify-content:space-between"><span><b>Google Calendar</b><br><span class="mini">Free/busy only</span></span><span class="tagc" style="background:#E6F4EA;color:#166534">Connected</span></div>';
-    h+='<div style="display:flex;justify-content:space-between"><span><b>Visa •••• 4242</b><br><span class="mini">Agent always asks before spending</span></span><span class="tagc">Test mode</span></div></div>';
-    return h}
-
-  function sheet(){if(!S.sheet)return "";var s=S.sheet,h='<div class="sheet" data-act="closeSheet"><div data-stop="1">';
-    if(s.kind==="rate"){var p=S.past[s.i];h+='<span class="mini">'+esc(p.w)+'</span><b style="font-size:20px">How was '+esc(p.t)+'?</b><div class="starsr">'+[1,2,3,4,5].map(function(n){return '<button type="button" data-act="star" data-v="'+n+'" class="'+(s.v>=n?"on":"")+'" aria-label="'+n+' stars">★</button>'}).join("")+'</div><p style="text-align:center" class="mini">'+["Tap a star","Not great","Meh","It was fine","Really good","Loved it"][s.v||0]+'</p><button type="button" class="pbtn" data-act="saveRate"'+(s.v?"":" disabled")+'>'+(s.v?"Save rating":"Pick a star rating")+'</button>'}
-    if(s.kind==="block"){var b=S.itins[S.sel].blocks[s.i];h+='<span class="tagc" style="justify-self:start;margin:0">'+({busy:"Calendar",tr:"Transit",sq:"Sidequest",gp:"Group"})[b[0]]+'</span><b style="font-size:21px">'+esc(b[1])+'</b><span class="mini">'+fmt(b[2])+'–'+fmt(b[3])+'</span>';
-      if(b[0]==="gp")h+='<p class="lbl" style="margin:4px 0 0">Who\'s in</p><div class="chips"><span class="tagc">You · going</span><span class="tagc">Maya · going</span><span class="tagc">Dev · going</span><span class="tagc" style="background:#E3E4DC;color:#3A433D">Ava · interested</span></div>';
-      if(b[0]==="sq"||b[0]==="gp")h+='<p class="lbl" style="margin:4px 0 0">Getting there</p><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:12.5px"><span class="pc" style="padding:8px">Walk<br><b>18 min</b></span><span class="pc" style="padding:8px;border:2px solid #899E88">MARTA<br><b>12 min</b></span><span class="pc" style="padding:8px">Rideshare<br><b>8 min</b></span></div><button type="button" class="pbtn" data-act="tickets">Get tickets with the Muse agent</button>';
-      h+='<button type="button" class="pbtn ghost" data-act="closeSheet">Done</button>'}
-    if(s.kind==="checkout"){h+='<b style="font-size:20px">Let Muse get your tickets</b><div style="display:grid;gap:6px;font-size:14px"><span>'+(s.done?"✓":"✓")+' Found tickets on the official site</span><span>✓ Filled in your name and email</span><span style="color:'+(s.done?"#166534":"#626A63")+'">'+(s.done?"✓ Booked · ticket saved to the stop for the group":"○ Waiting for your approval")+'</span></div><div class="pc" style="background:#F8F7F2;font-size:14px">Budget you approve once with Face ID. The agent can\'t spend anything until you do.<br><span class="mini">Sandbox merchant, Stripe test mode. No real money moves.</span></div>'+(s.done?'<button type="button" class="pbtn" data-act="closeSheet">Done</button>':'<button type="button" class="pbtn dark" data-act="approve">Approve with Face ID</button>')}
-    if(s.kind==="exp"){var g=S.groups[S.thread],amt=Math.round((parseFloat(s.amt)||0)*100),who=s.who,n=who.length,base=n?Math.floor(amt/n):0,rem=n?amt%n:0;
-      h+='<b style="font-size:20px">Add an expense</b><div class="fld"><small>What was it for?</small><input data-sbind="what" value="'+esc(s.what)+'"></div><div class="fld"><small>Total amount ($)</small><input data-sbind="amt" inputmode="decimal" value="'+esc(s.amt)+'"></div>';
-      h+='<p class="lbl" style="margin:2px 0 0">Split between</p><div class="chips">'+["You","Maya","Dev"].map(function(p){return '<button type="button" data-act="toggleWho" data-v="'+p+'" class="'+(who.indexOf(p)>=0?"on":"")+'">'+p+'</button>'}).join("")+'</div>';
-      h+='<div class="pc" style="border-color:'+(amt>0&&n?"#166534":"#E3E4DC")+';display:grid;gap:4px"><b>Check the split</b>'+(amt>0&&n?who.map(function(p,i){return '<div class="share"><span>'+p+'</span><b>'+money(base+(i<rem?1:0))+'</b></div>'}).join("")+'<span class="mini">'+(rem?"Rounded to the cent: the first "+(rem>1?rem+" people pay":"person pays")+" 1¢ more so it adds up exactly.":"Splits evenly.")+'</span>':'<span class="mini">Enter an amount and pick at least one person.</span>')+'</div>';
-      h+='<button type="button" class="pbtn" data-act="saveExp"'+(amt>0&&n&&s.what.trim()?"":" disabled")+'>'+(amt>0&&n?"Add "+money(amt)+" · split "+n+" way"+(n>1?"s":""):"Add expense")+'</button>'}
-    return h+'</div></div>'}
-
-  function render(){var h;if(S.create)h=vCreate();else if(S.tab==="home")h=vHome();else if(S.tab==="forum")h=vForum();else if(S.tab==="groups")h=vGroups();else h=vAccount();
-    scr.innerHTML=h;tabbar();var old=$("#phone .sheet");if(old)old.remove();if(S.sheet){$("#phone").insertAdjacentHTML("beforeend",sheet())}
-    if(S.create){var c=S.create;$$("#scr select[data-bind]").forEach(function(s){var k=s.getAttribute("data-bind");s.value=String(c[k])})}}
-  function newPlan(){S.create={step:0,start:"ts",end:"home",range:"Transit",ride:"No ride",t0:850,back:1110,mood:"Something chill and outside, then cheap food after. Maybe meet a couple people.",picks:["Outdoors","Food"],budget:"$",who:"Open to all",opts:[],oi:0,loading:false};S.sheet=null;S.thread=null}
-  function go(step){var c=S.create;c.step=step;if(step===3){c.loading=true;var msgs=["Checking your free window…","Timing transit between stops…","Ranking by what you like…"],i=0;c.loadMsg=msgs[0];render();
-      var iv=setInterval(function(){i++;if(!S.create){clearInterval(iv);return}if(i<3){S.create.loadMsg=msgs[i];render()}else{clearInterval(iv);genOptions();S.create.loading=false;render()}},450);return}render()}
-  function act(a,v,t){var c=S.create;
-    switch(a){
-    case"tab":S.tab=v;S.create=null;S.thread=null;S.sheet=null;break;
-    case"newplan":newPlan();break;
-    case"cancel":S.create=null;break;
-    case"step":if(+v<c.step||c.opts.length){go(+v);return}if(+v<=c.step+1){go(+v);return}break;
-    case"next":go(c.step+1);return;
-    case"back":go(c.step-1);return;
-    case"range":c.range=v;break;case"ride":c.ride=v;break;case"budget":c.budget=v;break;case"who":c.who=v;break;
-    case"pick":var ix=c.picks.indexOf(v);if(ix>=0)c.picks.splice(ix,1);else c.picks.push(v);break;
-    case"opt":c.oi=+v;c.retimed=false;break;
-    case"mv":var st=c.opts[c.oi].stops,i=+v,j=i+(+t.getAttribute("data-d"));var tmp=st[i];st[i]=st[j];st[j]=tmp;c.retimed=true;break;
-    case"startPlan":var o=c.opts[c.oi],r=route(o.stops,c.start,c.end,c.t0,c.back),bl=[],pv=c.start;
-      o.stops.forEach(function(s,k){var tEnd=r.times[k][0]-5;bl.push(["tr",r.legs[k].m+" to "+P[s].n.split(",")[0],tEnd-r.legs[k].min,tEnd]);bl.push(["sq",P[s].n,r.times[k][0],r.times[k][1]]);pv=s});
-      var lf=r.legs[r.legs.length-1];bl.push(["tr",lf.m+" home",r.arrive-lf.min,r.arrive]);
-      S.itins.push({title:o.name,blocks:bl});S.sel=S.itins.length-1;S.create=null;S.tab="home";S.homeSeg="it";render();toast(c.who==="Open to all"?"Started · also posted to the Forum":"Sidequest started");return;
-    case"homeSeg":S.homeSeg=v;break;
-    case"selItin":S.sel=+v;break;
-    case"block":S.sheet={kind:"block",i:+v};break;
-    case"rate":S.sheet={kind:"rate",i:+v,v:0};break;
-    case"star":S.sheet.v=+v;break;
-    case"saveRate":var p=S.past[S.sheet.i];p.r=S.sheet.v;var delta=p.r>=4?8:p.r<=2?-8:0;S.taste[p.cat]=Math.max(5,Math.min(100,S.taste[p.cat]+delta));S.sheet=null;render();toast(delta>0?"Saved · your taste moved toward "+p.cat.toLowerCase():delta<0?"Saved · noted as a dislike":"Saved");return;
-    case"tickets":S.sheet={kind:"checkout",done:false};break;
-    case"approve":S.sheet.done=true;render();toast("Booked · the group sees it on the stop");return;
-    case"closeSheet":S.sheet=null;break;
-    case"post":S.forum.posted=true;render();toast("Your post is live");return;
-    case"unpost":S.forum.posted=false;break;
-    case"fscope":S.forumScope=v;break;
-    case"join":S.forum.joined=true;if(!S.groups.some(function(g){return g.id==="g2"}))S.groups.unshift({id:"g2",name:"Sunset + tacos crew",sub:"5 people · Today 5:30 PM",msgs:[["Maya","Welcome! Meet at the Eastside Trail entrance."]],exp:[]});render();toast("You're in · group chat created");return;
-    case"plantog":S.forum.msg=true;render();toast("Message sent to Dev");return;
-    case"openThread":S.thread=+v;S.threadSeg="chat";break;
-    case"closeThread":S.thread=null;break;
-    case"tseg":S.threadSeg=v;break;
-    case"addExp":S.sheet={kind:"exp",what:"Pizza",amt:"40.00",who:["You","Maya","Dev"]};break;
-    case"toggleWho":var w=S.sheet.who,k2=w.indexOf(v);if(k2>=0)w.splice(k2,1);else w.push(v);w.sort(function(a,b){return["You","Maya","Dev"].indexOf(a)-["You","Maya","Dev"].indexOf(b)});break;
-    case"saveExp":var s=S.sheet,amt=Math.round(parseFloat(s.amt)*100);S.groups[S.thread].exp.push([s.what.trim(),amt,"You",s.who.slice()]);S.sheet=null;render();toast("Added · everyone was notified");return;
-    case"status":S.status=v;break;
-    case"fb":S.fb=true;S.taste.Social=Math.min(100,S.taste.Social+10);S.taste.Nightlife=Math.min(100,S.taste.Nightlife+6);render();toast("Suggested likes applied");return;
-    }
-    render()}
-  var phone=$("#phone");
-  phone.addEventListener("click",function(e){var t=e.target.closest("[data-act]");if(!t||!phone.contains(t))return;
-    if(t.classList.contains("sheet")&&e.target.closest("[data-stop]"))return;
-    e.preventDefault();act(t.getAttribute("data-act"),t.getAttribute("data-v"),t)});
-  phone.addEventListener("change",function(e){var b=e.target.getAttribute("data-bind");if(b&&S.create){var v=e.target.value;S.create[b]=(b==="t0"||b==="back")?+v:v;render()}});
-  phone.addEventListener("input",function(e){var b=e.target.getAttribute("data-bind");if(b==="mood"&&S.create)S.create.mood=e.target.value;
-    var sb=e.target.getAttribute("data-sbind");if(sb&&S.sheet){S.sheet[sb]=e.target.value;var pos=e.target.selectionStart;render();var n=$('#phone [data-sbind="'+sb+'"]');if(n){n.focus();try{n.setSelectionRange(pos,pos)}catch(_){}}}});
-  phone.addEventListener("submit",function(e){e.preventDefault();var inp=e.target.querySelector("input");var v=inp?inp.value.trim():"";if(!v)return;S.groups[S.thread].msgs.push(["me",v]);render();
-    setTimeout(function(){if(S.thread===null)return;var g=S.groups[S.thread];g.msgs.push([g.id==="g2"?"Maya":"Dev",["Sounds good!","On my way 🙌","Perfect, see you there."][g.msgs.length%3]]);render()},1100);var f=$('#phone input[data-bind="draft"]');if(f)f.focus()});
-  $("#resetApp").addEventListener("click",function(){S=fresh();render();toast("Demo reset")});
-  app={open:function(what){S.sheet=null;S.thread=null;S.create=null;
-    if(what==="plan"){newPlan()}else if(what==="reorder"){newPlan();render();go(3);document.getElementById("try").scrollIntoView();return}
-    else if(what==="forum"){S.tab="forum"}else if(what==="splits"||what==="chat"){S.tab="groups";S.thread=Math.max(0,S.groups.findIndex(function(g){return g.id==="g1"}));S.threadSeg=what}else if(what==="rate"){S.tab="home";S.homeSeg="past"}
-    else if(what==="checkout"){S.tab="home";S.homeSeg="it";S.sel=0;S.sheet={kind:"checkout",done:false}}else if(what==="taste"){S.tab="account"}
-    render();document.getElementById("try").scrollIntoView()}};
-  render();
+/* ---------- prototype frame ---------- */
+safe("proto",function(){
+  var stage=$("#stage"),frame=$("#proto");
+  function fit(){var w=stage.parentElement.clientWidth;var sc=Math.min(1,w/410);stage.style.setProperty("--s",sc)}
+  fit();window.addEventListener("resize",fit);
+  $("#resetApp").addEventListener("click",function(){frame.src="app/prototype.html?r="+Date.now()});
 });
 
 /* ---------- features ---------- */
@@ -719,9 +443,16 @@ safe("features",function(){
     ["★","Learns from ratings","Rate each stop after the outing and your taste moves immediately. No retraining.","rate"],
     ["f","Facebook head start","With your permission, your Page likes become suggested ratings, so your first plans aren't a cold start.","taste"]];
   $("#featGrid").innerHTML=F.map(function(f){return '<div class="card feat"><span class="ic">'+f[0]+'</span><h3>'+f[1]+'</h3><p>'+f[2]+'</p><button type="button" data-open="'+f[3]+'">Try it →</button></div>'}).join("");
-  $("#featGrid").addEventListener("click",function(e){var b=e.target.closest("[data-open]");if(b&&app)app.open(b.getAttribute("data-open"))});
+  $("#featGrid").addEventListener("click",function(e){var b=e.target.closest("[data-open]");if(b){document.getElementById("try").scrollIntoView({behavior:"smooth"})}});
 });
 })();
 </script>
 
+<!-- kw-back:offsets -->
+<style>
+.bar{top:calc(env(safe-area-inset-top,0px) + 36px)}
+html{scroll-padding-top:108px}
+.guide{top:120px}
+</style>
+<!-- kw-back:offsets-end -->
 </body></html>

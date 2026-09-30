@@ -1,0 +1,44 @@
+<header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      {{ partial "logo.html" . }}
+    </div>
+    {{ if len $.Site.Menus }}
+      {{ partial "mobile-menu.html" . }}
+    {{ end }}
+    {{ if and $.Site.Params.showLanguageSelector (len $.Site.Home.AllTranslations) }}
+      {{ partial "language-menu.html" . }}
+    {{ end }}
+    <button class="theme-toggle" type="button" hidden>
+      <!-- 11x11 pixel art: the sun shows in dark mode, the moon in light mode -->
+      <svg class="theme-toggle__sun" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M5 0h1v1h-1zM1 1h1v1h-1zM5 1h1v1h-1zM9 1h1v1h-1zM2 2h1v1h-1zM8 2h1v1h-1zM4 3h3v1h-3zM3 4h5v1h-5zM0 5h2v1h-2zM3 5h5v1h-5zM9 5h2v1h-2zM3 6h5v1h-5zM4 7h3v1h-3zM2 8h1v1h-1zM8 8h1v1h-1zM1 9h1v1h-1zM5 9h1v1h-1zM9 9h1v1h-1zM5 10h1v1h-1z"/>
+      </svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M4 0h1v1h-1zM2 1h2v1h-2zM1 2h3v1h-3zM1 3h3v1h-3zM0 4h4v1h-4zM0 5h4v1h-4zM0 6h5v1h-5zM10 6h1v1h-1zM1 7h9v1h-9zM1 8h9v1h-9zM2 9h7v1h-7zM4 10h3v1h-3z"/>
+      </svg>
+    </button>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var button = document.currentScript.previousElementSibling;
+        function label() {
+          var text = root.getAttribute("data-theme") === "dark" ? "Switch to light mode" : "Switch to dark mode";
+          button.setAttribute("aria-label", text);
+          button.title = text;
+        }
+        button.addEventListener("click", function () {
+          var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          try { localStorage.setItem("theme", next); } catch (e) {}
+          label();
+        });
+        label();
+        button.hidden = false;
+      })();
+    </script>
+  </div>
+  {{ if len $.Site.Menus }}
+    {{ partial "menu.html" . }}
+  {{ end }}
+</header>

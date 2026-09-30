@@ -12,7 +12,7 @@ Our world is best improved through mutual discovery and curiosity, and I live fo
 <div style="display: flex; flex-wrap: wrap; max-width: 1000px; margin: 20px auto; gap: 20px; align-items: center;">
   <!-- Left column: Image -->
   <div style="flex: 1; min-width: 300px; display: flex; justify-content: center;">
-    <img src="/letters.jpg" alt="letters.jpg" style="max-width: 100%; height: auto; border-radius: 10px;" />
+    <img src="/letters.JPG" alt="letters.jpg" style="max-width: 100%; height: auto; border-radius: 10px;" />
   </div>
 
   <!-- Right column: Form -->
@@ -28,7 +28,7 @@ Our world is best improved through mutual discovery and curiosity, and I live fo
           <option value="other">Other</option>
         </select>
         <textarea name="comment" placeholder="Type your message here..." style="width: 100%; padding: 10px; margin-bottom: 10px; min-height: 150px;"></textarea>
-        <button type="submit" style="width: 100%; padding: 10px; background-color: #d07fd6; color: white; border: none; cursor: pointer;">
+        <button type="submit" style="width: 100%; padding: 10px; background-color: var(--accent); color: white; border: none; cursor: pointer;">
           Submit
         </button>
       </fieldset>

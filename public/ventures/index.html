@@ -6,7 +6,7 @@
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content=" There is nothing so practical as a good theory. — Kurt Lewin, German-American psychologist
+<meta name="description" content=" Experience without theory is blind, but theory without experience is mere intellectual play. — Immanuel Kant, German philosopher
 Most of my work lives in research labs, but some of my favorite projects have come from the moments where an idea gets a deadline, a team, and someone on the other side who needs it to actually work. It is in these moments, where a result has to hold up in front of judges and users rather than reviewers, that I have learned the most about which of my ideas are worth building. This page collects those efforts - hackathon builds, research sprints, and the products that came out of them - each with the month it was built, what came of it, and a link to the full story (the longer writeups live right here on the site as their own pages!).
 " />
 <meta name="keywords" content="" />
@@ -59,7 +59,8 @@ Most of my work lives in research labs, but some of my favorite projects have co
   <link rel="stylesheet" href="//localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
 
 
-<link rel="stylesheet" href="//localhost:1313/terminal.css">
+
+  <link rel="stylesheet" href="//localhost:1313/terminal.css?v=73b84858">
 
 
 
@@ -80,7 +81,7 @@ Most of my work lives in research labs, but some of my favorite projects have co
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="ventures">
-<meta property="og:description" content=" There is nothing so practical as a good theory. — Kurt Lewin, German-American psychologist
+<meta property="og:description" content=" Experience without theory is blind, but theory without experience is mere intellectual play. — Immanuel Kant, German philosopher
 Most of my work lives in research labs, but some of my favorite projects have come from the moments where an idea gets a deadline, a team, and someone on the other side who needs it to actually work. It is in these moments, where a result has to hold up in front of judges and users rather than reviewers, that I have learned the most about which of my ideas are worth building. This page collects those efforts - hackathon builds, research sprints, and the products that came out of them - each with the month it was built, what came of it, and a link to the full story (the longer writeups live right here on the site as their own pages!).
 " />
 <meta property="og:url" content="//localhost:1313/ventures/" />
@@ -101,6 +102,13 @@ Most of my work lives in research labs, but some of my favorite projects have co
 
 
 
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
+  })();
+</script>
 
 
 </head>
@@ -134,7 +142,7 @@ Most of my work lives in research labs, but some of my favorite projects have co
         
       
         
-          <li><a href="/projects">projects</a></li>
+          <li><a href="/research">research</a></li>
         
       
         
@@ -156,6 +164,34 @@ Most of my work lives in research labs, but some of my favorite projects have co
 
     
     
+    <button class="theme-toggle" type="button" hidden>
+      
+      <svg class="theme-toggle__sun" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M5 0h1v1h-1zM1 1h1v1h-1zM5 1h1v1h-1zM9 1h1v1h-1zM2 2h1v1h-1zM8 2h1v1h-1zM4 3h3v1h-3zM3 4h5v1h-5zM0 5h2v1h-2zM3 5h5v1h-5zM9 5h2v1h-2zM3 6h5v1h-5zM4 7h3v1h-3zM2 8h1v1h-1zM8 8h1v1h-1zM1 9h1v1h-1zM5 9h1v1h-1zM9 9h1v1h-1zM5 10h1v1h-1z"/>
+      </svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M4 0h1v1h-1zM2 1h2v1h-2zM1 2h3v1h-3zM1 3h3v1h-3zM0 4h4v1h-4zM0 5h4v1h-4zM0 6h5v1h-5zM10 6h1v1h-1zM1 7h9v1h-9zM1 8h9v1h-9zM2 9h7v1h-7zM4 10h3v1h-3z"/>
+      </svg>
+    </button>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var button = document.currentScript.previousElementSibling;
+        function label() {
+          var text = root.getAttribute("data-theme") === "dark" ? "Switch to light mode" : "Switch to dark mode";
+          button.setAttribute("aria-label", text);
+          button.title = text;
+        }
+        button.addEventListener("click", function () {
+          var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          try { localStorage.setItem("theme", next); } catch (e) {}
+          label();
+        });
+        label();
+        button.hidden = false;
+      })();
+    </script>
   </div>
   
     <nav class="navigation-menu">
@@ -171,7 +207,7 @@ Most of my work lives in research labs, but some of my favorite projects have co
         
       
         
-          <li><a href="/projects" >projects</a></li>
+          <li><a href="/research" >research</a></li>
         
       
         
@@ -211,9 +247,9 @@ Most of my work lives in research labs, but some of my favorite projects have co
 
   <div class="post-content"><div>
         <blockquote>
-<p>There is nothing so practical as a good theory. <em>— Kurt Lewin, German-American psychologist</em></p></blockquote>
+<p>Experience without theory is blind, but theory without experience is mere intellectual play. <em>— Immanuel Kant, German philosopher</em></p></blockquote>
 <p>Most of my work lives in research labs, but some of my favorite projects have come from the moments where an idea gets a deadline, a team, and someone on the other side who needs it to actually work. It is in these moments, where a result has to hold up in front of judges and users rather than reviewers, that I have learned the most about which of my ideas are worth building. This page collects those efforts - hackathon builds, research sprints, and the products that came out of them - each with the month it was built, what came of it, and a link to the full story (the longer writeups live right here on the site as their own pages!).</p>
-<p>I have recently taken to venture-capitalism as a late stage career and am actively interested in entrepreneurial ventures&hellip;the ones I believe are &ldquo;correct&rdquo;, at least :)</p>
+<p>I have recently taken to venture-capitalism as a late stage career and am actively interested in entrepreneurial ventures that promote meaningful and deliberate advances in humanity - would love to reach out and connect with those interested!</p>
 <style>
 .ventures { margin: 30px 0; }
 .ventures__stage {
@@ -340,16 +376,17 @@ Most of my work lives in research labs, but some of my favorite projects have co
   <div class="ventures__stage">
     <button type="button" class="ventures__arrow ventures__arrow--prev" data-dir="-1" aria-label="Previous venture">&larr;</button>
     <div class="ventures__track">
-      <article class="venture is-active" id="sidequests" data-title="SideQuests" aria-roledescription="slide" aria-label="1 of 7: SideQuests">
+      <article class="venture is-active" id="sidequests" data-title="SideQuests" aria-roledescription="slide" aria-label="1 of 8: SideQuests">
         <div class="venture__bar">
           <span class="venture__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="venture__path">~/ventures/sidequests</span>
-          <span class="venture__count">1/7</span>
+          <span class="venture__count">1/8</span>
         </div>
         <div class="venture__body">
           <div class="venture__meta">
             <time datetime="2026-09">September 2026</time>
             <span class="venture__bubble">HackGT 13</span>
+            <span class="venture__bubble venture__bubble--award">Best Use of MongoDB Atlas</span>
           </div>
           <h2 class="venture__title">SideQuests</h2>
           <p class="venture__team">with Max Iliev, Kevin Harvey, Bayan Mardon</p>
@@ -357,25 +394,28 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <details class="venture__results" open>
             <summary>results/</summary>
             <ul class="venture__tree">
+              <li>won Best Use of MongoDB Atlas at HackGT 13</li>
               <li>VibeMatch, our 1.85M-parameter ranker, beats tuned cosine similarity by 39% (Spearman ρ 0.697 vs. 0.501) on 1,000 unseen users (<a href="https://huggingface.co/karthiksing05/sidequestz-compatibility-classifier">model card</a>)</li>
               <li>three varied, timed plans in 0.2 to 0.6 s from a K-best search over a time graph</li>
-              <li>trained entirely on synthetic data: Qwen3.5-9B on the MPCDF Raven supercomputer wrote 100k event listings and 10k personas, and an LLM judge rated 200k pairs</li>
+              <li>trained entirely on synthetic data: Qwen3.5-9B on my academic compute wrote 100k event listings and 10k personas, and an LLM judge rated 200k pairs</li>
+              <li>a full clickable prototype of the app, the same design the iOS app was built from, that you can <a href="/ventures/sidequests/#try">tap through right in the field guide</a></li>
               <li>a ~29k-line SwiftUI app over a Go API, MongoDB, and a FastAPI ML service, all on one Vultr VPS with a catalog of ~9,000 activities</li>
             </ul>
           </details>
           <p class="venture__links"><a href="/ventures/sidequests/">read the field guide</a><span class="venture__sep" aria-hidden="true"> | </span><a href="https://devpost.com/software/sidequestz" target="_blank" rel="noopener">devpost</a><span class="venture__sep" aria-hidden="true"> | </span><a href="https://www.youtube.com/watch?v=uPllwgXpkpY" target="_blank" rel="noopener">watch the demo</a><span class="venture__sep" aria-hidden="true"> | </span><a href="https://github.com/karthiksing05/HackGT-13-Proj" target="_blank" rel="noopener">github</a></p>
         </div>
       </article>
-      <article class="venture" id="hearsay" data-title="HEARSAY" aria-roledescription="slide" aria-label="2 of 7: HEARSAY">
+      <article class="venture" id="hearsay" data-title="HEARSAY" aria-roledescription="slide" aria-label="2 of 8: HEARSAY">
         <div class="venture__bar">
           <span class="venture__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="venture__path">~/ventures/hearsay</span>
-          <span class="venture__count">2/7</span>
+          <span class="venture__count">2/8</span>
         </div>
         <div class="venture__body">
           <div class="venture__meta">
             <time datetime="2026-09">September 2026</time>
             <span class="venture__bubble">HackGT 13</span>
+            <span class="venture__bubble venture__bubble--award">1st Place, NSA HEARSAY Challenge</span>
           </div>
           <h2 class="venture__title">HEARSAY</h2>
           <p class="venture__team">with Team SideQuests</p>
@@ -383,6 +423,7 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <details class="venture__results" open>
             <summary>results/</summary>
             <ul class="venture__tree">
+              <li>won 1st Place in the NSA HEARSAY Challenge at HackGT 13</li>
               <li>0.0317 minDCF (1.44% EER) on the official NSA test set</li>
               <li>0.0274 minDCF (1.05% EER) on 27,779 held-out In-the-Wild recordings</li>
               <li>explanations agree with the detector&rsquo;s decisions at κ = 0.985</li>
@@ -393,18 +434,18 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="venture__links"><a href="/ventures/hearsay/">read the technical report</a></p>
         </div>
       </article>
-      <article class="venture" id="logprobs" data-title="Reading Beats Asking, and Neither Beats Logprobs" aria-roledescription="slide" aria-label="3 of 7: Reading Beats Asking, and Neither Beats Logprobs">
+      <article class="venture" id="logprobs" data-title="Reading Beats Asking, and Neither Beats Logprobs" aria-roledescription="slide" aria-label="3 of 8: Reading Beats Asking, and Neither Beats Logprobs">
         <div class="venture__bar">
           <span class="venture__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="venture__path">~/ventures/logprobs</span>
-          <span class="venture__count">3/7</span>
+          <span class="venture__count">3/8</span>
         </div>
         <div class="venture__body">
           <div class="venture__meta">
             <time datetime="2026-08">August 2026</time>
           </div>
           <h2 class="venture__title">Reading Beats Asking, and Neither Beats Logprobs</h2>
-          <div class="venture__desc">An AI safety project (MATS 12.0) where we built the strongest case we could that a linear probe on a model&rsquo;s activations can catch it being manipulated by a planted source, and then ran the baseline a practitioner would try first: the log-probability the model already assigns to the planted answer. That single forward pass beat the probe in every cell we tested, until we pushed the behavior further from the read point and the ordering reversed. Along the way, several of our own headlines were retracted, every one of them by a control we built to attack our own result.</div>
+          <div class="venture__desc">An AI safety side project where we built the strongest case we could that a linear probe on a model&rsquo;s activations can catch it being manipulated by a planted source, and then ran the baseline a practitioner would try first: the log-probability the model already assigns to the planted answer. That single forward pass beat the probe in every cell we tested, until we pushed the behavior further from the read point and the ordering reversed. Along the way, several of our own headlines were retracted, every one of them by a control we built to attack our own result.</div>
           <details class="venture__results" open>
             <summary>results/</summary>
             <ul class="venture__tree">
@@ -418,11 +459,11 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="venture__links"><a href="/ventures/logprobs/">read the writeup</a></p>
         </div>
       </article>
-      <article class="venture" id="j-space" data-title="The J-space of a Diffusion Language Model" aria-roledescription="slide" aria-label="4 of 7: The J-space of a Diffusion Language Model">
+      <article class="venture" id="j-space" data-title="The J-space of a Diffusion Language Model" aria-roledescription="slide" aria-label="4 of 8: The J-space of a Diffusion Language Model">
         <div class="venture__bar">
           <span class="venture__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="venture__path">~/ventures/j-space</span>
-          <span class="venture__count">4/7</span>
+          <span class="venture__count">4/8</span>
         </div>
         <div class="venture__body">
           <div class="venture__meta">
@@ -442,11 +483,11 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="venture__links"><a href="/ventures/j-space/">read the writeup</a></p>
         </div>
       </article>
-      <article class="venture" id="sophi" data-title="Sophi" aria-roledescription="slide" aria-label="5 of 7: Sophi">
+      <article class="venture" id="sophi" data-title="Sophi" aria-roledescription="slide" aria-label="5 of 8: Sophi">
         <div class="venture__bar">
           <span class="venture__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="venture__path">~/ventures/sophi</span>
-          <span class="venture__count">5/7</span>
+          <span class="venture__count">5/8</span>
         </div>
         <div class="venture__body">
           <div class="venture__meta">
@@ -468,17 +509,18 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="venture__links"><a href="https://devpost.com/software/sophia-c3qw4b" target="_blank" rel="noopener">devpost</a><span class="venture__sep" aria-hidden="true"> | </span><a href="https://www.youtube.com/watch?v=gLJv-8DVZGA" target="_blank" rel="noopener">watch the demo</a><span class="venture__sep" aria-hidden="true"> | </span><a href="https://github.com/MqxS/NexHacks2026" target="_blank" rel="noopener">github</a><span class="venture__sep" aria-hidden="true"> | </span><a href="https://sophi-ai.tech" target="_blank" rel="noopener">live site</a></p>
         </div>
       </article>
-      <article class="venture" id="docdoctor" data-title="DocDoctor" aria-roledescription="slide" aria-label="6 of 7: DocDoctor">
+      <article class="venture" id="docdoctor" data-title="DocDoctor" aria-roledescription="slide" aria-label="6 of 8: DocDoctor">
         <div class="venture__bar">
           <span class="venture__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="venture__path">~/ventures/docdoctor</span>
-          <span class="venture__count">6/7</span>
+          <span class="venture__count">6/8</span>
         </div>
         <div class="venture__body">
           <div class="venture__meta">
             <time datetime="2025-11">November 2025</time>
             <span class="venture__bubble">AI ATL 2025</span>
             <span class="venture__bubble venture__bubble--award">Best Use of MongoDB Atlas</span>
+            <span class="venture__bubble venture__bubble--award">Honorable Mention, Best Use of Google Gemini</span>
           </div>
           <h2 class="venture__title">DocDoctor</h2>
           <p class="venture__team">with Max Iliev, Joseph Farkas, Isaac Thoman</p>
@@ -486,7 +528,7 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <details class="venture__results" open>
             <summary>results/</summary>
             <ul class="venture__tree">
-              <li>won Best Use of MongoDB Atlas at AI ATL 2025</li>
+              <li>won Best Use of MongoDB Atlas and an Honorable Mention for Best Use of Google Gemini at AI ATL 2025</li>
               <li>real-time transcription, smart highlights, and LLM-drafted call reports in a single interface</li>
               <li>four parallel stacks: a Python call client (ElevenLabs), an Angular frontend, a Go + MongoDB backend, and a Gemini 2.5 + Cobweb ML stack</li>
             </ul>
@@ -494,11 +536,11 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="venture__links"><a href="https://devpost.com/software/docdoctor" target="_blank" rel="noopener">devpost</a><span class="venture__sep" aria-hidden="true"> | </span><a href="https://www.youtube.com/watch?v=gvgPMQYXBgo" target="_blank" rel="noopener">watch the demo</a><span class="venture__sep" aria-hidden="true"> | </span><a href="https://github.com/karthiksing05/DocDoctor-AI-ATL" target="_blank" rel="noopener">github</a></p>
         </div>
       </article>
-      <article class="venture" id="duluthgpt" data-title="DuluthGPT" aria-roledescription="slide" aria-label="7 of 7: DuluthGPT">
+      <article class="venture" id="duluthgpt" data-title="DuluthGPT" aria-roledescription="slide" aria-label="7 of 8: DuluthGPT">
         <div class="venture__bar">
           <span class="venture__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="venture__path">~/ventures/duluthgpt</span>
-          <span class="venture__count">7/7</span>
+          <span class="venture__count">7/8</span>
         </div>
         <div class="venture__body">
           <div class="venture__meta">
@@ -517,6 +559,28 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="venture__links"><a href="https://github.com/karthiksing05/duluthgptv2" target="_blank" rel="noopener">github</a></p>
         </div>
       </article>
+      <article class="venture" id="8ball" data-title="8ball" aria-roledescription="slide" aria-label="8 of 8: 8ball">
+        <div class="venture__bar">
+          <span class="venture__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="venture__path">~/ventures/8ball</span>
+          <span class="venture__count">8/8</span>
+        </div>
+        <div class="venture__body">
+          <div class="venture__meta">
+            <time datetime="2020-08">August 2020</time>
+          </div>
+          <h2 class="venture__title">8ball</h2>
+          <div class="venture__desc">My first full-production machine learning pipeline was applied to the stock market. I used an XGBoost pipeline, tuned with my <a href="/research/#-biaswrappers--github">BiasWrappers</a>, and finetuned predictions using sentiment analysis on Reddit, X, Google News, and Yahoo Finance investor analysis. My goal was to use the momentum of prior stock movements and current news sentiment to analyze the trends of future stock predictions by OHLC.</div>
+          <details class="venture__results" open>
+            <summary>results/</summary>
+            <ul class="venture__tree">
+              <li>some highly successful calls, with returns of up to 30%-40% for stocks that weren&rsquo;t mainstream</li>
+              <li>generally performed worse than or equal to day-to-day predictions</li>
+            </ul>
+          </details>
+          <p class="venture__links"><a href="https://github.com/karthiksing05/8ball" target="_blank" rel="noopener">github</a></p>
+        </div>
+      </article>
     </div>
     <button type="button" class="ventures__arrow ventures__arrow--next" data-dir="1" aria-label="Next venture">&rarr;</button>
     <div class="ventures__dots">
@@ -527,6 +591,7 @@ Most of my work lives in research labs, but some of my favorite projects have co
       <button type="button" class="ventures__dot" aria-label="Show Sophi"></button>
       <button type="button" class="ventures__dot" aria-label="Show DocDoctor"></button>
       <button type="button" class="ventures__dot" aria-label="Show DuluthGPT"></button>
+      <button type="button" class="ventures__dot" aria-label="Show 8ball"></button>
     </div>
   </div>
   <p class="ventures__status" aria-live="polite"></p>

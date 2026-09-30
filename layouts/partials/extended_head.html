@@ -1,0 +1,8 @@
+<!-- Light is the default; apply a saved choice before the page paints, so there is no flash -->
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
+  })();
+</script>

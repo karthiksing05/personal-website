@@ -68,9 +68,9 @@
   </url><url>
     <loc>//localhost:1313/interests/</loc>
   </url><url>
-    <loc>//localhost:1313/projects/</loc>
-  </url><url>
     <loc>//localhost:1313/quotebook/</loc>
+  </url><url>
+    <loc>//localhost:1313/research/</loc>
   </url><url>
     <loc>//localhost:1313/school/</loc>
   </url><url>

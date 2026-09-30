@@ -57,7 +57,8 @@
   <link rel="stylesheet" href="//localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
 
 
-<link rel="stylesheet" href="//localhost:1313/terminal.css">
+
+  <link rel="stylesheet" href="//localhost:1313/terminal.css?v=73b84858">
 
 
 
@@ -101,6 +102,13 @@
 
 
 
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
+  })();
+</script>
 
 
 </head>
@@ -134,7 +142,7 @@
         
       
         
-          <li><a href="/projects">projects</a></li>
+          <li><a href="/research">research</a></li>
         
       
         
@@ -156,6 +164,34 @@
 
     
     
+    <button class="theme-toggle" type="button" hidden>
+      
+      <svg class="theme-toggle__sun" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M5 0h1v1h-1zM1 1h1v1h-1zM5 1h1v1h-1zM9 1h1v1h-1zM2 2h1v1h-1zM8 2h1v1h-1zM4 3h3v1h-3zM3 4h5v1h-5zM0 5h2v1h-2zM3 5h5v1h-5zM9 5h2v1h-2zM3 6h5v1h-5zM4 7h3v1h-3zM2 8h1v1h-1zM8 8h1v1h-1zM1 9h1v1h-1zM5 9h1v1h-1zM9 9h1v1h-1zM5 10h1v1h-1z"/>
+      </svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M4 0h1v1h-1zM2 1h2v1h-2zM1 2h3v1h-3zM1 3h3v1h-3zM0 4h4v1h-4zM0 5h4v1h-4zM0 6h5v1h-5zM10 6h1v1h-1zM1 7h9v1h-9zM1 8h9v1h-9zM2 9h7v1h-7zM4 10h3v1h-3z"/>
+      </svg>
+    </button>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var button = document.currentScript.previousElementSibling;
+        function label() {
+          var text = root.getAttribute("data-theme") === "dark" ? "Switch to light mode" : "Switch to dark mode";
+          button.setAttribute("aria-label", text);
+          button.title = text;
+        }
+        button.addEventListener("click", function () {
+          var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          try { localStorage.setItem("theme", next); } catch (e) {}
+          label();
+        });
+        label();
+        button.hidden = false;
+      })();
+    </script>
   </div>
   
     <nav class="navigation-menu">
@@ -171,7 +207,7 @@
         
       
         
-          <li><a href="/projects" >projects</a></li>
+          <li><a href="/research" >research</a></li>
         
       
         
@@ -245,7 +281,7 @@
 <p>Ultimately, however, all these large players have multiple widely-used products that will continue to be widely used until a better solution is found, and for the time being, these companies are best poised to build those better solutions. I think the companies that will feel it worst will be startups - built to be one-trick ponies exemplifying the best that LLMs and genAI have to offer, these companies are at firsthand risk to the many flaws of genAI, and will easily be replaced by bigger companies that assume their services vertically.</p>
 <p>Where will the startup world migrate to? My assumption is that they will move to the field of symbolic AI—building systems with interpretability, determinism, and true understanding of discrete concepts in mind. The data representations we wield will be more structured than a cloudy point in n-dimensional space, and when we ask AI why it makes decisions, we will be able to point at the training data that has resulted in the decision-making. Additionally, I think there will be a lot of exploration in smart robotics - the ability to generalize outside of a trained domain will be extremely important in giving properties of intelligence to robots.</p>
 <p>To me, the genAI bubble bursting will be a good thing. We will always be chasing intelligence—either an attempt to replicate it or accumulate it. However, our goal should be to never stagnate in our approach towards achieving intelligence. Though scale is certainly a promising response (it does explain some of why humans can operate so much more efficiently than other animals), it’s not the only thing that matters. Humans learn continuously, from millions of years of evolution from themselves and others, and our learning is structured by very physical bounds. In order to truly achieve things like AGI and global generalization, we need to understand the fundamental thinking processes of humans and give the same structure to artificial intelligence. Agentic AI—designing workflows for our LLMs to scaffold their skills—is a good next step, as it provides some very sequential structure, but by no means is it a new baseline we should cruise a year and a half on.</p>
-<p>I’m particularly excited about the promise of neurosymbolic methods—”neuro” like neural networks we currently use, and “symbolic” like the original methods produced by the AI movement in the 1980s. Neural methods make use of high-dimensional vectorization as their representation, while symbolic methods leverage structured representations with discrete relations. For anyone interested, I highly recommend this article (<a href="https://arxiv.org/abs/2202.12205%29">https://arxiv.org/abs/2202.12205)</a>, which gives a breakdown of the many ways neural and symbolic methods can be combined. Rather than being caught up in generalizability, the original AI movement was mostly behavioral psychology and computer science meshing to create rule-based frameworks that worked as humans did. Although they were rigid in what they did and oftentimes not parallelizable, they could provide answers with reasoning grounded in data they had been trained on, and were extremely interpretable. By leveraging the strict guidelines and structure of symbolic systems with the fuzzy matching and information gains of neural representations, we achieve something truly novel. A recent paper of mine, Hierarchical Semantic Retrieval with Cobweb, leverages neural representations within a symbolic model to showcase prototype-driven organization for information retrieval. We need to give an acquisition of structure to our methods of learning to resemble the way humans acquire understanding of the world around us.</p>
+<p>I’m particularly excited about the promise of neurosymbolic methods—”neuro” like neural networks we currently use, and “symbolic” like the original methods produced by the AI movement in the 1980s. Neural methods make use of high-dimensional vectorization as their representation, while symbolic methods leverage structured representations with discrete relations. For anyone interested, I highly recommend this article (<a href="https://arxiv.org/abs/2202.12205">https://arxiv.org/abs/2202.12205</a>), which gives a breakdown of the many ways neural and symbolic methods can be combined. Rather than being caught up in generalizability, the original AI movement was mostly behavioral psychology and computer science meshing to create rule-based frameworks that worked as humans did. Although they were rigid in what they did and oftentimes not parallelizable, they could provide answers with reasoning grounded in data they had been trained on, and were extremely interpretable. By leveraging the strict guidelines and structure of symbolic systems with the fuzzy matching and information gains of neural representations, we achieve something truly novel. A recent paper of mine, Hierarchical Semantic Retrieval with Cobweb, leverages neural representations within a symbolic model to showcase prototype-driven organization for information retrieval. We need to give an acquisition of structure to our methods of learning to resemble the way humans acquire understanding of the world around us.</p>
 <p>I’m interested to see where all of this goes and what 2026 holds - LLMs are the first stage in a path of necessary steps to achieving intelligence greater than our own, and I can only hope that as this intellectual bubble comes to a close, we continue to discover mechanisms of intelligence by observing human ingenuity.</p>
 <p><em>- Karthik</em></p>
 

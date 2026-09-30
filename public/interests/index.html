@@ -60,7 +60,8 @@ Research Interests Compositionality Representation learning Physical modeling (P
   <link rel="stylesheet" href="//localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
 
 
-<link rel="stylesheet" href="//localhost:1313/terminal.css">
+
+  <link rel="stylesheet" href="//localhost:1313/terminal.css?v=73b84858">
 
 
 
@@ -103,6 +104,13 @@ Research Interests Compositionality Representation learning Physical modeling (P
 
 
 
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
+  })();
+</script>
 
 
 </head>
@@ -136,7 +144,7 @@ Research Interests Compositionality Representation learning Physical modeling (P
         
       
         
-          <li><a href="/projects">projects</a></li>
+          <li><a href="/research">research</a></li>
         
       
         
@@ -158,6 +166,34 @@ Research Interests Compositionality Representation learning Physical modeling (P
 
     
     
+    <button class="theme-toggle" type="button" hidden>
+      
+      <svg class="theme-toggle__sun" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M5 0h1v1h-1zM1 1h1v1h-1zM5 1h1v1h-1zM9 1h1v1h-1zM2 2h1v1h-1zM8 2h1v1h-1zM4 3h3v1h-3zM3 4h5v1h-5zM0 5h2v1h-2zM3 5h5v1h-5zM9 5h2v1h-2zM3 6h5v1h-5zM4 7h3v1h-3zM2 8h1v1h-1zM8 8h1v1h-1zM1 9h1v1h-1zM5 9h1v1h-1zM9 9h1v1h-1zM5 10h1v1h-1z"/>
+      </svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M4 0h1v1h-1zM2 1h2v1h-2zM1 2h3v1h-3zM1 3h3v1h-3zM0 4h4v1h-4zM0 5h4v1h-4zM0 6h5v1h-5zM10 6h1v1h-1zM1 7h9v1h-9zM1 8h9v1h-9zM2 9h7v1h-7zM4 10h3v1h-3z"/>
+      </svg>
+    </button>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var button = document.currentScript.previousElementSibling;
+        function label() {
+          var text = root.getAttribute("data-theme") === "dark" ? "Switch to light mode" : "Switch to dark mode";
+          button.setAttribute("aria-label", text);
+          button.title = text;
+        }
+        button.addEventListener("click", function () {
+          var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          try { localStorage.setItem("theme", next); } catch (e) {}
+          label();
+        });
+        label();
+        button.hidden = false;
+      })();
+    </script>
   </div>
   
     <nav class="navigation-menu">
@@ -173,7 +209,7 @@ Research Interests Compositionality Representation learning Physical modeling (P
         
       
         
-          <li><a href="/projects" >projects</a></li>
+          <li><a href="/research" >research</a></li>
         
       
         
@@ -241,7 +277,7 @@ Research Interests Compositionality Representation learning Physical modeling (P
   </div>
   <!-- Image on the right -->
   <div style="flex: 1; min-width: 200px; display: flex; justify-content: center;">
-    <img src="/fortmountain.jpg" alt="Fort Mountain State Park" style="max-width: 100%; height: auto;">
+    <img src="/fortmountain.JPG" alt="Fort Mountain State Park" style="max-width: 100%; height: auto;">
   </div>
 </div>
 <p><em>picture taken in fort mountain state park</em></p>

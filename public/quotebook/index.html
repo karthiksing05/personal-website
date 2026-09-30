@@ -58,7 +58,8 @@ by me Use the scalpel, in a time when we are given a hammer for every screw. Be 
   <link rel="stylesheet" href="//localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
 
 
-<link rel="stylesheet" href="//localhost:1313/terminal.css">
+
+  <link rel="stylesheet" href="//localhost:1313/terminal.css?v=73b84858">
 
 
 
@@ -99,6 +100,13 @@ by me Use the scalpel, in a time when we are given a hammer for every screw. Be 
 
 
 
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
+  })();
+</script>
 
 
 </head>
@@ -132,7 +140,7 @@ by me Use the scalpel, in a time when we are given a hammer for every screw. Be 
         
       
         
-          <li><a href="/projects">projects</a></li>
+          <li><a href="/research">research</a></li>
         
       
         
@@ -154,6 +162,34 @@ by me Use the scalpel, in a time when we are given a hammer for every screw. Be 
 
     
     
+    <button class="theme-toggle" type="button" hidden>
+      
+      <svg class="theme-toggle__sun" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M5 0h1v1h-1zM1 1h1v1h-1zM5 1h1v1h-1zM9 1h1v1h-1zM2 2h1v1h-1zM8 2h1v1h-1zM4 3h3v1h-3zM3 4h5v1h-5zM0 5h2v1h-2zM3 5h5v1h-5zM9 5h2v1h-2zM3 6h5v1h-5zM4 7h3v1h-3zM2 8h1v1h-1zM8 8h1v1h-1zM1 9h1v1h-1zM5 9h1v1h-1zM9 9h1v1h-1zM5 10h1v1h-1z"/>
+      </svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M4 0h1v1h-1zM2 1h2v1h-2zM1 2h3v1h-3zM1 3h3v1h-3zM0 4h4v1h-4zM0 5h4v1h-4zM0 6h5v1h-5zM10 6h1v1h-1zM1 7h9v1h-9zM1 8h9v1h-9zM2 9h7v1h-7zM4 10h3v1h-3z"/>
+      </svg>
+    </button>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var button = document.currentScript.previousElementSibling;
+        function label() {
+          var text = root.getAttribute("data-theme") === "dark" ? "Switch to light mode" : "Switch to dark mode";
+          button.setAttribute("aria-label", text);
+          button.title = text;
+        }
+        button.addEventListener("click", function () {
+          var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          try { localStorage.setItem("theme", next); } catch (e) {}
+          label();
+        });
+        label();
+        button.hidden = false;
+      })();
+    </script>
   </div>
   
     <nav class="navigation-menu">
@@ -169,7 +205,7 @@ by me Use the scalpel, in a time when we are given a hammer for every screw. Be 
         
       
         
-          <li><a href="/projects" >projects</a></li>
+          <li><a href="/research" >research</a></li>
         
       
         
