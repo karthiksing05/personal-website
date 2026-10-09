@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cobweb, Interactively</title>
+<meta name="description" content="An interactive companion to Cobweb as a rational theory of categorization: its four operators, prediction by best-first search, three classic experiments, and applications to retrieval and topic modeling.">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="/education/sim.css">
+<link rel="stylesheet" href="/education/cobweb/cobweb.css">
+</head>
+<body>
+<!-- kw-back:start -->
+<link rel="stylesheet" href="/ventures/back-home.css">
+<div class="kw-spacer" aria-hidden="true"></div>
+<nav class="kw-strip" aria-label="Karthik's World"><a class="kw-back" href="/education/#cobweb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h5v-6h3v6h5V10"/></svg>back to karthik's world</a></nav>
+<!-- kw-back:end -->
+
+<main class="paper">
+
+<header class="masthead">
+  <p class="kicker">education / concept formation</p>
+  <h1>Cobweb: Concept Formation as Information Gain</h1>
+  <p class="byline">An interactive companion to <a href="https://arxiv.org/abs/2603.29895">MacLellan, Singaravadivelan, Lian, Wang, &amp; Langley (2026)</a><br>Karthik Singaravadivelan, Georgia Institute of Technology</p>
+</header>
+
+<section class="abstract" aria-labelledby="abstract-h">
+  <h2 id="abstract-h">Abstract</h2>
+  <p>Cobweb (Fisher, 1987) learns a taxonomy of probabilistic concepts one instance at a time. At each level of the taxonomy, it chooses among four operators (insert, create, merge, and split) the one that maximizes the information its concepts carry about their members' features. This companion reconstructs the variant that MacLellan et al. (2026) propose as a rational theory of human categorization. Figures 1 through 3 step through the representation, the operators, and prediction in a toy domain of shapes. Figures 4 through 6 revisit three classic experiments that the theory explains with a single free parameter. Section 7 surveys two applications of the same machinery to language: hierarchical semantic retrieval and lifelong topic modeling. The scenarios are constructed for exposition; every reported statistic comes from the cited papers.</p>
+</section>
+
+<h2 class="section"><span class="num">1</span>Introduction</h2>
+<p>Categorization lets a learner predict what it cannot observe. A child who files an animal under <em>dog</em> expects it to bark before it has barked. A theory of categorization must therefore explain two processes: how a learner forms categories from experience, and how it uses them to infer missing features.</p>
+<p>Anderson (1991) answered both questions with a rational analysis. His model assumes that the environment divides into a flat set of categories, and it assigns each instance to the category most likely to have generated it. MacLellan et al. (2026) revise two of his assumptions. First, they adopt Corter and Gluck's (1992) hypothesis that a category is useful to the extent that it improves feature prediction, so a learner should form the categories that share the most information with the features of its experiences. Second, they assume that the environment is taxonomic rather than flat (Fisher &amp; Langley, 1990). Fisher's (1987) Cobweb already embodies both commitments, and the authors instantiate the theory as a variant of it.</p>
+
+<h2 class="section"><span class="num">2</span>Representation</h2>
+<p>Cobweb describes each instance as a set of attribute-value pairs, such as <span class="mono">{shape: circle, color: red, size: small}</span>. A <span class="hl">concept</span> summarizes the instances beneath it with one categorical distribution per attribute. It stores only counts: the number of instances it covers, \(n(C)\), and the number of those that take each value, \(n(C, a{=}v)\). It estimates probabilities with a uniform pseudocount \(\alpha\), the theory's single free parameter:</p>
+<div class="eq">\[ P(a{=}v \mid C) = \frac{n(C, a{=}v) + \alpha}{n(C) + \alpha\,|V_a|} \tag{1} \]</div>
+<p>where \(|V_a|\) is the number of values of attribute \(a\) observed so far. The concepts form a tree. The root covers every instance, each leaf covers instances that agree on every attribute, and intermediate concepts form progressively more specific abstractions. Leaves therefore behave like stored exemplars, and intermediate concepts behave like prototypes; the theory needs no separate mechanism for either.</p>
+<p>Figure 1 shows a hierarchy over eleven shapes. Select any concept to inspect its distributions.</p>
+
+<figure class="fig wide" id="fig-rep">
+  <div class="split-fig">
+    <div class="tree-scroll" data-slot="tree"></div>
+    <div class="panel" data-slot="panel" aria-live="polite"></div>
+  </div>
+  <figcaption><b>Figure 1.</b> A toy Cobweb hierarchy over eleven shapes. Each concept draws the most probable value of every attribute (dashed outlines mark abstractions) and its count \(n(C)\). Selecting a concept lists its smoothed distributions under Eq. 1 with \(\alpha = 0.1\) and, for a concept with children, the score of its partition under Eq. 2. <span class="fig-note">hand-built tree</span></figcaption>
+</figure>
+
+<h2 class="section"><span class="num">3</span>Learning</h2>
+<h3 class="subsection"><span class="num">3.1</span>The objective</h3>
+<p>Cobweb scores a partition of a parent concept \(P\) into children \(C_1, \dots, C_K\) by how much knowing the child reduces uncertainty about an instance's features:</p>
+<div class="eq">\[ \mathrm{PU}(P) = \frac{1}{K}\Big[\, H(P) - \sum_{k=1}^{K} P(C_k \mid P)\, H(C_k) \Big] \tag{2} \]</div>
+<p>where \(H(C)\) is the entropy of a concept's feature distributions, summed over attributes:</p>
+<div class="eq">\[ H(C) = -\sum_{a} \sum_{v \in V_a} P(a{=}v \mid C) \log P(a{=}v \mid C) \]</div>
+<p>Because Cobweb treats attributes as independent within a concept, the bracketed term is the sum, over attributes, of the mutual information between each attribute and child membership. MacLellan et al. (2026) describe the operator choice as maximizing this quantity, the expected pointwise mutual information between concepts and instances. The reference implementation divides it by \(K\), as Fisher's original category utility does, so a partition cannot buy information by fragmenting into singletons.<sup class="fn"><a href="#fn1" id="fn1-ref">1</a></sup></p>
+
+<h3 class="subsection"><span class="num">3.2</span>The four operators</h3>
+<p>Cobweb incorporates an instance by descending from the root. At each concept with children, it ranks the children by how well each accommodates the instance and evaluates four ways to restructure the partition:</p>
+<ol class="ops">
+  <li><span class="hl hl--insert">insert</span> adds the instance to the best child and descends into it;</li>
+  <li><span class="hl hl--new">create</span> adds a new singleton child for the instance and stops;</li>
+  <li><span class="hl hl--merge">merge</span> joins the two best children under a new concept, adds the instance to it, and descends into it;</li>
+  <li><span class="hl hl--split">split</span> removes the best child, promotes its children to the current level, and evaluates the level again.</li>
+</ol>
+<p>Cobweb applies the operator whose resulting partition scores highest under Eq. 2. Insert and create build the hierarchy; merge and split repair it. The repair operators let later instances undo commitments that earlier, unrepresentative instances forced, which makes the hierarchy less sensitive to presentation order than a purely additive learner would be. Two boundary cases complete the procedure: an instance identical to a leaf increments that leaf, and an instance that reaches a different leaf turns that leaf into a concept with two children, the old leaf and the new instance.</p>
+<p>Figure 2 steps through one decision for each operator.</p>
+
+<figure class="fig wide" id="fig-ops">
+  <div class="controls">
+    <span class="label">Scenario</span>
+    <div class="seg" role="group" aria-label="Operator scenario" data-slot="tabs"></div>
+  </div>
+  <div class="ops-stage">
+    <div class="ops-main">
+      <div class="tree-scroll" data-slot="tree"></div>
+      <div class="controls ops-nav">
+        <button type="button" class="btn" data-act="back">&larr; back</button>
+        <button type="button" class="btn btn--primary" data-act="step">step &rarr;</button>
+        <span class="stepcount mono" data-slot="count"></span>
+      </div>
+    </div>
+    <div class="ops-side">
+      <div class="incoming" data-slot="incoming"></div>
+      <div class="scores" data-slot="scores"></div>
+      <p class="narration" data-slot="text" aria-live="polite"></p>
+    </div>
+  </div>
+  <figcaption><b>Figure 2.</b> The four operators. Each scenario fixes a hierarchy and an incoming instance at the root. Stepping through ranks the children (the best child is outlined in black, the second best in grey), scores every applicable operator, and applies the winner. Merge requires at least three children, and split requires a best child that has children of its own. <span class="fig-note">illustrative scores</span></figcaption>
+</figure>
+
+<h2 class="section"><span class="num">4</span>Prediction</h2>
+<p>Cobweb predicts a missing attribute by sorting the partial instance \(x\) through the hierarchy. The variant of MacLellan et al. (2026) replaces Fisher's single greedy descent with a best-first search that expands concepts in order of their pointwise mutual information with the instance:</p>
+<div class="eq">\[ \mathrm{PMI}(C, x) = \log \frac{p(x \mid C)}{p(x)} = \log p(x \mid C) - \log p(x) \tag{3} \]</div>
+<p>Since \(p(x)\) is the same for every concept, the search ranks concepts by \(\log p(x \mid C)\), which is the sum of Eq. 1 over the observed attributes in log space. It expands at most <span class="mono">max_nodes</span> concepts (100 in every simulation of the paper) and predicts with a mixture of the expanded concepts' distributions, weighted by their normalized scores. A small budget commits the prediction to the first concepts the search reaches; a larger budget lets more specific concepts, down to the exemplars at the leaves, enter the mixture in proportion to how well they explain the instance.</p>
+
+<figure class="fig wide" id="fig-pred">
+  <div class="controls" data-slot="probe"></div>
+  <div class="split-fig">
+    <div class="tree-scroll" data-slot="tree"></div>
+    <div class="panel" data-slot="panel" aria-live="polite"></div>
+  </div>
+  <figcaption><b>Figure 3.</b> Prediction by best-first search over the hierarchy of Figure 1. Choose the attribute to predict and the observed values of the other two. Numbers mark the order of expansion, and the bar under each expanded concept gives its mixture weight. All values are computed from the toy hierarchy with \(\alpha = 0.1\).</figcaption>
+</figure>
+
+<h2 class="section"><span class="num">5</span>Psychological evidence</h2>
+<p>MacLellan et al. (2026) evaluate the theory against three classic studies. In every simulation, the category label enters training as one more attribute and is absent at test, so classification is simply the prediction of that attribute under Section 4. The simulations use the same number of participants as the original studies, <span class="mono">max_nodes</span> = 100, and one value of \(\alpha\) per study.</p>
+
+<h3 class="subsection"><span class="num">5.1</span>Central tendency and frequency (Hayes-Roth &amp; Hayes-Roth, 1977)</h3>
+<p>Participants classified 132 descriptions of fictional people into Club 1, Club 2, or Neither. Three attributes (age, education, and marital status) took four values each and determined membership; a last name and a hobby served as distractors. Two prototypes, coded 111 and 222, defined the clubs but never appeared in training. Training items differed from a prototype by one or two features, and the design crossed this distance with frequency: some one-feature transforms appeared ten times and others once. At test, participants rated 28 items for recognition and for club membership.</p>
+<p>The data dissociate the two tasks. The unseen prototypes drew the most confident classifications, and confidence fell with distance from the prototype whatever the frequency. Recognition instead tracked frequency: items seen ten times felt more familiar than items seen once, and more familiar than the prototypes.</p>
+<p>Cobweb reproduces both patterns. MacLellan et al. (2026) trained 54 simulated participants with \(\alpha = 1\) and modeled recognition as the weighted log-likelihood of each test item over the expanded concepts. Model and human rankings of the item types correlate at Spearman \(\rho = 0.96\) for classification and \(\rho = 0.95\) for recognition. The hierarchy explains the dissociation. Frequent items build heavily weighted leaves, which raise the likelihood that drives recognition. Classification, however, draws on intermediate concepts whose label distributions pool the whole cluster, and the prototype matches the cluster's members better than any single member does. The one discrepancy concerns the Club 2 prototype, which the model finds less familiar than participants did; the authors note that the human recognition scores pool a condition in which participants saw the prototypes in advance.</p>
+
+<figure class="fig wide" id="fig-hr">
+  <div class="controls">
+    <span class="label">Task</span>
+    <div class="seg" role="group" aria-label="Task" data-slot="tabs"></div>
+  </div>
+  <div data-slot="chart"></div>
+  <figcaption><b>Figure 4.</b> Mean human ratings from Hayes-Roth and Hayes-Roth (1977), averaged within each item type, as transcribed in the cobweb-psych repository. Classification is signed confidence for Club 1 (positive) against Club 2 (negative); recognition is the old-new rating. Badges give training frequency. Cobweb's rankings correlate with these at \(\rho = 0.96\) and \(\rho = 0.95\) (MacLellan et al., 2026).</figcaption>
+</figure>
+
+<h3 class="subsection"><span class="num">5.2</span>Exemplar similarity over prototype distance (Medin &amp; Schaffer, 1978)</h3>
+<p>Medin and Schaffer (1978) designed their experiments to separate two accounts of classification. Independent cue models, prototype models among them, add up independently weighted features, so an item's standing depends on its distance from the category's central tendency. Their context model instead compares an item to stored exemplars multiplicatively, so an item that closely resembles several members of one category and none of the other wins even when it lies farther from the prototype.</p>
+<p>Experiment 2 used geometric forms that varied in form, size, color, and position, each binary. Items 4 (1110) and 7 (1010) set the accounts against each other. Under any weighting of the features, item 4 lies at least as close as item 7 to the Category A prototype 1111, so independent cue models favor item 4. Item 7, however, differs by one feature from two A exemplars and from no B exemplar, whereas item 4 differs by one feature from one A exemplar and two B exemplars. Participants classified item 7 more accurately (0.88 against 0.78), as the context model predicts. They also classified the never-studied prototype better than any studied A item (0.94).</p>
+<p>Cobweb predicts both effects without a separate exemplar store: its leaves are the exemplars, and its search weights them by likelihood. With \(\alpha = 0.1\), it reaches the training criterion in two runs on average and orders all 16 items like participants do at \(\rho = 0.96\), equal to the context model. In Experiment 1, it reproduces all four main effects and fits better than Anderson's rational model (\(\rho = 0.95\) against 0.91).</p>
+
+<figure class="fig wide" id="fig-ms">
+  <div class="controls">
+    <span class="label">Compare</span>
+    <div class="seg" role="group" aria-label="Preset comparison" data-slot="presets"></div>
+  </div>
+  <div class="split-fig split-fig--ms">
+    <div data-slot="grid"></div>
+    <div class="panel" data-slot="panel" aria-live="polite"></div>
+  </div>
+  <figcaption><b>Figure 5.</b> The 16 stimuli of Medin and Schaffer's (1978) Experiment 2, coded by form, size, color, and position. Rows and columns follow a Gray code, so items one feature apart sit next to each other, wrapping around the edges. Filled cells are training items of <span class="hl hl--a">Category A</span> or <span class="hl hl--b">Category B</span>; outlined cells appear only at transfer. Select an item to mark its one-feature neighbors among the training items. Values are human proportions correct.</figcaption>
+</figure>
+
+<h3 class="subsection"><span class="num">5.3</span>The prototype-to-exemplar transition (Smith &amp; Minda, 1998)</h3>
+<p>Smith and Minda (1998) argued that learners move from prototype to exemplar representations as learning proceeds. In their Experiment 2, participants learned 14 six-letter nonsense words in two categories that no linear boundary separates. Each category had a prototype (000000 or 111111), five standard items one feature from it, and one exception that shares a single feature with its own prototype and five with the other. Participants trained for 40 blocks, grouped into ten segments. They classified prototypes and standard items correctly from the start but misclassified the exceptions through the first three segments; accuracy on the exceptions began to rise near segment 4 and passed chance about halfway through training.</p>
+<p>Cobweb shows the same transition, and its tree exposes the mechanism. Early in training, the prior \(\alpha\) dominates small concepts, so each exception folds into the large concept of the prototype it resembles, and the model behaves like a prototype learner. As exposures accumulate, the evidence for each exception overpowers the prior, Cobweb forms a distinct concept for it, and classification follows the exemplar. The value of \(\alpha\) sets the timing. Below about 0.6, Cobweb classifies the exceptions correctly from the first segment; at \(\alpha = 1\), it improves gradually, much like the hierarchical Dirichlet process of Griffiths et al. (2007); at \(\alpha = 2\), the value used in the paper, it shows a phase change with no early improvement.</p>
+
+<figure class="fig wide" id="fig-sm">
+  <div class="controls">
+    <span class="label label--math">\(\alpha\)</span>
+    <div class="seg" role="group" aria-label="Prior strength" data-slot="alpha"></div>
+    <span class="label sm-seg-label">Segment</span>
+    <input type="range" min="1" max="10" step="1" value="2" data-slot="segment" aria-label="Training segment">
+    <output data-slot="segout">2</output>
+  </div>
+  <div class="split-fig split-fig--sm">
+    <div data-slot="chart"></div>
+    <div class="panel" data-slot="inset"></div>
+  </div>
+  <figcaption><b>Figure 6.</b> The prototype-to-exemplar transition. Curves trace the probability of Category A for each item type across ten training segments, with <span class="hl hl--a">Category A</span> items above chance and <span class="hl hl--b">Category B</span> items below once learned. The panel shows where the Category A exception (111101) sits in the hierarchy at the selected segment. <span class="fig-note">schematic of the reported pattern</span></figcaption>
+</figure>
+
+<h2 class="section"><span class="num">6</span>Discussion</h2>
+<p>The simulations support a compact claim: a learner that greedily maximizes the information its concepts carry, within a taxonomy, reproduces effects that earlier accounts explained with separate mechanisms. Prototype effects arise from intermediate concepts, exemplar effects from leaves, frequency effects from counts, and the transition between regimes from the competition between the prior and accumulating evidence. The theory achieves this with one free parameter, where the context model fits an attention weight to every dimension.</p>
+<p>The evaluation has limits that the authors acknowledge. Only aggregate human data were available, so every fit compares averaged scores. The value of \(\alpha\) differed across studies (1, 0.1, and 2), each chosen from a few candidates. The Smith and Minda account is qualitative. Ablations that test the taxonomic and information-theoretic assumptions separately, and experiments where the theory's predictions diverge from its competitors', remain future work.</p>
+
+<h2 class="section"><span class="num">7</span>Applications</h2>
+<p>The same operators extend to continuous attributes. Cobweb/4V (Barari et al., 2024) replaces each categorical distribution with a diagonal Gaussian and measures uncertainty by differential entropy, \(U(C) = \tfrac{1}{2}\sum_{d} \log(2\pi e\, \sigma^2_{C,d})\), so a good partition is one that reduces variance. Two recent papers apply this variant to sentence embeddings from pretrained transformers.</p>
+
+<h3 class="subsection"><span class="num">7.1</span>Hierarchical semantic retrieval</h3>
+<p>Dense retrieval ranks documents by the dot product between their embeddings and a query's. Gupta, Singaravadivelan, and Wang (2025) instead insert document embeddings into a Cobweb/4V tree and rank its leaves by a coarse-to-fine traversal. Cobweb-BFS runs best-first search from the root and ranks leaves in the order it reaches them; Cobweb-PathSum scores each leaf by the summed log scores of the concepts on its path from the root. Neither method fixes a number of clusters, and both expose intermediate prototypes that summarize the documents beneath them.</p>
+<p>Diagonal Gaussians assume independent dimensions, which contrastively trained embeddings violate. The authors therefore whiten embeddings with PCA and ICA before insertion, and this step proves decisive (Table 1). With whitening, Cobweb matches exact dot-product search on RoBERTa and T5 embeddings. On anisotropic GPT-2 embeddings, where dot product nearly fails, Cobweb retrieves substantially better. PathSum runs 20 to 100 times faster than BFS, although both remain far slower than FAISS.</p>
+
+<div class="tbl-wrap">
+<table class="tbl">
+  <caption><b>Table 1.</b> Retrieval on QQP (10k documents, 1k queries): Recall@5 and MRR@5, in percent. From Gupta et al. (2025), Table 1.</caption>
+  <thead>
+    <tr><th rowspan="2">Method</th><th rowspan="2">Whitened</th><th colspan="2">RoBERTa</th><th colspan="2">GPT-2</th></tr>
+    <tr><th>R@5</th><th>MRR@5</th><th>R@5</th><th>MRR@5</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Dot product (FAISS)</td><td>no</td><td class="best">86.80</td><td>74.23</td><td>0.00</td><td>0.00</td></tr>
+    <tr><td>Cobweb-BFS</td><td>no</td><td>11.10</td><td>8.11</td><td>18.00</td><td>13.86</td></tr>
+    <tr><td>Dot product (FAISS)</td><td>yes</td><td>86.70</td><td class="best">74.40</td><td>19.90</td><td>10.61</td></tr>
+    <tr><td>Cobweb-BFS</td><td>yes</td><td>85.90</td><td>73.62</td><td class="best">35.10</td><td class="best">26.38</td></tr>
+    <tr><td>Cobweb-PathSum</td><td>yes</td><td>84.90</td><td>73.22</td><td>33.60</td><td>24.82</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 class="subsection"><span class="num">7.2</span>Lifelong hierarchical topic modeling</h3>
+<p>Topic models typically fix the number of topics in advance and train in batch, and their incremental variants either keep that number fixed or forget earlier structure. CobwebTM (Singaravadivelan, Gupta, Wang, &amp; MacLellan, 2026) inserts each incoming document embedding into a Cobweb/4V tree and labels every concept with the c-TF-IDF words of the documents beneath it. The root covers the corpus, intermediate concepts form increasingly specific topics, and the tree grows wherever new documents demand it. Each insertion adjusts only the concepts along one path, so earlier topics persist: the model has no fixed topic capacity and does not forget catastrophically. Figure 7 sketches this behavior on a stream of news.</p>
+
+<figure class="fig wide" id="fig-tm">
+  <div class="controls">
+    <button type="button" class="btn btn--primary" data-act="step">stream next batch &rarr;</button>
+    <button type="button" class="btn" data-act="reset">reset</button>
+    <span class="stepcount mono" data-slot="count"></span>
+  </div>
+  <div class="tree-scroll" data-slot="tree"></div>
+  <p class="narration" data-slot="text" aria-live="polite"></p>
+  <figcaption><b>Figure 7.</b> A stream of news batches entering a topic hierarchy. Each concept shows the top c-TF-IDF words of its documents; colors mark the operator that produced each change, and the final batch introduces a category that no earlier batch contained. <span class="fig-note">schematic</span></figcaption>
+</figure>
+
+<p>On three streaming corpora, CobwebTM attains the highest final coherence of every incremental method and near-perfect agreement between the topic assignments of consecutive batches (Table 2). When the evaluation withholds an entire category and then streams it in, CobwebTM creates a topic for it, as the batch re-fit baselines do, while the other incremental methods fail. On hierarchical benchmarks, it attains the highest NPMI on 20 Newsgroups, AG News, and Stack Exchange. Its limitations mirror its design: topic words come from post hoc aggregation rather than from the tree itself, quality depends on the encoder, and results depend on the order in which documents arrive.</p>
+
+<div class="tbl-wrap">
+<table class="tbl">
+  <caption><b>Table 2.</b> Lifelong topic modeling: final \(C_v\) coherence and ARI between consecutive batches for the incremental methods. From Singaravadivelan et al. (2026), Tables 1 to 3.</caption>
+  <thead>
+    <tr><th rowspan="2">Method</th><th colspan="2">TweetNER7</th><th colspan="2">Stack Overflow</th><th colspan="2">News</th></tr>
+    <tr><th>\(C_v\)</th><th>ARI</th><th>\(C_v\)</th><th>ARI</th><th>\(C_v\)</th><th>ARI</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>CobwebTM</td><td class="best">0.741</td><td>0.915</td><td class="best">0.613</td><td class="best">0.997</td><td class="best">0.796</td><td class="best">0.984</td></tr>
+    <tr><td>BERTopic, MiniBatchKMeans</td><td>0.413</td><td class="best">0.952</td><td>0.423</td><td>0.955</td><td>0.646</td><td>0.962</td></tr>
+    <tr><td>BERTopic, DBSTREAM</td><td>0.602</td><td>0.594</td><td>0.457</td><td>0.012</td><td>0.418</td><td>0.408</td></tr>
+    <tr><td>Online LDA</td><td>0.317</td><td>0.948</td><td>0.520</td><td>0.897</td><td>0.422</td><td>0.882</td></tr>
+    <tr><td>Lifelong NTM</td><td>0.281</td><td>0.479</td><td>0.184</td><td>0.122</td><td>0.238</td><td>0.127</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Both applications rely on the properties that make Cobweb a plausible account of human learning. It learns incrementally, it determines the breadth and depth of its hierarchy from the data rather than from a fixed parameter, and every concept it forms remains inspectable as a prototype of the instances beneath it.</p>
+
+<div class="footnotes">
+  <p id="fn1"><sup>1</sup> In the reference implementation (<a href="https://github.com/Teachable-AI-Lab/cobweb">Teachable-AI-Lab/cobweb</a>), the division by \(K\) is the default setting <span class="mono">children_norm=True</span>. <a href="#fn1-ref" aria-label="Back to text">&#8617;</a></p>
+</div>
+
+<h2 class="section">References</h2>
+<ol class="refs">
+  <li>Anderson, J. R. (1991). The adaptive nature of human categorization. <em>Psychological Review, 98</em>(3), 409–429.</li>
+  <li>Barari, N., Lian, X., &amp; MacLellan, C. J. (2024). Incremental concept formation over visual images without catastrophic forgetting. <em>Advances in Cognitive Systems</em>.</li>
+  <li>Corter, J. E., &amp; Gluck, M. A. (1992). Explaining basic categories: Feature predictability and information. <em>Psychological Bulletin, 111</em>(2), 291–303.</li>
+  <li>Fisher, D. H. (1987). Knowledge acquisition via incremental conceptual clustering. <em>Machine Learning, 2</em>(2), 139–172.</li>
+  <li>Fisher, D. H., &amp; Langley, P. (1990). The structure and formation of natural categories. <em>Psychology of Learning and Motivation, 26</em>, 241–284.</li>
+  <li>Griffiths, T. L., Canini, K. R., Sanborn, A. N., &amp; Navarro, D. J. (2007). Unifying rational models of categorization via the hierarchical Dirichlet process. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>.</li>
+  <li>Gupta, A., Singaravadivelan, K., &amp; Wang, Z. (2025). Hierarchical semantic retrieval with Cobweb. <em>Advances in Cognitive Systems, 12</em>. <a href="https://arxiv.org/abs/2510.02539">arXiv:2510.02539</a>.</li>
+  <li>Hayes-Roth, B., &amp; Hayes-Roth, F. (1977). Concept learning and the recognition and classification of exemplars. <em>Journal of Verbal Learning and Verbal Behavior, 16</em>(3), 321–338.</li>
+  <li>MacLellan, C. J., Singaravadivelan, K., Lian, X., Wang, Z., &amp; Langley, P. (2026). A rational account of categorization based on information theory. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>. <a href="https://arxiv.org/abs/2603.29895">arXiv:2603.29895</a>.</li>
+  <li>Medin, D. L., &amp; Schaffer, M. M. (1978). Context theory of classification learning. <em>Psychological Review, 85</em>(3), 207–238.</li>
+  <li>Singaravadivelan, K., Gupta, A., Wang, Z., &amp; MacLellan, C. J. (2026). CobwebTM: Probabilistic concept formation for lifelong and hierarchical topic modeling. In <em>Findings of the Association for Computational Linguistics: ACL 2026</em> (pp. 35140–35155). <a href="https://aclanthology.org/2026.findings-acl.1753/">ACL Anthology</a>.</li>
+  <li>Smith, J. D., &amp; Minda, J. P. (1998). Prototypes in the mist: The early epochs of category learning. <em>Journal of Experimental Psychology: Learning, Memory, and Cognition, 24</em>(6), 1411–1436.</li>
+</ol>
+<p class="colophon">Code: <a href="https://github.com/Teachable-AI-Lab/cobweb">Teachable-AI-Lab/cobweb</a> (the algorithm) and <a href="https://github.com/Teachable-AI-Lab/cobweb-psych">Teachable-AI-Lab/cobweb-psych</a> (the experiments).</p>
+
+</main>
+
+<script src="/education/cobweb/app.js" defer></script>
+</body>
+</html>

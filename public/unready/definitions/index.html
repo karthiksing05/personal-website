@@ -58,7 +58,7 @@
 
 
 
-  <link rel="stylesheet" href="//localhost:1313/terminal.css?v=126aea4d">
+  <link rel="stylesheet" href="//localhost:1313/terminal.css?v=73b84858">
 
 
 
@@ -102,8 +102,7 @@
   (function () {
     var saved = null;
     try { saved = localStorage.getItem("theme"); } catch (e) {}
-    var theme = saved || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-    document.documentElement.setAttribute("data-theme", theme);
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
   })();
 </script>
 
@@ -143,6 +142,10 @@
         
       
         
+          <li><a href="/education">education</a></li>
+        
+      
+        
           <li><a href="/ventures">ventures</a></li>
         
       
@@ -175,12 +178,12 @@
         var root = document.documentElement;
         var button = document.currentScript.previousElementSibling;
         function label() {
-          var text = root.getAttribute("data-theme") === "light" ? "Switch to dark mode" : "Switch to light mode";
+          var text = root.getAttribute("data-theme") === "dark" ? "Switch to light mode" : "Switch to dark mode";
           button.setAttribute("aria-label", text);
           button.title = text;
         }
         button.addEventListener("click", function () {
-          var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+          var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
           root.setAttribute("data-theme", next);
           try { localStorage.setItem("theme", next); } catch (e) {}
           label();
@@ -205,6 +208,10 @@
       
         
           <li><a href="/research" >research</a></li>
+        
+      
+        
+          <li><a href="/education" >education</a></li>
         
       
         

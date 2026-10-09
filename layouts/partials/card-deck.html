@@ -1,0 +1,278 @@
+{{- /*
+  Carousel of terminal-window cards, shared by /ventures and /education. Call it with
+    partial "card-deck.html" (dict "items" $items "section" "ventures" "noun" "venture" "list" "results")
+  items    cards in display order; each needs `slug`, `title`, `date`, `description` and may
+           set `tag`, `award`, `venue`, `team`, the list field, `link`, `links` and the
+           ventures link fields documented in the calling shortcode
+  section  the folder shown in each card's path bar (~/<section>/<slug>)
+  noun     singular name, used in the arrow labels
+  list     which field holds the card's file-tree list (rendered as "<list>/")
+  With a single card the arrows and dots are hidden.
+*/ -}}
+{{- $items := .items -}}
+{{- $section := .section -}}
+{{- $noun := .noun -}}
+{{- $list := .list -}}
+{{- $n := len $items -}}
+<style>
+.deck { margin: 30px 0; }
+.deck__stage {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "prev track next" ". dots .";
+  align-items: center;
+  gap: 14px 16px;
+}
+.deck__track { grid-area: track; display: grid; }
+.deck__arrow--prev { grid-area: prev; }
+.deck__arrow--next { grid-area: next; }
+.deck__arrow {
+  width: 44px; height: 44px; padding: 0;
+  border: 2px solid var(--accent);
+  font-size: 1.2em; line-height: 1;
+}
+.deck__dots { grid-area: dots; display: flex; justify-content: center; flex-wrap: wrap; gap: 2px; }
+.deck__dot {
+  width: 24px; height: 24px; padding: 0; border: 0; background: transparent;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.deck__dot::before {
+  content: ""; width: 10px; height: 10px;
+  border: 1px solid var(--accent);
+}
+.deck__dot[aria-current="true"]::before { background: var(--accent); }
+.deck__dot:hover { background: transparent; }
+.deck__status {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.deck-card {
+  border: 2px solid var(--accent);
+  background: var(--background);
+  display: flex; flex-direction: column;
+}
+.deck-card__bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 6px 14px;
+  border-bottom: 2px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  font-size: 0.85em;
+}
+.deck-card__lights { display: inline-flex; gap: 6px; }
+.deck-card__lights i {
+  width: 9px; height: 9px; border-radius: 50%;
+  border: 1px solid var(--accent);
+}
+.deck-card__lights i:first-child { background: var(--accent); }
+.deck-card__path { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.deck-card__count { color: color-mix(in srgb, var(--foreground) 60%, transparent); font-variant-numeric: tabular-nums; }
+.deck-card__body { padding: 18px 22px 20px; }
+.deck-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.deck-card__meta time { color: color-mix(in srgb, var(--foreground) 70%, transparent); margin-right: 4px; }
+.deck-card__bubble {
+  display: inline-block;
+  padding: 0 10px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #1a170f;
+  font-size: 0.8em; font-weight: 600; line-height: 1.8;
+}
+.deck-card__bubble--award { background: transparent; color: var(--foreground); }
+.deck-card__bubble--award::before { content: "★ "; color: var(--accent); }
+.deck-card__bubble--venue { background: transparent; color: var(--foreground); }
+.deck-card__title { margin: 14px 0 0; }
+.deck-card__team {
+  margin: 2px 0 0;
+  font-size: 0.85em; font-style: italic;
+  color: color-mix(in srgb, var(--foreground) 70%, transparent);
+}
+.deck-card__desc { margin: 14px 0 0; }
+.deck-card__desc p { margin: 0 0 10px; }
+.deck-card__results { margin: 16px 0 0; }
+.deck-card__results summary {
+  cursor: pointer; list-style: none;
+  color: var(--accent); font-weight: 600;
+}
+.deck-card__results summary::-webkit-details-marker { display: none; }
+.deck-card__results summary::before { content: "▸ "; }
+.deck-card__results[open] summary::before { content: "▾ "; }
+.deck .deck-card__tree { list-style: none; margin: 4px 0 0 0.6ch; padding: 0; }
+.deck .deck-card__tree > li { position: relative; padding: 0 0 4px 3.4ch; }
+/* the theme gives every post list item a "-" bullet; these draw the ├── / └── branches instead */
+.deck .deck-card__tree > li:not(:empty)::before {
+  content: ""; position: absolute; left: 0; top: 0;
+  width: 2.4ch; height: 0.77em;
+  border-left: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+.deck .deck-card__tree > li:not(:empty)::after {
+  content: ""; position: absolute; left: 0; top: 0.77em; bottom: 0;
+  border-left: 1px solid var(--accent);
+}
+.deck .deck-card__tree > li:last-child::after { display: none; }
+.deck-card__links { margin: 18px 0 0; }
+.deck-card__sep { color: color-mix(in srgb, var(--foreground) 45%, transparent); }
+
+/* without JS every card is listed in order; with JS only the active one is shown */
+.deck:not(.is-ready) .deck__stage { display: block; }
+.deck:not(.is-ready) .deck__track { gap: 24px; }
+.deck:not(.is-ready) .deck__arrow,
+.deck:not(.is-ready) .deck__dots,
+.deck--single .deck__arrow,
+.deck--single .deck__dots { display: none; }
+.deck--single .deck__stage { grid-template-columns: minmax(0, 1fr); grid-template-areas: "track"; }
+.deck.is-ready .deck-card:not(.is-active) { display: none; }
+.deck.is-ready .deck-card.is-active { animation: deck-in 0.2s ease; }
+@keyframes deck-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* on wide screens the arrows ride along the side of long cards */
+@media (min-width: 701px) {
+  .deck__arrow { align-self: start; position: sticky; top: calc(50vh - 22px); margin-top: 64px; }
+}
+@media (max-width: 700px) {
+  .deck__stage { grid-template-areas: "track track track" "prev dots next"; gap: 12px 8px; }
+  .deck-card__body { padding: 14px 14px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .deck.is-ready .deck-card.is-active { animation: none; }
+}
+</style>
+
+<div class="deck{{ if le $n 1 }} deck--single{{ end }}" data-deck role="region" aria-roledescription="carousel" aria-label="{{ $section }}">
+  <div class="deck__stage">
+    <button type="button" class="deck__arrow deck__arrow--prev" data-dir="-1" aria-label="Previous {{ $noun }}">&larr;</button>
+    <div class="deck__track">
+      {{- range $i, $v := $items }}
+      <article class="deck-card{{ if eq $i 0 }} is-active{{ end }}" id="{{ $v.slug }}" data-title="{{ $v.title }}" aria-roledescription="slide" aria-label="{{ add $i 1 }} of {{ $n }}: {{ $v.title }}">
+        <div class="deck-card__bar">
+          <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="deck-card__path">~/{{ $section }}/{{ $v.slug }}</span>
+          <span class="deck-card__count">{{ add $i 1 }}/{{ $n }}</span>
+        </div>
+        <div class="deck-card__body">
+          <div class="deck-card__meta">
+            <time datetime="{{ $v.date }}">{{ time.AsTime (printf "%s-01" (substr $v.date 0 7)) | time.Format "January 2006" }}</time>
+            {{- with $v.tag }}
+            <span class="deck-card__bubble">{{ . }}</span>
+            {{- end }}
+            {{- with $v.award }}
+            {{- range cond (reflect.IsSlice .) . (slice .) }}
+            <span class="deck-card__bubble deck-card__bubble--award">{{ . }}</span>
+            {{- end }}
+            {{- end }}
+            {{- with $v.venue }}
+            {{- range cond (reflect.IsSlice .) . (slice .) }}
+            <span class="deck-card__bubble deck-card__bubble--venue">{{ . }}</span>
+            {{- end }}
+            {{- end }}
+          </div>
+          <h2 class="deck-card__title">{{ $v.title }}</h2>
+          {{- with $v.team }}
+          <p class="deck-card__team">with {{ . }}</p>
+          {{- end }}
+          <div class="deck-card__desc">{{ $v.description | markdownify }}</div>
+          {{- with index $v $list }}
+          <details class="deck-card__results" open>
+            <summary>{{ $list }}/</summary>
+            <ul class="deck-card__tree">
+              {{- range . }}
+              <li>{{ . | markdownify }}</li>
+              {{- end }}
+            </ul>
+          </details>
+          {{- end }}
+          {{- $links := slice }}
+          {{- with $v.link }}{{ $links = $links | append (dict "url" . "label" ($v.link_label | default "read more")) }}{{ end }}
+          {{- with $v.devpost }}{{ $links = $links | append (dict "url" . "label" "devpost") }}{{ end }}
+          {{- with $v.video }}{{ $links = $links | append (dict "url" . "label" "watch the demo") }}{{ end }}
+          {{- with $v.github }}{{ $links = $links | append (dict "url" . "label" "github") }}{{ end }}
+          {{- with $v.site }}{{ $links = $links | append (dict "url" . "label" "live site") }}{{ end }}
+          {{- range $v.links }}{{ $links = $links | append (dict "url" .url "label" .label) }}{{ end }}
+          {{- with $links }}
+          <p class="deck-card__links">
+            {{- range $k, $l := . }}{{ if $k }}<span class="deck-card__sep" aria-hidden="true"> | </span>{{ end }}<a href="{{ $l.url }}"{{ if hasPrefix $l.url "http" }} target="_blank" rel="noopener"{{ end }}>{{ $l.label }}</a>{{ end -}}
+          </p>
+          {{- end }}
+        </div>
+      </article>
+      {{- end }}
+    </div>
+    <button type="button" class="deck__arrow deck__arrow--next" data-dir="1" aria-label="Next {{ $noun }}">&rarr;</button>
+    <div class="deck__dots">
+      {{- range $i, $v := $items }}
+      <button type="button" class="deck__dot" aria-label="Show {{ $v.title }}"{{ if eq $i 0 }} aria-current="true"{{ end }}></button>
+      {{- end }}
+    </div>
+  </div>
+  <p class="deck__status" aria-live="polite"></p>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector("[data-deck]");
+  if (!root) return;
+  var cards = Array.prototype.slice.call(root.querySelectorAll(".deck-card"));
+  var dots = Array.prototype.slice.call(root.querySelectorAll(".deck__dot"));
+  var track = root.querySelector(".deck__track");
+  var status = root.querySelector(".deck__status");
+  var current = 0;
+
+  function show(i, fromUser) {
+    current = (i + cards.length) % cards.length;
+    cards.forEach(function (c, k) { c.classList.toggle("is-active", k === current); });
+    dots.forEach(function (d, k) {
+      if (k === current) d.setAttribute("aria-current", "true");
+      else d.removeAttribute("aria-current");
+    });
+    if (fromUser) {
+      status.textContent = cards[current].dataset.title + ", " + (current + 1) + " of " + cards.length;
+      if (history.replaceState) history.replaceState(null, "", "#" + cards[current].id);
+      // cards differ in height, so if we were deep into a long one, bring the new card's top back into view
+      if (track.getBoundingClientRect().top < 0) track.scrollIntoView({ block: "start" });
+    }
+  }
+
+  function indexFromHash() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    for (var k = 0; k < cards.length; k++) if (cards[k].id === id) return k;
+    return -1;
+  }
+
+  root.querySelectorAll(".deck__arrow").forEach(function (b) {
+    b.addEventListener("click", function () { show(current + Number(b.dataset.dir), true); });
+  });
+  dots.forEach(function (d, k) {
+    d.addEventListener("click", function () { show(k, true); });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    var t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if (e.key === "ArrowLeft") show(current - 1, true);
+    else if (e.key === "ArrowRight") show(current + 1, true);
+  });
+
+  var x0 = null, y0 = null;
+  track.addEventListener("touchstart", function (e) {
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+  }, { passive: true });
+  track.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(current + (dx < 0 ? 1 : -1), true);
+    x0 = null;
+  }, { passive: true });
+
+  window.addEventListener("hashchange", function () {
+    var k = indexFromHash();
+    if (k >= 0) show(k);
+  });
+
+  var start = indexFromHash();
+  show(start >= 0 ? start : 0);
+  root.classList.add("is-ready");
+})();
+</script>

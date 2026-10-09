@@ -1,0 +1,22 @@
+{{- /*
+  Education carousel. Every file in data/education/ is one card, shown newest first by `date`.
+  Each card points to an interactive explainer that lives in static/education/<slug>/ and
+  shares static/education/sim.css. Fields:
+    title        required
+    date         required, "YYYY-MM"; same-month cards are ordered by filename
+    topic        optional, shown as a bubble
+    venue        optional, shown as an outlined bubble; use a list for several
+    description  markdown
+    concepts     list of markdown strings, shown in the concepts/ folder
+    link         the explainer (e.g. "/education/cobweb/")
+    link_label   text for `link` (defaults to "open the simulation")
+    links        optional list of {label, url} tables, e.g. the papers and code it draws on
+*/ -}}
+{{- $items := slice -}}
+{{- range $slug, $v := site.Data.education -}}
+  {{- $day := $v.date -}}
+  {{- if eq (len $day) 7 }}{{ $day = printf "%s-00" $day }}{{ end -}}
+  {{- $items = $items | append (merge $v (dict "slug" $slug "tag" $v.topic "link_label" ($v.link_label | default "open the simulation") "sortkey" (printf "%s|%s" $day $slug))) -}}
+{{- end -}}
+{{- $items = sort $items "sortkey" "desc" -}}
+{{- partial "card-deck.html" (dict "items" $items "section" "education" "noun" "lesson" "list" "concepts") -}}

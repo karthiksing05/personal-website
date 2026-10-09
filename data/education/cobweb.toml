@@ -1,0 +1,22 @@
+title = "Cobweb: Concept Formation as Information Gain"
+date = "2026-10"
+topic = "cognitive science"
+venue = ["CogSci 2026", "ACS 2025", "ACL Findings 2026"]
+description = """
+An interactive walkthrough of Fisher's (1987) Cobweb as recent work implements it: an incremental learner that sorts each experience into a taxonomy of probabilistic concepts, choosing among four restructuring operators to maximize the information its concepts carry about their members. The simulation steps through each operator, traces a prediction through the hierarchy, revisits three classic categorization experiments, and closes on the applications of Cobweb to semantic retrieval and lifelong topic modeling.
+"""
+concepts = [
+  "instances, concepts, and the taxonomy that links them",
+  "the four operators: insert, create, merge, and split",
+  "prediction by best-first search over pointwise mutual information",
+  "central tendency and frequency (Hayes-Roth & Hayes-Roth, 1977)",
+  "exemplar similarity over prototype distance (Medin & Schaffer, 1978)",
+  "the prototype-to-exemplar transition (Smith & Minda, 1998)",
+  "applications to retrieval and topic modeling",
+]
+link = "/education/cobweb/"
+links = [
+  { label = "paper", url = "https://arxiv.org/abs/2603.29895" },
+  { label = "cobweb", url = "https://github.com/Teachable-AI-Lab/cobweb" },
+  { label = "cobweb-psych", url = "https://github.com/Teachable-AI-Lab/cobweb-psych" },
+]

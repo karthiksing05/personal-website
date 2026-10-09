@@ -47,7 +47,7 @@
     <loc>//localhost:1313/thoughts/proofoflife/</loc>
     <lastmod>2025-10-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/education/</loc>
+    <loc>//localhost:1313/thoughts/educationsystem/</loc>
     <lastmod>2025-09-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/thoughts/predestination/</loc>
@@ -65,6 +65,8 @@
     <loc>//localhost:1313/contactme/</loc>
   </url><url>
     <loc>//localhost:1313/unready/definitions/</loc>
+  </url><url>
+    <loc>//localhost:1313/education/</loc>
   </url><url>
     <loc>//localhost:1313/interests/</loc>
   </url><url>

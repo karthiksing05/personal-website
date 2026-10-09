@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>education :: Karthik&#39;s World</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content=" What I cannot create, I do not understand. — Richard Feynman, American theoretical physicist
+Most of what I know about my own research I did not learn from reading the paper - I learned it from watching the algorithm do something I did not expect, and then working backwards to figure out why. Indeed, a figure in a paper is a single frozen moment of a process, and it is in interacting with that process (changing an input, stepping through a decision, breaking an assumption on purpose) that a reader builds the intuition the paper was trying to transfer in the first place. This page collects interactive explainers for the concepts behind my research, each one a small simulation that lets you poke at an idea until it stops being abstract. Fundamentally, I believe that good visualization is a form of argument, and that the best way to understand a theory of learning is to watch it learn.
+" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="//localhost:1313/education/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terminal.min.b4c9a8177425847ea7a60774d22b1029badd7ff02dc331fc13075877d36f6507.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+  <link rel="stylesheet" href="//localhost:1313/terminal.css?v=73b84858">
+
+
+
+
+<link rel="shortcut icon" href="//localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="learning by building, and building to learn" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="education">
+<meta property="og:description" content=" What I cannot create, I do not understand. — Richard Feynman, American theoretical physicist
+Most of what I know about my own research I did not learn from reading the paper - I learned it from watching the algorithm do something I did not expect, and then working backwards to figure out why. Indeed, a figure in a paper is a single frozen moment of a process, and it is in interacting with that process (changing an input, stepping through a decision, breaking an assumption on purpose) that a reader builds the intuition the paper was trying to transfer in the first place. This page collects interactive explainers for the concepts behind my research, each one a small simulation that lets you poke at an idea until it stops being abstract. Fundamentally, I believe that good visualization is a form of argument, and that the best way to understand a theory of learning is to watch it learn.
+" />
+<meta property="og:url" content="//localhost:1313/education/" />
+<meta property="og:site_name" content="Karthik&#39;s World" />
+
+  <meta property="og:image" content="//localhost:1313/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
+  })();
+</script>
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Karthik&#39;s World
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/thoughts">thoughts</a></li>
+        
+      
+        
+          <li><a href="/interests">interests</a></li>
+        
+      
+        
+          <li><a href="/research">research</a></li>
+        
+      
+        
+          <li><a href="/education">education</a></li>
+        
+      
+        
+          <li><a href="/ventures">ventures</a></li>
+        
+      
+        
+          <li><a href="/quotebook">quotebook</a></li>
+        
+      
+        
+          <li><a href="/contactme">contact me</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+    <button class="theme-toggle" type="button" hidden>
+      
+      <svg class="theme-toggle__sun" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M5 0h1v1h-1zM1 1h1v1h-1zM5 1h1v1h-1zM9 1h1v1h-1zM2 2h1v1h-1zM8 2h1v1h-1zM4 3h3v1h-3zM3 4h5v1h-5zM0 5h2v1h-2zM3 5h5v1h-5zM9 5h2v1h-2zM3 6h5v1h-5zM4 7h3v1h-3zM2 8h1v1h-1zM8 8h1v1h-1zM1 9h1v1h-1zM5 9h1v1h-1zM9 9h1v1h-1zM5 10h1v1h-1z"/>
+      </svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M4 0h1v1h-1zM2 1h2v1h-2zM1 2h3v1h-3zM1 3h3v1h-3zM0 4h4v1h-4zM0 5h4v1h-4zM0 6h5v1h-5zM10 6h1v1h-1zM1 7h9v1h-9zM1 8h9v1h-9zM2 9h7v1h-7zM4 10h3v1h-3z"/>
+      </svg>
+    </button>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var button = document.currentScript.previousElementSibling;
+        function label() {
+          var text = root.getAttribute("data-theme") === "dark" ? "Switch to light mode" : "Switch to dark mode";
+          button.setAttribute("aria-label", text);
+          button.title = text;
+        }
+        button.addEventListener("click", function () {
+          var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          try { localStorage.setItem("theme", next); } catch (e) {}
+          label();
+        });
+        label();
+        button.hidden = false;
+      })();
+    </script>
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/thoughts" >thoughts</a></li>
+        
+      
+        
+          <li><a href="/interests" >interests</a></li>
+        
+      
+        
+          <li><a href="/research" >research</a></li>
+        
+      
+        
+          <li><a href="/education" >education</a></li>
+        
+      
+        
+          <li><a href="/ventures" >ventures</a></li>
+        
+      
+        
+          <li><a href="/quotebook" >quotebook</a></li>
+        
+      
+        
+          <li><a href="/contactme" >contact me</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="//localhost:1313/education/">education</a>
+  </h1>
+  <div class="post-meta"><span class="post-author">learning by building, and building to learn</span></div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <blockquote>
+<p>What I cannot create, I do not understand. <em>— Richard Feynman, American theoretical physicist</em></p></blockquote>
+<p>Most of what I know about my own research I did not learn from reading the paper - I learned it from watching the algorithm do something I did not expect, and then working backwards to figure out why. Indeed, a figure in a paper is a single frozen moment of a process, and it is in <em>interacting</em> with that process (changing an input, stepping through a decision, breaking an assumption on purpose) that a reader builds the intuition the paper was trying to transfer in the first place. This page collects interactive explainers for the concepts behind my research, each one a small simulation that lets you poke at an idea until it stops being abstract. Fundamentally, I believe that good visualization is a form of argument, and that the best way to understand a theory of learning is to watch it learn.</p>
+<p>Each card opens its own simulation, written in the register of the papers it draws from and linked to the original work - please reach out if something is unclear or if you would like to see a concept covered!</p>
+<style>
+.deck { margin: 30px 0; }
+.deck__stage {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "prev track next" ". dots .";
+  align-items: center;
+  gap: 14px 16px;
+}
+.deck__track { grid-area: track; display: grid; }
+.deck__arrow--prev { grid-area: prev; }
+.deck__arrow--next { grid-area: next; }
+.deck__arrow {
+  width: 44px; height: 44px; padding: 0;
+  border: 2px solid var(--accent);
+  font-size: 1.2em; line-height: 1;
+}
+.deck__dots { grid-area: dots; display: flex; justify-content: center; flex-wrap: wrap; gap: 2px; }
+.deck__dot {
+  width: 24px; height: 24px; padding: 0; border: 0; background: transparent;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.deck__dot::before {
+  content: ""; width: 10px; height: 10px;
+  border: 1px solid var(--accent);
+}
+.deck__dot[aria-current="true"]::before { background: var(--accent); }
+.deck__dot:hover { background: transparent; }
+.deck__status {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.deck-card {
+  border: 2px solid var(--accent);
+  background: var(--background);
+  display: flex; flex-direction: column;
+}
+.deck-card__bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 6px 14px;
+  border-bottom: 2px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  font-size: 0.85em;
+}
+.deck-card__lights { display: inline-flex; gap: 6px; }
+.deck-card__lights i {
+  width: 9px; height: 9px; border-radius: 50%;
+  border: 1px solid var(--accent);
+}
+.deck-card__lights i:first-child { background: var(--accent); }
+.deck-card__path { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.deck-card__count { color: color-mix(in srgb, var(--foreground) 60%, transparent); font-variant-numeric: tabular-nums; }
+.deck-card__body { padding: 18px 22px 20px; }
+.deck-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.deck-card__meta time { color: color-mix(in srgb, var(--foreground) 70%, transparent); margin-right: 4px; }
+.deck-card__bubble {
+  display: inline-block;
+  padding: 0 10px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #1a170f;
+  font-size: 0.8em; font-weight: 600; line-height: 1.8;
+}
+.deck-card__bubble--award { background: transparent; color: var(--foreground); }
+.deck-card__bubble--award::before { content: "★ "; color: var(--accent); }
+.deck-card__bubble--venue { background: transparent; color: var(--foreground); }
+.deck-card__title { margin: 14px 0 0; }
+.deck-card__team {
+  margin: 2px 0 0;
+  font-size: 0.85em; font-style: italic;
+  color: color-mix(in srgb, var(--foreground) 70%, transparent);
+}
+.deck-card__desc { margin: 14px 0 0; }
+.deck-card__desc p { margin: 0 0 10px; }
+.deck-card__results { margin: 16px 0 0; }
+.deck-card__results summary {
+  cursor: pointer; list-style: none;
+  color: var(--accent); font-weight: 600;
+}
+.deck-card__results summary::-webkit-details-marker { display: none; }
+.deck-card__results summary::before { content: "▸ "; }
+.deck-card__results[open] summary::before { content: "▾ "; }
+.deck .deck-card__tree { list-style: none; margin: 4px 0 0 0.6ch; padding: 0; }
+.deck .deck-card__tree > li { position: relative; padding: 0 0 4px 3.4ch; }
+ 
+.deck .deck-card__tree > li:not(:empty)::before {
+  content: ""; position: absolute; left: 0; top: 0;
+  width: 2.4ch; height: 0.77em;
+  border-left: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+.deck .deck-card__tree > li:not(:empty)::after {
+  content: ""; position: absolute; left: 0; top: 0.77em; bottom: 0;
+  border-left: 1px solid var(--accent);
+}
+.deck .deck-card__tree > li:last-child::after { display: none; }
+.deck-card__links { margin: 18px 0 0; }
+.deck-card__sep { color: color-mix(in srgb, var(--foreground) 45%, transparent); }
+
+ 
+.deck:not(.is-ready) .deck__stage { display: block; }
+.deck:not(.is-ready) .deck__track { gap: 24px; }
+.deck:not(.is-ready) .deck__arrow,
+.deck:not(.is-ready) .deck__dots,
+.deck--single .deck__arrow,
+.deck--single .deck__dots { display: none; }
+.deck--single .deck__stage { grid-template-columns: minmax(0, 1fr); grid-template-areas: "track"; }
+.deck.is-ready .deck-card:not(.is-active) { display: none; }
+.deck.is-ready .deck-card.is-active { animation: deck-in 0.2s ease; }
+@keyframes deck-in { from { opacity: 0; } to { opacity: 1; } }
+
+ 
+@media (min-width: 701px) {
+  .deck__arrow { align-self: start; position: sticky; top: calc(50vh - 22px); margin-top: 64px; }
+}
+@media (max-width: 700px) {
+  .deck__stage { grid-template-areas: "track track track" "prev dots next"; gap: 12px 8px; }
+  .deck-card__body { padding: 14px 14px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .deck.is-ready .deck-card.is-active { animation: none; }
+}
+</style>
+
+<div class="deck deck--single" data-deck role="region" aria-roledescription="carousel" aria-label="education">
+  <div class="deck__stage">
+    <button type="button" class="deck__arrow deck__arrow--prev" data-dir="-1" aria-label="Previous lesson">&larr;</button>
+    <div class="deck__track">
+      <article class="deck-card is-active" id="cobweb" data-title="Cobweb: Concept Formation as Information Gain" aria-roledescription="slide" aria-label="1 of 1: Cobweb: Concept Formation as Information Gain">
+        <div class="deck-card__bar">
+          <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="deck-card__path">~/education/cobweb</span>
+          <span class="deck-card__count">1/1</span>
+        </div>
+        <div class="deck-card__body">
+          <div class="deck-card__meta">
+            <time datetime="2026-10">October 2026</time>
+            <span class="deck-card__bubble">cognitive science</span>
+            <span class="deck-card__bubble deck-card__bubble--venue">CogSci 2026</span>
+            <span class="deck-card__bubble deck-card__bubble--venue">ACS 2025</span>
+            <span class="deck-card__bubble deck-card__bubble--venue">ACL Findings 2026</span>
+          </div>
+          <h2 class="deck-card__title">Cobweb: Concept Formation as Information Gain</h2>
+          <div class="deck-card__desc">An interactive walkthrough of Fisher&rsquo;s (1987) Cobweb as recent work implements it: an incremental learner that sorts each experience into a taxonomy of probabilistic concepts, choosing among four restructuring operators to maximize the information its concepts carry about their members. The simulation steps through each operator, traces a prediction through the hierarchy, revisits three classic categorization experiments, and closes on the applications of Cobweb to semantic retrieval and lifelong topic modeling.</div>
+          <details class="deck-card__results" open>
+            <summary>concepts/</summary>
+            <ul class="deck-card__tree">
+              <li>instances, concepts, and the taxonomy that links them</li>
+              <li>the four operators: insert, create, merge, and split</li>
+              <li>prediction by best-first search over pointwise mutual information</li>
+              <li>central tendency and frequency (Hayes-Roth &amp; Hayes-Roth, 1977)</li>
+              <li>exemplar similarity over prototype distance (Medin &amp; Schaffer, 1978)</li>
+              <li>the prototype-to-exemplar transition (Smith &amp; Minda, 1998)</li>
+              <li>applications to retrieval and topic modeling</li>
+            </ul>
+          </details>
+          <p class="deck-card__links"><a href="/education/cobweb/">open the simulation</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://arxiv.org/abs/2603.29895" target="_blank" rel="noopener">paper</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/Teachable-AI-Lab/cobweb" target="_blank" rel="noopener">cobweb</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/Teachable-AI-Lab/cobweb-psych" target="_blank" rel="noopener">cobweb-psych</a></p>
+        </div>
+      </article>
+    </div>
+    <button type="button" class="deck__arrow deck__arrow--next" data-dir="1" aria-label="Next lesson">&rarr;</button>
+    <div class="deck__dots">
+      <button type="button" class="deck__dot" aria-label="Show Cobweb: Concept Formation as Information Gain" aria-current="true"></button>
+    </div>
+  </div>
+  <p class="deck__status" aria-live="polite"></p>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector("[data-deck]");
+  if (!root) return;
+  var cards = Array.prototype.slice.call(root.querySelectorAll(".deck-card"));
+  var dots = Array.prototype.slice.call(root.querySelectorAll(".deck__dot"));
+  var track = root.querySelector(".deck__track");
+  var status = root.querySelector(".deck__status");
+  var current = 0;
+
+  function show(i, fromUser) {
+    current = (i + cards.length) % cards.length;
+    cards.forEach(function (c, k) { c.classList.toggle("is-active", k === current); });
+    dots.forEach(function (d, k) {
+      if (k === current) d.setAttribute("aria-current", "true");
+      else d.removeAttribute("aria-current");
+    });
+    if (fromUser) {
+      status.textContent = cards[current].dataset.title + ", " + (current + 1) + " of " + cards.length;
+      if (history.replaceState) history.replaceState(null, "", "#" + cards[current].id);
+      
+      if (track.getBoundingClientRect().top < 0) track.scrollIntoView({ block: "start" });
+    }
+  }
+
+  function indexFromHash() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    for (var k = 0; k < cards.length; k++) if (cards[k].id === id) return k;
+    return -1;
+  }
+
+  root.querySelectorAll(".deck__arrow").forEach(function (b) {
+    b.addEventListener("click", function () { show(current + Number(b.dataset.dir), true); });
+  });
+  dots.forEach(function (d, k) {
+    d.addEventListener("click", function () { show(k, true); });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    var t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if (e.key === "ArrowLeft") show(current - 1, true);
+    else if (e.key === "ArrowRight") show(current + 1, true);
+  });
+
+  var x0 = null, y0 = null;
+  track.addEventListener("touchstart", function (e) {
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+  }, { passive: true });
+  track.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(current + (dx < 0 ? 1 : -1), true);
+    x0 = null;
+  }, { passive: true });
+
+  window.addEventListener("hashchange", function () {
+    var k = indexFromHash();
+    if (k >= 0) show(k);
+  });
+
+  var start = indexFromHash();
+  show(start >= 0 ? start : 0);
+  root.classList.add("is-ready");
+})();
+</script>
+
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

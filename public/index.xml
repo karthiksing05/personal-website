@@ -94,9 +94,9 @@
     </item>
     <item>
       <title>cogs in a machine</title>
-      <link>//localhost:1313/thoughts/education/</link>
+      <link>//localhost:1313/thoughts/educationsystem/</link>
       <pubDate>Wed, 17 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/education/</guid>
+      <guid>//localhost:1313/thoughts/educationsystem/</guid>
       <description>&lt;p&gt;It may come as a surprise to those who know me as the poster child of loving learning also despises the education system, but in the months since I&amp;rsquo;ve left high school, I can&amp;rsquo;t help but reflect on my journey in a nonpositive way.&lt;/p&gt;&#xA;&lt;p&gt;This summer, I was lucky to be connected to the Teachable AI Lab at Georgia Tech, and conducted an independent study over the course of two months analyzing a cognitive modeling algorithm. I worked with high intensity deliverables, was constantly humbled for my questions but thoroughly encouraged by my PhD advisor and Masters&amp;rsquo; coauthor, and conclusively, I learned more in those two months than I did through the majority of my senior year. It was that final realization that sparked a reflection on my interaction with the modern education system.&lt;/p&gt;</description>
     </item>
     <item>
@@ -142,6 +142,13 @@
       <description></description>
     </item>
     <item>
+      <title>education</title>
+      <link>//localhost:1313/education/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/education/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;What I cannot create, I do not understand. &lt;em&gt;— Richard Feynman, American theoretical physicist&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Most of what I know about my own research I did not learn from reading the paper - I learned it from watching the algorithm do something I did not expect, and then working backwards to figure out why. Indeed, a figure in a paper is a single frozen moment of a process, and it is in &lt;em&gt;interacting&lt;/em&gt; with that process (changing an input, stepping through a decision, breaking an assumption on purpose) that a reader builds the intuition the paper was trying to transfer in the first place. This page collects interactive explainers for the concepts behind my research, each one a small simulation that lets you poke at an idea until it stops being abstract. Fundamentally, I believe that good visualization is a form of argument, and that the best way to understand a theory of learning is to watch it learn.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>interests</title>
       <link>//localhost:1313/interests/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -167,7 +174,7 @@
       <link>//localhost:1313/ventures/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>//localhost:1313/ventures/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Experience without theory is blind, but theory without experience is mere intellectual play. &lt;em&gt;— Immanuel Kant, German philosopher&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Most of my work lives in research labs, but some of my favorite projects have come from the moments where an idea gets a deadline, a team, and someone on the other side who needs it to actually work. It is in these moments, where a result has to hold up in front of judges and users rather than reviewers, that I have learned the most about which of my ideas are worth building. This page collects those efforts - hackathon builds, research sprints, and the products that came out of them - each with the month it was built, what came of it, and a link to the full story (the longer writeups live right here on the site as their own pages!).&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Experience without theory is blind, but theory without experience is mere intellectual play. &lt;em&gt;— Immanuel Kant, German philosopher&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Most of my work lives in research labs, but some of my favorite projects have come from the moments where an idea gets a deadline, a team, and a customer. It is in these moments, where a result has to hold up in front of judges and users rather than reviewers, that I have learned the most about which of my ideas are worth building. This page collects those efforts - hackathon builds, research sprints, and the products that came out of them - each with the month it was built, what came of it, and a link to the full story (the longer writeups live right here on the site as their own pages!).&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
