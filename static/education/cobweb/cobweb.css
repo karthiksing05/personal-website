@@ -1,39 +1,11 @@
-/* figure layouts specific to the Cobweb explainer; tokens come from /education/sim.css */
+/* figure layouts specific to the Cobweb explainer; tokens and shared figure parts come from /education/sim.css */
 
 ol.ops { margin: 0 auto 1rem; padding-left: 1.6rem; }
 ol.ops li { margin-bottom: 0.3rem; }
-.colophon { font-size: 0.88rem; color: var(--ink-2); }
-
-.split-fig { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 18px; align-items: start; }
-.split-fig--ms { grid-template-columns: minmax(0, 1fr) 300px; }
-.split-fig--sm { grid-template-columns: minmax(0, 1fr) 300px; }
-/* a flex row keeps an overflowing tree scrollable from its left edge instead of clipped */
-.tree-scroll { display: flex; overflow-x: auto; overflow-y: hidden; padding-bottom: 4px; }
-.tree-scroll svg { display: block; flex: none; margin: 0 auto; }
-
-.panel {
-  border: 1.5px solid var(--ink); background: var(--linen);
-  padding: 12px 14px; font-size: 0.88rem; line-height: 1.45; min-height: 120px;
-}
-.panel h4 { margin: 0 0 8px; font: 700 0.8rem/1.3 var(--mono); letter-spacing: 0.04em; }
-.panel p { margin: 0 0 8px; }
-.panel .muted { color: var(--ink-3); }
-.panel .eqline { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-2); }
-
-/* probability bars inside panels */
-.dist { margin: 0 0 10px; }
-.dist-name { font: 600 0.7rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 4px; }
-.dist-row { display: grid; grid-template-columns: 76px minmax(0, 1fr) 40px; align-items: center; gap: 8px; margin: 2px 0; }
-.dist-row .v { font: 500 0.76rem/1.2 var(--mono); display: inline-flex; align-items: center; gap: 5px; }
-.dist-row .track { height: 10px; background: color-mix(in srgb, var(--ink) 8%, transparent); }
-.dist-row .bar { height: 100%; background: var(--ink); }
-.dist-row .num { font: 500 0.74rem/1 var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
-.dist-row.is-top .bar { background: var(--jade); }
 
 /* operator scenarios */
+.split-fig--ms, .split-fig--sm { grid-template-columns: minmax(0, 1fr) 300px; }
 .ops-stage { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 18px; align-items: start; }
-.ops-nav { margin: 10px 0 0; justify-content: center; }
-.stepcount { color: var(--ink-3); font-size: 0.78rem; }
 .incoming {
   display: flex; align-items: center; gap: 10px;
   border: 1.5px dashed var(--ink); padding: 8px 10px; margin-bottom: 12px; background: var(--linen);
@@ -51,7 +23,6 @@ ol.ops li { margin-bottom: 0.3rem; }
 .score-row.is-win .num { font-weight: 700; }
 .score-row.is-win .op { box-shadow: 2px 2px 0 var(--ink); }
 .scores .score-head { font: 600 0.7rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
-.narration { font-size: 0.93rem; line-height: 1.5; margin: 0; min-height: 4.5em; }
 
 /* Hayes-Roth bars */
 .hr-row { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 12px; align-items: center; margin: 3px 0; }
@@ -98,7 +69,7 @@ ol.ops li { margin-bottom: 0.3rem; }
 .controls .label--math { text-transform: none; font-size: 0.95rem; }
 
 @media (max-width: 760px) {
-  .split-fig, .split-fig--ms, .split-fig--sm, .ops-stage { grid-template-columns: minmax(0, 1fr); }
+  .split-fig--ms, .split-fig--sm, .ops-stage { grid-template-columns: minmax(0, 1fr); }
   .hr-row, .hr-axis { grid-template-columns: 132px minmax(0, 1fr); gap: 8px; }
   .hr-label { font-size: 0.76rem; }
   .ms-cell { min-height: 54px; font-size: 0.66rem; }

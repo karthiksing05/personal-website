@@ -1,0 +1,19 @@
+title = "Diffusion Models and Concept Formation"
+date = "2026-10-01"
+topic = "generative models"
+venue = "ACS 2026"
+description = """
+An interactive walkthrough of the argument that diffusion models, built for image synthesis, implicitly form a concept hierarchy like Cobweb's. The noisy marginals of a diffusion model are Gaussian smoothings of the data whose modes merge into a taxonomy of prototypes as noise grows, and a basic level of greatest distinctiveness emerges at an intermediate noise level. The simulation computes these quantities exactly on toy data and closes on the paper's comparison with Cobweb on MNIST and Fashion-MNIST.
+"""
+concepts = [
+  "noisy marginals as kernel densities, and noise level as depth",
+  "modes, score ascent, and Tweedie prototypes",
+  "parent pooling and the law of total variance",
+  "recovering a mode-path taxonomy bottom-up",
+  "distinctiveness and the basic level",
+  "matching diffusion modes to Cobweb concepts",
+]
+link = "/education/diffusion/"
+links = [
+  { label = "paper", url = "https://arxiv.org/abs/2609.13047" },
+]

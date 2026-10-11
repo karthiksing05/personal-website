@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diffusion as Concept Formation</title>
+<meta name="description" content="An interactive companion to Wang, Singaravadivelan, and MacLellan (2026): how the noisy marginals of a diffusion model form a concept hierarchy that corresponds to a Cobweb tree, and where its basic level lies.">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="/education/sim.css">
+<link rel="stylesheet" href="/education/diffusion/diffusion.css">
+</head>
+<body>
+<!-- kw-back:start -->
+<link rel="stylesheet" href="/ventures/back-home.css">
+<div class="kw-spacer" aria-hidden="true"></div>
+<nav class="kw-strip" aria-label="Karthik's World"><a class="kw-back" href="/education/#diffusion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h5v-6h3v6h5V10"/></svg>back to karthik's world</a></nav>
+<!-- kw-back:end -->
+
+<main class="paper">
+
+<header class="masthead">
+  <p class="kicker">education / generative models</p>
+  <h1>Diffusion Models and Concept Formation</h1>
+  <p class="byline">An interactive companion to <a href="https://arxiv.org/abs/2609.13047">Wang, Singaravadivelan, &amp; MacLellan (2026)</a><br>Karthik Singaravadivelan, Georgia Institute of Technology</p>
+</header>
+
+<section class="abstract" aria-labelledby="abstract-h">
+  <h2 id="abstract-h">Abstract</h2>
+  <p>People organize knowledge into a taxonomy of concepts with a privileged basic level, the level at which they recognize and name objects with the least effort. Cobweb (Fisher, 1987) accounts for this ability by building a probabilistic concept hierarchy one instance at a time. Wang et al. (2026) argue that diffusion models, although built for image synthesis, perform the same computation implicitly: the noisy marginals of a diffusion model are Gaussian smoothings of the data, and their modes form a hierarchy of prototypes that corresponds to a Cobweb tree. This companion makes the correspondence concrete on a toy two-dimensional dataset, where every quantity has a closed form. Figures 1 through 4 show modes merging as noise grows, prototypes pooling their children, the taxonomy that mode-finding recovers, and the intermediate noise level at which concepts are most distinctive. Section 5 reports the paper's tests on MNIST and Fashion-MNIST.</p>
+</section>
+
+<h2 class="section"><span class="num">1</span>Introduction</h2>
+<p>Human concepts nest. A single animal is a <em>beagle</em>, a <em>dog</em>, and a <em>mammal</em>, yet people name it at one privileged level, the <em>basic level</em>, which offers the best trade-off between informativeness about an instance's features and distinctiveness from other categories (Rosch et al., 1976). Cobweb reproduces this effect by maximizing category utility over a hierarchy it learns incrementally (Fisher, 1988).</p>
+<p>Diffusion models are usually treated as black-box samplers and judged by the quality of their samples. Wang et al. (2026) observe that what a diffusion model learns, a family of progressively smoothed data densities, already has the structure of a concept hierarchy. They make four correspondences between the two models precise (Table 1), locate a basic level inside a diffusion model, and test the correspondence against Cobweb trees learned from the same images.</p>
+
+<div class="tbl-wrap">
+<table class="tbl tbl--text">
+  <caption><b>Table 1.</b> Four correspondences between Cobweb and a diffusion model, after Wang et al. (2026), Table 1.</caption>
+  <thead><tr><th>Cobweb</th><th>Diffusion model</th><th>Section</th></tr></thead>
+  <tbody>
+    <tr><td>tree depth (level of abstraction)</td><td>noise level \(\sigma_t\), equivalently \(\mathrm{SNR}(t)\)</td><td>3.1</td></tr>
+    <tr><td>node Gaussian \(\mathcal N(\mu_c, \sigma_c^2 I)\)</td><td>mode Gaussian \(\mathcal N(m_c, \Sigma_c)\)</td><td>3.2</td></tr>
+    <tr><td>root-to-leaf categorization</td><td>coarse-to-fine denoising</td><td>3.3</td></tr>
+    <tr><td>basic level \(\arg\max_{c \in \pi(x)} D(c)\)</td><td>maximum-likelihood mode at noise \(t^\star\)</td><td>3.4</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="section"><span class="num">2</span>Background</h2>
+<h3 class="subsection"><span class="num">2.1</span>Cobweb</h3>
+<p>Cobweb sorts each instance down a tree of concepts and, at every level, chooses among four operators (insert, create, merge, and split) the one that most improves category utility (see the <a href="/education/cobweb/">Cobweb explainer</a>). Following Cobweb/3, each concept \(c\) holds a prior \(P(c)\) and a diagonal Gaussian \(p(x \mid c) = \mathcal N(x; \mu_c, \sigma_c^2 I)\). In its information-theoretic form, category utility is the mutual information between concepts and features:</p>
+<div class="eq">\[ \mathrm{CU} = I(X; C) = H(X) - \sum_{k=1}^{n} P(C_k)\, H(X \mid C_k) \tag{1} \]</div>
+<p>A partition scores well when its clusters have low internal entropy, so their features are predictable, yet together account for the variation in their parent.</p>
+
+<h3 class="subsection"><span class="num">2.2</span>Diffusion models</h3>
+<p>A diffusion model corrupts a datum \(x_0\) with Gaussian noise, \(x_t = \sqrt{\bar\alpha_t}\, x_0 + \sqrt{1 - \bar\alpha_t}\, \varepsilon\), where \(\varepsilon \sim \mathcal N(0, I)\) and \(\bar\alpha_t\) decreases with \(t\), so the signal-to-noise ratio \(\mathrm{SNR}(t) = \bar\alpha_t / (1 - \bar\alpha_t)\) falls monotonically. A network learns the score of each noisy marginal, \(s_\theta(x_t, t) \approx \nabla_{x_t} \log p_t(x_t)\). Tweedie's formula turns the score into a denoised estimate,</p>
+<div class="eq">\[ \hat x_0(x_t) = \mathbb E[x_0 \mid x_t] = \frac{1}{\sqrt{\bar\alpha_t}} \Big( x_t + (1 - \bar\alpha_t)\, \nabla_{x_t} \log p_t(x_t) \Big) \tag{2} \]</div>
+<p>and at a mode, where the score vanishes, the estimate reduces to \(x_t^\star / \sqrt{\bar\alpha_t}\). The paper finds modes by noising a datum and climbing the score to a fixed point:</p>
+<div class="eq">\[ x_t^{(0)} = \sqrt{\bar\alpha_t}\, x_0 + \sqrt{1 - \bar\alpha_t}\, \varepsilon, \qquad x_t^{(i+1)} = x_t^{(i)} + \eta\, s_\theta\big(x_t^{(i)}, t\big) \tag{3} \]</div>
+<p>A small \(t\) returns a prototype close to the instance; a large \(t\) returns a broad class prototype.</p>
+
+<h2 class="section"><span class="num">3</span>Four correspondences</h2>
+<h3 class="subsection"><span class="num">3.1</span>Both are hierarchical density models</h3>
+<p>For a finite dataset, the noisy marginal is a mixture of Gaussians centered on the scaled data:</p>
+<div class="eq">\[ p_t(x_t) = \frac{1}{N} \sum_{i=1}^{N} \mathcal N\!\Big(x_t;\, \sqrt{\bar\alpha_t}\, x_0^{(i)},\, (1 - \bar\alpha_t) I\Big) \tag{4} \]</div>
+<p>This is a kernel density estimate whose bandwidth grows with \(t\). Rescaled to data space, the bandwidth is \(h_t = 1/\sqrt{\mathrm{SNR}(t)}\). As it grows, neighboring bumps fuse and the number of modes falls. A coarse mode at one noise level is the parent of the finer modes that flow into it under score ascent, so noise level plays the role of depth in a tree. Figure 1 computes Eq. 4 exactly for 56 points drawn from three groups of two or three subgroups each.</p>
+
+<figure class="fig wide" id="fig-kde">
+  <div class="controls">
+    <span class="label">Timestep</span>
+    <input type="range" min="1" max="800" step="1" value="150" data-slot="t" aria-label="Diffusion timestep">
+    <output data-slot="tout">150</output>
+    <div class="seg" role="group" aria-label="Preset timesteps" data-slot="presets"></div>
+  </div>
+  <div class="split-fig">
+    <div class="canvas-wrap"><canvas data-slot="canvas" width="640" height="440" aria-label="Kernel density of the toy data at the selected timestep, with its modes"></canvas></div>
+    <div class="panel" data-slot="panel" aria-live="polite"></div>
+  </div>
+  <figcaption><b>Figure 1.</b> The noisy marginal of Eq. 4 for a toy dataset, shown in data space. Shading is density; black rings are modes, and each point takes the color of its true group. Select a point to trace its score ascent (Eq. 3) and mark the prototype it reaches. Values are exact for this dataset under a cosine noise schedule; no network is trained.</figcaption>
+</figure>
+
+<h3 class="subsection"><span class="num">3.2</span>Both are hierarchical Bayesian models with Gaussian prototypes</h3>
+<p>A Cobweb parent pools its children. Its mean is the weighted mean of theirs, and by the law of total variance its spread adds the children's own spread to the spread between them:</p>
+<div class="eq">\[ \mu_c = \sum_k P(k \mid c)\, \mu_k, \qquad \sigma_c^2 = \sum_k P(k \mid c) \Big[ \sigma_k^2 + (\mu_k - \mu_c)^2 \Big] \tag{5} \]</div>
+<p>A diffusion mode carries the same kind of prototype. Its mean is the Tweedie estimate \(m_c = x_t^\star / \sqrt{\bar\alpha_t}\), and its covariance is the posterior covariance at the mode, a Laplace approximation of \(p_t\) there:</p>
+<div class="eq">\[ \Sigma_c = \frac{1 - \bar\alpha_t}{\sqrt{\bar\alpha_t}}\; \nabla_{x_t} \hat x_0(x_t) \Big|_{x_t = x_t^\star} \tag{6} \]</div>
+<p>Because the score field is continuous, diffusion prototypes also interpolate: \(m(\lambda) = \lambda m_a + (1 - \lambda) m_b\) traces a path between two concepts, which a discrete tree cannot represent. Figure 2 shows Eq. 5 for two children in one dimension.</p>
+
+<figure class="fig wide" id="fig-pool">
+  <div class="pool-controls" data-slot="controls"></div>
+  <div class="split-fig">
+    <div data-slot="chart"></div>
+    <div class="panel" data-slot="panel" aria-live="polite"></div>
+  </div>
+  <figcaption><b>Figure 2.</b> Parent pooling (Eq. 5). Two child Gaussians, <span class="hl hl--a">child 1</span> and <span class="hl hl--b">child 2</span>, combine with weights \(P(k \mid c)\). The dashed curve is their mixture; the <span class="hl hl--jade">parent</span> Gaussian matches its mean and variance. Separating the children inflates the parent's variance through the between-child term alone.</figcaption>
+</figure>
+
+<h3 class="subsection"><span class="num">3.3</span>Both maximize information about the data</h3>
+<p>Cobweb maximizes \(I(X; C)\) and so minimizes \(H(X \mid C)\). A diffusion model minimizes a weighted denoising error integrated over noise levels,</p>
+<div class="eq">\[ \mathcal L(\theta) = \tfrac12\, \mathbb E_{x_0, \varepsilon} \int_0^1 w(t)\, \big\| x_0 - \hat x_\theta(x_t, t) \big\|^2 \, dt, \qquad w(t) = -\mathrm{SNR}'(t) \ge 0 \tag{7} \]</div>
+<p>and by the I-MMSE relation (Guo et al., 2005), the best achievable integrated error equals a mutual information, which at the optimal denoiser equals the negative log-likelihood (Kong et al., 2023). The two models also search in the same direction. Cobweb sorts an instance from the root to a leaf; a diffusion sampler runs from low to high signal-to-noise ratio, the continuous analog of that sort.</p>
+<p>The paper recovers a diffusion model's taxonomy bottom-up. It maps every held-out image to a fine mode at low noise, groups modes that fall within a merge threshold, raises the noise level step by step, and joins groups whose modes flow together. Figure 3 applies the same procedure to the toy data, seeding each rung of a noise ladder with the modes of the rung below.</p>
+
+<figure class="fig wide" id="fig-tax">
+  <div class="controls">
+    <span class="label">Finest level</span>
+    <div class="seg" role="group" aria-label="Finest timestep shown" data-slot="start"></div>
+  </div>
+  <div class="tree-scroll" data-slot="tree"></div>
+  <div class="tax-legend" data-slot="legend"></div>
+  <figcaption><b>Figure 3.</b> The mode-path taxonomy of the toy data. Each node is a mode, labeled with its member count and the timestep at which it first appears; its bar shows the mix of true groups among its members. Lower rungs are truncated, as in the paper's Figure 1, so the tree fits the page.</figcaption>
+</figure>
+
+<h3 class="subsection"><span class="num">3.4</span>Both have a basic level</h3>
+<p>Wang et al. (2026) measure a concept's <em>distinctiveness</em> as the expected pointwise mutual information of its members, the specific surprise of DeWeese and Meister (1999):</p>
+<div class="eq">\[ D(c) = \mathbb E_{x \sim p(x \mid c)} \big[ \mathrm{pmi}(x; c) \big] = D_{\mathrm{KL}}\big( p(x \mid c) \,\|\, p(x) \big), \qquad I(X; C) = \sum_c p(c)\, D(c) \tag{8} \]</div>
+<p>The basic level of an instance is the concept on its root-to-leaf path \(\pi(x)\) with the greatest distinctiveness. Along that path \(\log p(x)\) stays constant, so for a diffusion model the criterion reduces to the mode under which the instance is most likely:</p>
+<div class="eq">\[ c^\star(x) = \arg\max_{c \in \pi(x)} \log p(x \mid c), \qquad \log p(x \mid c) = \underbrace{-\tfrac12 \sum_j \frac{(x_j - m_{c,j})^2}{\sigma_{c,j}^2}}_{\text{fit}} \; \underbrace{-\, \tfrac12 \sum_j \log 2\pi \sigma_{c,j}^2}_{\text{spread}} \tag{9} \]</div>
+<p>The two terms pull in opposite directions. Fine concepts sit close to their members but, built from few points, vary greatly and fit new instances poorly; coarse concepts vary little but pay for their breadth with a large spread. The paper reads this as a bias-variance trade-off, and it makes the likelihood peak at an intermediate noise level. Figure 4 computes both terms on held-out points from the toy distribution.</p>
+
+<figure class="fig wide" id="fig-basic">
+  <div class="controls">
+    <span class="label">Subgroup spread</span>
+    <input type="range" min="0.14" max="0.34" step="0.02" value="0.22" data-slot="spread" aria-label="Within-subgroup spread">
+    <output data-slot="sout">0.22</output>
+  </div>
+  <div class="split-fig">
+    <div data-slot="chart"></div>
+    <div class="panel" data-slot="panel" aria-live="polite"></div>
+  </div>
+  <figcaption><b>Figure 4.</b> The basic level of the toy data. For each timestep, every held-out point is assigned to the mode its ascent reaches and scored under that mode's diagonal Gaussian (Eq. 9, variances floored at 0.002). The <span class="hl hl--jade">total</span> peaks at an interior timestep, the toy model's basic level. Widening the subgroups moves the peak toward coarser concepts.</figcaption>
+</figure>
+
+<h2 class="section"><span class="num">4</span>Discrete and continuous taxonomies</h2>
+<p>The models differ mainly in how they represent and learn the taxonomy. Cobweb builds an explicit discrete tree incrementally with symbolic operators, which makes its concepts inspectable, limits forgetting to sparse local updates, and supports genuinely online learning. A diffusion model encodes an implicit, continuous hierarchy in a single score field fit to the whole dataset, which buys continuity, interpolable prototypes, scalability, and sample quality. The authors suggest pairing the two: a neural density model that supplies the prototypes and a symbolic taxonomy that organizes them.</p>
+
+<h2 class="section"><span class="num">5</span>Experiments</h2>
+<p>The paper tests the correspondence on MNIST and Fashion-MNIST, each 60,000 training and 10,000 test images of 28 by 28 pixels in ten classes. A Cobweb/4V tree and a diffusion model are fit to the training images, and the diffusion hierarchy is recovered from held-out images with the bottom-up procedure of Section 3.3 (merge threshold \(\tau = 400\)).</p>
+<p><b>Shared structure.</b> Both models build their hierarchies in similar ways, merging similar stimuli such as the 2s and 8s of MNIST and the shoes and bags of Fashion-MNIST.</p>
+<p><b>A shared basic level.</b> On both datasets, Cobweb's distinctiveness peaks at depth 3 and the diffusion model's at timestep \(t \approx 150\). Each curve has a single interior maximum rather than a peak at the root or the leaves, and the diffusion peak agrees with the phase transition at which the reverse process commits to a sample's class (Sclocchi et al., 2025). The basic-level prototypes of both models are coarser than individual exemplars but finer than the dataset as a whole.</p>
+
+<div class="tbl-wrap">
+<table class="tbl">
+  <caption><b>Table 2.</b> Concepts at each model's basic level. From Wang et al. (2026), Section 4.</caption>
+  <thead><tr><th>Dataset</th><th>Diffusion modes at \(t^\star\)</th><th>Cobweb concepts at depth 3</th></tr></thead>
+  <tbody>
+    <tr><td>MNIST</td><td>150</td><td>93</td></tr>
+    <tr><td>Fashion-MNIST</td><td>108</td><td>64</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p><b>Matched concepts agree.</b> To compare the basic levels directly, the authors greedily pair each Cobweb concept with its nearest diffusion mode by prototype distance, fold the remaining modes into their nearest partner's group, and compare the distributions over true classes that each pair induces. Matched pairs diverge far less than random pairings (Table 3), a separation of \(z = -19.9\) on MNIST and \(z = -15.3\) on Fashion-MNIST (\(p &lt; 0.002\) for both).<sup class="fn"><a href="#fn1" id="fn1-ref">1</a></sup></p>
+
+<div class="tbl-wrap">
+<table class="tbl">
+  <caption><b>Table 3.</b> KL divergence (nats) between the class profiles of matched Cobweb concepts and diffusion modes, as reported in the text of Wang et al. (2026), Section 4.2.</caption>
+  <thead><tr><th>Dataset</th><th>Matched, unweighted</th><th>Matched, size-weighted</th><th>Shuffled pairings</th></tr></thead>
+  <tbody>
+    <tr><td>MNIST</td><td>0.45</td><td>0.36</td><td rowspan="2">1.5 to 2.1</td></tr>
+    <tr><td>Fashion-MNIST</td><td>0.42</td><td>0.28</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="section"><span class="num">6</span>Discussion</h2>
+<p>The results support the paper's central claim: diffusion models and Cobweb belong to one family of hierarchical Bayesian density models with Gaussian prototypes, and they recover the same concept hierarchy and the same basic level. The reframing serves both fields. Cognitive science gains a continuous, scalable instantiation of concept formation that operates on naturalistic stimuli, with computational analogs for prototypes, graded typicality, and the basic level. Machine learning gains a reading of mode-finding as the extraction of discrete, stable prototypes, proto-symbols that a neural model forms without being told to.</p>
+<p>The authors name one limitation. A diffusion model indexes its hierarchy by timestep, and the standard schedule of 1,000 uniformly spaced steps was tuned for sample quality rather than cognitive plausibility. Because the map from timestep to signal-to-noise ratio is nonlinear, equal steps in time are not equal steps in abstraction, so the basic level arrives in units with no cognitive meaning of their own. Future work could space noise levels by equal increments of category utility, index the hierarchy by level of abstraction directly, and ask how words attach to modes in text-conditioned models, and whether they attach at the basic level.</p>
+
+<div class="footnotes">
+  <p id="fn1"><sup>1</sup> The bar labels in the paper's Figure 4 (0.37, 0.31, 0.33, and 0.19 for the matched conditions) differ from the values its text reports; Table 3 follows the text. <a href="#fn1-ref" aria-label="Back to text">&#8617;</a></p>
+</div>
+
+<h2 class="section">References</h2>
+<ol class="refs">
+  <li>DeWeese, M. R., &amp; Meister, M. (1999). How to measure the information gained from one symbol. <em>Network: Computation in Neural Systems, 10</em>, 325–340.</li>
+  <li>Fisher, D. H. (1987). Knowledge acquisition via incremental conceptual clustering. <em>Machine Learning, 2</em>(2), 139–172.</li>
+  <li>Fisher, D. H. (1988). A computational account of basic level and typicality effects. <em>Proceedings of the Seventh National Conference on Artificial Intelligence</em>, 233–238.</li>
+  <li>Guo, D., Shamai, S., &amp; Verdú, S. (2005). Mutual information and minimum mean-square error in Gaussian channels. <em>IEEE Transactions on Information Theory, 51</em>, 1261–1282.</li>
+  <li>Kong, X., Brekelmans, R., &amp; Ver Steeg, G. (2023). Information-theoretic diffusion. <em>International Conference on Learning Representations</em>.</li>
+  <li>Nichol, A. Q., &amp; Dhariwal, P. (2021). Improved denoising diffusion probabilistic models. <em>Proceedings of the 38th International Conference on Machine Learning</em>, 8162–8171.</li>
+  <li>Rosch, E., Mervis, C. B., Gray, W. D., Johnson, D. M., &amp; Boyes-Braem, P. (1976). Basic objects in natural categories. <em>Cognitive Psychology, 8</em>, 382–439.</li>
+  <li>Sclocchi, A., Favero, A., &amp; Wyart, M. (2025). A phase transition in diffusion models reveals the hierarchical nature of data. <em>Proceedings of the National Academy of Sciences, 122</em>, e2408799121.</li>
+  <li>Wang, Z., Singaravadivelan, K., &amp; MacLellan, C. J. (2026). Diffusion models and concept formation. <em>Advances in Cognitive Systems</em> (oral presentation). <a href="https://arxiv.org/abs/2609.13047">arXiv:2609.13047</a>.</li>
+</ol>
+<p class="colophon">The figures use a cosine noise schedule (Nichol &amp; Dhariwal, 2021) over 1,000 timesteps; the paper does not report its schedule.</p>
+
+</main>
+
+<script src="/education/sim.js" defer></script>
+<script src="/education/diffusion/model.js" defer></script>
+<script src="/education/diffusion/app.js" defer></script>
+</body>
+</html>

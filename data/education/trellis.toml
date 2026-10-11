@@ -1,0 +1,19 @@
+title = "TRELLIS: A Unified Account of Concepts and Chunks"
+date = "2026-10-02"
+topic = "cognitive architecture"
+venue = "ACS 2026"
+description = """
+An interactive walkthrough of TRELLIS, which extends Cobweb from concepts that generalize to chunks that compose. Every element of an experience is described twice, by its content and by its context, and stored in two linked Cobweb taxonomies; parsing and generation then reduce to sorting, and learning needs no mechanism beyond Cobweb's own. The simulation inspects both descriptions, steps a greedy parser through its recognition gate, varies the recall threshold that governs generation, and closes on learning curves for three synthetic grammars.
+"""
+concepts = [
+  "concepts versus chunks: generalization and composition",
+  "content and context instances for every element",
+  "two intertwined taxonomies in place of a grammar",
+  "greedy parsing with a recognition gate",
+  "generation, recall thresholds, and errors of commission",
+  "errors of omission and commission as evaluation",
+]
+link = "/education/trellis/"
+links = [
+  { label = "paper", url = "https://arxiv.org/abs/2609.30414" },
+]
