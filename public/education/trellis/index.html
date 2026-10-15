@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concepts and Chunks</title>
+<meta name="description" content="An interactive companion to Singaravadivelan and Langley (2026): TRELLIS, an extension of Cobweb that unifies concepts and chunks through linked content and context taxonomies, applied to learning context-free grammars.">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="/education/sim.css">
+<link rel="stylesheet" href="/education/trellis/trellis.css">
+</head>
+<body>
+<!-- kw-back:start -->
+<link rel="stylesheet" href="/ventures/back-home.css">
+<div class="kw-spacer" aria-hidden="true"></div>
+<nav class="kw-strip" aria-label="Karthik's World"><a class="kw-back" href="/education/#trellis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h5v-6h3v6h5V10"/></svg>back to karthik's world</a></nav>
+<!-- kw-back:end -->
+
+<main class="paper">
+
+<header class="masthead">
+  <p class="kicker">education / concepts and chunks</p>
+  <h1>A Unified Account of Concepts and Chunks</h1>
+  <p class="byline">An interactive companion to <a href="https://arxiv.org/abs/2609.30414">Singaravadivelan &amp; Langley (2026)</a><br>Karthik Singaravadivelan, Georgia Institute of Technology</p>
+</header>
+
+<section class="abstract" aria-labelledby="abstract-h">
+  <h2 id="abstract-h">Abstract</h2>
+  <p>Cognitive psychology studies how people form <em>concepts</em> that generalize over categories and how they acquire <em>chunks</em> that compose familiar patterns of elements, yet the two literatures barely meet. Singaravadivelan and Langley (2026) extend Cobweb, a theory of concept formation, into a theory that also represents, recognizes, and learns chunks, and they implement it in a system called TRELLIS. The theory describes every element of an experience twice, by its content and by its context, and stores the two descriptions in linked Cobweb taxonomies. Parsing and generation then reduce to sorting through those taxonomies, and learning requires no mechanism beyond Cobweb's own. This companion illustrates the representation, the two taxonomies, greedy parsing, and threshold-controlled generation on sentences from a synthetic grammar, then summarizes the paper's experiments. The scenarios are constructed for exposition; the reported findings come from the paper.</p>
+</section>
+
+<h2 class="section"><span class="num">1</span>Introduction</h2>
+<p>Langley (2025) distinguishes two kinds of cognitive structure. A <span class="hl">concept</span> "denotes a set of entities or situations and ... characterizes them in terms of their regularities." A <span class="hl">chunk</span> "denotes a collection of entities, possibly typed, that form a specified configuration or relational pattern." Research on concepts emphasizes generalization; research on chunks emphasizes composition. A unified theory of cognition needs both, because a system that generalizes without composing can encode knowledge at only one level, while a system that composes without generalizing cannot apply its configurations to novel situations.</p>
+<p>Cobweb (Fisher, 1987) offers a mature account of concepts but has nothing to say about composition. Singaravadivelan and Langley (2026) keep every postulate of Cobweb and add the minimal machinery needed for chunks. They make no commitment to modality: the theory applies to any experience that decomposes into elements and relations among them. As a testbed they choose context-free grammars, whose part-of-speech classes behave like concepts and whose phrases behave like chunks.</p>
+
+<h2 class="section"><span class="num">2</span>Cobweb in brief</h2>
+<p>Cobweb stores instances, each a set of attribute-value pairs, and concepts, each a probability distribution over the values of every attribute. Concepts form a taxonomy with a single root and instances at its leaves; every internal node summarizes the instances beneath it and has at least two children. Cobweb classifies an instance by sorting it downward greedily by category utility until it reaches a leaf or no child improves on the current node, and it predicts missing attributes from the node where it halts. Learning is incremental, unsupervised, and interleaved with performance: sorting an instance updates the probabilities of every node it passes, and at each node Cobweb chooses among adding the instance to a child, creating a new child, merging two children, or splitting one (see the <a href="/education/cobweb/">Cobweb explainer</a>).</p>
+
+<h2 class="section"><span class="num">3</span>An extended theory</h2>
+<h3 class="subsection"><span class="num">3.1</span>Representation</h3>
+<p>The extension adds three representational postulates. An <em>experience</em> is a set of elements and the local relations among them, such as words related by <em>before</em>. Every element is either a primitive, such as a word, or a composite, such as a phrase; composites are the chunks. Every element can be described in two ways. Its <span class="hl hl--content">content</span> lists its constituents: <em>black cat</em> consists of <em>black</em> and <em>cat</em>. Its <span class="hl hl--context">context</span> lists the elements around it and their relations: <em>cat</em> follows <em>the</em> and precedes <em>saw</em>. Each description is an ordinary Cobweb instance, so Cobweb can sort, generalize, and learn from either. Figure 1 shows both descriptions for the elements of one parse.</p>
+
+<figure class="fig wide" id="fig-rep">
+  <div class="split-fig split-fig--wide-panel">
+    <div class="tree-scroll" data-slot="tree"></div>
+    <div class="panel" data-slot="panel" aria-live="polite"></div>
+  </div>
+  <figcaption><b>Figure 1.</b> Two descriptions of each element in a parse of <em>the cat saw a dog</em>. Select a word or a phrase. Every element has a context instance, its neighbors weighted by distance; composites also have a content instance whose attributes point into the context taxonomy and record each constituent's depth of nesting. Nonterminals carry no labels such as NP or VP. Concept identifiers are illustrative. <span class="fig-note">hand-built scenario</span></figcaption>
+</figure>
+
+<h3 class="subsection"><span class="num">3.2</span>Organization</h3>
+<p>Long-term memory holds two Cobweb taxonomies. The <span class="hl hl--content">content taxonomy</span> organizes composites by their constituents, so <em>black dog</em> and <em>black cat</em> share an ancestor. The <span class="hl hl--context">context taxonomy</span> organizes elements by where they occur, so <em>dog</em> and <em>cat</em> group together, as do noun phrases that precede verbs. The taxonomies are intertwined: the content of a composite names concepts in the context taxonomy. The content taxonomy plays the role of individual rewrite rules such as VP \(\to\) V NP, and the context taxonomy holds the knowledge of which rule to choose.</p>
+
+<figure class="fig wide" id="fig-tax">
+  <div class="controls">
+    <span class="label">Taxonomy</span>
+    <div class="seg" role="group" aria-label="Taxonomy" data-slot="tabs"></div>
+  </div>
+  <div class="tree-scroll" data-slot="tree"></div>
+  <div class="class-legend" data-slot="legend"></div>
+  <figcaption><b>Figure 2.</b> The two taxonomies after training on the MED grammar, in the style of the paper's Figure 6. Each node shows the distribution of syntactic classes among its members; content nodes show two bars, for the left and right constituents. Red outlines mark basic-level nodes. Root counts follow the paper; the structure below them is a simplified sketch of the pattern it reports. <span class="fig-note">schematic</span></figcaption>
+</figure>
+
+<h3 class="subsection"><span class="num">3.3</span>Performance</h3>
+<p><b>Parsing</b> builds a partonomic tree from the bottom up. At each step it forms candidate chunks over adjacent elements, sorts each candidate through both taxonomies, admits those that clear a recognition threshold, and commits the best one. It halts when no candidate is recognized or a single composite remains, so an unfamiliar input yields a partial parse rather than an error. <b>Generation</b> runs in the opposite direction. It expands a composite from the top down by recalling a candidate decomposition from the content taxonomy, conditioning that choice on the context taxonomy, and stopping when every element is primitive.</p>
+
+<h3 class="subsection"><span class="num">3.4</span>Learning</h3>
+<p>Learning needs no new mechanism. Once parsing commits an element, the system incorporates its content instance into the content taxonomy and its context instance into the context taxonomy, using Cobweb's ordinary operators. Primitives enter only the context taxonomy; composites enter both. Chunk creation is therefore a side effect of sorting, and Cobweb's learning method, designed for independent instances, extends to sequential data.</p>
+
+<h2 class="section"><span class="num">4</span>TRELLIS</h2>
+<p>TRELLIS implements the theory for sentences. A primitive's context instance covers five positions on either side, weighted by distance: the nearest neighbor counts 1/2 and each further step halves the weight, with an EMPTYNULL value past the sentence boundary. A composite's content instance encodes each of its two constituents by up to three identifiers of context concepts at depth four of the context taxonomy, plus a complexity tag that records the constituent's depth of nesting; the tag separates, for example, a determiner-noun pair from a sentence built of two phrases. The content taxonomy never sees a primitive word.</p>
+<p>TRELLIS recognizes a candidate by its log-likelihood under a node, smoothed per attribute,</p>
+<div class="eq">\[ \log P(i \mid C) = \sum_{(a, v) \in i} \log P(v \mid C, a), \qquad P(v \mid C, a) = \frac{n_{C,a,v} + \alpha_a}{n_{C,a} + V_a\, \alpha_a} \tag{1} \]</div>
+<p>and converts it to a posterior, \(\log P(C \mid i) = \log P(i \mid C) + \log P(C) - \log P(i)\). Normalizing by the instance's marginal makes the score discriminative, so non-constituents score low. A candidate's rank is the sum \(s_c + s_x\) of its content and context posteriors.</p>
+
+<h3 class="subsection"><span class="num">4.1</span>Greedy parsing</h3>
+<p>The parser begins with the words of a sentence as its frontier. For <em>the cat saw a dog</em>, the first step considers four adjacent pairs. TRELLIS sorts each candidate through both taxonomies and walks upward from the node where sorting halts; it admits the candidate only if some ancestor below the root has a count above \(\tau_{\text{parse}} = 30\). Among admitted candidates it commits the one with the highest \(s_c + s_x\) and replaces its constituents on the frontier with the new composite. Early in training few nodes clear the gate, so the parser stops with a partial parse; later the gate rarely binds, and the discriminative score does the work. Figure 3 steps through this loop.</p>
+
+<figure class="fig wide" id="fig-parse">
+  <div class="controls">
+    <span class="label">Sentence</span>
+    <div class="seg" role="group" aria-label="Sentence" data-slot="sentences"></div>
+  </div>
+  <div class="controls">
+    <span class="label">Training sentences</span>
+    <div class="seg" role="group" aria-label="Training sentences seen" data-slot="training"></div>
+  </div>
+  <div class="tree-scroll" data-slot="tree"></div>
+  <div class="controls ops-nav">
+    <button type="button" class="btn" data-act="back">&larr; back</button>
+    <button type="button" class="btn btn--primary" data-act="step">step &rarr;</button>
+    <button type="button" class="btn" data-act="reset">reset</button>
+    <span class="stepcount mono" data-slot="count"></span>
+  </div>
+  <div class="tbl-wrap tbl-wrap--tight" data-slot="candidates"></div>
+  <p class="narration" data-slot="text" aria-live="polite"></p>
+  <figcaption><b>Figure 3.</b> One greedy parse. Each step lists the candidate chunks over adjacent frontier elements, the count of the best ancestor each reaches (the gate admits counts above \(\tau_{\text{parse}} = 30\)), and its score \(s_c + s_x\); the best admitted candidate is committed. Fewer training sentences mean smaller counts and earlier halts. Counts and scores are illustrative, chosen to follow the regularities of the MED grammar. <span class="fig-note">illustrative scores</span></figcaption>
+</figure>
+
+<h3 class="subsection"><span class="num">4.2</span>Generation</h3>
+<p>Generation expands a seed composite repeatedly. From the seed's leaf in the content taxonomy, TRELLIS climbs to the deepest ancestor whose count exceeds \(\tau_{\text{sub}} = 20\) and samples a new leaf below it, a different constituent of the same kind. It then climbs to the deepest ancestor whose count exceeds \(\tau_{\text{gen}} = 50\) and gathers the chunks beneath it into a recombination pool, which can yield combinations that no single training sentence contained. A context filter removes candidates that the parent does not expect; if it removes all of them, TRELLIS falls back to a wider pool and accepts a small risk of error. The recall threshold sets the balance, as the authors put it: "If this is too low, then generation will draw on very specific nodes supported by only a few cases; if too high, it will favor general nodes that mix constituents which do not belong together." Figure 4 shows the three regimes.</p>
+
+<figure class="fig wide" id="fig-gen">
+  <div class="controls">
+    <span class="label">Recall threshold</span>
+    <div class="seg" role="group" aria-label="Recall threshold" data-slot="threshold"></div>
+    <label class="check"><input type="checkbox" data-slot="filter" checked> context filter</label>
+    <button type="button" class="btn btn--primary" data-act="generate">generate &rarr;</button>
+  </div>
+  <div class="split-fig split-fig--wide-panel">
+    <ol class="gen-list" data-slot="list"></ol>
+    <div class="panel" data-slot="panel" aria-live="polite"></div>
+  </div>
+  <figcaption><b>Figure 4.</b> Generation from a memory of eight training sentences. A low threshold recalls only whole phrases that training contained; a moderate one recombines words within their class into novel, well-formed sentences; a high one draws from nodes that mix classes and commits errors, which the context filter mostly catches. Each sentence is checked against the MED grammar. <span class="fig-note">schematic</span></figcaption>
+</figure>
+
+<h2 class="section"><span class="num">5</span>Evaluation</h2>
+<p>The authors follow the methodology of Langley and Stromsten (2000). <em>Errors of omission</em>, in which the learned grammar is too specific, are measured by asking TRELLIS to parse novel sentences from the target grammar. <em>Errors of commission</em>, in which it overgeneralizes, are measured by parsing TRELLIS's own generated sentences with the target grammar. Both receive partial credit by comparing the unlabeled brackets of each subtree. The first experiment varies grammar complexity over three nested grammars with 3, 6, and 8 nonterminals (Table 1); the second holds the MED rules fixed and varies the lexicon over 11, 22, and 39 words. Each condition uses 400 sentence-parse pairs under five-fold cross-validation, and all parameters stay fixed (Table 2).</p>
+
+<div class="tbl-wrap">
+<table class="tbl tbl--text">
+  <caption><b>Table 1.</b> The synthetic grammars, after the paper's Appendix A. Each production is tagged with the smallest grammar that contains it: S (SMALL), M (MED), or L (LARGE).</caption>
+  <thead><tr><th>Tag</th><th>Productions</th><th>Tag</th><th>Lexicon</th></tr></thead>
+  <tbody>
+    <tr><td>S</td><td>S \(\to\) NP VP</td><td>S</td><td>Det \(\to\) the | a</td></tr>
+    <tr><td>S</td><td>NP \(\to\) Det N</td><td>L</td><td>Det \(\to\) this | that</td></tr>
+    <tr><td>M</td><td>NP \(\to\) Det AdjP</td><td>S</td><td>N \(\to\) cat | dog | man | woman | park | telescope</td></tr>
+    <tr><td>L</td><td>NP \(\to\) Det Nbar</td><td>L</td><td>N \(\to\) boy | girl | teacher</td></tr>
+    <tr><td>M</td><td>AdjP \(\to\) Adj N | Adj AdjP</td><td>M</td><td>Adj \(\to\) big | small | red | quick | lazy</td></tr>
+    <tr><td>L</td><td>Nbar \(\to\) N RelClause | AdjP RelClause</td><td>L</td><td>Adj \(\to\) tall | curious</td></tr>
+    <tr><td>S</td><td>VP \(\to\) V NP</td><td>S</td><td>V \(\to\) saw | liked | chased | found | admired</td></tr>
+    <tr><td>M</td><td>VP \(\to\) V VPobj</td><td>L</td><td>V \(\to\) carried | read</td></tr>
+    <tr><td>M</td><td>VPobj \(\to\) NP PP</td><td>M</td><td>P \(\to\) with | in | on | under</td></tr>
+    <tr><td>L</td><td>RelClause \(\to\) RelPro VP</td><td>L</td><td>P \(\to\) near</td></tr>
+    <tr><td>M</td><td>PP \(\to\) P NP</td><td>L</td><td>RelPro \(\to\) who | that | which</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="tbl-wrap">
+<table class="tbl">
+  <caption><b>Table 2.</b> TRELLIS parameters, fixed across all conditions.</caption>
+  <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>content smoothing \(\alpha_{\text{cnt}}\)</td><td>\(10^{-4}\)</td></tr>
+    <tr><td>context smoothing \(\alpha_{\text{ctx}}\)</td><td>\(10^{-5}\)</td></tr>
+    <tr><td>context window</td><td>5 positions per side, weights halving from 1/2</td></tr>
+    <tr><td>parse gate \(\tau_{\text{parse}}\)</td><td>30</td></tr>
+    <tr><td>substitution threshold \(\tau_{\text{sub}}\)</td><td>20</td></tr>
+    <tr><td>recombination threshold \(\tau_{\text{gen}}\)</td><td>50</td></tr>
+    <tr><td>content bag</td><td>up to 3 identifiers from depth 4 of the context taxonomy</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>TRELLIS acquires the grammars quickly. Both error rates drop to 20 percent almost immediately and then improve gradually with more training sentences, reaching low percentages even for the LARGE grammar and its recursive rules. More nonterminals slow learning, and a larger lexicon slows it further, but in both cases the degradation is graceful. Inspection of the learned taxonomies shows a content concept for each nonterminal and a context taxonomy that groups determiners, adjectives, nouns, verbs, and prepositions; nodes become nearly pure well above the leaves.</p>
+
+<figure class="fig wide" id="fig-curves">
+  <div class="controls">
+    <span class="label">Experiment</span>
+    <div class="seg" role="group" aria-label="Experiment" data-slot="tabs"></div>
+  </div>
+  <div class="curve-pair" data-slot="charts"></div>
+  <div class="line-legend" data-slot="legend"></div>
+  <figcaption><b>Figure 5.</b> The shape of the learning curves in the paper's Figure 5: accuracy (one minus the error rate) for parsing and for generation against the number of training sentences. The paper reports these results only as curves, so the plotted values sketch the reported pattern (a rise to about 0.8 almost at once, then gradual gains, slower for harder conditions) rather than measured numbers. <span class="fig-note">schematic</span></figcaption>
+</figure>
+
+<h2 class="section"><span class="num">6</span>Discussion</h2>
+<p>The authors close with an argument about compression. Creating a chunk compresses experience: once a phrase becomes a composite, its context occupies one slot in a neighbor's description rather than many. Contemporary language models take the opposite approach, retaining every token and paying the quadratic cost of relating them all. The authors do not claim that TRELLIS competes with such models at their present scale, but they do claim that a memory which builds and refers to its own units handles context better than one that retains the entire past.</p>
+<p>The work sits among several lines of research. Earlier Cobweb descendants such as LABYRINTH (Thompson &amp; Langley, 1991) and TRESTLE (MacLellan et al., 2016) handled structured objects but lacked a context taxonomy or flattened their partonomies during processing. Discrimination networks such as EPAM (Feigenbaum, 1961) and CHREST (Gobet &amp; Lane, 2012) acquire chunks but parse from the top down, whereas TRELLIS parses from the bottom up. The present system also has clear limits: its parser is greedy and cannot recover from garden-path sentences, it learns from sentences paired with parse trees, and it has been tested only on synthetic context-free grammars without baselines. The authors list the next questions: a parser that reconsiders its choices, learning constituents from sentences alone, context-sensitive grammars, natural corpora such as the Penn Treebank, other domains that need both generalization and composition (scenes, plans, chess), and a new kind of language model that is more interpretable, more efficient, and faster to learn.</p>
+
+<h2 class="section">References</h2>
+<ol class="refs">
+  <li>Feigenbaum, E. A. (1961). The simulation of verbal learning behavior. <em>Proceedings of the Western Joint Computer Conference</em>, 121–132.</li>
+  <li>Fisher, D. H. (1987). Knowledge acquisition via incremental conceptual clustering. <em>Machine Learning, 2</em>, 139–172.</li>
+  <li>Gobet, F., &amp; Lane, P. C. R. (2012). CHREST: A model of perception, learning, and problem solving. In N. M. Seel (Ed.), <em>Encyclopedia of the sciences of learning</em>, 556–559. Springer.</li>
+  <li>Langley, P. (2025). Concepts and chunks in cognitive systems. <em>Advances in Cognitive Systems, 11</em>, 33–44.</li>
+  <li>Langley, P., &amp; Stromsten, S. (2000). Learning context-free grammars with a simplicity bias. <em>Proceedings of the Eleventh European Conference on Machine Learning</em>, 220–228.</li>
+  <li>MacLellan, C. J., Harpstead, E., Aleven, V., &amp; Koedinger, K. R. (2016). TRESTLE: A model of concept formation in structured domains. <em>Advances in Cognitive Systems</em>, 131–150.</li>
+  <li>MacLellan, C. J., Matsakis, P., &amp; Langley, P. (2022). Efficient induction of language models via probabilistic concept formation. <em>Proceedings of the Tenth Annual Conference on Advances in Cognitive Systems</em>.</li>
+  <li>Singaravadivelan, K., &amp; Langley, P. (2026). A unified account of concepts and chunks. <em>Advances in Cognitive Systems</em> (oral presentation). <a href="https://arxiv.org/abs/2609.30414">arXiv:2609.30414</a>.</li>
+  <li>Thompson, K., &amp; Langley, P. (1991). Concept formation in structured domains. In D. H. Fisher, M. J. Pazzani, &amp; P. Langley (Eds.), <em>Concept formation: Knowledge and experience in unsupervised learning</em>, 127–161. Morgan Kaufmann.</li>
+</ol>
+
+</main>
+
+<script src="/education/sim.js" defer></script>
+<script src="/education/trellis/app.js" defer></script>
+</body>
+</html>

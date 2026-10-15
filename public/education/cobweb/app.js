@@ -7,56 +7,14 @@
 (function () {
   "use strict";
 
-  var SVGNS = "http://www.w3.org/2000/svg";
+  var Sim = window.Sim;
+  var el = Sim.el, svg = Sim.svg, slot = Sim.slot, segmented = Sim.segmented, fmt = Sim.fmt;
+  var allNodes = Sim.allNodes, distBlock = Sim.distBlock, TONE = Sim.TONE;
   var ALPHA = 0.1;
   var ATTRS = ["shape", "color", "size"];
   var VALUES = { shape: ["circle", "square", "triangle"], color: ["red", "yellow", "blue"], size: ["small", "large"] };
   var FILL = { red: "#ff7b6b", yellow: "#ffd23f", blue: "#6fa8ff" };
-  var TONE = { insert: "#9fe6c4", new: "#a9d0ff", merge: "#ffbf96", split: "#d2b6f7", hl: "#ffe48a" };
   var OP_NAME = { insert: "insert", new: "create", merge: "merge", split: "split" };
-
-  /* ---------- small DOM helpers ---------- */
-
-  function el(tag, attrs, kids) {
-    var n = document.createElement(tag);
-    for (var k in attrs || {}) {
-      if (k === "text") n.textContent = attrs[k];
-      else if (k === "html") n.innerHTML = attrs[k];
-      else if (k.slice(0, 2) === "on") n.addEventListener(k.slice(2), attrs[k]);
-      else n.setAttribute(k, attrs[k]);
-    }
-    (kids || []).forEach(function (c) { if (c) n.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
-    return n;
-  }
-
-  function svg(tag, attrs, parent) {
-    var n = document.createElementNS(SVGNS, tag);
-    for (var k in attrs) {
-      if (k === "text") n.textContent = attrs[k];
-      else n.setAttribute(k, attrs[k]);
-    }
-    if (parent) parent.appendChild(n);
-    return n;
-  }
-
-  function slot(fig, name) { return fig.querySelector('[data-slot="' + name + '"]'); }
-
-  // segmented control; options are [{value, label, tone?}]
-  function segmented(container, options, initial, onChange) {
-    container.innerHTML = "";
-    var buttons = options.map(function (o) {
-      var b = el("button", { type: "button", "aria-pressed": String(o.value === initial), text: o.label });
-      if (o.tone) b.setAttribute("data-tone", o.tone);
-      b.addEventListener("click", function () {
-        buttons.forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
-        onChange(o.value);
-      });
-      container.appendChild(b);
-      return b;
-    });
-  }
-
-  function fmt(x, d) { return x.toFixed(d == null ? 2 : d); }
 
   /* ---------- glyphs: a shape, colored, at one of two sizes ---------- */
 
@@ -148,100 +106,22 @@
   function logLik(node, probe) {
     return ATTRS.reduce(function (s, a) { return probe[a] ? s + Math.log(prob(node, a, probe[a])) : s; }, 0);
   }
-  function allNodes(root) {
-    var out = [];
-    (function walk(n) { out.push(n); n.children.forEach(walk); })(root);
-    return out;
-  }
 
-  /* ---------- tree renderer ---------- */
+  /* ---------- tree renderer: shared layout, shape glyphs for concepts ---------- */
 
-  // Lays the tree out with leaves evenly spaced and parents centered over their children.
-  // Nodes are either glyph nodes ({leaf} or concepts summarized by their modal instance) or
-  // text nodes ({lines}). Optional per-node fields: tone, mark ("best1" | "best2"), badge,
-  // weight (0..1), selected, counted (show n=).
+  // Text trees (opts.text) use the shared renderer as is. Shape trees draw each concept's
+  // modal instance (dashed for abstractions) above its count, optionally prefixed by its name.
   function drawTree(container, root, opts) {
     opts = opts || {};
-    var text = !!opts.text;
-    var W = text ? (opts.nodeW || 132) : 64, H = text ? (opts.nodeH || 58) : 62;
-    var GX = text ? 14 : 14, GY = text ? 34 : 38, PAD = 10;
-    var leaves = 0, depth = 0;
-    (function place(n, d) {
-      n._d = d; depth = Math.max(depth, d);
-      if (!n.children.length) { n._x = leaves++; return; }
-      n.children.forEach(function (c) { place(c, d + 1); });
-      n._x = (n.children[0]._x + n.children[n.children.length - 1]._x) / 2;
-    })(root, 0);
-    var extra = opts.weights ? 16 : 0;
-    var width = leaves * (W + GX) - GX + PAD * 2;
-    var height = (depth + 1) * (H + GY + extra) - GY + PAD * 2;
-    var s = svg("svg", { width: width, height: height, viewBox: "0 0 " + width + " " + height, role: "img", "aria-label": opts.label || "concept hierarchy" });
-    function pos(n) { return { x: PAD + n._x * (W + GX), y: PAD + n._d * (H + GY + extra) }; }
-
-    var edges = svg("g", {}, s), nodes = svg("g", {}, s);
-    (function edgesOf(n) {
-      var p = pos(n);
-      n.children.forEach(function (c) {
-        var q = pos(c), midY = p.y + H + (GY + extra) / 2;
-        svg("path", {
-          d: "M" + (p.x + W / 2) + " " + (p.y + H + extra) + " V" + midY + " H" + (q.x + W / 2) + " V" + q.y,
-          fill: "none", stroke: "#12100d", "stroke-width": 1.2, opacity: 0.7
-        }, edges);
-        edgesOf(c);
-      });
-    })(root);
-
-    allNodes(root).forEach(function (n) {
-      var p = pos(n);
-      var g = svg("g", { transform: "translate(" + p.x + "," + p.y + ")" }, nodes);
-      var fill = n.tone ? TONE[n.tone] : (n.expanded ? TONE.hl : "#faf0e6");
-      var strokeW = n.mark === "best1" || n.selected ? 3 : 1.5;
-      var stroke = n.mark === "best2" ? "#9a9184" : "#12100d";
-      svg("rect", { x: 0, y: 0, width: W, height: H, fill: fill, stroke: stroke, "stroke-width": strokeW, "stroke-dasharray": n.mark === "best2" ? "5 3" : "none" }, g);
-      if (text) {
-        (n.lines || []).forEach(function (line, i) {
-          svg("text", { x: W / 2, y: 18 + i * 15, "text-anchor": "middle", "font-size": i === 0 ? 11 : 10, "font-weight": i === 0 ? 600 : 400, fill: n.ink || "#12100d", text: line }, g);
-        });
-      } else {
-        var inst = n.leaf || modal(n);
-        glyph(g, inst, W / 2, 25, { dashed: !n.leaf });
+    if (opts.text) return Sim.drawTree(container, root, opts);
+    allNodes(root).forEach(function (n) { n.ariaLabel = "Concept " + n.name + ", " + n.n + " instances"; });
+    return Sim.drawTree(container, root, Object.assign({}, opts, {
+      nodeW: 64, nodeH: 62, gapY: 38,
+      drawNode: function (g, n, W, H) {
+        glyph(g, n.leaf || modal(n), W / 2, 25, { dashed: !n.leaf });
         svg("text", { x: W / 2, y: H - 7, "text-anchor": "middle", "font-size": 10, fill: "#12100d", text: (opts.names ? n.name + " " : "") + "n=" + n.n }, g);
       }
-      if (n.badge != null) {
-        svg("circle", { cx: W - 2, cy: 2, r: 9, fill: "#12100d" }, g);
-        svg("text", { x: W - 2, y: 5.5, "text-anchor": "middle", "font-size": 10, "font-weight": 700, fill: "#faf0e6", text: n.badge }, g);
-      }
-      if (opts.weights && n.weight != null) {
-        svg("rect", { x: 0, y: H + 4, width: W, height: 8, fill: "none", stroke: "#ddd0bb" }, g);
-        svg("rect", { x: 0, y: H + 4, width: Math.max(1, W * n.weight), height: 8, fill: "#0f8a5f" }, g);
-      }
-      if (opts.onSelect) {
-        g.setAttribute("tabindex", "0");
-        g.setAttribute("role", "button");
-        g.setAttribute("aria-label", "Concept " + n.name + ", " + n.n + " instances");
-        g.style.cursor = "pointer";
-        g.addEventListener("click", function () { opts.onSelect(n); });
-        g.addEventListener("keydown", function (e) {
-          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); opts.onSelect(n); }
-        });
-      }
-    });
-    container.innerHTML = "";
-    container.appendChild(s);
-  }
-
-  // a labeled list of probability bars; rows are [{label, icon?, p}]
-  function distBlock(name, rows) {
-    var top = Math.max.apply(null, rows.map(function (r) { return r.p; }));
-    return el("div", { class: "dist" }, [el("p", { class: "dist-name", text: name })].concat(rows.map(function (r) {
-      var bar = el("div", { class: "bar" });
-      bar.style.width = (r.p * 100).toFixed(1) + "%";
-      return el("div", { class: "dist-row" + (r.p === top ? " is-top" : "") }, [
-        el("span", { class: "v" }, [r.icon || null, r.label]),
-        el("div", { class: "track" }, [bar]),
-        el("span", { class: "num", text: fmt(r.p) })
-      ]);
-    })));
+    }));
   }
 
   function valueIcon(a, v) {
@@ -812,25 +692,8 @@
     render();
   }
 
-  /* ---------- boot ---------- */
-
-  function boot() {
-    var figs = {
-      "fig-rep": figRepresentation, "fig-ops": figOperators, "fig-pred": figPrediction,
-      "fig-hr": figHayesRoth, "fig-ms": figMedin, "fig-sm": figSmithMinda, "fig-tm": figTopics
-    };
-    Object.keys(figs).forEach(function (id) {
-      var fig = document.getElementById(id);
-      if (fig) figs[id](fig);
-    });
-    if (window.renderMathInElement) {
-      window.renderMathInElement(document.body, {
-        delimiters: [{ left: "\\[", right: "\\]", display: true }, { left: "\\(", right: "\\)", display: false }],
-        throwOnError: false
-      });
-    }
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
+  Sim.boot({
+    "fig-rep": figRepresentation, "fig-ops": figOperators, "fig-pred": figPrediction,
+    "fig-hr": figHayesRoth, "fig-ms": figMedin, "fig-sm": figSmithMinda, "fig-tm": figTopics
+  });
 })();

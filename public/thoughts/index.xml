@@ -2,101 +2,101 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Thoughts on Karthik&#39;s World</title>
-    <link>//localhost:1313/thoughts/</link>
+    <link>/thoughts/</link>
     <description>Recent content in Thoughts on Karthik&#39;s World</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 23 Sep 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/thoughts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>choosing who we let starve</title>
-      <link>//localhost:1313/thoughts/goodscience/</link>
+      <link>/thoughts/goodscience/</link>
       <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/goodscience/</guid>
+      <guid>/thoughts/goodscience/</guid>
       <description>&lt;p&gt;This idea of &amp;ldquo;good science&amp;rdquo; has made its way through several academic circles I&amp;rsquo;m involved with: in large part because of the advent of AI integration with modern research labs, but also because funding has been significantly threatened in the past 2-4 years. More and more research labs are forced to choose the fast-track on their research, however that may seem, and I actively see a separation in the research community between the people readily embracing and leading AI-backed studies with the people scared to adopt AI for fear they&amp;rsquo;ll lose the human touch that had once made their research so valuable. Very few have correctly navigated the dichotomy, and I&amp;rsquo;m still trying to find balance as well.&lt;/p&gt;</description>
     </item>
     <item>
       <title>sonderous experiences</title>
-      <link>//localhost:1313/thoughts/sonder/</link>
+      <link>/thoughts/sonder/</link>
       <pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/sonder/</guid>
+      <guid>/thoughts/sonder/</guid>
       <description>&lt;p&gt;Yes, I&amp;rsquo;m breaking my rules from post #1 again, which at this point means the rule is probably just gone. This is another personal one, and like the last personal one, I&amp;rsquo;m writing it mostly because I&amp;rsquo;m scared of what happens if I don&amp;rsquo;t.&lt;/p&gt;&#xA;&lt;p&gt;I haven&amp;rsquo;t written here since the spring, which is the longest this blog has ever gone quiet. I spent the summer in Berlin on Georgia Tech&amp;rsquo;s faculty-led study abroad program, taking classes and working in a lab I found on my own, and I got back three days ago. I&amp;rsquo;m still on the wrong sleep schedule. I&amp;rsquo;ve been carrying a bunch of half-formed thoughts around for weeks and I&amp;rsquo;ve learned the hard way that if I don&amp;rsquo;t write them down while they&amp;rsquo;re still messy, they flatten into clean little anecdotes I tell at parties, and whatever was actually in them is gone.&lt;/p&gt;</description>
     </item>
     <item>
       <title>made in our image</title>
-      <link>//localhost:1313/thoughts/aianthropomorphization/</link>
+      <link>/thoughts/aianthropomorphization/</link>
       <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/aianthropomorphization/</guid>
+      <guid>/thoughts/aianthropomorphization/</guid>
       <description>&lt;p&gt;This post started its life as a slide deck. I, along with two friends (shoutout Sara and Bayan!) built a final presentation on the ethics of anthropomorphic AI this past term for CS4001 at Georgia Tech, and I walked out of the room with the distinct feeling that we had arrived at the most interesting idea in the whole project about ninety seconds before we ran out of time. A presentation is a pretty bad format for an argument that only pays off at the end, so I hope that in writing this blog post that I&amp;rsquo;m able to flesh out the nuances I hoped to answer.&lt;/p&gt;</description>
     </item>
     <item>
       <title>morals, truth, and nihilism</title>
-      <link>//localhost:1313/thoughts/moralsandtruth/</link>
+      <link>/thoughts/moralsandtruth/</link>
       <pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/moralsandtruth/</guid>
+      <guid>/thoughts/moralsandtruth/</guid>
       <description>&lt;p&gt;Long time no blog post! I have been away in Berlin for quite some time, and have been extremely grateful for the experience I&amp;rsquo;ve gotten to cherish this summer - full blog post about my experiences will be on the way soon - but I wanted to write a brief post celebrating a conversation, and realization, I came to while on my last travel of the summer.&lt;/p&gt;&#xA;&lt;p&gt;The conversation started as an argument about whether a specific thing was wrong, escalated within about ten minutes into an argument about whether anything is wrong, and ended somewhere around the question of whether anything is real. As always, thank you to my friends for entertaining these conversations at hours when no reasonable person should be doing philosophy. I&amp;rsquo;ve said before that my beliefs would be nowhere near complete without their intellectual company, and this post is more evidence of that: almost none of what follows is a conclusion I walked in with.&lt;/p&gt;</description>
     </item>
     <item>
       <title>PSA: my new favorite movie of all time</title>
-      <link>//localhost:1313/thoughts/windrises/</link>
+      <link>/thoughts/windrises/</link>
       <pubDate>Thu, 26 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/windrises/</guid>
+      <guid>/thoughts/windrises/</guid>
       <description>&lt;p&gt;I did not expect to be writing a new blog post so quickly, but last night, I watched what is undeniably my new favorite movie, and I couldn&amp;rsquo;t help but write down my initial thoughts to preserve them for future reference. The movie is &lt;strong&gt;The Wind Rises&lt;/strong&gt;, a Studio Ghibli film directed by Hayao Miyazaki with score composed by the legendary Joe Hisashi. It documents the life of Jiro Horikoshi, an aeronautical engineer of great prowess and his life on the front lines of aerospace development in WWII Japan. The movie brings some elements from the life of the real Jiro Horikoshi as well as the fictional romance from the biographical novel, &lt;em&gt;The Wind Has Risen&lt;/em&gt; from Tatsuo Hori.&lt;/p&gt;</description>
     </item>
     <item>
       <title>why AI?</title>
-      <link>//localhost:1313/thoughts/whyai/</link>
+      <link>/thoughts/whyai/</link>
       <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/whyai/</guid>
+      <guid>/thoughts/whyai/</guid>
       <description>&lt;p&gt;I have been thinking about a way to practice creative writing while on spring break. As per usual, I found inspiration in my work - specifically, a question many ask me to which I cannot always come to a straight answer. With those who participate in the current AI-movement climate being viewed as selfish and unreasonable, I think it&amp;rsquo;s important for me now more than ever to verbalize exactly &lt;em&gt;why&lt;/em&gt; I choose to be in this space.&lt;/p&gt;</description>
     </item>
     <item>
       <title>the impossible and improbable</title>
-      <link>//localhost:1313/thoughts/sciveng/</link>
+      <link>/thoughts/sciveng/</link>
       <pubDate>Thu, 29 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/sciveng/</guid>
+      <guid>/thoughts/sciveng/</guid>
       <description>&lt;p&gt;This post started out of a discussion with a PI in one of my labs (thank you Chris!) and since then I&amp;rsquo;ve been ruminating on a thought experiment that I believe encapsulates the fundamental debate we were having. I hope that this discussion will stimulate thinking in my generation, as, on average, I see a lot of engineers and not as many scientists. As you&amp;rsquo;ll see in the discussion section of this blog post, both are important, and neither can truly function without the other.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ai bubble go brr or nah</title>
-      <link>//localhost:1313/thoughts/aibubble/</link>
+      <link>/thoughts/aibubble/</link>
       <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/aibubble/</guid>
+      <guid>/thoughts/aibubble/</guid>
       <description>&lt;p&gt;I’m sure you may have heard of the economic “vicious cycle” at play. Billions of dollars are spent investing in architecture, data cleaning and storage, training, all as a select subset of companies continue to pass money back and forth, growing richer. Most real-world examples work something like this:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;OpenAI needs GPUs, the chip needed to run large language models, so they invest $100 into NVIDIA, a chip-making company.&lt;/li&gt;&#xA;&lt;li&gt;NVIDIA then invests $100 into OpenAI in the name of supporting NVIDIA’s products’ research. So, OpenAI gets GPUs for a net price of $0, NVIDIA gets the funding it needsthey need to keep manufacturing GPUs, and as a result, nothing has any worth internally to these companies, resulting in extremely inflated prices for consumers.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;So, with 2026 around the corner, everyone is holding their breath to see if the big beast can keep feeding itself. And as always, the truth is a little more complicated than a yes or a no, as are the implications.&lt;/p&gt;</description>
     </item>
     <item>
       <title>digital colonialism</title>
-      <link>//localhost:1313/thoughts/modernai/</link>
+      <link>/thoughts/modernai/</link>
       <pubDate>Sat, 25 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/modernai/</guid>
+      <guid>/thoughts/modernai/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Trigger Warning:&lt;/strong&gt; This report discusses trauma, mental illness, addiction, and eating disorders. There are mentions of suicide and self-harm and descriptions of graphic content, violence, explicit sexual situations, child sexual abuse, ethnic cleansing, and animal cruelty.&lt;/p&gt;&#xA;&lt;p&gt;I am fully outraged at what I&amp;rsquo;ve just read. This is a short commentary more than it is a blog post (I promise the capitalism one is on the way) but I write this to emphasize how much it disgusts me that this is the current state of our intellectual movement. I hope that this spurs action from all of us in some way regardless of whether we&amp;rsquo;re involved with the industry or not.&lt;/p&gt;</description>
     </item>
     <item>
       <title>proof of life</title>
-      <link>//localhost:1313/thoughts/proofoflife/</link>
+      <link>/thoughts/proofoflife/</link>
       <pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/proofoflife/</guid>
+      <guid>/thoughts/proofoflife/</guid>
       <description>&lt;p&gt;Yes, I&amp;rsquo;m breaking my rules from post #1, and yes, this will be a highly personal, highly introspective story with some hopeful generalizations about my broader motivations in life, in the hopes that I can both find people to connect to and a broader meaning to the rest of my life.&lt;/p&gt;&#xA;&lt;p&gt;I was writing another blog post on capitalism (which is nearing its completion - it&amp;rsquo;s my longest post yet but has a lot of formalizations to go) and I wanted to convey something that means a lot to me in recent times and what I have been reflecting on as far as what it means with regards to the rest of my life. It&amp;rsquo;s about success, the most rewarding part of my high school journey, and why I am currently frightened.&lt;/p&gt;</description>
     </item>
     <item>
       <title>cogs in a machine</title>
-      <link>//localhost:1313/thoughts/educationsystem/</link>
+      <link>/thoughts/educationsystem/</link>
       <pubDate>Wed, 17 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/educationsystem/</guid>
+      <guid>/thoughts/educationsystem/</guid>
       <description>&lt;p&gt;It may come as a surprise to those who know me as the poster child of loving learning also despises the education system, but in the months since I&amp;rsquo;ve left high school, I can&amp;rsquo;t help but reflect on my journey in a nonpositive way.&lt;/p&gt;&#xA;&lt;p&gt;This summer, I was lucky to be connected to the Teachable AI Lab at Georgia Tech, and conducted an independent study over the course of two months analyzing a cognitive modeling algorithm. I worked with high intensity deliverables, was constantly humbled for my questions but thoroughly encouraged by my PhD advisor and Masters&amp;rsquo; coauthor, and conclusively, I learned more in those two months than I did through the majority of my senior year. It was that final realization that sparked a reflection on my interaction with the modern education system.&lt;/p&gt;</description>
     </item>
     <item>
       <title>life is a solved game?</title>
-      <link>//localhost:1313/thoughts/predestination/</link>
+      <link>/thoughts/predestination/</link>
       <pubDate>Sat, 06 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/predestination/</guid>
+      <guid>/thoughts/predestination/</guid>
       <description>&lt;p&gt;The title may hint that I argue in favor of predestination, but I&amp;rsquo;m prefacing this whole topic with the fact that I don&amp;rsquo;t like the idea of predestination quite fundamentally and believe that debating its existence and value are two separate conversation topics. I will consider both here, but I intend for this blog to largely revolve around the second. Simply for the belief of devil&amp;rsquo;s advocacy, my goal is to reason with the concept as atheistically as possible and justify both existence and value under a framework of pure rationale.&lt;/p&gt;</description>
     </item>
     <item>
       <title>introductions</title>
-      <link>//localhost:1313/thoughts/hello/</link>
+      <link>/thoughts/hello/</link>
       <pubDate>Fri, 05 Oct 2007 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/thoughts/hello/</guid>
+      <guid>/thoughts/hello/</guid>
       <description>&lt;p&gt;Every time I meet someone in our generation who’s absolutely locked in, they seem to have a generally strong and minimalist personal website, so I wanted to take a stab at it. I write a lot to get my thoughts out into general space and I figured it would be optimal for them to have some general place to live! This initial post should hopefully offer notes on the vibes of future posts and cover some more general information on the parts of this website.&lt;/p&gt;</description>
     </item>
   </channel>

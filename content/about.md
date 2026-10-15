@@ -1,6 +1,6 @@
 +++
 title = "about me"
-author = "Trying to define yourself is like trying to bite your own teeth. — Alan Watts, British-American writer and philosopher"
+author = "[Thinking] deeply of simple things. *— Arnold Ross, American mathematics educator*"
 +++
 
 <style>
@@ -29,9 +29,9 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   visibility: hidden;
   opacity: 0;
   width: 350px;
-  background: black;
-  color: var(--accent);
-  border: 1px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--background));
+  color: var(--foreground);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
   border-radius: 6px;
   padding: 10px;
   position: absolute;
@@ -42,7 +42,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   transition: opacity 0.3s;
   font-size: 16px;
   line-height: 1.4;
-  box-shadow: 0 0 10px var(--accent);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--foreground) 15%, transparent);
 }
 
 .terminal-hover:hover .terminal-popup {
@@ -74,11 +74,7 @@ author = "Trying to define yourself is like trying to bite your own teeth. — A
   <div style="flex: 4;">
     <h2>me</h2>
     <p>
-      Hi! I’m <span class="terminal-hover">
-  Karthik Singaravadivelan<span class="terminal-popup">
-        me!<br><br>
-        <img src="/karthik.JPG" alt="london" style="margin: auto; max-width: 90%; height: auto;" />
-    </span></span>, a Computer Science + Psychology Major and Stamps President’s Scholar at Georgia Institute of Technology studying the intersection of <span class="terminal-hover">
+      Hi! I’m <a href="https://www.linkedin.com/in/karthik-singaravadivelan/">Karthik Singaravadivelan</a>, a Computer Science + Psychology Major and Stamps President’s Scholar at Georgia Institute of Technology studying the intersection of <span class="terminal-hover">
   cognitive science<span class="terminal-popup">
         <strong>Cognitive Science:</strong><br>
         The study of thought, learning, and mental organization, which draws on aspects of psychology, linguistics, philosophy, and computer modeling.

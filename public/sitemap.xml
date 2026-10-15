@@ -2,82 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/thoughts/goodscience/</loc>
+    <loc>/thoughts/goodscience/</loc>
     <lastmod>2026-09-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/</loc>
+    <loc>/</loc>
     <lastmod>2026-09-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/</loc>
+    <loc>/thoughts/</loc>
     <lastmod>2026-09-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/unready/friction/</loc>
+    <loc>/unready/friction/</loc>
     <lastmod>2026-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/unready/</loc>
+    <loc>/unready/</loc>
     <lastmod>2026-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/sonder/</loc>
+    <loc>/thoughts/sonder/</loc>
     <lastmod>2026-08-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/aianthropomorphization/</loc>
+    <loc>/thoughts/aianthropomorphization/</loc>
     <lastmod>2026-08-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/moralsandtruth/</loc>
+    <loc>/thoughts/moralsandtruth/</loc>
     <lastmod>2026-07-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/windrises/</loc>
+    <loc>/thoughts/windrises/</loc>
     <lastmod>2026-03-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/whyai/</loc>
+    <loc>/thoughts/whyai/</loc>
     <lastmod>2026-03-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/sciveng/</loc>
+    <loc>/thoughts/sciveng/</loc>
     <lastmod>2026-01-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/aibubble/</loc>
+    <loc>/thoughts/aibubble/</loc>
     <lastmod>2026-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/modernai/</loc>
+    <loc>/thoughts/modernai/</loc>
     <lastmod>2025-10-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/unready/anticapitalism/</loc>
+    <loc>/unready/anticapitalism/</loc>
     <lastmod>2025-10-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/proofoflife/</loc>
+    <loc>/thoughts/proofoflife/</loc>
     <lastmod>2025-10-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/educationsystem/</loc>
+    <loc>/thoughts/educationsystem/</loc>
     <lastmod>2025-09-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/predestination/</loc>
+    <loc>/thoughts/predestination/</loc>
     <lastmod>2025-09-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/thoughts/hello/</loc>
+    <loc>/thoughts/hello/</loc>
     <lastmod>2007-10-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/about/</loc>
+    <loc>/about/</loc>
   </url><url>
-    <loc>//localhost:1313/school/engl1102/artifact2/</loc>
+    <loc>/school/engl1102/artifact2/</loc>
   </url><url>
-    <loc>//localhost:1313/categories/</loc>
+    <loc>/categories/</loc>
   </url><url>
-    <loc>//localhost:1313/contactme/</loc>
+    <loc>/contactme/</loc>
   </url><url>
-    <loc>//localhost:1313/unready/definitions/</loc>
+    <loc>/unready/definitions/</loc>
   </url><url>
-    <loc>//localhost:1313/education/</loc>
+    <loc>/education/</loc>
   </url><url>
-    <loc>//localhost:1313/interests/</loc>
+    <loc>/interests/</loc>
   </url><url>
-    <loc>//localhost:1313/quotebook/</loc>
+    <loc>/quotebook/</loc>
   </url><url>
-    <loc>//localhost:1313/research/</loc>
+    <loc>/research/</loc>
   </url><url>
-    <loc>//localhost:1313/school/</loc>
+    <loc>/school/</loc>
   </url><url>
-    <loc>//localhost:1313/tags/</loc>
+    <loc>/tags/</loc>
   </url><url>
-    <loc>//localhost:1313/ventures/</loc>
+    <loc>/ventures/</loc>
   </url>
 </urlset>
