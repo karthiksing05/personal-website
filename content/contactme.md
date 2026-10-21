@@ -5,35 +5,15 @@ title = "contact me"
 
 > The true measure of scientific progress is not just the ability to ask questions, but the ability to ask better questions. *— J. Robert Oppenheimer, American theoretical physicist*
 
-Our world is best improved through mutual discovery and curiosity, and I live for the unexpected conversations that spark both confusion and clarity. If you'd like to have a conversation, work together, or entertain the wildest of possibilities with me, don't hesitate to reach out!
+Our world is best improved through mutual discovery and curiosity, and I live for the unexpected conversations that spark both confusion and clarity. If you'd like to talk through a question, work together on something, or entertain the wildest of possibilities, pick a time that works for you below and I'll be there (and if a calendar invite feels too formal, you can always reach me through any of the links here).
 
 [linkedin](https://www.linkedin.com/in/karthik-singaravadivelan/) | [github](https://github.com/karthiksing05) | [instagram](https://www.instagram.com/karthik.sing.05/) | [email: karthiksing05@gmail.com](mailto:karthiksing05@gmail.com)
 
-<div style="display: flex; flex-wrap: wrap; max-width: 1000px; margin: 20px auto; gap: 20px; align-items: center;">
-  <!-- Left column: Image -->
-  <div style="flex: 1; min-width: 300px; display: flex; justify-content: center;">
-    <img src="/letters.JPG" alt="letters.jpg" style="max-width: 100%; height: auto; border-radius: 10px;" />
-  </div>
-
-  <!-- Right column: Form -->
-  <div style="flex: 1; min-width: 300px; display: flex; justify-content: center;">
-    <form action="https://formspree.io/f/mkgvplpd" method="POST" style="width: 100%; max-width: 500px;">
-      <fieldset style="border: 1px solid #ccc; padding: 20px; border-radius: 10px; display: flex; flex-direction: column;">
-        <input type="text" name="name" placeholder="Name" style="width: 100%; padding: 10px; margin-bottom: 10px;" />
-        <input type="text" name="email" placeholder="Email" style="width: 100%; padding: 10px; margin-bottom: 10px;" />
-        <select name="dropdown" style="width: 100%; padding: 10px; margin-bottom: 10px;">
-          <option value="question">Question</option>
-          <option value="research">Research</option>
-          <option value="collaborate">Product</option>
-          <option value="other">Other</option>
-        </select>
-        <textarea name="comment" placeholder="Type your message here..." style="width: 100%; padding: 10px; margin-bottom: 10px; min-height: 150px;"></textarea>
-        <button type="submit" style="width: 100%; padding: 10px; background-color: var(--accent); color: white; border: none; cursor: pointer;">
-          Submit
-        </button>
-      </fieldset>
-    </form>
-  </div>
+<div style="max-width: 1000px; margin: 20px auto;">
+  <iframe
+    src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3D3glsZ7qdhG9zVaN7aK6ydxnOZqzPvAdEZN8a7Ze-JzQ8H7tWICuQZu3TMnujfbA3V6ywDDf7?gv=true"
+    title="schedule a conversation with Karthik"
+    class="scheduler-embed"
+    loading="lazy"></iframe>
+  <p style="text-align: center;"><a href="https://calendar.app.google/78oKHFqjg2pp2Pa17">open the scheduler in a new tab</a></p>
 </div>
-
-*picture taken in harry potter studio tour, watford, england*
