@@ -1,0 +1,21 @@
+title = "TRELLIS"
+date = "2025-06-11"
+until = "present"
+lab = "ISLE"
+team = "Dr. Pat Langley"
+venue = ["CoCo 2026", "CogSci 2026"]
+description = """
+Cobweb is a symbolic algorithm that aggregates instances into "concepts" and forms a hierarchy over these instances - it is unsupervised, piecemeal, and incremental, making it a comprehensive model of human learning. I am currently working with Dr. Pat Langley to implement the Cobweb algorithm in a proposed theoretical framework to model psychological "chunking" for efficient parsing, storage and retrieval of concepts based on a set of defined relations.
+
+In completing this work, I also documented psychological findings prevalent in Cobweb: we presented Cobweb as a theory of categorization refined on an information-theoretic rational analysis, and investigated how well it can account for key findings from classic categorization experiments conducted by Hayes-Roth and Hayes-Roth (1977), Medin and Schaffer (1978), and Smith and Minda (1998).
+"""
+outputs = [
+  "presented at the [Computation and Cognition Conference](https://coco.psych.gatech.edu/coco-conference-2026/) (2026)",
+  "a [paper](https://arxiv.org/abs/2603.29895) on Cobweb as a theory of categorization, accepted to CogSci 2026",
+  "working towards a finalized theory for Advances in Cognitive Systems 2026",
+  "an [interactive explainer](/education/cobweb/) of the algorithm on the education page",
+]
+links = [
+  { label = "ISLE", url = "http://www.isle.org/" },
+  { label = "github", url = "https://github.com/karthiksing05/Chunking-Cobweb" },
+]

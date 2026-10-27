@@ -1,0 +1,14 @@
+title = "SimplyPhi"
+date = "2025-01-17"
+until = "2025-04-17"
+lab = "WISC"
+team = "Dr. Larissa Albantakis"
+description = """
+I did volunteer work for Dr. Larissa Albantakis on a theory called Integrated Information Theory, an information-theoretic framework that attempted to calculate the distributed "consciousness" of a system. I used IIT to evaluate the performance of neural networks as a saliency test, identifying the most relevant parts of the network under the "substrate of consciousness" defined by the framework.
+
+While IIT is an extremely assuming framework to attribute to consciousness, as a metric of "usefulness" by analyzing the distributed information across a system, it has a lot of play, and I look forward to seeing information theory take greater prominence in shaping the field of ML interpretability.
+"""
+links = [
+  { label = "WISC", url = "https://sleep-and-consciousness.wisc.edu/" },
+  { label = "github", url = "https://github.com/karthiksing05/SimplyPhi" },
+]

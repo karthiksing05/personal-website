@@ -1,0 +1,19 @@
+title = "Encoding Models & Topographic Constraints"
+date = "2025-05-15"
+until = "2025-08-27"
+lab = "LIT Lab"
+team = "Prof. Anya Ivanova"
+description = """
+I joined Professor Anya Ivanova and began contributing to the development of encoding models, models that can convert latent content that represents stimuli into direct voxel representations of brain states, measured by fMRI data. Over the course of the project, I worked on creating a novel architecture that combined predictions from various layers of an LLM via attention to best predict brain activations.
+
+I also developed a research project furthering topographic constraints in neural architectures for gains in pruning performance, and to pass on some of the blessings of continual learning to all architectures - specifically, how topography can improve diversity and sparsity constraints to reduce catastrophic forgetting and improve diversity of activations.
+"""
+outputs = [
+  "preprocessing decisions in the pipeline had strong effects as to which layer provided the best correlation",
+  "syntactic decisions were localized in earlier layers and the auditory cortex, whereas semantics occurred in the middle to later layers and the language network",
+]
+links = [
+  { label = "LIT Lab", url = "https://www.language-intelligence-thought.net/" },
+  { label = "encoding models", url = "https://github.com/karthiksing05/litcoder_core_karthik" },
+  { label = "topo-moe", url = "https://github.com/karthiksing05/topo-moe" },
+]

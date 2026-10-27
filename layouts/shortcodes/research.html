@@ -1,0 +1,21 @@
+{{- /*
+  Research carousel. Every file in data/research/ is one card, shown newest first by `date`.
+  Fields:
+    title        required
+    date         required, the start date ("YYYY-MM-DD" or "YYYY-MM")
+    until        the end date, or "present" for ongoing work
+    lab          optional, shown as a bubble
+    venue        optional, shown as an outlined bubble; use a list for several
+    team         optional, "with ..." line under the title
+    description  markdown
+    outputs      list of markdown strings (papers, talks, findings), shown in the outputs/ folder
+    links        list of {label, url} tables, e.g. the lab page and the repo
+*/ -}}
+{{- $items := slice -}}
+{{- range $slug, $v := site.Data.research -}}
+  {{- $day := $v.date -}}
+  {{- if eq (len $day) 7 }}{{ $day = printf "%s-00" $day }}{{ end -}}
+  {{- $items = $items | append (merge $v (dict "slug" $slug "tag" $v.lab "sortkey" (printf "%s|%s" $day $slug))) -}}
+{{- end -}}
+{{- $items = sort $items "sortkey" "desc" -}}
+{{- partial "card-deck.html" (dict "items" $items "section" "research" "noun" "project" "list" "outputs") -}}

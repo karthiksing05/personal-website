@@ -1,8 +1,8 @@
 {{- /*
-  Carousel of terminal-window cards, shared by /ventures and /education. Call it with
+  Carousel of terminal-window cards, shared by /research, /ventures and /education. Call it with
     partial "card-deck.html" (dict "items" $items "section" "ventures" "noun" "venture" "list" "results")
   items    cards in display order; each needs `slug`, `title`, `date`, `description` and may
-           set `tag`, `award`, `venue`, `team`, the list field, `link`, `links` and the
+           set `until` (an end date or "present"), `tag`, `award`, `venue`, `team`, the list field, `link`, `links` and the
            ventures link fields documented in the calling shortcode
   section  the folder shown in each card's path bar (~/<section>/<slug>)
   noun     singular name, used in the arrow labels
@@ -69,7 +69,7 @@
 .deck-card__count { color: color-mix(in srgb, var(--foreground) 60%, transparent); font-variant-numeric: tabular-nums; }
 .deck-card__body { padding: 18px 22px 20px; }
 .deck-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
-.deck-card__meta time { color: color-mix(in srgb, var(--foreground) 70%, transparent); margin-right: 4px; }
+.deck-card__when { color: color-mix(in srgb, var(--foreground) 70%, transparent); margin-right: 4px; }
 .deck-card__bubble {
   display: inline-block;
   padding: 0 10px;
@@ -153,7 +153,9 @@
         </div>
         <div class="deck-card__body">
           <div class="deck-card__meta">
-            <time datetime="{{ $v.date }}">{{ time.AsTime (printf "%s-01" (substr $v.date 0 7)) | time.Format "January 2006" }}</time>
+            <span class="deck-card__when"><time datetime="{{ $v.date }}">{{ time.AsTime (printf "%s-01" (substr $v.date 0 7)) | time.Format "January 2006" }}</time>
+            {{- with $v.until }} - {{ if eq . "present" }}present{{ else }}<time datetime="{{ . }}">{{ time.AsTime (printf "%s-01" (substr . 0 7)) | time.Format "January 2006" }}</time>{{ end }}{{ end -}}
+            </span>
             {{- with $v.tag }}
             <span class="deck-card__bubble">{{ . }}</span>
             {{- end }}

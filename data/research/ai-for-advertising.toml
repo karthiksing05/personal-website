@@ -1,0 +1,16 @@
+title = "AI-for-Advertising"
+date = "2024-06-18"
+until = "2024-07-16"
+lab = "GA GHP '61"
+venue = "AHFE"
+description = """
+I attended the Georgia Governor's Honors Program for Computer Science in my junior year, where I had the pleasure of launching a mock-startup and conducting research under my advisor. Over the term, I wrote a piece on the application of finetuning diffusion models for the advertising industry based on user demographics, with the broader social commentary of introducing profitable AI research into the research space before industry so that it could be appropriately regulated.
+"""
+outputs = [
+  "paper accepted to the Applied Human Factors and Ergonomics Conference (unfortunately, I was unable to attend due to another commitment)",
+]
+links = [
+  { label = "paper", url = "https://drive.google.com/file/d/1Gn6mnmxkvGaBaOAdVu16wN3FsUyRCiVS/view?usp=sharing" },
+  { label = "GHP", url = "https://gosa.georgia.gov/governors-honors-program" },
+  { label = "github", url = "https://github.com/karthiksing05/sd3dblora_finetune" },
+]

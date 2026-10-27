@@ -1,0 +1,15 @@
+title = "BiasWrappers"
+date = "2021-09-27"
+until = "2024-02-05"
+lab = "independent"
+venue = "TechRxiv"
+description = """
+My first machine learning project and independently published paper to a preprint archive! A brief foray into classical forms of regularization on linear regression, including two of my own attempts at unsupervised regularization with respect to the data distribution.
+"""
+outputs = [
+  "a [paper](https://www.techrxiv.org/users/741672/articles/713955-on-biaswrappers-new-regularization-techniques-for-machine-learning-regression) on TechRxiv",
+  "a [Python package](https://pypi.org/project/biaswrappers/) that currently stands at ~32k downloads",
+]
+links = [
+  { label = "github", url = "https://github.com/karthiksing05/biaswrappers" },
+]

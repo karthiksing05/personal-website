@@ -1,0 +1,19 @@
+title = "Cobweb in Retrieval and Summarization of Language"
+date = "2025-06-01"
+until = "present"
+lab = "TAIL"
+team = "Dr. Chris Maclellan"
+venue = ["ACS 2025", "ACL Findings 2026"]
+description = """
+(see notes on Cobweb in my work with [ISLE](#trellis)) I am currently leading an independent study under Dr. Chris Maclellan in creating a robust, industry-sustainable neurosymbolic solution to utilizing language in agentic systems, using Cobweb as the primary algorithm. Our work takes on two main applications to modern semantic embedding analysis.
+
+Our first approach is retrieval-aligned - we show that Cobweb performs as a strong search algorithm for dense vector representations, matching performance of traditional systems while offering strong intermediary prototypes. Our more recent approach aimed to leverage the clustering nature of Cobweb in a field that benefits from both the incremental and hierarchical nature of Cobweb - topic-modeling.
+"""
+outputs = [
+  "a preliminary [study](http://www.cogsys.org/proceedings/2025/paper-2025-8.pdf) at Advances in Cognitive Systems 2025, qualifying Cobweb as a search algorithm and showing its ability to utilize different data forms",
+  "Cobweb as a topic model sets a new SOTA in the hierarchical and incremental fields, a sustainable way to continuously track topic evolutions ([accepted](https://aclanthology.org/2026.findings-acl.1753/) to ACL Findings 2026)",
+]
+links = [
+  { label = "TAIL", url = "https://tail.cc.gatech.edu/" },
+  { label = "github", url = "https://github.com/Teachable-AI-Lab/RAG-Cobweb" },
+]
