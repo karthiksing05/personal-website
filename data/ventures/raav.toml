@@ -1,0 +1,24 @@
+title = "Robot-As-A-Verifier"
+date = "2026-11-07"
+hackathon = "MakeCU 2026"
+award = "Grand Prize for Creativity"
+team = "Joseph Farkas, Bayan Mardon, Max Iliev"
+description = """
+Some of the fastest recent progress in AI-assisted research has come from automatic verifiers: a proof assistant like Lean checks every step, so a model can propose thousands of attempts and keep only the ones that hold. Physical hardware has nothing like this, since a prototype gets handed to a few testers, someone writes "button 2 feels sticky," and a designer guesses at a fix a week later. So, we built the missing verifier. You give RAAV a product, its manual, and (if you have one) its CAD, and a low-cost SO-101 arm with a $19 wrist camera finds every control, plans tests from the manual, presses, flips, and turns each one under a 15 N force cap, and writes bug reports backed by force traces and frames. A CAD agent then patches the faulty part, and the fix only counts if the same tests score higher on the new revision. The rule that held it all together was simple: *the model thinks, code moves, sensors decide*.
+"""
+results = [
+  "won the Grand Prize for Creativity at MakeCU 2026 (Columbia)",
+  "on the MC-6 centrifuge, the robot caught a tube sitting 8.15 mm above its seat, and the CAD analyst (14 tool calls, 102 s, $0.43) widened the bore so the retest seated within 0.97 mm, within 0.2 mm of the designer's own fix, which it never saw",
+  "110 of 115 attempted tests passed (96%) in simulation on 16 devices it was never tuned on, with 0 false failures",
+  "force sensing from the servos alone, taking our skills from 0 to 84 of 89 steps with no added sensor",
+  "a $19 camera got part outlines within 0.41 mm and heights within 1 mm 93 to 95% of the time",
+  "four frontier models compared behind one Snowflake Cortex endpoint, with the model as a single config value",
+  "on the real arm, the SO-101 scans our MC-6, flips POWER, turns SPEED, and presses START while the appliance's Arduino reports what changed",
+]
+link = "https://devpost.com/software/robot-as-a-verifier"
+link_label = "devpost"
+video = "https://www.youtube.com/watch?v=kkUhyZz5kz0"
+github = "https://github.com/karthiksing05/robot-as-a-verifier"
+links = [
+  { url = "https://www.linkedin.com/feed/update/urn:li:activity:7526058216334565376/", label = "linkedin post" },
+]

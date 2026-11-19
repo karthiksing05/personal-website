@@ -7,7 +7,8 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content=" The work is its own reward. — Sir Arthur Conan Doyle, British writer and physician
-ongoing efforts [2026-06-26 - present] Persona Conditioning @ Max Planck Institute for Human Development&rsquo;s Center for Humans and Machines | github Expert-token conditioning is a training protocol I have developed with Dr. Levin Brinkmann that specializes a single shared backbone on a bank of per-expert tokens instead of per-expert FFNs, alternating between fitting the tokens against a frozen backbone and training the backbone with the tokens held fixed — it is capacity-free, and addressable, making it a lightweight alternative to Mixture-of-Experts routing. We are currently working to extend the protocol from synthetic domains and semantic domains to real speakers, treating each token as a retrieval key for a persona learned from diarized speech transcripts. Our final goal is not only to proven the efficiency of the technique, but also justify methods of developing human-like creativity in LLMs, which tend to approximate the mean but not the standard deviation. We are currently working on scaling the method and applying it on a more expansive dataset of real speakers for a submission towards ICLR 2027. [2025-06-11 - present] TRELLIS @ ISLE | github Cobweb is a symbolic algorithm that aggregates instances into &ldquo;concepts&rdquo; and forms a hierarchy over these instances - it is unsupervised, piecemeal, and incremental, making it a comprehensive model of human learning. I am currently working with Dr. Pat Langley to implement the Cobweb algorithm in a proposed theoretical framework to model psychological &ldquo;chunking&rdquo; for efficient parsing, storage and retrieval of concepts based on a set of defined relations. Most recently, we presented our work at the Computation and Cognition Conference (2026), and are actively working towards a finalized theory for Advances in Cognitive Systems 2026. In completing this work, I also documented psychological findings prevalent in Cobweb, accepted as a paper to CogSci 2026. We presented Cobweb as a theory of categorization refined on an information-theoretic rational analysis. To evaluate this theory, we investigated how well it can account for key findings from classic categorization experiments conducted by Hayes-Roth and Hayes-Roth (1977), Medin and Schaffer (1978), and Smith and Minda (1998). [2025-06-01 - present] Cobweb in Retrieval and Summarization of Language @ TAIL | github (see notes on Cobweb in my work with ISLE) I am currently leading an independent study under Dr. Chris Maclellan in creating a robust, industry-sustainable neurosymbolic solution to utilizing language in agentic systems, using Cobweb as the primary algorithm. Our work takes on two main applications to modern semantic embedding analysis. Our first approach is retrieval-aligned - we show that Cobweb performs as a strong search algorithm for dense vector representations, matching performance of traditional systems while offering strong intermediary prototypes. Our paper at Advances in Cognitive Systems 2025 conducts a preliminary study which not only qualified the efficacy of Cobweb as a search algorithm but also showed its ability to utilize different data forms. Our more recent approach aimed to leverage the clustering nature of Cobweb in a field that benefits from both the incremental and hierarchical nature of Cobweb - topic-modeling. We show that Cobweb utilized as a topic model sets a new SOTA in the hierarchical and incremental fields, proving a sustainable way to continuously track topic evolutions and have recently been accepted to ACL Findings 2026. past research [2025-08-27 - 2025-05-15] Encoding Model &amp; Topographic Constraints development @ LIT Lab Recently, I joined Professor Anya Ivanova and began contributing to the development of encoding models, models that can convert latent content that represents stimuli into direct voxel representations of brain states, measured by fMRI data. Over the course of the project, I worked on creating a novel architecture that combined predictions from various layers of an LLM via attention to best predict brain activations, and found that preprocessing decisions in the pipeline had strong effects as to which layer provided the best correlation, and saw how syntactic decisions were localized in earlier layers and the auditory cortex, whereas semantics occurred in the middle to later layers and the language network. I also developed a research project furthering topographic constraints in neural architectures for gains in pruning performance, and to pass on some of the blessings of continual learning to all architectures - specifically, how topography can improve diversity and sparsity constraints to reduce catastrophic forgetting and improve diversity of activations. [2025-01-17 - 2025-04-17] SimplyPhi @ WISC | github I did volunteer work for Dr. Larissa Albantakis on a theory called Integrated Information Theory, an information-theoretic framework that attempted to calculate the distributed &ldquo;consciousness&rdquo; of the theory. I used IIT to evaluate the performance of neural networks as a saliency test, identifying the most relevant parts of the network under the &ldquo;substrate of consciousness&rdquo; defined by the framework. While IIT is an extremely assuming framework to attribute to consciousness, as a metric of &ldquo;usefulness&rdquo; by analyzing the distributed information across a system, it has a lot of play, and I look forward to seeing information theory take greater prominence in shaping the field of ML interpretability. [2024-06-18 - 2024-07-16] AI-for-Advertising @ GA GHP &lsquo;61 | github I attended the Georgia Governor&rsquo;s Honors Program for Computer Science in my junior year, where I had the pleasure of launching a mock-startup and conducting research under my advisor. Over the term, I wrote a piece on the application of finetuning diffusion models for the advertising industry based on user demographic and , with the broader social commentary of introducing profitable AI research into the research space before industry so that it could be appropriately regulated. My paper was accepted to the Applied Human Factors and Ergonomics Conference, but I was unfortunately unable to attend due to another commitment. Paper can be viewed here! [2021-09-27 - 2024-02-05] BiasWrappers | github My first machine learning project and independently published paper to a preprint archive! A brief foray into classical forms of regularization on linear regression, including two of my own attempts at unsupervised regularization with respect to the data distribution. The python package currently stands at ~32k downloads! Paper can be viewed here, Python Package can be viewed here! " />
+This page collects the research I have been lucky enough to take part in, from my first independent paper to the labs I am working with today. Most of it orbits the same question: how can we build machines that learn the way people do, incrementally, hierarchically, and with structure we can actually read? Each card shows when the work ran (ongoing efforts come first, and are marked as running to the present), the lab it lived in, what came out of it, and links to the code and papers behind it - please reach out if any of it sounds interesting!
+" />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
@@ -59,7 +60,7 @@ ongoing efforts [2026-06-26 - present] Persona Conditioning @ Max Planck Institu
 
 
 
-  <link rel="stylesheet" href="//localhost:1313/terminal.css?v=73b84858">
+  <link rel="stylesheet" href="//localhost:1313/terminal.css?v=43188c3e">
 
 
 
@@ -81,7 +82,8 @@ ongoing efforts [2026-06-26 - present] Persona Conditioning @ Max Planck Institu
 <meta property="og:type" content="article" />
 <meta property="og:title" content="research">
 <meta property="og:description" content=" The work is its own reward. — Sir Arthur Conan Doyle, British writer and physician
-ongoing efforts [2026-06-26 - present] Persona Conditioning @ Max Planck Institute for Human Development&rsquo;s Center for Humans and Machines | github Expert-token conditioning is a training protocol I have developed with Dr. Levin Brinkmann that specializes a single shared backbone on a bank of per-expert tokens instead of per-expert FFNs, alternating between fitting the tokens against a frozen backbone and training the backbone with the tokens held fixed — it is capacity-free, and addressable, making it a lightweight alternative to Mixture-of-Experts routing. We are currently working to extend the protocol from synthetic domains and semantic domains to real speakers, treating each token as a retrieval key for a persona learned from diarized speech transcripts. Our final goal is not only to proven the efficiency of the technique, but also justify methods of developing human-like creativity in LLMs, which tend to approximate the mean but not the standard deviation. We are currently working on scaling the method and applying it on a more expansive dataset of real speakers for a submission towards ICLR 2027. [2025-06-11 - present] TRELLIS @ ISLE | github Cobweb is a symbolic algorithm that aggregates instances into &ldquo;concepts&rdquo; and forms a hierarchy over these instances - it is unsupervised, piecemeal, and incremental, making it a comprehensive model of human learning. I am currently working with Dr. Pat Langley to implement the Cobweb algorithm in a proposed theoretical framework to model psychological &ldquo;chunking&rdquo; for efficient parsing, storage and retrieval of concepts based on a set of defined relations. Most recently, we presented our work at the Computation and Cognition Conference (2026), and are actively working towards a finalized theory for Advances in Cognitive Systems 2026. In completing this work, I also documented psychological findings prevalent in Cobweb, accepted as a paper to CogSci 2026. We presented Cobweb as a theory of categorization refined on an information-theoretic rational analysis. To evaluate this theory, we investigated how well it can account for key findings from classic categorization experiments conducted by Hayes-Roth and Hayes-Roth (1977), Medin and Schaffer (1978), and Smith and Minda (1998). [2025-06-01 - present] Cobweb in Retrieval and Summarization of Language @ TAIL | github (see notes on Cobweb in my work with ISLE) I am currently leading an independent study under Dr. Chris Maclellan in creating a robust, industry-sustainable neurosymbolic solution to utilizing language in agentic systems, using Cobweb as the primary algorithm. Our work takes on two main applications to modern semantic embedding analysis. Our first approach is retrieval-aligned - we show that Cobweb performs as a strong search algorithm for dense vector representations, matching performance of traditional systems while offering strong intermediary prototypes. Our paper at Advances in Cognitive Systems 2025 conducts a preliminary study which not only qualified the efficacy of Cobweb as a search algorithm but also showed its ability to utilize different data forms. Our more recent approach aimed to leverage the clustering nature of Cobweb in a field that benefits from both the incremental and hierarchical nature of Cobweb - topic-modeling. We show that Cobweb utilized as a topic model sets a new SOTA in the hierarchical and incremental fields, proving a sustainable way to continuously track topic evolutions and have recently been accepted to ACL Findings 2026. past research [2025-08-27 - 2025-05-15] Encoding Model &amp; Topographic Constraints development @ LIT Lab Recently, I joined Professor Anya Ivanova and began contributing to the development of encoding models, models that can convert latent content that represents stimuli into direct voxel representations of brain states, measured by fMRI data. Over the course of the project, I worked on creating a novel architecture that combined predictions from various layers of an LLM via attention to best predict brain activations, and found that preprocessing decisions in the pipeline had strong effects as to which layer provided the best correlation, and saw how syntactic decisions were localized in earlier layers and the auditory cortex, whereas semantics occurred in the middle to later layers and the language network. I also developed a research project furthering topographic constraints in neural architectures for gains in pruning performance, and to pass on some of the blessings of continual learning to all architectures - specifically, how topography can improve diversity and sparsity constraints to reduce catastrophic forgetting and improve diversity of activations. [2025-01-17 - 2025-04-17] SimplyPhi @ WISC | github I did volunteer work for Dr. Larissa Albantakis on a theory called Integrated Information Theory, an information-theoretic framework that attempted to calculate the distributed &ldquo;consciousness&rdquo; of the theory. I used IIT to evaluate the performance of neural networks as a saliency test, identifying the most relevant parts of the network under the &ldquo;substrate of consciousness&rdquo; defined by the framework. While IIT is an extremely assuming framework to attribute to consciousness, as a metric of &ldquo;usefulness&rdquo; by analyzing the distributed information across a system, it has a lot of play, and I look forward to seeing information theory take greater prominence in shaping the field of ML interpretability. [2024-06-18 - 2024-07-16] AI-for-Advertising @ GA GHP &lsquo;61 | github I attended the Georgia Governor&rsquo;s Honors Program for Computer Science in my junior year, where I had the pleasure of launching a mock-startup and conducting research under my advisor. Over the term, I wrote a piece on the application of finetuning diffusion models for the advertising industry based on user demographic and , with the broader social commentary of introducing profitable AI research into the research space before industry so that it could be appropriately regulated. My paper was accepted to the Applied Human Factors and Ergonomics Conference, but I was unfortunately unable to attend due to another commitment. Paper can be viewed here! [2021-09-27 - 2024-02-05] BiasWrappers | github My first machine learning project and independently published paper to a preprint archive! A brief foray into classical forms of regularization on linear regression, including two of my own attempts at unsupervised regularization with respect to the data distribution. The python package currently stands at ~32k downloads! Paper can be viewed here, Python Package can be viewed here! " />
+This page collects the research I have been lucky enough to take part in, from my first independent paper to the labs I am working with today. Most of it orbits the same question: how can we build machines that learn the way people do, incrementally, hierarchically, and with structure we can actually read? Each card shows when the work ran (ongoing efforts come first, and are marked as running to the present), the lab it lived in, what came out of it, and links to the code and papers behind it - please reach out if any of it sounds interesting!
+" />
 <meta property="og:url" content="//localhost:1313/research/" />
 <meta property="og:site_name" content="Karthik&#39;s World" />
 
@@ -254,44 +256,396 @@ ongoing efforts [2026-06-26 - present] Persona Conditioning @ Max Planck Institu
   <div class="post-content"><div>
         <blockquote>
 <p>The work is its own reward. <em>— Sir Arthur Conan Doyle, British writer and physician</em></p></blockquote>
-<h1 id="ongoing-efforts">ongoing efforts<a href="#ongoing-efforts" class="hanchor" ariaLabel="Anchor">#</a> </h1>
-<h3 id="-persona-conditioning--max-planck-institute-for-human-development--github"><em>[2026-06-26 - present]</em> Persona Conditioning @ <a href="https://www.mpib-berlin.mpg.de/">Max Planck Institute for Human Development&rsquo;s Center for Humans and Machines</a> | <a href="https://github.com/karthiksing05/soft-moe">github</a><a href="#-persona-conditioning--max-planck-institute-for-human-development--github" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<ul>
-<li>Expert-token conditioning is a training protocol I have developed with Dr. Levin Brinkmann that specializes a <em>single</em> shared backbone on a bank of per-expert tokens instead of per-expert FFNs, alternating between fitting the tokens against a frozen backbone and training the backbone with the tokens held fixed — it is capacity-free, and addressable, making it a lightweight alternative to Mixture-of-Experts routing. We are currently working to extend the protocol from synthetic domains and semantic domains to real speakers, treating each token as a retrieval key for a persona learned from diarized speech transcripts. Our final goal is not only to proven the efficiency of the technique, but also justify methods of developing human-like creativity in LLMs, which tend to approximate the mean but not the standard deviation. We are currently working on scaling the method and applying it on a more expansive dataset of real speakers for a submission towards ICLR 2027.</li>
-</ul>
-<h3 id="-trellis--isle--github"><em>[2025-06-11 - present]</em> TRELLIS @ <a href="http://www.isle.org/">ISLE</a> | <a href="https://github.com/karthiksing05/Chunking-Cobweb">github</a><a href="#-trellis--isle--github" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<ul>
-<li>Cobweb is a symbolic algorithm that aggregates instances into &ldquo;concepts&rdquo; and forms a hierarchy over these instances - it is unsupervised, piecemeal, and incremental, making it a comprehensive model of human learning. I am currently working with Dr. Pat Langley to implement the Cobweb algorithm in a proposed theoretical framework to model psychological &ldquo;chunking&rdquo; for efficient parsing, storage and retrieval of concepts based on a set of defined relations. Most recently, we presented our work at the <a href="https://coco.psych.gatech.edu/coco-conference-2026/">Computation and Cognition Conference</a> (2026), and are actively working towards a finalized theory for Advances in Cognitive Systems 2026.</li>
-<li>In completing this work, I also documented psychological findings prevalent in Cobweb, accepted as a <a href="https://arxiv.org/abs/2603.29895">paper</a> to CogSci 2026. We presented Cobweb as a theory of categorization refined on an information-theoretic rational analysis. To evaluate this theory, we investigated how well it can account for key findings from classic categorization experiments conducted by Hayes-Roth and Hayes-Roth (1977), Medin and Schaffer (1978), and Smith and Minda (1998).</li>
-</ul>
-<h3 id="-cobweb-in-retrieval-and-summarization-of-language--tail--github"><em>[2025-06-01 - present]</em> Cobweb in Retrieval and Summarization of Language @ <a href="https://tail.cc.gatech.edu/">TAIL</a> | <a href="https://github.com/Teachable-AI-Lab/RAG-Cobweb">github</a><a href="#-cobweb-in-retrieval-and-summarization-of-language--tail--github" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<ul>
-<li>(see notes on Cobweb in my work with <a href="/research/#-trellis--isle--github">ISLE</a>) I am currently leading an independent study under Dr. Chris Maclellan in creating a robust, industry-sustainable neurosymbolic solution to utilizing language in agentic systems, using Cobweb as the primary algorithm. Our work takes on two main applications to modern semantic embedding analysis.</li>
-<li>Our first approach is retrieval-aligned - we show that Cobweb performs as a strong search algorithm for dense vector representations, matching performance of traditional systems while offering strong intermediary prototypes. Our <a href="http://www.cogsys.org/proceedings/2025/paper-2025-8.pdf">paper</a> at Advances in Cognitive Systems 2025 conducts a preliminary study which not only qualified the efficacy of Cobweb as a search algorithm but also showed its ability to utilize different data forms.</li>
-<li>Our more recent approach aimed to leverage the clustering nature of Cobweb in a field that benefits from both the incremental and hierarchical nature of Cobweb - topic-modeling. We show that Cobweb utilized as a topic model sets a new SOTA in the hierarchical and incremental fields, proving a sustainable way to continuously track topic evolutions and have recently been <a href="https://aclanthology.org/2026.findings-acl.1753/">accepted</a> to ACL Findings 2026.</li>
-</ul>
-<hr>
-<h1 id="past-research">past research<a href="#past-research" class="hanchor" ariaLabel="Anchor">#</a> </h1>
-<h3 id="-encoding-model--topographic-constraints-development--lit-lab"><em>[2025-08-27 - 2025-05-15]</em> Encoding Model &amp; Topographic Constraints development @ <a href="https://www.language-intelligence-thought.net/">LIT Lab</a><a href="#-encoding-model--topographic-constraints-development--lit-lab" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<ul>
-<li>Recently, I joined Professor Anya Ivanova and began contributing to the development of encoding models, models that can convert latent content that represents stimuli into direct voxel representations of brain states, measured by fMRI data. Over the course of the <a href="https://github.com/karthiksing05/litcoder_core_karthik">project</a>, I worked on creating a novel architecture that combined predictions from various layers of an LLM via attention to best predict brain activations, and found that preprocessing decisions in the pipeline had strong effects as to which layer provided the best correlation, and saw how syntactic decisions were localized in earlier layers and the auditory cortex, whereas semantics occurred in the middle to later layers and the language network.</li>
-<li>I also developed a <a href="https://github.com/karthiksing05/topo-moe">research project</a> furthering topographic constraints in neural architectures for gains in pruning performance, and to pass on some of the blessings of continual learning to all architectures - specifically, how topography can improve diversity and sparsity constraints to reduce catastrophic forgetting and improve diversity of activations.</li>
-</ul>
-<h3 id="-simplyphi--wisc--github"><em>[2025-01-17 - 2025-04-17]</em> SimplyPhi @ <a href="https://sleep-and-consciousness.wisc.edu/">WISC</a> | <a href="https://github.com/karthiksing05/SimplyPhi">github</a><a href="#-simplyphi--wisc--github" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<ul>
-<li>I did volunteer work for Dr. Larissa Albantakis on a theory called Integrated Information Theory, an information-theoretic framework that attempted to calculate the distributed &ldquo;consciousness&rdquo; of the theory. I used IIT to evaluate the performance of neural networks as a saliency test, identifying the most relevant parts of the network under the &ldquo;substrate of consciousness&rdquo; defined by the framework.</li>
-<li>While IIT is an extremely assuming framework to attribute to consciousness, as a metric of &ldquo;usefulness&rdquo; by analyzing the distributed information across a system, it has a lot of play, and I look forward to seeing information theory take greater prominence in shaping the field of ML interpretability.</li>
-</ul>
-<h3 id="-ai-for-advertising--ga-ghp---github"><em>[2024-06-18 - 2024-07-16]</em> AI-for-Advertising @ <a href="https://gosa.georgia.gov/governors-honors-program">GA GHP &lsquo;61</a> | <a href="https://github.com/karthiksing05/sd3dblora_finetune">github</a><a href="#-ai-for-advertising--ga-ghp---github" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<ul>
-<li>I attended the Georgia Governor&rsquo;s Honors Program for Computer Science in my junior year, where I had the pleasure of launching a mock-startup and conducting research under my advisor. Over the term, I wrote a piece on the application of finetuning diffusion models for the advertising industry based on user demographic and , with the broader social commentary of introducing profitable AI research into the research space before industry so that it could be appropriately regulated.</li>
-<li>My paper was accepted to the Applied Human Factors and Ergonomics Conference, but I was unfortunately unable to attend due to another commitment. Paper can be viewed <a href="https://drive.google.com/file/d/1Gn6mnmxkvGaBaOAdVu16wN3FsUyRCiVS/view?usp=sharing">here</a>!</li>
-</ul>
-<h3 id="-biaswrappers--github"><em>[2021-09-27 - 2024-02-05]</em> BiasWrappers | <a href="https://github.com/karthiksing05/biaswrappers">github</a><a href="#-biaswrappers--github" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<ul>
-<li>My first machine learning project and independently published paper to a preprint archive! A brief foray into classical forms of regularization on linear regression, including two of my own attempts at unsupervised regularization with respect to the data distribution. The python package currently stands at ~32k downloads!</li>
-<li>Paper can be viewed <a href="https://www.techrxiv.org/users/741672/articles/713955-on-biaswrappers-new-regularization-techniques-for-machine-learning-regression">here</a>, Python Package can be viewed <a href="https://pypi.org/project/biaswrappers/">here</a>!</li>
-</ul>
+<p>This page collects the research I have been lucky enough to take part in, from my first independent paper to the labs I am working with today. Most of it orbits the same question: how can we build machines that learn the way <em>people</em> do, incrementally, hierarchically, and with structure we can actually read? Each card shows when the work ran (ongoing efforts come first, and are marked as running to the present), the lab it lived in, what came out of it, and links to the code and papers behind it - please reach out if any of it sounds interesting!</p>
+<style>
+.deck { margin: 30px 0; }
+.deck__stage {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "prev track next" ". dots .";
+  align-items: center;
+  gap: 14px 16px;
+}
+.deck__track { grid-area: track; display: grid; }
+.deck__arrow--prev { grid-area: prev; }
+.deck__arrow--next { grid-area: next; }
+.deck__arrow {
+  width: 44px; height: 44px; padding: 0;
+  border: 2px solid var(--accent);
+  font-size: 1.2em; line-height: 1;
+}
+.deck__dots { grid-area: dots; display: flex; justify-content: center; flex-wrap: wrap; gap: 2px; }
+.deck__dot {
+  width: 24px; height: 24px; padding: 0; border: 0; background: transparent;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.deck__dot::before {
+  content: ""; width: 10px; height: 10px;
+  border: 1px solid var(--accent);
+}
+.deck__dot[aria-current="true"]::before { background: var(--accent); }
+.deck__dot:hover { background: transparent; }
+.deck__status {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.deck-card {
+  border: 2px solid var(--accent);
+  background: var(--background);
+  display: flex; flex-direction: column;
+}
+.deck-card__bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 6px 14px;
+  border-bottom: 2px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  font-size: 0.85em;
+}
+.deck-card__lights { display: inline-flex; gap: 6px; }
+.deck-card__lights i {
+  width: 9px; height: 9px; border-radius: 50%;
+  border: 1px solid var(--accent);
+}
+.deck-card__lights i:first-child { background: var(--accent); }
+.deck-card__path { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.deck-card__count { color: color-mix(in srgb, var(--foreground) 60%, transparent); font-variant-numeric: tabular-nums; }
+.deck-card__body { padding: 18px 22px 20px; }
+.deck-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.deck-card__when { color: color-mix(in srgb, var(--foreground) 70%, transparent); margin-right: 4px; }
+.deck-card__bubble {
+  display: inline-block;
+  padding: 0 10px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #1a170f;
+  font-size: 0.8em; font-weight: 600; line-height: 1.8;
+}
+.deck-card__bubble--award { background: transparent; color: var(--foreground); }
+.deck-card__bubble--award::before { content: "★ "; color: var(--accent); }
+.deck-card__bubble--venue { background: transparent; color: var(--foreground); }
+.deck-card__title { margin: 14px 0 0; }
+.deck-card__team {
+  margin: 2px 0 0;
+  font-size: 0.85em; font-style: italic;
+  color: color-mix(in srgb, var(--foreground) 70%, transparent);
+}
+.deck-card__desc { margin: 14px 0 0; }
+.deck-card__desc p { margin: 0 0 10px; }
+.deck-card__results { margin: 16px 0 0; }
+.deck-card__results summary {
+  cursor: pointer; list-style: none;
+  color: var(--accent); font-weight: 600;
+}
+.deck-card__results summary::-webkit-details-marker { display: none; }
+.deck-card__results summary::before { content: "▸ "; }
+.deck-card__results[open] summary::before { content: "▾ "; }
+.deck .deck-card__tree { list-style: none; margin: 4px 0 0 0.6ch; padding: 0; }
+.deck .deck-card__tree > li { position: relative; padding: 0 0 4px 3.4ch; }
+ 
+.deck .deck-card__tree > li:not(:empty)::before {
+  content: ""; position: absolute; left: 0; top: 0;
+  width: 2.4ch; height: 0.77em;
+  border-left: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+.deck .deck-card__tree > li:not(:empty)::after {
+  content: ""; position: absolute; left: 0; top: 0.77em; bottom: 0;
+  border-left: 1px solid var(--accent);
+}
+.deck .deck-card__tree > li:last-child::after { display: none; }
+.deck-card__links { margin: 18px 0 0; }
+.deck-card__sep { color: color-mix(in srgb, var(--foreground) 45%, transparent); }
+
+ 
+.deck:not(.is-ready) .deck__stage { display: block; }
+.deck:not(.is-ready) .deck__track { gap: 24px; }
+.deck:not(.is-ready) .deck__arrow,
+.deck:not(.is-ready) .deck__dots,
+.deck--single .deck__arrow,
+.deck--single .deck__dots { display: none; }
+.deck--single .deck__stage { grid-template-columns: minmax(0, 1fr); grid-template-areas: "track"; }
+.deck.is-ready .deck-card:not(.is-active) { display: none; }
+.deck.is-ready .deck-card.is-active { animation: deck-in 0.2s ease; }
+@keyframes deck-in { from { opacity: 0; } to { opacity: 1; } }
+
+ 
+@media (min-width: 701px) {
+  .deck__arrow { align-self: start; position: sticky; top: calc(50vh - 22px); margin-top: 64px; }
+}
+@media (max-width: 700px) {
+  .deck__stage { grid-template-areas: "track track track" "prev dots next"; gap: 12px 8px; }
+  .deck-card__body { padding: 14px 14px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .deck.is-ready .deck-card.is-active { animation: none; }
+}
+</style>
+
+<div class="deck" data-deck role="region" aria-roledescription="carousel" aria-label="research">
+  <div class="deck__stage">
+    <button type="button" class="deck__arrow deck__arrow--prev" data-dir="-1" aria-label="Previous project">&larr;</button>
+    <div class="deck__track">
+      <article class="deck-card is-active" id="persona-conditioning" data-title="Persona Conditioning" aria-roledescription="slide" aria-label="1 of 7: Persona Conditioning">
+        <div class="deck-card__bar">
+          <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="deck-card__path">~/research/persona-conditioning</span>
+          <span class="deck-card__count">1/7</span>
+        </div>
+        <div class="deck-card__body">
+          <div class="deck-card__meta">
+            <span class="deck-card__when"><time datetime="2026-06-26">June 2026</time> - present</span>
+            <span class="deck-card__bubble">MPIB, Center for Humans and Machines</span>
+          </div>
+          <h2 class="deck-card__title">Persona Conditioning</h2>
+          <p class="deck-card__team">with Dr. Levin Brinkmann</p>
+          <div class="deck-card__desc"><p>Expert-token conditioning is a training protocol I have developed with Dr. Levin Brinkmann that specializes a <em>single</em> shared backbone on a bank of per-expert tokens instead of per-expert FFNs, alternating between fitting the tokens against a frozen backbone and training the backbone with the tokens held fixed - it is capacity-free and addressable, making it a lightweight alternative to Mixture-of-Experts routing.</p>
+<p>We are currently working to extend the protocol from synthetic and semantic domains to real speakers, treating each token as a retrieval key for a persona learned from diarized speech transcripts. Our final goal is not only to prove the efficiency of the technique, but also to justify methods of developing human-like creativity in LLMs, which tend to approximate the mean but not the standard deviation.</p>
+</div>
+          <details class="deck-card__results" open>
+            <summary>outputs/</summary>
+            <ul class="deck-card__tree">
+              <li>scaling the method to a more expansive dataset of real speakers</li>
+              <li>in preparation for ICLR 2027</li>
+            </ul>
+          </details>
+          <p class="deck-card__links"><a href="https://www.mpib-berlin.mpg.de/" target="_blank" rel="noopener">Center for Humans and Machines</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/karthiksing05/soft-moe" target="_blank" rel="noopener">github</a></p>
+        </div>
+      </article>
+      <article class="deck-card" id="trellis" data-title="TRELLIS" aria-roledescription="slide" aria-label="2 of 7: TRELLIS">
+        <div class="deck-card__bar">
+          <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="deck-card__path">~/research/trellis</span>
+          <span class="deck-card__count">2/7</span>
+        </div>
+        <div class="deck-card__body">
+          <div class="deck-card__meta">
+            <span class="deck-card__when"><time datetime="2025-06-11">June 2025</time> - present</span>
+            <span class="deck-card__bubble">ISLE</span>
+            <span class="deck-card__bubble deck-card__bubble--venue">CoCo 2026</span>
+            <span class="deck-card__bubble deck-card__bubble--venue">CogSci 2026</span>
+          </div>
+          <h2 class="deck-card__title">TRELLIS</h2>
+          <p class="deck-card__team">with Dr. Pat Langley</p>
+          <div class="deck-card__desc"><p>Cobweb is a symbolic algorithm that aggregates instances into &ldquo;concepts&rdquo; and forms a hierarchy over these instances - it is unsupervised, piecemeal, and incremental, making it a comprehensive model of human learning. I am currently working with Dr. Pat Langley to implement the Cobweb algorithm in a proposed theoretical framework to model psychological &ldquo;chunking&rdquo; for efficient parsing, storage and retrieval of concepts based on a set of defined relations.</p>
+<p>In completing this work, I also documented psychological findings prevalent in Cobweb: we presented Cobweb as a theory of categorization refined on an information-theoretic rational analysis, and investigated how well it can account for key findings from classic categorization experiments conducted by Hayes-Roth and Hayes-Roth (1977), Medin and Schaffer (1978), and Smith and Minda (1998).</p>
+</div>
+          <details class="deck-card__results" open>
+            <summary>outputs/</summary>
+            <ul class="deck-card__tree">
+              <li>presented at the <a href="https://coco.psych.gatech.edu/coco-conference-2026/">Computation and Cognition Conference</a> (2026)</li>
+              <li>a <a href="https://arxiv.org/abs/2603.29895">paper</a> on Cobweb as a theory of categorization, accepted to CogSci 2026</li>
+              <li>working towards a finalized theory for Advances in Cognitive Systems 2026</li>
+              <li>an <a href="/education/cobweb/">interactive explainer</a> of the algorithm on the education page</li>
+            </ul>
+          </details>
+          <p class="deck-card__links"><a href="http://www.isle.org/" target="_blank" rel="noopener">ISLE</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/karthiksing05/Chunking-Cobweb" target="_blank" rel="noopener">github</a></p>
+        </div>
+      </article>
+      <article class="deck-card" id="cobweb-language" data-title="Cobweb in Retrieval and Summarization of Language" aria-roledescription="slide" aria-label="3 of 7: Cobweb in Retrieval and Summarization of Language">
+        <div class="deck-card__bar">
+          <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="deck-card__path">~/research/cobweb-language</span>
+          <span class="deck-card__count">3/7</span>
+        </div>
+        <div class="deck-card__body">
+          <div class="deck-card__meta">
+            <span class="deck-card__when"><time datetime="2025-06-01">June 2025</time> - present</span>
+            <span class="deck-card__bubble">TAIL</span>
+            <span class="deck-card__bubble deck-card__bubble--venue">ACS 2025</span>
+            <span class="deck-card__bubble deck-card__bubble--venue">ACL Findings 2026</span>
+          </div>
+          <h2 class="deck-card__title">Cobweb in Retrieval and Summarization of Language</h2>
+          <p class="deck-card__team">with Dr. Chris Maclellan</p>
+          <div class="deck-card__desc"><p>(see notes on Cobweb in my work with <a href="/#trellis">ISLE</a>) I am currently leading an independent study under Dr. Chris Maclellan in creating a robust, industry-sustainable neurosymbolic solution to utilizing language in agentic systems, using Cobweb as the primary algorithm. Our work takes on two main applications to modern semantic embedding analysis.</p>
+<p>Our first approach is retrieval-aligned - we show that Cobweb performs as a strong search algorithm for dense vector representations, matching performance of traditional systems while offering strong intermediary prototypes. Our more recent approach aimed to leverage the clustering nature of Cobweb in a field that benefits from both the incremental and hierarchical nature of Cobweb - topic-modeling.</p>
+</div>
+          <details class="deck-card__results" open>
+            <summary>outputs/</summary>
+            <ul class="deck-card__tree">
+              <li>a preliminary <a href="http://www.cogsys.org/proceedings/2025/paper-2025-8.pdf">study</a> at Advances in Cognitive Systems 2025, qualifying Cobweb as a search algorithm and showing its ability to utilize different data forms</li>
+              <li>Cobweb as a topic model sets a new SOTA in the hierarchical and incremental fields, a sustainable way to continuously track topic evolutions (<a href="https://aclanthology.org/2026.findings-acl.1753/">accepted</a> to ACL Findings 2026)</li>
+            </ul>
+          </details>
+          <p class="deck-card__links"><a href="https://tail.cc.gatech.edu/" target="_blank" rel="noopener">TAIL</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/Teachable-AI-Lab/RAG-Cobweb" target="_blank" rel="noopener">github</a></p>
+        </div>
+      </article>
+      <article class="deck-card" id="encoding-models" data-title="Encoding Models &amp; Topographic Constraints" aria-roledescription="slide" aria-label="4 of 7: Encoding Models &amp; Topographic Constraints">
+        <div class="deck-card__bar">
+          <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="deck-card__path">~/research/encoding-models</span>
+          <span class="deck-card__count">4/7</span>
+        </div>
+        <div class="deck-card__body">
+          <div class="deck-card__meta">
+            <span class="deck-card__when"><time datetime="2025-05-15">May 2025</time> - <time datetime="2025-08-27">August 2025</time></span>
+            <span class="deck-card__bubble">LIT Lab</span>
+          </div>
+          <h2 class="deck-card__title">Encoding Models &amp; Topographic Constraints</h2>
+          <p class="deck-card__team">with Prof. Anya Ivanova</p>
+          <div class="deck-card__desc"><p>I joined Professor Anya Ivanova and began contributing to the development of encoding models, models that can convert latent content that represents stimuli into direct voxel representations of brain states, measured by fMRI data. Over the course of the project, I worked on creating a novel architecture that combined predictions from various layers of an LLM via attention to best predict brain activations.</p>
+<p>I also developed a research project furthering topographic constraints in neural architectures for gains in pruning performance, and to pass on some of the blessings of continual learning to all architectures - specifically, how topography can improve diversity and sparsity constraints to reduce catastrophic forgetting and improve diversity of activations.</p>
+</div>
+          <details class="deck-card__results" open>
+            <summary>outputs/</summary>
+            <ul class="deck-card__tree">
+              <li>preprocessing decisions in the pipeline had strong effects as to which layer provided the best correlation</li>
+              <li>syntactic decisions were localized in earlier layers and the auditory cortex, whereas semantics occurred in the middle to later layers and the language network</li>
+            </ul>
+          </details>
+          <p class="deck-card__links"><a href="https://www.language-intelligence-thought.net/" target="_blank" rel="noopener">LIT Lab</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/karthiksing05/litcoder_core_karthik" target="_blank" rel="noopener">encoding models</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/karthiksing05/topo-moe" target="_blank" rel="noopener">topo-moe</a></p>
+        </div>
+      </article>
+      <article class="deck-card" id="simplyphi" data-title="SimplyPhi" aria-roledescription="slide" aria-label="5 of 7: SimplyPhi">
+        <div class="deck-card__bar">
+          <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="deck-card__path">~/research/simplyphi</span>
+          <span class="deck-card__count">5/7</span>
+        </div>
+        <div class="deck-card__body">
+          <div class="deck-card__meta">
+            <span class="deck-card__when"><time datetime="2025-01-17">January 2025</time> - <time datetime="2025-04-17">April 2025</time></span>
+            <span class="deck-card__bubble">WISC</span>
+          </div>
+          <h2 class="deck-card__title">SimplyPhi</h2>
+          <p class="deck-card__team">with Dr. Larissa Albantakis</p>
+          <div class="deck-card__desc"><p>I did volunteer work for Dr. Larissa Albantakis on a theory called Integrated Information Theory, an information-theoretic framework that attempted to calculate the distributed &ldquo;consciousness&rdquo; of a system. I used IIT to evaluate the performance of neural networks as a saliency test, identifying the most relevant parts of the network under the &ldquo;substrate of consciousness&rdquo; defined by the framework.</p>
+<p>While IIT is an extremely assuming framework to attribute to consciousness, as a metric of &ldquo;usefulness&rdquo; by analyzing the distributed information across a system, it has a lot of play, and I look forward to seeing information theory take greater prominence in shaping the field of ML interpretability.</p>
+</div>
+          <p class="deck-card__links"><a href="https://sleep-and-consciousness.wisc.edu/" target="_blank" rel="noopener">WISC</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/karthiksing05/SimplyPhi" target="_blank" rel="noopener">github</a></p>
+        </div>
+      </article>
+      <article class="deck-card" id="ai-for-advertising" data-title="AI-for-Advertising" aria-roledescription="slide" aria-label="6 of 7: AI-for-Advertising">
+        <div class="deck-card__bar">
+          <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="deck-card__path">~/research/ai-for-advertising</span>
+          <span class="deck-card__count">6/7</span>
+        </div>
+        <div class="deck-card__body">
+          <div class="deck-card__meta">
+            <span class="deck-card__when"><time datetime="2024-06-18">June 2024</time> - <time datetime="2024-07-16">July 2024</time></span>
+            <span class="deck-card__bubble">GA GHP &#39;61</span>
+            <span class="deck-card__bubble deck-card__bubble--venue">AHFE</span>
+          </div>
+          <h2 class="deck-card__title">AI-for-Advertising</h2>
+          <div class="deck-card__desc">I attended the Georgia Governor&rsquo;s Honors Program for Computer Science in my junior year, where I had the pleasure of launching a mock-startup and conducting research under my advisor. Over the term, I wrote a piece on the application of finetuning diffusion models for the advertising industry based on user demographics, with the broader social commentary of introducing profitable AI research into the research space before industry so that it could be appropriately regulated.</div>
+          <details class="deck-card__results" open>
+            <summary>outputs/</summary>
+            <ul class="deck-card__tree">
+              <li>paper accepted to the Applied Human Factors and Ergonomics Conference (unfortunately, I was unable to attend due to another commitment)</li>
+            </ul>
+          </details>
+          <p class="deck-card__links"><a href="https://drive.google.com/file/d/1Gn6mnmxkvGaBaOAdVu16wN3FsUyRCiVS/view?usp=sharing" target="_blank" rel="noopener">paper</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://gosa.georgia.gov/governors-honors-program" target="_blank" rel="noopener">GHP</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/karthiksing05/sd3dblora_finetune" target="_blank" rel="noopener">github</a></p>
+        </div>
+      </article>
+      <article class="deck-card" id="biaswrappers" data-title="BiasWrappers" aria-roledescription="slide" aria-label="7 of 7: BiasWrappers">
+        <div class="deck-card__bar">
+          <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="deck-card__path">~/research/biaswrappers</span>
+          <span class="deck-card__count">7/7</span>
+        </div>
+        <div class="deck-card__body">
+          <div class="deck-card__meta">
+            <span class="deck-card__when"><time datetime="2021-09-27">September 2021</time> - <time datetime="2024-02-05">February 2024</time></span>
+            <span class="deck-card__bubble">independent</span>
+            <span class="deck-card__bubble deck-card__bubble--venue">TechRxiv</span>
+          </div>
+          <h2 class="deck-card__title">BiasWrappers</h2>
+          <div class="deck-card__desc">My first machine learning project and independently published paper to a preprint archive! A brief foray into classical forms of regularization on linear regression, including two of my own attempts at unsupervised regularization with respect to the data distribution.</div>
+          <details class="deck-card__results" open>
+            <summary>outputs/</summary>
+            <ul class="deck-card__tree">
+              <li>a <a href="https://www.techrxiv.org/users/741672/articles/713955-on-biaswrappers-new-regularization-techniques-for-machine-learning-regression">paper</a> on TechRxiv</li>
+              <li>a <a href="https://pypi.org/project/biaswrappers/">Python package</a> that currently stands at ~32k downloads</li>
+            </ul>
+          </details>
+          <p class="deck-card__links"><a href="https://github.com/karthiksing05/biaswrappers" target="_blank" rel="noopener">github</a></p>
+        </div>
+      </article>
+    </div>
+    <button type="button" class="deck__arrow deck__arrow--next" data-dir="1" aria-label="Next project">&rarr;</button>
+    <div class="deck__dots">
+      <button type="button" class="deck__dot" aria-label="Show Persona Conditioning" aria-current="true"></button>
+      <button type="button" class="deck__dot" aria-label="Show TRELLIS"></button>
+      <button type="button" class="deck__dot" aria-label="Show Cobweb in Retrieval and Summarization of Language"></button>
+      <button type="button" class="deck__dot" aria-label="Show Encoding Models &amp; Topographic Constraints"></button>
+      <button type="button" class="deck__dot" aria-label="Show SimplyPhi"></button>
+      <button type="button" class="deck__dot" aria-label="Show AI-for-Advertising"></button>
+      <button type="button" class="deck__dot" aria-label="Show BiasWrappers"></button>
+    </div>
+  </div>
+  <p class="deck__status" aria-live="polite"></p>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector("[data-deck]");
+  if (!root) return;
+  var cards = Array.prototype.slice.call(root.querySelectorAll(".deck-card"));
+  var dots = Array.prototype.slice.call(root.querySelectorAll(".deck__dot"));
+  var track = root.querySelector(".deck__track");
+  var status = root.querySelector(".deck__status");
+  var current = 0;
+
+  function show(i, fromUser) {
+    current = (i + cards.length) % cards.length;
+    cards.forEach(function (c, k) { c.classList.toggle("is-active", k === current); });
+    dots.forEach(function (d, k) {
+      if (k === current) d.setAttribute("aria-current", "true");
+      else d.removeAttribute("aria-current");
+    });
+    if (fromUser) {
+      status.textContent = cards[current].dataset.title + ", " + (current + 1) + " of " + cards.length;
+      if (history.replaceState) history.replaceState(null, "", "#" + cards[current].id);
+      
+      if (track.getBoundingClientRect().top < 0) track.scrollIntoView({ block: "start" });
+    }
+  }
+
+  function indexFromHash() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    for (var k = 0; k < cards.length; k++) if (cards[k].id === id) return k;
+    return -1;
+  }
+
+  root.querySelectorAll(".deck__arrow").forEach(function (b) {
+    b.addEventListener("click", function () { show(current + Number(b.dataset.dir), true); });
+  });
+  dots.forEach(function (d, k) {
+    d.addEventListener("click", function () { show(k, true); });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    var t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if (e.key === "ArrowLeft") show(current - 1, true);
+    else if (e.key === "ArrowRight") show(current + 1, true);
+  });
+
+  var x0 = null, y0 = null;
+  track.addEventListener("touchstart", function (e) {
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+  }, { passive: true });
+  track.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(current + (dx < 0 ? 1 : -1), true);
+    x0 = null;
+  }, { passive: true });
+
+  window.addEventListener("hashchange", function () {
+    var k = indexFromHash();
+    if (k >= 0) show(k);
+  });
+
+  var start = indexFromHash();
+  show(start >= 0 ? start : 0);
+  root.classList.add("is-ready");
+})();
+</script>
+
 
       </div></div>
 

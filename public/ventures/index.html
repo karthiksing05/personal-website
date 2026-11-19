@@ -60,7 +60,7 @@ Most of my work lives in research labs, but some of my favorite projects have co
 
 
 
-  <link rel="stylesheet" href="//localhost:1313/terminal.css?v=73b84858">
+  <link rel="stylesheet" href="//localhost:1313/terminal.css?v=43188c3e">
 
 
 
@@ -313,7 +313,7 @@ Most of my work lives in research labs, but some of my favorite projects have co
 .deck-card__count { color: color-mix(in srgb, var(--foreground) 60%, transparent); font-variant-numeric: tabular-nums; }
 .deck-card__body { padding: 18px 22px 20px; }
 .deck-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
-.deck-card__meta time { color: color-mix(in srgb, var(--foreground) 70%, transparent); margin-right: 4px; }
+.deck-card__when { color: color-mix(in srgb, var(--foreground) 70%, transparent); margin-right: 4px; }
 .deck-card__bubble {
   display: inline-block;
   padding: 0 10px;
@@ -388,15 +388,74 @@ Most of my work lives in research labs, but some of my favorite projects have co
   <div class="deck__stage">
     <button type="button" class="deck__arrow deck__arrow--prev" data-dir="-1" aria-label="Previous venture">&larr;</button>
     <div class="deck__track">
-      <article class="deck-card is-active" id="sidequests" data-title="SideQuests" aria-roledescription="slide" aria-label="1 of 8: SideQuests">
+      <article class="deck-card is-active" id="curios" data-title="Curios by Muse" aria-roledescription="slide" aria-label="1 of 10: Curios by Muse">
         <div class="deck-card__bar">
           <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span class="deck-card__path">~/ventures/sidequests</span>
-          <span class="deck-card__count">1/8</span>
+          <span class="deck-card__path">~/ventures/curios</span>
+          <span class="deck-card__count">1/10</span>
         </div>
         <div class="deck-card__body">
           <div class="deck-card__meta">
-            <time datetime="2026-09">September 2026</time>
+            <span class="deck-card__when"><time datetime="2026-11-15">November 2026</time></span>
+            <span class="deck-card__bubble">Meta Closer Together AI Hackathon</span>
+            <span class="deck-card__bubble deck-card__bubble--award">1st Place</span>
+          </div>
+          <h2 class="deck-card__title">Curios by Muse</h2>
+          <p class="deck-card__team">with Bayan Mardon, Max Iliev, Kevin Harvey, Artem Kim</p>
+          <div class="deck-card__desc">For Meta&rsquo;s Closer Together AI Hackathon at Menlo Park, 80 of us were selected from hackathons across the country and given 36 hours to answer one prompt: build a feature that makes Facebook useful and engaging for young adults. Our answer was Curios, a short-form interactive game format in the spirit of Wordle and Connections, where each Curio is a simple challenge with a themed rule set. Anyone can describe a tiny game in a sentence (our favorites were &ldquo;Jensen Huang Honeypot Simulator&rdquo; and &ldquo;Escape the Office at 4:59&rdquo;), Meta&rsquo;s Muse models build it, and the Curio plays right inside Facebook, in its own tab as well as in Groups, Events, Stories, and Reels. <em>When the world is your muse, how will you create the content of tomorrow?</em></div>
+          <details class="deck-card__results" open>
+            <summary>results/</summary>
+            <ul class="deck-card__tree">
+              <li>won 1st Place out of 80 participants selected from over 6,200 hackers nationwide</li>
+              <li>a custom generation harness on the Muse model family (thank you AI at Meta for the credits!)</li>
+              <li>a custom game engine in Rust that treats every game as a state machine</li>
+              <li>a custom recommendation algorithm for surfacing Curios across the app</li>
+              <li>a custom inter-agent communication protocol that coordinated our AI-assisted coding across the team</li>
+              <li>a SwiftUI recreation of the Facebook iOS app to host it all, with no third-party dependencies</li>
+            </ul>
+          </details>
+          <p class="deck-card__links"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7528442573280137216/" target="_blank" rel="noopener">linkedin post</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/karthiksing05/meta-hackathon-project" target="_blank" rel="noopener">github</a></p>
+        </div>
+      </article>
+      <article class="deck-card" id="raav" data-title="Robot-As-A-Verifier" aria-roledescription="slide" aria-label="2 of 10: Robot-As-A-Verifier">
+        <div class="deck-card__bar">
+          <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="deck-card__path">~/ventures/raav</span>
+          <span class="deck-card__count">2/10</span>
+        </div>
+        <div class="deck-card__body">
+          <div class="deck-card__meta">
+            <span class="deck-card__when"><time datetime="2026-11-07">November 2026</time></span>
+            <span class="deck-card__bubble">MakeCU 2026</span>
+            <span class="deck-card__bubble deck-card__bubble--award">Grand Prize for Creativity</span>
+          </div>
+          <h2 class="deck-card__title">Robot-As-A-Verifier</h2>
+          <p class="deck-card__team">with Joseph Farkas, Bayan Mardon, Max Iliev</p>
+          <div class="deck-card__desc">Some of the fastest recent progress in AI-assisted research has come from automatic verifiers: a proof assistant like Lean checks every step, so a model can propose thousands of attempts and keep only the ones that hold. Physical hardware has nothing like this, since a prototype gets handed to a few testers, someone writes &ldquo;button 2 feels sticky,&rdquo; and a designer guesses at a fix a week later. So, we built the missing verifier. You give RAAV a product, its manual, and (if you have one) its CAD, and a low-cost SO-101 arm with a $19 wrist camera finds every control, plans tests from the manual, presses, flips, and turns each one under a 15 N force cap, and writes bug reports backed by force traces and frames. A CAD agent then patches the faulty part, and the fix only counts if the same tests score higher on the new revision. The rule that held it all together was simple: <em>the model thinks, code moves, sensors decide</em>.</div>
+          <details class="deck-card__results" open>
+            <summary>results/</summary>
+            <ul class="deck-card__tree">
+              <li>won the Grand Prize for Creativity at MakeCU 2026 (Columbia)</li>
+              <li>on the MC-6 centrifuge, the robot caught a tube sitting 8.15 mm above its seat, and the CAD analyst (14 tool calls, 102 s, $0.43) widened the bore so the retest seated within 0.97 mm, within 0.2 mm of the designer&rsquo;s own fix, which it never saw</li>
+              <li>110 of 115 attempted tests passed (96%) in simulation on 16 devices it was never tuned on, with 0 false failures</li>
+              <li>force sensing from the servos alone, taking our skills from 0 to 84 of 89 steps with no added sensor</li>
+              <li>a $19 camera got part outlines within 0.41 mm and heights within 1 mm 93 to 95% of the time</li>
+              <li>four frontier models compared behind one Snowflake Cortex endpoint, with the model as a single config value</li>
+              <li>on the real arm, the SO-101 scans our MC-6, flips POWER, turns SPEED, and presses START while the appliance&rsquo;s Arduino reports what changed</li>
+            </ul>
+          </details>
+          <p class="deck-card__links"><a href="https://devpost.com/software/robot-as-a-verifier" target="_blank" rel="noopener">devpost</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://www.youtube.com/watch?v=kkUhyZz5kz0" target="_blank" rel="noopener">watch the demo</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/karthiksing05/robot-as-a-verifier" target="_blank" rel="noopener">github</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://www.linkedin.com/feed/update/urn:li:activity:7526058216334565376/" target="_blank" rel="noopener">linkedin post</a></p>
+        </div>
+      </article>
+      <article class="deck-card" id="sidequests" data-title="SideQuests" aria-roledescription="slide" aria-label="3 of 10: SideQuests">
+        <div class="deck-card__bar">
+          <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="deck-card__path">~/ventures/sidequests</span>
+          <span class="deck-card__count">3/10</span>
+        </div>
+        <div class="deck-card__body">
+          <div class="deck-card__meta">
+            <span class="deck-card__when"><time datetime="2026-09">September 2026</time></span>
             <span class="deck-card__bubble">HackGT 13</span>
             <span class="deck-card__bubble deck-card__bubble--award">Best Use of MongoDB Atlas</span>
           </div>
@@ -417,15 +476,15 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="deck-card__links"><a href="/ventures/sidequests/">read the field guide</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://devpost.com/software/sidequestz" target="_blank" rel="noopener">devpost</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://www.youtube.com/watch?v=uPllwgXpkpY" target="_blank" rel="noopener">watch the demo</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/karthiksing05/HackGT-13-Proj" target="_blank" rel="noopener">github</a></p>
         </div>
       </article>
-      <article class="deck-card" id="hearsay" data-title="HEARSAY" aria-roledescription="slide" aria-label="2 of 8: HEARSAY">
+      <article class="deck-card" id="hearsay" data-title="HEARSAY" aria-roledescription="slide" aria-label="4 of 10: HEARSAY">
         <div class="deck-card__bar">
           <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="deck-card__path">~/ventures/hearsay</span>
-          <span class="deck-card__count">2/8</span>
+          <span class="deck-card__count">4/10</span>
         </div>
         <div class="deck-card__body">
           <div class="deck-card__meta">
-            <time datetime="2026-09">September 2026</time>
+            <span class="deck-card__when"><time datetime="2026-09">September 2026</time></span>
             <span class="deck-card__bubble">HackGT 13</span>
             <span class="deck-card__bubble deck-card__bubble--award">1st Place, NSA HEARSAY Challenge</span>
           </div>
@@ -446,15 +505,15 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="deck-card__links"><a href="/ventures/hearsay/">read the technical report</a></p>
         </div>
       </article>
-      <article class="deck-card" id="logprobs" data-title="Reading Beats Asking, and Neither Beats Logprobs" aria-roledescription="slide" aria-label="3 of 8: Reading Beats Asking, and Neither Beats Logprobs">
+      <article class="deck-card" id="logprobs" data-title="Reading Beats Asking, and Neither Beats Logprobs" aria-roledescription="slide" aria-label="5 of 10: Reading Beats Asking, and Neither Beats Logprobs">
         <div class="deck-card__bar">
           <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="deck-card__path">~/ventures/logprobs</span>
-          <span class="deck-card__count">3/8</span>
+          <span class="deck-card__count">5/10</span>
         </div>
         <div class="deck-card__body">
           <div class="deck-card__meta">
-            <time datetime="2026-08">August 2026</time>
+            <span class="deck-card__when"><time datetime="2026-08">August 2026</time></span>
           </div>
           <h2 class="deck-card__title">Reading Beats Asking, and Neither Beats Logprobs</h2>
           <div class="deck-card__desc">An AI safety side project where we built the strongest case we could that a linear probe on a model&rsquo;s activations can catch it being manipulated by a planted source, and then ran the baseline a practitioner would try first: the log-probability the model already assigns to the planted answer. That single forward pass beat the probe in every cell we tested, until we pushed the behavior further from the read point and the ordering reversed. Along the way, several of our own headlines were retracted, every one of them by a control we built to attack our own result.</div>
@@ -471,15 +530,15 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="deck-card__links"><a href="/ventures/logprobs/">read the writeup</a></p>
         </div>
       </article>
-      <article class="deck-card" id="j-space" data-title="The J-space of a Diffusion Language Model" aria-roledescription="slide" aria-label="4 of 8: The J-space of a Diffusion Language Model">
+      <article class="deck-card" id="j-space" data-title="The J-space of a Diffusion Language Model" aria-roledescription="slide" aria-label="6 of 10: The J-space of a Diffusion Language Model">
         <div class="deck-card__bar">
           <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="deck-card__path">~/ventures/j-space</span>
-          <span class="deck-card__count">4/8</span>
+          <span class="deck-card__count">6/10</span>
         </div>
         <div class="deck-card__body">
           <div class="deck-card__meta">
-            <time datetime="2026-07">July 2026</time>
+            <span class="deck-card__when"><time datetime="2026-07">July 2026</time></span>
           </div>
           <h2 class="deck-card__title">The J-space of a Diffusion Language Model</h2>
           <div class="deck-card__desc"><a href="https://transformer-circuits.pub/2026/workspace/index.html">Anthropic&rsquo;s recent work</a> argues that a transformer forms a <em>global workspace</em>: a small, limited-capacity set of verbalizable concepts in its residual stream, which their J-lens can read out directly. Because that workspace is in part a consequence of the transformer&rsquo;s autoregressive architecture, we asked whether a masked diffusion language model, trained to denoise rather than to predict the next token, forms the same workspace and puts it to the same use, running the method on LLaDA-8B beside Llama-3.1-8B. The short answer is yes, but on a different schedule: the autoregressive model carries a persistent workspace forward through time, while the diffusion model spreads a transient one across space.</div>
@@ -495,15 +554,15 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="deck-card__links"><a href="/ventures/j-space/">read the writeup</a></p>
         </div>
       </article>
-      <article class="deck-card" id="sophi" data-title="Sophi" aria-roledescription="slide" aria-label="5 of 8: Sophi">
+      <article class="deck-card" id="sophi" data-title="Sophi" aria-roledescription="slide" aria-label="7 of 10: Sophi">
         <div class="deck-card__bar">
           <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="deck-card__path">~/ventures/sophi</span>
-          <span class="deck-card__count">5/8</span>
+          <span class="deck-card__count">7/10</span>
         </div>
         <div class="deck-card__body">
           <div class="deck-card__meta">
-            <time datetime="2026-01">January 2026</time>
+            <span class="deck-card__when"><time datetime="2026-01">January 2026</time></span>
             <span class="deck-card__bubble">NexHacks 2026</span>
           </div>
           <h2 class="deck-card__title">Sophi</h2>
@@ -521,15 +580,15 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="deck-card__links"><a href="https://devpost.com/software/sophia-c3qw4b" target="_blank" rel="noopener">devpost</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://www.youtube.com/watch?v=gLJv-8DVZGA" target="_blank" rel="noopener">watch the demo</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/MqxS/NexHacks2026" target="_blank" rel="noopener">github</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://sophi-ai.tech" target="_blank" rel="noopener">live site</a></p>
         </div>
       </article>
-      <article class="deck-card" id="docdoctor" data-title="DocDoctor" aria-roledescription="slide" aria-label="6 of 8: DocDoctor">
+      <article class="deck-card" id="docdoctor" data-title="DocDoctor" aria-roledescription="slide" aria-label="8 of 10: DocDoctor">
         <div class="deck-card__bar">
           <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="deck-card__path">~/ventures/docdoctor</span>
-          <span class="deck-card__count">6/8</span>
+          <span class="deck-card__count">8/10</span>
         </div>
         <div class="deck-card__body">
           <div class="deck-card__meta">
-            <time datetime="2025-11">November 2025</time>
+            <span class="deck-card__when"><time datetime="2025-11">November 2025</time></span>
             <span class="deck-card__bubble">AI ATL 2025</span>
             <span class="deck-card__bubble deck-card__bubble--award">Best Use of MongoDB Atlas</span>
             <span class="deck-card__bubble deck-card__bubble--award">Honorable Mention, Best Use of Google Gemini</span>
@@ -548,15 +607,15 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="deck-card__links"><a href="https://devpost.com/software/docdoctor" target="_blank" rel="noopener">devpost</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://www.youtube.com/watch?v=gvgPMQYXBgo" target="_blank" rel="noopener">watch the demo</a><span class="deck-card__sep" aria-hidden="true"> | </span><a href="https://github.com/karthiksing05/DocDoctor-AI-ATL" target="_blank" rel="noopener">github</a></p>
         </div>
       </article>
-      <article class="deck-card" id="duluthgpt" data-title="DuluthGPT" aria-roledescription="slide" aria-label="7 of 8: DuluthGPT">
+      <article class="deck-card" id="duluthgpt" data-title="DuluthGPT" aria-roledescription="slide" aria-label="9 of 10: DuluthGPT">
         <div class="deck-card__bar">
           <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="deck-card__path">~/ventures/duluthgpt</span>
-          <span class="deck-card__count">7/8</span>
+          <span class="deck-card__count">9/10</span>
         </div>
         <div class="deck-card__body">
           <div class="deck-card__meta">
-            <time datetime="2023-08">August 2023</time>
+            <span class="deck-card__when"><time datetime="2023-08">August 2023</time></span>
           </div>
           <h2 class="deck-card__title">DuluthGPT</h2>
           <div class="deck-card__desc">At my high school, our student body&rsquo;s ratio of participation to population was disproportionately small, and through my work with student leadership, I discerned part of the gap to be due to a decentralized bank of resources - conflicting information and not a single place to easily access everything. So, I created DuluthGPT, an LLM agent that scraped and added data from athletics websites, extracurricular Instagrams, and the student body themselves, and was able to quickly answer fast Q+A with a basic RAG pipeline.</div>
@@ -571,18 +630,18 @@ Most of my work lives in research labs, but some of my favorite projects have co
           <p class="deck-card__links"><a href="https://github.com/karthiksing05/duluthgptv2" target="_blank" rel="noopener">github</a></p>
         </div>
       </article>
-      <article class="deck-card" id="8ball" data-title="8ball" aria-roledescription="slide" aria-label="8 of 8: 8ball">
+      <article class="deck-card" id="8ball" data-title="8ball" aria-roledescription="slide" aria-label="10 of 10: 8ball">
         <div class="deck-card__bar">
           <span class="deck-card__lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="deck-card__path">~/ventures/8ball</span>
-          <span class="deck-card__count">8/8</span>
+          <span class="deck-card__count">10/10</span>
         </div>
         <div class="deck-card__body">
           <div class="deck-card__meta">
-            <time datetime="2020-08">August 2020</time>
+            <span class="deck-card__when"><time datetime="2020-08">August 2020</time></span>
           </div>
           <h2 class="deck-card__title">8ball</h2>
-          <div class="deck-card__desc">My first full-production machine learning pipeline was applied to the stock market. I used an XGBoost pipeline, tuned with my <a href="/research/#-biaswrappers--github">BiasWrappers</a>, and finetuned predictions using sentiment analysis on Reddit, X, Google News, and Yahoo Finance investor analysis. My goal was to use the momentum of prior stock movements and current news sentiment to analyze the trends of future stock predictions by OHLC.</div>
+          <div class="deck-card__desc">My first full-production machine learning pipeline was applied to the stock market. I used an XGBoost pipeline, tuned with my <a href="/research/#biaswrappers">BiasWrappers</a>, and finetuned predictions using sentiment analysis on Reddit, X, Google News, and Yahoo Finance investor analysis. My goal was to use the momentum of prior stock movements and current news sentiment to analyze the trends of future stock predictions by OHLC.</div>
           <details class="deck-card__results" open>
             <summary>results/</summary>
             <ul class="deck-card__tree">
@@ -596,7 +655,9 @@ Most of my work lives in research labs, but some of my favorite projects have co
     </div>
     <button type="button" class="deck__arrow deck__arrow--next" data-dir="1" aria-label="Next venture">&rarr;</button>
     <div class="deck__dots">
-      <button type="button" class="deck__dot" aria-label="Show SideQuests" aria-current="true"></button>
+      <button type="button" class="deck__dot" aria-label="Show Curios by Muse" aria-current="true"></button>
+      <button type="button" class="deck__dot" aria-label="Show Robot-As-A-Verifier"></button>
+      <button type="button" class="deck__dot" aria-label="Show SideQuests"></button>
       <button type="button" class="deck__dot" aria-label="Show HEARSAY"></button>
       <button type="button" class="deck__dot" aria-label="Show Reading Beats Asking, and Neither Beats Logprobs"></button>
       <button type="button" class="deck__dot" aria-label="Show The J-space of a Diffusion Language Model"></button>

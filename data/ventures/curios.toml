@@ -1,0 +1,20 @@
+title = "Curios by Muse"
+date = "2026-11-15"
+hackathon = "Meta Closer Together AI Hackathon"
+award = "1st Place"
+team = "Bayan Mardon, Max Iliev, Kevin Harvey, Artem Kim"
+description = """
+For Meta's Closer Together AI Hackathon at Menlo Park, 80 of us were selected from hackathons across the country and given 36 hours to answer one prompt: build a feature that makes Facebook useful and engaging for young adults. Our answer was Curios, a short-form interactive game format in the spirit of Wordle and Connections, where each Curio is a simple challenge with a themed rule set. Anyone can describe a tiny game in a sentence (our favorites were "Jensen Huang Honeypot Simulator" and "Escape the Office at 4:59"), Meta's Muse models build it, and the Curio plays right inside Facebook, in its own tab as well as in Groups, Events, Stories, and Reels. *When the world is your muse, how will you create the content of tomorrow?*
+"""
+results = [
+  "won 1st Place out of 80 participants selected from over 6,200 hackers nationwide",
+  "a custom generation harness on the Muse model family (thank you AI at Meta for the credits!)",
+  "a custom game engine in Rust that treats every game as a state machine",
+  "a custom recommendation algorithm for surfacing Curios across the app",
+  "a custom inter-agent communication protocol that coordinated our AI-assisted coding across the team",
+  "a SwiftUI recreation of the Facebook iOS app to host it all, with no third-party dependencies",
+]
+link = "https://www.linkedin.com/feed/update/urn:li:activity:7528442573280137216/"
+link_label = "linkedin post"
+video = ""
+github = "https://github.com/karthiksing05/meta-hackathon-project"
