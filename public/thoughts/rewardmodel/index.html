@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>how to build your reward model :: Karthik&#39;s World</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="what RL can teach us about setting effective direction and finding self-fulfillment" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="/thoughts/rewardmodel/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="/css/terminal.min.b4c9a8177425847ea7a60774d22b1029badd7ff02dc331fc13075877d36f6507.css">
+
+  
+  <link rel="stylesheet" href="/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+  <link rel="stylesheet" href="/terminal.css?v=43188c3e">
+
+
+
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="Karthik Singaravadivelan" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="how to build your reward model">
+<meta property="og:description" content="what RL can teach us about setting effective direction and finding self-fulfillment" />
+<meta property="og:url" content="/thoughts/rewardmodel/" />
+<meta property="og:site_name" content="Karthik&#39;s World" />
+
+  
+  
+  <meta property="og:image" content="/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2026-11-24 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
+  })();
+</script>
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Karthik&#39;s World
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/thoughts">thoughts</a></li>
+        
+      
+        
+          <li><a href="/interests">interests</a></li>
+        
+      
+        
+          <li><a href="/research">research</a></li>
+        
+      
+        
+          <li><a href="/education">education</a></li>
+        
+      
+        
+          <li><a href="/ventures">ventures</a></li>
+        
+      
+        
+          <li><a href="/quotebook">quotebook</a></li>
+        
+      
+        
+          <li><a href="/contactme">contact me</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+    <button class="theme-toggle" type="button" hidden>
+      
+      <svg class="theme-toggle__sun" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M5 0h1v1h-1zM1 1h1v1h-1zM5 1h1v1h-1zM9 1h1v1h-1zM2 2h1v1h-1zM8 2h1v1h-1zM4 3h3v1h-3zM3 4h5v1h-5zM0 5h2v1h-2zM3 5h5v1h-5zM9 5h2v1h-2zM3 6h5v1h-5zM4 7h3v1h-3zM2 8h1v1h-1zM8 8h1v1h-1zM1 9h1v1h-1zM5 9h1v1h-1zM9 9h1v1h-1zM5 10h1v1h-1z"/>
+      </svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 11 11" aria-hidden="true">
+        <path d="M4 0h1v1h-1zM2 1h2v1h-2zM1 2h3v1h-3zM1 3h3v1h-3zM0 4h4v1h-4zM0 5h4v1h-4zM0 6h5v1h-5zM10 6h1v1h-1zM1 7h9v1h-9zM1 8h9v1h-9zM2 9h7v1h-7zM4 10h3v1h-3z"/>
+      </svg>
+    </button>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var button = document.currentScript.previousElementSibling;
+        function label() {
+          var text = root.getAttribute("data-theme") === "dark" ? "Switch to light mode" : "Switch to dark mode";
+          button.setAttribute("aria-label", text);
+          button.title = text;
+        }
+        button.addEventListener("click", function () {
+          var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          try { localStorage.setItem("theme", next); } catch (e) {}
+          label();
+        });
+        label();
+        button.hidden = false;
+      })();
+    </script>
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/thoughts" >thoughts</a></li>
+        
+      
+        
+          <li><a href="/interests" >interests</a></li>
+        
+      
+        
+          <li><a href="/research" >research</a></li>
+        
+      
+        
+          <li><a href="/education" >education</a></li>
+        
+      
+        
+          <li><a href="/ventures" >ventures</a></li>
+        
+      
+        
+          <li><a href="/quotebook" >quotebook</a></li>
+        
+      
+        
+          <li><a href="/contactme" >contact me</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="/thoughts/rewardmodel/">how to build your reward model</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2026-11-24</time><span class="post-author">Karthik Singaravadivelan</span></div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>I&rsquo;ve been having a lot of conversations about commitment recently, mostly with friends my age, and they almost always end up in the same place. People are worried all the time about their goals: whether they picked the right major, whether the internship they took is the right internship, whether they&rsquo;re doing the right thing at all, and maybe most stressfully, how they could ever even be sure of that. I feel like this is a very Gen-Z flavor of anxiety, where we have more options than any generation before us and somehow less certainty about any of them. At the same time, I&rsquo;ve been thinking a lot about reinforcement learning, both because of how widely applicable it is and because of how popular it has gotten recently, and I keep noticing these weird parallels between how ML algorithms converge and how people explore new opportunities. I wanted to write the connection down, mostly to get it out of my head, and partly because I think it&rsquo;s actually useful.</p>
+<blockquote>
+<p>The reward of a thing well done is to have done it. <em>- Ralph Waldo Emerson, American essayist and philosopher</em></p></blockquote>
+<h1 id="background">background<a href="#background" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>In my opinion, the real thing underneath all of these conversations is feeling lost, and I think feeling lost comes from two main roadblocks. The first is the choice of what it is you want to do in the first place, which is a whole conversation about purpose that I&rsquo;ll write about in its own post soon (stay tuned). The second, and the one I want to focus on here, is how you know you&rsquo;re making progress once you&rsquo;ve started moving, especially when nobody is grading you and the feedback you get is rare, noisy, or straight up contradictory.</p>
+<p>I want to give a quick disclaimer before I start: I&rsquo;m not a psychologist, and I can&rsquo;t speak credibly on how people learn in any clinical sense. Based on my own life experiences, though, and on spending way too many hours staring at loss curves, I&rsquo;m convinced there is a surefire parallel here somewhere, and I&rsquo;m going to try my best to pin it down.</p>
+<h1 id="definitions">definitions<a href="#definitions" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>Reinforcement learning (RL) is a framework for learning by trying things, and it has a few moving parts:</p>
+<ul>
+<li><strong>Agent:</strong> the thing doing the learning (for us, a language model).</li>
+<li><strong>State and action:</strong> the agent observes the <em>state</em> of the world and takes an <em>action</em>; for an LLM, the state is the prompt plus everything written so far, and each action is the next token.</li>
+<li><strong>Policy:</strong> the rule the agent uses to pick its actions, which for an LLM is just the model itself.</li>
+<li><strong>Trajectory:</strong> a full sequence of states and actions from start to finish, like one complete response (also called a <em>rollout</em> when the agent is actually going out and generating one).</li>
+<li><strong>Reward model:</strong> whatever scores how good a trajectory was, and, as you can probably guess from the title, the piece I care about most.</li>
+</ul>
+<h2 id="the-goal-of-rl">the goal of RL<a href="#the-goal-of-rl" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Broadly, the goal of RL is to achieve <em>generalized</em> success in some category. The category can be as narrow as multiplication or as broad as all of math, but the contingency of &ldquo;generalized&rdquo; success requires that the agent learn the underlying rule rather than memorize the answers it happened to see. In modern LLMs, RL comes after pretraining, and it is designed to make that pretrained knowledge more specialized, i.e., to decide which latent knowledge actually gets leveraged to produce a response.</p>
+<p>RL also provides partial success guarantees. Traditional finetuning supports a 1:1 guarantee (here is the input, copy this exact output), whereas a well-chosen RL system grades outcomes, so skills can converge partially and modularly: a model can get much better at setting up a proof before it ever gets good at finishing one, and both of those improvements stick.</p>
+<p>Throughout the rest of this, I&rsquo;m going to use an extended metaphor of studying for a test, because I think everyone has done it, and because I&rsquo;ve personally done it in just about every way that the algorithms below do it.</p>
+<h1 id="a-tour-of-reward">a tour of reward<a href="#a-tour-of-reward" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="rlhf--ppo">RLHF + PPO<a href="#rlhf--ppo" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>The classic recipe, made famous by InstructGPT (<a href="https://arxiv.org/abs/2203.02155">Ouyang et al., 2022</a>): first do supervised finetuning on human-written examples, then train a reward model to predict which of two responses a person would prefer, and finally train the model against that reward model with an algorithm called PPO. The problem it attempted to solve is that &ldquo;good&rdquo; is really hard to write down as a rule, so instead of writing it down, you learn it from people.</p>
+<p>In test terms, this is working through practice problems, showing your answers to a teacher, and slowly building an internal sense of what the teacher is looking for, until you can grade your own work without asking them every time. That internal sense is a reward model, and I&rsquo;d argue everyone already has one, even if they&rsquo;ve never called it that.</p>
+<h2 id="constitutional-ai">constitutional AI<a href="#constitutional-ai" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Constitutional AI (<a href="https://arxiv.org/abs/2212.08073">Bai et al., 2022</a>) extends RLHF by streamlining how messy it is to garner human feedback. Instead of asking people to compare thousands of responses, you write down a short set of principles (a <em>constitution</em>) and have the model critique and revise its own responses against them.</p>
+<p>I think this one is so unbelievably cool because we autonomously do this as humans!! At some point while studying, you stop needing the teacher to check every answer, because you&rsquo;ve distilled their feedback into a handful of rules: show your work, check the units, reread the question. Those rules are your constitution, and they let you give yourself feedback at a scale no teacher ever could.</p>
+<h2 id="dpo">DPO<a href="#dpo" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Direct Preference Optimization (<a href="https://arxiv.org/abs/2305.18290">Rafailov et al., 2023</a>) skips the separate reward model entirely, and lets the model compute the reward itself straight from preference pairs. The benefit is sample-efficiency and simplicity. The downside is that you get cooked by in-distribution prediction: because DPO only learns from a fixed set of pairs, it knows very little about anything outside of them.</p>
+<p>This has a pretty clear human analog in how we don&rsquo;t necessarily holistically rank or regard everything at once. When I&rsquo;m studying, I&rsquo;m not scoring every possible way of solving a problem; I&rsquo;m looking at two approaches and deciding which one feels better, and I find a lot of tractability in making decisions pairwise like that. Careers work this way too, since almost nobody ranks every possible life, but everybody can tell you which of two offers they&rsquo;d rather take. The catch, just like DPO, is that if you only ever compare the options sitting in front of you, you never learn anything about the ones that aren&rsquo;t.</p>
+<h2 id="reinforce">REINFORCE<a href="#reinforce" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>REINFORCE (<a href="https://link.springer.com/article/10.1007/BF00992696">Williams, 1992</a>) is much older than everything above, and it&rsquo;s the precursor to GRPO, the method behind a lot of today&rsquo;s reasoning models, which has a model grade its own attempts against each other (more on that next). You sample a full trajectory, see how it did, and reinforce every action in it based on whether the outcome beat your average, rather than taking each reward and applying it individually. This works mainly because good outcomes tend to be built out of mostly good steps, so the good steps get reinforced more often than not, even when a few bad ones sneak through.</p>
+<p>In test terms, this is getting your exam back with only a final score on it. You don&rsquo;t know which answers lost you points, but if you did better than usual, you assume the way you studied this time was better than usual too, and you lean into it.</p>
+<h2 id="grpo">GRPO<a href="#grpo" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Group Relative Policy Optimization (<a href="https://arxiv.org/abs/2402.03300">Shao et al., 2024</a>) takes that averaging idea and makes it local: for each problem, the model samples a group of its own answers, and each one is rewarded based on how it did relative to the rest of the group. In plain words, we sample from ourselves, weight the better attempts higher, and iterate to better structure our manifold of latent knowledge.</p>
+<p>I think this is an extremely useful analog for how humans learn to teach themselves ideas with limited feedback. When I&rsquo;m stuck on a proof, I&rsquo;ll try three or four different ways of explaining it to myself, and the one that finally clicks becomes the version I remember. Oftentimes, we agree with the rewards that feel more intuitively correct to us, and a reasonable explanation for this is that intuition is exactly that group comparison happening quietly in the background: we judge each new attempt against our other attempts, not against some absolute scale.</p>
+<h2 id="rlvr">RLVR<a href="#rlvr" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Reinforcement Learning with Verifiable Rewards (<a href="https://arxiv.org/abs/2411.15124">Lambert et al., 2024</a>, popularized by <a href="https://arxiv.org/abs/2501.12948">DeepSeek-R1</a>) is behind most of the recent leaps in LLM reasoning. It throws out the learned reward model wherever you can check the answer directly (did the math come out right, did the code pass the tests), which gives the model a reward that can&rsquo;t be flattered or fooled.</p>
+<p>For humans, I think this is inherently a discussion about faith and trust. Very few of our rewards are actually verifiable, so we tend to trust, and sometimes inflate, the value of rewards based on how much we believe in their underlying momentum toward our goal. Generally, we value rewards proportionally to how much we trust that the reward will lead us to our ultimate goal. You may think that we value rewards proportionally to how good they make us feel, but that in itself ties directly back to the fact that achieving goals makes us feel good, in a much more primitive sense. A practice test score feels good because you trust that it predicts the real one; if you found out the practice test was from a completely different class, the exact same number would feel like nothing.</p>
+<h2 id="opd-and-mopd">OPD and MOPD<a href="#opd-and-mopd" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>On-policy distillation (<a href="https://arxiv.org/abs/2306.13649">Agarwal et al., 2024</a>) has a strong teacher model act as the reward model, grading every single step of the student&rsquo;s own attempt rather than just the final answer. MOPD (multi-teacher on-policy distillation) goes further, with multiple expert teachers distilled into one central model so that it develops all of their capabilities at once.</p>
+<p>In test terms, this is a private tutor who watches you work through every problem and stops you the moment you take a wrong turn, and MOPD is having a different world-class tutor for every subject. That&rsquo;s pretty unrealistic for most people (unless of course you are very privileged), but there&rsquo;s still something nice to be taken away here: the most valuable feedback is dense and on-policy, coming from someone watching <em>you</em> do the thing rather than showing you their own perfect solution after the fact. Even one good mentor who does this occasionally is worth more than a hundred textbooks with the answers in the back.</p>
+<h1 id="what-the-tour-tells-us">what the tour tells us<a href="#what-the-tour-tells-us" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>Looking at all of these together, I think the broad trend is that RL is slowly moving away from direct references to the real environment and toward <em>models</em> of the environment: learned reward models, AI judges, teacher models, all of which are really perception-predictions of what the world would say if you asked it. Real feedback is expensive and slow, so we learn to predict it, and then we learn from the prediction.</p>
+<p>There&rsquo;s one important caveat, though, and I&rsquo;m not sure where best to put it, so I&rsquo;ll put it here. In ML, RL functions by allowing specialization of latent knowledge that already exists, and it&rsquo;s much worse at teaching genuinely out-of-distribution tasks, partly because of a KL penalty that keeps the model tethered to where it started. There&rsquo;s some pretty compelling evidence for this: <a href="https://arxiv.org/abs/2504.13837">Yue et al. (2025)</a> found that when you give a base model enough attempts, it can solve basically everything its RL-trained version can, and <a href="https://arxiv.org/abs/2509.04259">Shenfeld et al. (2025)</a> argue that RL forgets less than finetuning precisely because it stays close to the original model. In the real world, I think having the right reward model may come down to acknowledging and accepting that your prior knowledge tells a half-full story, while not letting that degrade you. You start where you start, and that&rsquo;s okay, because RL is about getting the most out of what&rsquo;s already there.</p>
+<h1 id="sparse-rewards">sparse rewards<a href="#sparse-rewards" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>Now, I want to begin to discuss the notion of sparse rewards, because I think this is where the parallel gets the most interesting. RL works for LLMs because we have well-structured rewards that allow for fast uptake of the underlying trajectories. Most of the techniques above succeed because a reward can be obtained, at least partially, depending on how successful the solution was, and you can generate thousands of rollouts in an afternoon.</p>
+<p>In the real world, rewards are rarely so abundant. You don&rsquo;t get a score every time you have a conversation, or work on a project, or make a decision about what to do next; you might get one big reward (a job offer, a paper acceptance, the feeling of having built something real) after years of trajectories with no signal at all. This means it comes down to us setting effective goals to build up to the large reward, so that we have something smaller to learn from along the way.</p>
+<p>I think those smaller rewards matter for more than just learning, too: they&rsquo;re what keep you afloat while you&rsquo;re waiting on the big checkpoints. A model doesn&rsquo;t get discouraged after ten thousand rollouts with no reward, but people absolutely do, and a goal that only pays out once every few years is a goal that most of us will quietly abandon long before it ever pays out. Setting effective direction also gets harder as life goes on, mostly because fulfillment shifts. The things that felt rewarding to me at fifteen (winning a robotics match, getting a model to train at all) aren&rsquo;t the things that feel rewarding to me now, which means the reward model I built back then is slowly going stale, and I have to keep rebuilding it. In ML, we&rsquo;d call this a non-stationary reward, and it&rsquo;s one of the harder open problems in the field; in real life, I think it&rsquo;s just called growing up.</p>
+<p>Additionally, in the real world, we&rsquo;re constantly creating our own informal reward models based on partially informative feedback, and we use those models to guide our behavior and decisions in zero-shot scenarios (i.e., scenarios we&rsquo;ve never seen an example of). Nobody has a training set for &ldquo;should I switch majors in my second year,&rdquo; so you predict the reward, and you act on your prediction.</p>
+<p>Thus, I maintain that the best way to evolve and grow is to focus hard on developing your reward model under a central North Star, and to learn to trust that reward model strongly.</p>
+<h1 id="so-how-do-you-build-a-reward-model">so, how do you build a reward model?<a href="#so-how-do-you-build-a-reward-model" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>Here&rsquo;s my current best attempt at an answer, built from everything above.</p>
+<ul>
+<li><strong>First, and hardest, pick a goal.</strong> Reward models operate under the pretense that you have already decided what it is you want to do. However, fear not even if you haven&rsquo;t picked one yet. We know from cognitive science that skills transfer: as far back as 1949, Harry Harlow showed that monkeys who solved many different problems of the same type got faster at solving brand new ones, which he called forming a <em>learning set</em> (<a href="https://doi.org/10.1037/h0062474">Harlow, 1949</a>). In engaging in the process of learning and growth, even if the specific skills you learn end up not mattering because of a complete career pivot, you are still learning <em>how</em> to learn, and that carries over everywhere.</li>
+<li><strong>Borrow verifiable rewards from other people.</strong> From RLVR, we learn the value of a reward you can actually check. Most of us don&rsquo;t have a verifier for our lives, but other people&rsquo;s lives are the closest thing we&rsquo;ve got. Read, read a ton, and soak up lessons and generalizations of lessons. None of this may stick with you right away, which is why I&rsquo;ve left a list of readings at the bottom you can absolutely investigate to confirm (or refute) any of this for yourself. Find examples of people who got where you want to go, and do what they did.</li>
+<li><strong>DO SOMETHING.</strong> RL assumes that you are actually taking actions! You HAVE to try stuff out and correct your reward model based on what happens. In a related vein, you can never get a high reward if you never stumble across the answer, so in everyone&rsquo;s reward model, there has to be a reward for exploration itself. This is already a well-adopted strategy in AI (entropy bonuses, epsilon-greedy sampling, and so on) to keep models from a) converging to the first answer they find, and b) never finding an answer, period.</li>
+<li><strong>Reflect like GRPO.</strong> Metacognition has huge value here, and reflecting intentionally is hard but fulfilling. The strategy I&rsquo;ve borrowed from GRPO is to try a few different things for the same problem, compare them against each other honestly, assign each one a reward, and let that comparison guide my future rollouts. I think comparing against your own other attempts is so much healthier than comparing against someone else&rsquo;s highlight reel.</li>
+<li><strong>Don&rsquo;t reward hack.</strong> In ML, reward hacking is when a model finds a way to score highly without actually doing the thing the reward was meant to capture. As a human, I think reward hacking looks like optimizing for external reward rather than internal motivation: the title, the follower count, or the grade, rather than the skill. Learning the generalization of the rule is harder, but it leads to much better abstraction in the long run. This is also why it is crucial to think deeply about setting a reward that enables positive growth, rather than one that regresses you into someone else&rsquo;s identity. Wanting to learn skills X, Y, and Z is a good goal, because it has the potential to generalize. Wanting to be like person A, who happens to have skills X, Y, and Z, is a worse goal, because it restricts your ability to generalize to exactly one person&rsquo;s path.</li>
+</ul>
+<h1 id="qed">q.e.d.<a href="#qed" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>I get asked a lot why I study both CS and psychology, and the honest answer roots deeply in this exact dichotomy. In CS, I have found answers about myself, and in myself, I have found answers about CS. One of my research advisors would probably argue that RL isn&rsquo;t true learning at all, just pedantic optimization against a number, and I understand where that view comes from, but I can&rsquo;t help disagreeing with it holistically, because some things just make so much more sense from this perspective.</p>
+<p>I want to close on what I think is still unsolved, both in RL and in learning in general, because perhaps the answer is in ourselves. In my opinion, the final frontier for RL is test-time continual learning: learning that keeps happening after deployment, the kind that stimulates evolution rather than just refinement. One of the continuities across every method I described above is the KL penalty, which is there to keep training stable by keeping the model close to who it already was. For true evolution, it seems like we&rsquo;ll need to abandon that penalty in favor of one that allows us to become more than who we are, while still retaining all the right parts of who we were. I don&rsquo;t know what that looks like for a model yet, and I&rsquo;m not sure I know what it looks like for a person either, but I think figuring it out is the most worthwhile thing I could spend my reward on.</p>
+<p><em>- Karthik</em></p>
+<h1 id="further-reading">further reading<a href="#further-reading" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ul>
+<li>Richard Sutton and Andrew Barto, <a href="http://incompleteideas.net/book/the-book-2nd.html"><em>Reinforcement Learning: An Introduction</em></a> (2nd ed., 2018), the textbook, free online.</li>
+<li>Nathan Lambert, <a href="https://rlhfbook.com/"><em>RLHF Book</em></a>, a really approachable walkthrough of everything in the tour above.</li>
+<li>David Silver et al., <a href="https://doi.org/10.1016/j.artint.2021.103535">Reward is Enough</a> (Artificial Intelligence, 2021), the boldest version of the argument that reward maximization alone could explain intelligence.</li>
+<li>Ouyang et al., <a href="https://arxiv.org/abs/2203.02155">Training language models to follow instructions with human feedback</a> (2022).</li>
+<li>Bai et al., <a href="https://arxiv.org/abs/2212.08073">Constitutional AI: Harmlessness from AI Feedback</a> (2022).</li>
+<li>Rafailov et al., <a href="https://arxiv.org/abs/2305.18290">Direct Preference Optimization</a> (2023).</li>
+<li>Shao et al., <a href="https://arxiv.org/abs/2402.03300">DeepSeekMath</a> (2024), where GRPO comes from.</li>
+<li>DeepSeek-AI, <a href="https://arxiv.org/abs/2501.12948">DeepSeek-R1</a> (2025).</li>
+<li>Thinking Machines, <a href="https://thinkingmachines.ai/blog/on-policy-distillation/">On-Policy Distillation</a> (2025).</li>
+<li>Yue et al., <a href="https://arxiv.org/abs/2504.13837">Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?</a> (2025).</li>
+<li>Shenfeld et al., <a href="https://arxiv.org/abs/2509.04259">RL&rsquo;s Razor: Why Online Reinforcement Learning Forgets Less</a> (2025).</li>
+<li>Harry Harlow, <a href="https://doi.org/10.1037/h0062474">The Formation of Learning Sets</a> (Psychological Review, 1949).</li>
+</ul>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
