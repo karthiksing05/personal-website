@@ -110,11 +110,7 @@ author = "[Thinking] deeply of simple things. *— Arnold Ross, American mathema
   <div style="flex: 3;">
     <h2>tomorrow</h2>
     <p>
-      In my future, I hope to pursue a Computer Science PhD arguing the importance of fundamental tenets of human-like learning and intelligence in the global AI movement by developing
-      <span class="terminal-hover">neuro-symbolic<span class="terminal-popup">
-        <strong>Neuro-symbolic:</strong><br>
-        A type of architecture that integrates neural and symbolic AI architectures to address the weaknesses of each, providing a robust AI capable of cognitive modeling.
-    </span></span> artificial intelligence, hoping to take advantage of these fundamental tenets to further the path to AGI. In a broader sense, I am excited to see the discovery of
+      In my future, I am broadly interested in arguing the importance of the fundamental tenets of human learning and cognition in the global AI movement, whether that be through an academic PhD, an entrepreneurial venture, or some secret third thing. As AI continues to scale, I believe our understanding of it must be principled and well-guided, and that the way humans learn (curiously, efficiently, and from very little data) is one of the best guides we have. It is this grounding that I think will enable us to conquer the frontiers beyond the verifiable, where there is no answer key to check against, and where much of the most important work of the next few decades will happen. In a broader sense, I am excited to see the discovery of
       <span class="terminal-hover">superintelligence<span class="terminal-popup">
         <strong>Superintelligence:</strong><br>
         If intelligence is the ability to handle new situations with little or no prior training, then progress towards greater intelligence achieves new frontiers on the tradeoff between data and performance on new tasks. With respect to this tradeoff, <strong>superintelligence</strong> is the feat of ultimate generalization with little or no data in the space.
