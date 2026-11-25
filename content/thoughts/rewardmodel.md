@@ -6,7 +6,7 @@ cover = ""
 description = "what RL can teach us about setting effective direction and finding self-fulfillment"
 +++
 
-I've been having a lot of conversations about commitment recently, mostly with friends my age, and they almost always end up in the same place. People are worried all the time about their goals: whether they picked the right major, whether the internship they took is the right internship, whether they're doing the right thing at all, and maybe most stressfully, how they could ever even be sure of that. I feel like this is a very Gen-Z flavor of anxiety, where we have more options than any generation before us and somehow less certainty about any of them. At the same time, I've been thinking a lot about reinforcement learning, both because of how widely applicable it is and because of how popular it has gotten recently, and I keep noticing these weird parallels between how ML algorithms converge and how people explore new opportunities. I wanted to write the connection down, mostly to get it out of my head, and partly because I think it's actually useful.
+I've been having a lot of conversations about commitment recently, mostly with friends my age, and they almost always end up in the same place. People are worried all the time about their goals: whether they picked the right major, whether the internship they took is the right internship, whether they're doing the right thing at all, and maybe most stressfully, how they could ever even be sure of that. I feel like this is a very Gen-Z flavor of anxiety, where we have more options than any generation before us and somehow less certainty about any of them. At the same time, I've been thinking a lot about reinforcement learning, both because of how widely applicable it is and because of how popular it has gotten recently, and I keep noticing these weird parallels between how machine learning (ML) algorithms converge and how people explore new opportunities. I wanted to write the connection down, mostly to get it out of my head, and partly because I think it's actually useful.
 
 > The reward of a thing well done is to have done it. *- Ralph Waldo Emerson, American essayist and philosopher*
 
@@ -19,7 +19,7 @@ I want to give a quick disclaimer before I start: I'm not a psychologist, and I 
 # definitions
 
 Reinforcement learning (RL) is a framework for learning by trying things, and it has a few moving parts:
-*   **Agent:** the thing doing the learning (for us, a language model).
+*   **Agent:** the thing doing the learning (for us, a large language model, or LLM).
 *   **State and action:** the agent observes the *state* of the world and takes an *action*; for an LLM, the state is the prompt plus everything written so far, and each action is the next token.
 *   **Policy:** the rule the agent uses to pick its actions, which for an LLM is just the model itself.
 *   **Trajectory:** a full sequence of states and actions from start to finish, like one complete response (also called a *rollout* when the agent is actually going out and generating one).
@@ -37,7 +37,7 @@ Throughout the rest of this, I'm going to use an extended metaphor of studying f
 
 ## RLHF + PPO
 
-The classic recipe, made famous by InstructGPT ([Ouyang et al., 2022](https://arxiv.org/abs/2203.02155)): first do supervised finetuning on human-written examples, then train a reward model to predict which of two responses a person would prefer, and finally train the model against that reward model with an algorithm called PPO. The problem it attempted to solve is that "good" is really hard to write down as a rule, so instead of writing it down, you learn it from people.
+The classic recipe for Reinforcement Learning from Human Feedback (RLHF), made famous by InstructGPT ([Ouyang et al., 2022](https://arxiv.org/abs/2203.02155)): first do supervised finetuning on human-written examples, then train a reward model to predict which of two responses a person would prefer, and finally train the model against that reward model with an algorithm called Proximal Policy Optimization (PPO). The problem it attempted to solve is that "good" is really hard to write down as a rule, so instead of writing it down, you learn it from people.
 
 In test terms, this is working through practice problems, showing your answers to a teacher, and slowly building an internal sense of what the teacher is looking for, until you can grade your own work without asking them every time. That internal sense is a reward model, and I'd argue everyone already has one, even if they've never called it that.
 
@@ -55,13 +55,13 @@ This has a pretty clear human analog in how we don't necessarily holistically ra
 
 ## REINFORCE
 
-REINFORCE ([Williams, 1992](https://link.springer.com/article/10.1007/BF00992696)) is much older than everything above, and it's the precursor to GRPO, the method behind a lot of today's reasoning models, which has a model grade its own attempts against each other (more on that next). You sample a full trajectory, see how it did, and reinforce every action in it based on whether the outcome beat your average, rather than taking each reward and applying it individually. This works mainly because good outcomes tend to be built out of mostly good steps, so the good steps get reinforced more often than not, even when a few bad ones sneak through.
+REINFORCE ([Williams, 1992](https://link.springer.com/article/10.1007/BF00992696)) is much older than everything above, and it's the precursor to Group Relative Policy Optimization (GRPO), the method behind a lot of today's reasoning models, which has a model grade its own attempts against each other (more on that next). You sample a full trajectory, see how it did, and reinforce every action in it based on whether the outcome beat your average, rather than taking each reward and applying it individually. This works mainly because good outcomes tend to be built out of mostly good steps, so the good steps get reinforced more often than not, even when a few bad ones sneak through.
 
 In test terms, this is getting your exam back with only a final score on it. You don't know which answers lost you points, but if you did better than usual, you assume the way you studied this time was better than usual too, and you lean into it.
 
 ## GRPO
 
-Group Relative Policy Optimization ([Shao et al., 2024](https://arxiv.org/abs/2402.03300)) takes that averaging idea and makes it local: for each problem, the model samples a group of its own answers, and each one is rewarded based on how it did relative to the rest of the group. In plain words, we sample from ourselves, weight the better attempts higher, and iterate to better structure our manifold of latent knowledge.
+GRPO ([Shao et al., 2024](https://arxiv.org/abs/2402.03300)) takes that averaging idea and makes it local: for each problem, the model samples a group of its own answers, and each one is rewarded based on how it did relative to the rest of the group. In plain words, we sample from ourselves, weight the better attempts higher, and iterate to better structure our manifold of latent knowledge.
 
 I think this is an extremely useful analog for how humans learn to teach themselves ideas with limited feedback. When I'm stuck on a proof, I'll try three or four different ways of explaining it to myself, and the one that finally clicks becomes the version I remember. Oftentimes, we agree with the rewards that feel more intuitively correct to us, and a reasonable explanation for this is that intuition is exactly that group comparison happening quietly in the background: we judge each new attempt against our other attempts, not against some absolute scale.
 
@@ -73,7 +73,7 @@ For humans, I think this is inherently a discussion about faith and trust. Very 
 
 ## OPD and MOPD
 
-On-policy distillation ([Agarwal et al., 2024](https://arxiv.org/abs/2306.13649)) has a strong teacher model act as the reward model, grading every single step of the student's own attempt rather than just the final answer. MOPD (multi-teacher on-policy distillation) goes further, with multiple expert teachers distilled into one central model so that it develops all of their capabilities at once.
+On-policy distillation, or OPD ([Agarwal et al., 2024](https://arxiv.org/abs/2306.13649)) has a strong teacher model act as the reward model, grading every single step of the student's own attempt rather than just the final answer. MOPD (multi-teacher on-policy distillation) goes further, with multiple expert teachers distilled into one central model so that it develops all of their capabilities at once.
 
 In test terms, this is a private tutor who watches you work through every problem and stops you the moment you take a wrong turn, and MOPD is having a different world-class tutor for every subject. That's pretty unrealistic for most people (unless of course you are very privileged), but there's still something nice to be taken away here: the most valuable feedback is dense and on-policy, coming from someone watching *you* do the thing rather than showing you their own perfect solution after the fact. Even one good mentor who does this occasionally is worth more than a hundred textbooks with the answers in the back.
 
@@ -81,7 +81,7 @@ In test terms, this is a private tutor who watches you work through every proble
 
 Looking at all of these together, I think the broad trend is that RL is slowly moving away from direct references to the real environment and toward *models* of the environment: learned reward models, AI judges, teacher models, all of which are really perception-predictions of what the world would say if you asked it. Real feedback is expensive and slow, so we learn to predict it, and then we learn from the prediction.
 
-There's one important caveat, though, and I'm not sure where best to put it, so I'll put it here. In ML, RL functions by allowing specialization of latent knowledge that already exists, and it's much worse at teaching genuinely out-of-distribution tasks, partly because of a KL penalty that keeps the model tethered to where it started. There's some pretty compelling evidence for this: [Yue et al. (2025)](https://arxiv.org/abs/2504.13837) found that when you give a base model enough attempts, it can solve basically everything its RL-trained version can, and [Shenfeld et al. (2025)](https://arxiv.org/abs/2509.04259) argue that RL forgets less than finetuning precisely because it stays close to the original model. In the real world, I think having the right reward model may come down to acknowledging and accepting that your prior knowledge tells a half-full story, while not letting that degrade you. You start where you start, and that's okay, because RL is about getting the most out of what's already there.
+There's one important caveat, though, and I'm not sure where best to put it, so I'll put it here. In ML, RL functions by allowing specialization of latent knowledge that already exists, and it's much worse at teaching genuinely out-of-distribution tasks, partly because of a KL (Kullback-Leibler divergence) penalty that keeps the model tethered to where it started. There's some pretty compelling evidence for this: [Yue et al. (2025)](https://arxiv.org/abs/2504.13837) found that when you give a base model enough attempts, it can solve basically everything its RL-trained version can, and [Shenfeld et al. (2025)](https://arxiv.org/abs/2509.04259) argue that RL forgets less than finetuning precisely because it stays close to the original model. In the real world, I think having the right reward model may come down to acknowledging and accepting that your prior knowledge tells a half-full story, while not letting that degrade you. You start where you start, and that's okay, because RL is about getting the most out of what's already there.
 
 # sparse rewards
 
@@ -107,7 +107,7 @@ Here's my current best attempt at an answer, built from everything above.
 
 # q.e.d.
 
-I get asked a lot why I study both CS and psychology, and the honest answer roots deeply in this exact dichotomy. In CS, I have found answers about myself, and in myself, I have found answers about CS. One of my research advisors would probably argue that RL isn't true learning at all, just pedantic optimization against a number, and I understand where that view comes from, but I can't help disagreeing with it holistically, because some things just make so much more sense from this perspective.
+I get asked a lot why I study both computer science (CS) and psychology, and the honest answer roots deeply in this exact dichotomy. In CS, I have found answers about myself, and in myself, I have found answers about CS. One of my research advisors would probably argue that RL isn't true learning at all, just pedantic optimization against a number, and I understand where that view comes from, but I can't help disagreeing with it holistically, because some things just make so much more sense from this perspective.
 
 I want to close on what I think is still unsolved, both in RL and in learning in general, because perhaps the answer is in ourselves. In my opinion, the final frontier for RL is test-time continual learning: learning that keeps happening after deployment, the kind that stimulates evolution rather than just refinement. One of the continuities across every method I described above is the KL penalty, which is there to keep training stable by keeping the model close to who it already was. For true evolution, it seems like we'll need to abandon that penalty in favor of one that allows us to become more than who we are, while still retaining all the right parts of who we were. I don't know what that looks like for a model yet, and I'm not sure I know what it looks like for a person either, but I think figuring it out is the most worthwhile thing I could spend my reward on.
 
